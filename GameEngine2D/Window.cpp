@@ -1,5 +1,6 @@
 #include "Window.h"
 #include <SDL_ttf.h>
+#include <stdexcept>
 
 
 

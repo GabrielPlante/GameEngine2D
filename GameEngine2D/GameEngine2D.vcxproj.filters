@@ -22,16 +22,34 @@
     <Filter Include="Source Files\System">
       <UniqueIdentifier>{b3f29e9d-1f08-46ca-8324-9eee47889630}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Renderable">
+      <UniqueIdentifier>{deee19dd-86eb-40c6-90a6-9506fc284f57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderable">
+      <UniqueIdentifier>{956b3358-90c2-4cfa-978d-9286345c2c92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderable\Text">
+      <UniqueIdentifier>{eb3b8201-fca8-48f4-8169-a93a06ac858d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderable\Text">
+      <UniqueIdentifier>{9351f364-e889-4086-a32c-3f156c4ed047}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Source Files\Renderable\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files\Renderable\Text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -42,7 +60,25 @@
       <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Header Files\Renderable\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Header Files\Renderable\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Angle.h">
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
