@@ -8,6 +8,7 @@ private:
 
 	//Reset the engine clock, but keep track of the time since the engine started
 	long long timestep();
+	
 public:
 	//Default constructor
 	Engine();
