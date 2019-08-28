@@ -6,16 +6,29 @@
 #include "Rectangle.h"
 class Text
 {
-public:
-	Text(const std::string& text, const Position<>& position, SDL_Renderer* renderer, const Font& font, const Color& color = Color{ 255, 255, 255 });
-	void render(SDL_Renderer* renderer, SDL_Rect* srcRect = nullptr, SDL_Rect* dstRect = nullptr) const;
-	const Rectangle& getRect() const { return rect; }
-	Text(Text&& text) = default;
-	~Text();
 private:
+	//No copy constructor
 	Text(const Text&) {}
+	//Color of the text
 	Color color;
+	//Rectangle representing the text
 	Rectangle rect;
+	//The actual texture
 	SDL_Texture* texture = nullptr;
+public:
+	//Constructor
+	Text(const std::string& text, const Position<>& position, SDL_Renderer* renderer, const Font& font, const Color& color = Color{ 255, 255, 255 });
+
+	//Render the text, with possibly a source rectangle and a destination rectangle
+	void render(SDL_Renderer* renderer, SDL_Rect* srcRect = nullptr, SDL_Rect* dstRect = nullptr) const;
+
+	//Get the rectangle of the text
+	const Rectangle& getRect() const { return rect; }
+
+	//Move constructor possible
+	Text(Text&& text) = default;
+
+	//Destructor
+	~Text();
 };
 

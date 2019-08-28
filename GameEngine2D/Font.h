@@ -7,9 +7,9 @@ private:
 	//No copy constructor
 	Font(const Font&) {}
 
-	TTF_Font* font;
+	TTF_Font* font{ nullptr };
 public:
-	//Constructor
+	//Constructor, fontFileName is by default mainFont.ttf
 	Font(int fontSize, const std::string& fontFileName = "mainFont.ttf");
 
 	//Get the font pointer

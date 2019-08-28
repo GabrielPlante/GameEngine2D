@@ -31,9 +31,9 @@ public:
 	float toDegree() const { return 180 * angle / PI; }
 
 	//Hard set the angle
-	void set(Angle angle) {
-		this->angle = angle.get();
-		if (angle.get() < 0 || angle.get() > 2 * PI)
+	void set(Angle newAngle) {
+		this->angle = newAngle.get();
+		if (newAngle.get() < 0 || newAngle.get() > 2 * PI)
 			add(0);
 	}
 

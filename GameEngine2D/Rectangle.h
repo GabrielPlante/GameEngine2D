@@ -5,11 +5,11 @@
 //A simple rectangle
 struct Rectangle {
 	//The coordinate of the upper left corner of the rectangle
-	long int x;
-	long int y;
+	long int x{ 0 };
+	long int y{ 0 };
 	//The width and height of the rectangle
-	int w;
-	int h;
+	int w{ 0 };
+	int h{ 0 };
 
 	//Default constructor
 	Rectangle() {}

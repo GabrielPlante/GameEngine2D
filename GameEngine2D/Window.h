@@ -11,7 +11,7 @@ private:
 	const int screenHeight;
 public:
 	//Constructor
-	Window(const int screenWith, const int screenHeight);
+	Window(const int screenWidth, const int screenHeight);
 
 	//Clear the window (call before drawing anything)
 	void clear() {

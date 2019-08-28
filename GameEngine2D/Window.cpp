@@ -4,7 +4,7 @@
 
 
 
-Window::Window(const int screenWith, const int screenHeight)
+Window::Window(const int screenWidth, const int screenHeight)
 	:screenWidth{ screenWidth }, screenHeight{ screenHeight }
 {
 	//Initialise SDL
@@ -12,7 +12,7 @@ Window::Window(const int screenWith, const int screenHeight)
 		throw std::runtime_error("SDL_Init failed");
 
 	//Create window
-	gWindow = SDL_CreateWindow("Ianagd", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWith, screenHeight, SDL_WINDOW_SHOWN);
+	gWindow = SDL_CreateWindow("Ianagd", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
 	if (!gWindow)
 		throw std::runtime_error("SDL_CreateWindow failed");
 
