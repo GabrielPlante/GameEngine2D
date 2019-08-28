@@ -34,6 +34,18 @@
     <Filter Include="Header Files\Renderable\Text">
       <UniqueIdentifier>{9351f364-e889-4086-a32c-3f156c4ed047}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ECS">
+      <UniqueIdentifier>{2257439f-e9c3-4741-a669-4dbedb35d166}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS">
+      <UniqueIdentifier>{036a6b90-5539-4fb1-8c8a-cf7c949b40fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\Entity">
+      <UniqueIdentifier>{f0e29bf2-05c2-4897-b678-7974b838cce7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\Entity">
+      <UniqueIdentifier>{53faf6e9-d30f-4363-ba6c-113254a5148f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -50,6 +62,9 @@
     </ClCompile>
     <ClCompile Include="Text.cpp">
       <Filter>Source Files\Renderable\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\ECS\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="Angle.h">
       <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\ECS\Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
