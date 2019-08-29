@@ -46,6 +46,18 @@
     <Filter Include="Source Files\ECS\Entity">
       <UniqueIdentifier>{53faf6e9-d30f-4363-ba6c-113254a5148f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ECS\Component">
+      <UniqueIdentifier>{603776e6-eb41-49a3-a0ae-c1c29ecd51a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\Component">
+      <UniqueIdentifier>{6fb6a3d7-737a-4fe7-bc81-b984191b74ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\System">
+      <UniqueIdentifier>{4bc889c3-6a4f-4b12-b846-4b98ffd2736f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\System">
+      <UniqueIdentifier>{849010fb-f05b-4f8b-9296-76e81cc29fad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -65,6 +77,9 @@
     </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\ECS\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="System.cpp">
+      <Filter>Source Files\ECS\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Header Files\ECS\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>Header Files\ECS\System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
