@@ -5,10 +5,6 @@ GraphicSystem::GraphicSystem(const int screenWidth, const int screenHeight)
 {
 }
 
-void GraphicSystem::init() {
-
-}
-
 void GraphicSystem::update() {
 	window.clear();
 

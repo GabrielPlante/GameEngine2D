@@ -19,10 +19,7 @@ private:
 	std::vector<std::shared_ptr<System>> systems;
 public:
 	//Default constructor
-	Engine(){}
-
-	//Initialise the engine
-	void init();
+	Engine();
 
 	//The mainLoop, call update each time, and timestep
 	void mainLoop();

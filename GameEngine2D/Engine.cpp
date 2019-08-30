@@ -16,7 +16,7 @@ long long Engine::timestep() {
 	return timeSinceLastReset;
 }
 
-void Engine::init() {
+Engine::Engine() {
 	//Adding the graphic system
 	addSystem(std::shared_ptr<System>{new GraphicSystem{ SCREEN_WIDTH, SCREEN_HEIGHT }});
 }
@@ -24,16 +24,18 @@ void Engine::init() {
 void Engine::mainLoop() {
 	while (true) {
 		long long timeSinceLastReset = timestep();
-		//If less time past since the last frame than what the engine want, it sleep to compensate for it
-		if (timeSinceLastReset < static_cast<long long>(timeBetweenFrame) * 1000) {
-			std::this_thread::sleep_for(std::chrono::microseconds(static_cast<long long>(timeBetweenFrame) * 1000 - timeSinceLastReset));
-		}
-
-		//---TEST---
-		//std::cout << "Time since last reset : " << timeSinceLastReset << std::endl << "Time since start : " << timeSinceStart << std::endl;
 
 		//Call the engine update
 		update();
+
+
+		//---TEST---
+		std::cout << "Time since last reset : " << timeSinceLastReset/1000 << std::endl << "Time since start : " << timeSinceStart/1000 << std::endl;
+
+		//If less time past since the last frame than what the engine want, it sleep to compensate for it
+		if (engineClock.getTime() < static_cast<long long>(timeBetweenFrame) * 1000) {
+			std::this_thread::sleep_for(std::chrono::microseconds(static_cast<long long>(timeBetweenFrame) * 1000 - engineClock.getTime()));
+		}
 	}
 }
 

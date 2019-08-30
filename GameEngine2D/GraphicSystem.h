@@ -13,9 +13,6 @@ public:
 	//Constructor
 	GraphicSystem(const int screenWidth, const int screenHeight);
 
-	//Initialisation
-	void init() override;
-
 	//What will update all component under this system control
 	void update() override;
 };
