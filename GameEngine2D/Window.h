@@ -20,10 +20,10 @@ public:
 	}
 
 	//Render the window (call after drawing everything)
-	void update() { SDL_RenderPresent(gRenderer); }
+	void render() { SDL_RenderPresent(gRenderer); }
 
 	//Get the renderer, required to draw anything
-	SDL_Renderer* getRenderer() { return gRenderer; }
+	SDL_Renderer* getRenderer() const { return gRenderer; }
 
 	//Destructor
 	~Window();
