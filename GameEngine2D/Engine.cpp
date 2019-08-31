@@ -22,10 +22,10 @@ long long Engine::timestep() {
 }
 
 Engine::Engine() {
-	//Adding the event system
+	//Adding the event system, first do it's updated first so the order arrive first
 	addSystem(std::shared_ptr<System>{new EventSystem{}});
 
-	//Adding the graphic system
+	//Adding the graphic system, last so it's updated last so everything is drawn last
 	addSystem(std::shared_ptr<System>{new GraphicSystem{ SCREEN_WIDTH, SCREEN_HEIGHT }});
 }
 
@@ -33,6 +33,13 @@ void Engine::init() {
 	if (!isInitialized) {
 		instance = new Engine();
 		isInitialized = true;
+	}
+}
+
+void Engine::quit() {
+	if (isInitialized) {
+		delete instance;
+		isInitialized = false;
 	}
 }
 

@@ -31,12 +31,16 @@ private:
 
 	//Reset the engine clock, but keep track of the time since the engine started, and give how much time passed since the last clock reset
 	long long timestep();
+
 public:
 	//Initialize the engine
 	static void init();
 
 	//Return a pointer to the engine instance, or nullptr if it's not initialized yet
 	static Engine* getInstance() { return instance; }
+
+	//Quit the engine, destroying this instance
+	static void quit();
 
 	//The mainLoop, call update each time, and timestep
 	void mainLoop();

@@ -5,7 +5,7 @@ class EventSystem :
 	public System
 {
 private:
-	SDL_Event event;
+	SDL_Event event{ 0 };
 
 	//Poll the next event, return false if there is no more event to pull
 	bool pollEvent() { return SDL_PollEvent(&event); }
