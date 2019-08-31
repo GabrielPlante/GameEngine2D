@@ -2,7 +2,7 @@
 #include "Engine.h"
 
 int main() {
-	Engine engine;
-	engine.mainLoop();
+	Engine::init();
+	Engine::getInstance()->mainLoop();
 	return 0;
 }

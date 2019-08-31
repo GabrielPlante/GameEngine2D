@@ -84,6 +84,9 @@
     <ClCompile Include="GraphicSystem.cpp">
       <Filter>Source Files\ECS\System</Filter>
     </ClCompile>
+    <ClCompile Include="EventSystem.cpp">
+      <Filter>Source Files\ECS\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clock.h">
@@ -120,6 +123,9 @@
       <Filter>Header Files\ECS\System</Filter>
     </ClInclude>
     <ClInclude Include="GraphicSystem.h">
+      <Filter>Header Files\ECS\System</Filter>
+    </ClInclude>
+    <ClInclude Include="EventSystem.h">
       <Filter>Header Files\ECS\System</Filter>
     </ClInclude>
   </ItemGroup>
