@@ -5,8 +5,13 @@ class StopCommand:
 	public Command
 {
 public:
+	//Default constructor
+	StopCommand()
+		:Command("Stop")
+	{}
+
 	//Stop the engine
-	void execute(std::vector<float> args) {
+	void execute(const std::vector<float>&) {
 		Engine::getInstance()->stop();
 	}
 };

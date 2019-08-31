@@ -31,7 +31,7 @@ Engine::Engine() {
 
 void Engine::init() {
 	if (!isInitialized) {
-		instance = new Engine();
+		instance = new Engine{};
 		isInitialized = true;
 	}
 }
