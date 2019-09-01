@@ -99,6 +99,12 @@
     <ClCompile Include="CommandList.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicComponent.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicComponentFactory.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clock.h">
@@ -148,6 +154,12 @@
     </ClInclude>
     <ClInclude Include="CommandList.h">
       <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicComponent.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicComponentFactory.h">
+      <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
