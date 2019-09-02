@@ -99,9 +99,6 @@
     <ClCompile Include="CommandList.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
-    <ClCompile Include="PhysicComponent.cpp">
-      <Filter>Source Files\ECS\Component</Filter>
-    </ClCompile>
     <ClCompile Include="PhysicComponentFactory.cpp">
       <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>

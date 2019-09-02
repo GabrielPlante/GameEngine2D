@@ -136,7 +136,6 @@
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GraphicSystem.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="PhysicComponent.cpp" />
     <ClCompile Include="PhysicComponentFactory.cpp" />
     <ClCompile Include="System.cpp" />
     <ClCompile Include="Text.cpp" />
