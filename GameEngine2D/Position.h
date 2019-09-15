@@ -67,7 +67,7 @@ struct Position
 	}
 
 	//https://yal.cc/rectangle-circle-intersection-test/
-	//Return true if the rectangle intersect the circle
+	//Return true if the rectangle intersect the circle, with this position the center of the circle
 	//The position x and y are the circle position and the rectangle position should be the center of the rectangle
 	bool rectIntersectCircle(const Position<>& rectanglePosition, int w, int h, int circleRadius) {
 		int deltaX = static_cast<int>(x - max(rectanglePosition.x, min(x, rectanglePosition.x + w)));

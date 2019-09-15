@@ -158,5 +158,8 @@
     <ClInclude Include="PhysicComponentFactory.h">
       <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
