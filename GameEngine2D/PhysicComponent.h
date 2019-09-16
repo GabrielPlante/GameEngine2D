@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Position.h"
+
 struct PhysicComponent
 	:public Component
 {

@@ -70,8 +70,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\Documents\SDL2-2.0.9\SDL2_ttf-2.0.15\include;D:\Documents\SDL2-2.0.9\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Documents\SDL2-2.0.9\SDL2_ttf-2.0.15\lib\x64;D:\Documents\SDL2-2.0.9\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\user\Documents\SDL2-2.0.8\SDL2_ttf-2.0.15\include;C:\Users\user\Documents\SDL2-2.0.8\include;D:\Documents\SDL2-2.0.9\SDL2_ttf-2.0.15\include;D:\Documents\SDL2-2.0.9\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\user\Documents\SDL2-2.0.8\SDL2_ttf-2.0.15\lib\x64;C:\Users\user\Documents\SDL2-2.0.8\lib\x64;D:\Documents\SDL2-2.0.9\SDL2_ttf-2.0.15\lib\x64;D:\Documents\SDL2-2.0.9\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
