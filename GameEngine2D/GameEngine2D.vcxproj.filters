@@ -149,12 +149,6 @@
     <ClInclude Include="CommandList.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicComponent.h">
-      <Filter>Header Files\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Header Files\ECS\Component</Filter>
-    </ClInclude>
     <ClInclude Include="EntityMovementComponent.h">
       <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
@@ -163,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="Factory.h">
       <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="IDGenerator.h">
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
