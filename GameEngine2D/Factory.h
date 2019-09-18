@@ -4,6 +4,7 @@
 
 #include "IDGenerator.h"
 
+
 /*
  * Factory is the template class that will hold every component of a component type
  * The id given after adding a component is garanted not to change
@@ -23,19 +24,26 @@ public:
 
 		//Get the ID for this component
 		unsigned int id{ iDGenerator.getNewID() };
+
 		//Insert ID in the map
-		iDtoPlace.insert(std::make_pair<unsigned int, unsigned int>(id, componentList.size()));
+		unsigned int componentListSize{ static_cast<unsigned int>(componentList.size() - 1) };
+		iDtoPlace.insert(std::make_pair(id, componentListSize));
+
 		return id;
 	}
 
-	Component* getComponent(unsigned long id) const {
-		return &componentList[iDtoPlace.find(id)->second()];
+	Component* getComponent(unsigned long id) {
+		return &componentList[iDtoPlace.find(id)->second];
+	}
+
+	typename std::vector<Component>::iterator getBeginningIterator() {
+		return componentList.begin();
 	}
 	
 	//Delete a component
 	void deleteComponent(unsigned long id) {
 		//Get the place of the component to delete
-		unsigned int componentPlace{ iDtoPlace.find(id)->second() };
+		unsigned int componentPlace{ iDtoPlace.find(id)->second };
 
 		//Delete the component
 		componentList.erase(componentList.begin() + componentPlace);
@@ -44,10 +52,12 @@ public:
 		iDtoPlace.erase(id);
 
 		//Decrement the place of all other component
-		for (auto it : iDtoPlace) {
-			if (it.second > componentPlace) {
-				it.second--;
+		auto it = iDtoPlace.begin();
+		while (it != iDtoPlace.end()) {
+			if (it->second > componentPlace) {
+				it->second--;
 			}
+			it++;
 		}
 
 	}

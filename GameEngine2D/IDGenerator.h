@@ -17,7 +17,7 @@ public:
 			return maxUsedID;
 		}
 		else {
-			id = deletedID.back();
+			T id = deletedID.back();
 			deletedID.pop_back();
 			return id;
 		}
@@ -31,11 +31,11 @@ public:
 		//Check to see if it is not already deleted
 		for (T deletedId : deletedID) {
 			if (deletedId == id) {
-				return false
+				return false;
 			}
 		}
 		//Add it to the list
-		deletedID.push_back(it);
+		deletedID.push_back(id);
 		return true;
 	}
 };
