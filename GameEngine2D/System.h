@@ -1,4 +1,7 @@
 #pragma once
+
+class Component;
+
 class System
 {
 public:

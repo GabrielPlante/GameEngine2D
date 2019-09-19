@@ -1,8 +1,12 @@
 #pragma once
 #include <vector>
 #include <memory>
+
 #include "Clock.h"
 #include "System.h"
+
+class GraphicSystem;
+
 /*
  * Engine class, singleton
 */
@@ -25,6 +29,9 @@ private:
 
 	//The vector containing all the systems
 	std::vector<std::shared_ptr<System>> systems;
+
+	//The graphic system have it's own variable to make sure it is updated last
+	std::shared_ptr<GraphicSystem> graphicSystem;
 
 	//Default constructor, private to make it a singleton
 	Engine();

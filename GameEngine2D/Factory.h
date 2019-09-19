@@ -18,7 +18,7 @@ private:
 	std::unordered_map<unsigned int, unsigned int> iDtoPlace;
 public:
 	//Add a component to the list, and return an id for the component
-	int addComponent(Component component) {
+	unsigned int addComponent(Component component) {
 		//Push the component in the list
 		componentList.push_back(component);
 

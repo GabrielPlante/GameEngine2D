@@ -24,7 +24,8 @@ long long Engine::timestep() {
 }
 
 //In the constructor many systems are added to the engine, the order in wich they are added will be their order of calling, so it matter
-Engine::Engine() {
+Engine::Engine()
+{
 	//Adding the event system, first do it's updated first so the order arrive first
 	addSystem(std::shared_ptr<System>{new EventSystem{}});
 
@@ -34,8 +35,8 @@ Engine::Engine() {
 
 	//-----Every system need to be added BEFORE this line-----
 
-	//Adding the graphic system, last so it's updated last so everything is drawn last
-	addSystem(std::shared_ptr<System>{new GraphicSystem{ SCREEN_WIDTH, SCREEN_HEIGHT }});
+	//Add the graphic system to his dedicated variable
+	graphicSystem = std::shared_ptr<GraphicSystem>{ new GraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT} };
 }
 
 void Engine::init() {
@@ -75,4 +76,7 @@ void Engine::update() {
 	for (std::shared_ptr<System> system : systems) {
 		system->update();
 	}
+
+	//At the end, the graphic system is updated
+	graphicSystem->update();
 }
