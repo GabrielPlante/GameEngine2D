@@ -2,8 +2,10 @@
 #include <chrono>
 #include <thread>
 
+//Include of the systems
 #include "EventSystem.h"
 #include "GraphicSystem.h"
+#include "MovementSystem.h"
 
 #include <iostream>
 
@@ -21,9 +23,16 @@ long long Engine::timestep() {
 	return timeSinceLastReset;
 }
 
+//In the constructor many systems are added to the engine, the order in wich they are added will be their order of calling, so it matter
 Engine::Engine() {
 	//Adding the event system, first do it's updated first so the order arrive first
 	addSystem(std::shared_ptr<System>{new EventSystem{}});
+
+	//-----Every system need to be added AFTER this line-----
+
+	addSystem(std::shared_ptr<System>{new MovementSystem{}});
+
+	//-----Every system need to be added BEFORE this line-----
 
 	//Adding the graphic system, last so it's updated last so everything is drawn last
 	addSystem(std::shared_ptr<System>{new GraphicSystem{ SCREEN_WIDTH, SCREEN_HEIGHT }});
