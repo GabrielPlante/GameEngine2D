@@ -64,6 +64,9 @@
     <Filter Include="Source Files\Command">
       <UniqueIdentifier>{190e50f0-e062-4acd-9941-b315f1e6eb51}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Messaging">
+      <UniqueIdentifier>{505c23c5-7ae6-4891-b4dc-0033606631e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -166,6 +169,15 @@
     </ClInclude>
     <ClInclude Include="MovementSystem.h">
       <Filter>Header Files\ECS\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Message.h">
+      <Filter>Header Files\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="Subscriber.h">
+      <Filter>Header Files\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="Publisher.h">
+      <Filter>Header Files\Messaging</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

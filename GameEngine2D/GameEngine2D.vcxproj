@@ -155,11 +155,14 @@
     <ClInclude Include="GraphicSystem.h" />
     <ClInclude Include="Handle.h" />
     <ClInclude Include="IDGenerator.h" />
+    <ClInclude Include="Message.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="Position.h" />
+    <ClInclude Include="Publisher.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="StopCommand.h" />
+    <ClInclude Include="Subscriber.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Window.h" />
