@@ -70,6 +70,12 @@
     <Filter Include="Source Files\Messaging">
       <UniqueIdentifier>{65963e35-3bc2-40c6-ace5-be7257ee0c02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Renderable\UI">
+      <UniqueIdentifier>{8fc54d2f-a3f4-4819-b2ca-8f8dd326e126}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderable\UI">
+      <UniqueIdentifier>{53227ac0-833f-486a-b5a8-3504e2a835ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -110,6 +116,12 @@
     </ClCompile>
     <ClCompile Include="Subscriber.cpp">
       <Filter>Source Files\Messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderableRectangle.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +196,15 @@
     </ClInclude>
     <ClInclude Include="Publisher.h">
       <Filter>Header Files\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderable.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderableRectangle.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

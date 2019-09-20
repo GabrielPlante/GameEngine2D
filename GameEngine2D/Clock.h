@@ -8,9 +8,7 @@ private:
 	float timeScale{ 1 };
 public:
 	//Default constructor, initialize the time at the moment the clock is constructed
-	Clock() {
-		lastTime = std::chrono::high_resolution_clock::now();
-	}
+	Clock() { lastTime = std::chrono::high_resolution_clock::now(); }
 
 	//Get the time since the last reset in microseconds
 	long long getTime() const { return static_cast<long long>(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - lastTime).count() * static_cast<double>(timeScale)); }

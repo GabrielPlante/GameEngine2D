@@ -4,7 +4,7 @@
 class Font
 {
 private:
-	//No copy constructor
+	//No copy constructor, because the font keep the actual font open
 	Font(const Font&) {}
 
 	TTF_Font* font{ nullptr };
