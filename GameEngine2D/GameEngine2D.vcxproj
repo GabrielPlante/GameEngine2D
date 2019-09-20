@@ -137,6 +137,7 @@
     <ClCompile Include="GraphicSystem.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
+    <ClCompile Include="Subscriber.cpp" />
     <ClCompile Include="System.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Window.cpp" />

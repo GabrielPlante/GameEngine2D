@@ -2,7 +2,7 @@
 #include <vector>
 
 /*
- * IDGenerator give you an valid and unique ID
+ * IDGenerator give you an valid and unique ID, and allow you to delete an existing ID
 */
 template <typename T = unsigned int>
 class IDGenerator {

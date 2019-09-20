@@ -67,6 +67,9 @@
     <Filter Include="Header Files\Messaging">
       <UniqueIdentifier>{505c23c5-7ae6-4891-b4dc-0033606631e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Messaging">
+      <UniqueIdentifier>{65963e35-3bc2-40c6-ace5-be7257ee0c02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -104,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="MovementSystem.cpp">
       <Filter>Source Files\ECS\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Subscriber.cpp">
+      <Filter>Source Files\Messaging</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
