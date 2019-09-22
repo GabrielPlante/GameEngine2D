@@ -121,7 +121,13 @@
       <Filter>Source Files\System</Filter>
     </ClCompile>
     <ClCompile Include="RenderableRectangle.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="TextInRect.cpp">
+      <Filter>Source Files\Renderable\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TextArea.cpp">
+      <Filter>Source Files\Renderable\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -204,7 +210,13 @@
       <Filter>Header Files\Renderable</Filter>
     </ClInclude>
     <ClInclude Include="RenderableRectangle.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="TextInRect.h">
+      <Filter>Header Files\Renderable\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextArea.h">
+      <Filter>Header Files\Renderable\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
