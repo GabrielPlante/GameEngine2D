@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Angle.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="CommandList.cpp" />
@@ -135,11 +136,15 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EventSystem.cpp" />
+    <ClCompile Include="Factory.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GraphicSystem.cpp" />
+    <ClCompile Include="IDGenerator.cpp" />
     <ClCompile Include="InputBar.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
+    <ClCompile Include="Position.cpp" />
+    <ClCompile Include="Publisher.cpp" />
     <ClCompile Include="RenderableRectangle.cpp" />
     <ClCompile Include="Subscriber.cpp" />
     <ClCompile Include="System.cpp" />

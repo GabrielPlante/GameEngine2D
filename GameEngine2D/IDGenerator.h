@@ -11,31 +11,8 @@ private:
 	T maxUsedID{ 0 };
 public:
 	//Get a ID that is valid and not used
-	T getNewID() {
-		if (deletedID.empty()) {
-			maxUsedID++;
-			return maxUsedID;
-		}
-		else {
-			T id = deletedID.back();
-			deletedID.pop_back();
-			return id;
-		}
-	}
+	T getNewID();
 
 	//Delete an id, return true if the id has been deleted
-	bool deleteID(T id) {
-		//Check to see if the id is valid
-		if (id > maxUsedID)
-			return false;
-		//Check to see if it is not already deleted
-		for (T deletedId : deletedID) {
-			if (deletedId == id) {
-				return false;
-			}
-		}
-		//Add it to the list
-		deletedID.push_back(id);
-		return true;
-	}
+	bool deleteID(T id);
 };

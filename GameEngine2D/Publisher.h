@@ -15,19 +15,8 @@ public:
 	void subscribe(Subscriber* subscriber) { subscribers.push_back(subscriber); }
 
 	//Unsubscribe to this publisher
-	void unsubscribe(Subscriber* subscriber) {
-		for (auto it = subscribers.begin(); it != subscribers.end(); it++) {
-			if ((*it) == subscriber) {
-				subscribers.erase(it);
-				break;
-			}
-		}
-	}
+	void unsubscribe(Subscriber* subscriber);
 
 	//Notify all the subscribers of the message we have
-	void notify(std::shared_ptr<Message> message) const {
-		for (auto it = subscribers.begin(); it != subscribers.end(); it++) {
-			(**it).handleMessage(message);
-		}
-	}
+	void notify(std::shared_ptr<Message> message) const;
 };

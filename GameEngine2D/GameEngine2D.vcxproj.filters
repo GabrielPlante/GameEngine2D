@@ -82,6 +82,9 @@
     <Filter Include="Header Files\Renderable\Console">
       <UniqueIdentifier>{66c90a7f-4bc2-4e23-9944-8e4daee3afe6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Utility">
+      <UniqueIdentifier>{b4122d69-14b0-4ac6-ab81-11a431dedd91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -140,6 +143,21 @@
     </ClCompile>
     <ClCompile Include="Console.cpp">
       <Filter>Source Files\Renderable\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="Factory.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Publisher.cpp">
+      <Filter>Source Files\Messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="Angle.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="IDGenerator.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Position.cpp">
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -215,9 +233,6 @@
     <ClInclude Include="Publisher.h">
       <Filter>Header Files\Messaging</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Renderable.h">
       <Filter>Header Files\Renderable</Filter>
     </ClInclude>
@@ -238,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="Console.h">
       <Filter>Header Files\Renderable\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
