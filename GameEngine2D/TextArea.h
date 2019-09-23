@@ -28,7 +28,10 @@ public:
 	//Add text with an std::string
 	void addText(const std::string& text, const Color& color = Color{ 0, 0, 0 }) { textToRender.push(text); textColor.push(color); }
 
+	//Refresh the textArea, process the newly added text if needed
+	void update(SDL_Renderer* renderer);
+
 	//Render the textArea
-	void render(SDL_Renderer* renderer);
+	void render(SDL_Renderer* renderer) const;
 };
 

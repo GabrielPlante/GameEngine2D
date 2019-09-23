@@ -5,8 +5,11 @@ TextArea::TextArea(const Rectangle& position, int textHeight, const std::string&
 {
 }
 
-void TextArea::render(SDL_Renderer* renderer) {
+void TextArea::update(SDL_Renderer* renderer) {
 	addPendingText(renderer);
+}
+
+void TextArea::render(SDL_Renderer* renderer) const {
 	for (int i = static_cast<int>(textList.size()) - 1; i >= 0; i--) {
 		Rectangle textPosition{ position.x, position.y + position.h - font.getHeight() * (static_cast<long>(textList.size()) - i), textList[i]->getRect().w, textList[i]->getRect().h };
 		if (textPosition.y < position.y)

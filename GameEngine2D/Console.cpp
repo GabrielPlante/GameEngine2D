@@ -28,7 +28,16 @@ Console::Console(Rectangle coordinate, Color backgroundColor, Color borderColor,
 	coordinate{ coordinate }, backgroundColor{ backgroundColor }, borderColor{ borderColor }, borderSize{ borderSize }, textHeight{ textHeight }, margin{ margin }
 {}
 
-void Console::render(SDL_Renderer* renderer) {
+void Console::update(SDL_Renderer* renderer) {
+	if (isOpened) {
+		inputBar.update(renderer);
+		textArea.update(renderer);
+		if (needToPressEnter)
+			enterText();
+	}
+}
+
+void Console::render(SDL_Renderer* renderer) const {
 	if (isOpened) {
 		//First render the background
 		SDL_SetRenderDrawColor(renderer, static_cast<Uint8>(backgroundColor.red), static_cast<Uint8>(backgroundColor.green), static_cast<Uint8>(backgroundColor.blue), static_cast<Uint8>(backgroundColor.alpha));
@@ -36,8 +45,6 @@ void Console::render(SDL_Renderer* renderer) {
 		SDL_RenderFillRect(renderer, &background);
 		//Render the input bar 
 		inputBar.render(renderer);
-		if (needToPressEnter)
-			enterText();
 		textArea.render(renderer);
 		//Then render the border
 		SDL_SetRenderDrawColor(renderer, static_cast<Uint8>(borderColor.red), static_cast<Uint8>(borderColor.green), static_cast<Uint8>(borderColor.blue), static_cast<Uint8>(borderColor.alpha));

@@ -1,8 +1,16 @@
-#include <iostream>
+#include <stdexcept>
+
 #include "Engine.h"
 
+#include <iostream>
+
 int main() {
-	Engine::init();
-	Engine::getInstance()->mainLoop();
+	try {
+		Engine::init();
+		Engine::getInstance()->mainLoop();
+	}
+	catch (std::exception e) {
+		std::cout << e.what();
+	}
 	return 0;
 }

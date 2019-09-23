@@ -4,7 +4,7 @@
 #include "TextArea.h"
 
 #define CONSOLE_LOG(X) Console::getInstance()->log(X);
-#define CONSOLE_LOG_ERROR(X) Console::getInstance()->log(X, Color{255, 0, 0});
+#define CONSOLE_LOG_ERROR(X) Console::getInstance()->log(X, Color{255, 100, 100});
 
 class Console
 {
@@ -41,8 +41,11 @@ public:
 
 	static void quit();
 
+	//Refresh the console
+	void update(SDL_Renderer* renderer);
+
 	//Render the console on the screen
-	void render(SDL_Renderer* renderer);
+	void render(SDL_Renderer* renderer) const;
 
 	//Get the command that the user typed in the console
 	//TextToCommand getCommand() const { return TextToCommand{ getInputText() }; }

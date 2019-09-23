@@ -1,13 +1,15 @@
 #include "Font.h"
 #include <stdexcept>
 
+#include <iostream>
+
 
 
 Font::Font(int fontSize, const std::string& fontFileName)
 {
 	font = TTF_OpenFont(fontFileName.c_str(), static_cast<int>(fontSize));
 	if (!font)
-		throw std::runtime_error("Could not open the font !");
+		throw std::runtime_error("Could not open the font " + fontFileName + "; " + SDL_GetError());
 }
 
 int Font::getWidth(const std::string& text) const {

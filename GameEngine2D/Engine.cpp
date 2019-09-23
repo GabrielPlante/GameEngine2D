@@ -7,6 +7,8 @@
 #include "GraphicSystem.h"
 #include "MovementSystem.h"
 
+#include "Console.h"
+
 #include <iostream>
 
 //Initialize static attribute
@@ -25,6 +27,12 @@ long long Engine::timestep() {
 //In the constructor many systems are added to the engine, the order in wich they are added will be their order of calling, so it matter
 Engine::Engine()
 {
+	//First initialise the graphic system, that initialise sdl and sdl_ttf
+	graphicSystem = std::shared_ptr<GraphicSystem>{ new GraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT} };
+
+	//Then initialise the console
+	Console::init(Rectangle{ 100, 100, SCREEN_WIDTH * 2 / 3, SCREEN_HEIGHT * 2 / 3 });
+
 	//Adding the event system, first do it's updated first so the order arrive first
 	addSystem(std::shared_ptr<System>{new EventSystem{}});
 
@@ -34,8 +42,7 @@ Engine::Engine()
 
 	//-----Every system need to be added BEFORE this line-----
 
-	//Add the graphic system to his dedicated variable
-	graphicSystem = std::shared_ptr<GraphicSystem>{ new GraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT} };
+	CONSOLE_LOG("Engine correctly initialised");
 }
 
 void Engine::init() {

@@ -56,8 +56,11 @@ public:
 	//Close the inputBar and stop the SDL text input
 	void close();
 
-	//Render the inputBar, process the new input text if needed
-	void render(SDL_Renderer* renderer);
+	//Refresh the input bar, process the new input text if needed
+	void update(SDL_Renderer* renderer);
+
+	//Render the inputBar
+	void render(SDL_Renderer* renderer) const;
 
 	//Is the input bar opened
 	bool isOpened() const { return opened; }

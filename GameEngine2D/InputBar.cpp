@@ -44,12 +44,15 @@ void InputBar::close() {
 	}
 }
 
-void InputBar::render(SDL_Renderer* renderer) {
+void InputBar::update(SDL_Renderer* renderer) {
 	if (openingFrame)
 		openingFrame = false;
 	if (needRendering) {
 		renderPendingText(renderer);
 	}
+}
+
+void InputBar::render(SDL_Renderer* renderer) const {
 	graphicRect.renderWithoutCamera(renderer, position);
 	if (graphicText) {
 		SDL_Rect sourceRect;
