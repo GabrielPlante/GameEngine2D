@@ -3,20 +3,18 @@
 
 #include "StopCommand.h"
 
-bool CommandList::isInitialized{ false };
 CommandList* CommandList::instance{ nullptr };
 
 void CommandList::init() {
-	if (!isInitialized) {
+	if (!instance) {
 		instance = new CommandList{};
-		isInitialized = true;
 	}
 }
 
 void CommandList::quit() {
-	if (isInitialized) {
+	if (instance) {
 		delete instance;
-		isInitialized = false;
+		instance = nullptr;
 	}
 }
 

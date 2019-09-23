@@ -10,7 +10,6 @@
 #include <iostream>
 
 //Initialize static attribute
-bool Engine::isInitialized{ false };
 Engine* Engine::instance{ nullptr };
 
 //Size of the screen
@@ -40,16 +39,15 @@ Engine::Engine()
 }
 
 void Engine::init() {
-	if (!isInitialized) {
+	if (!instance) {
 		instance = new Engine{};
-		isInitialized = true;
 	}
 }
 
 void Engine::quit() {
-	if (isInitialized) {
+	if (instance) {
 		delete instance;
-		isInitialized = false;
+		instance = nullptr;
 	}
 }
 

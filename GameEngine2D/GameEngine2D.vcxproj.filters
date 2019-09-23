@@ -76,6 +76,12 @@
     <Filter Include="Source Files\Renderable\UI">
       <UniqueIdentifier>{53227ac0-833f-486a-b5a8-3504e2a835ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Renderable\Console">
+      <UniqueIdentifier>{5846bebc-b61e-42c1-9be9-c606f408b842}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderable\Console">
+      <UniqueIdentifier>{66c90a7f-4bc2-4e23-9944-8e4daee3afe6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -128,6 +134,12 @@
     </ClCompile>
     <ClCompile Include="TextArea.cpp">
       <Filter>Source Files\Renderable\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="InputBar.cpp">
+      <Filter>Source Files\Renderable\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>Source Files\Renderable\Console</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +229,15 @@
     </ClInclude>
     <ClInclude Include="TextArea.h">
       <Filter>Header Files\Renderable\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextInput.h">
+      <Filter>Source Files\Renderable\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="InputBar.h">
+      <Filter>Header Files\Renderable\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Header Files\Renderable\Console</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

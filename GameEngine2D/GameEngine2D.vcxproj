@@ -131,11 +131,13 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="CommandList.cpp" />
+    <ClCompile Include="Console.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GraphicSystem.cpp" />
+    <ClCompile Include="InputBar.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="RenderableRectangle.cpp" />
@@ -153,6 +155,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandList.h" />
+    <ClInclude Include="Console.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EventSystem.h" />
@@ -161,6 +164,7 @@
     <ClInclude Include="GraphicSystem.h" />
     <ClInclude Include="Handle.h" />
     <ClInclude Include="IDGenerator.h" />
+    <ClInclude Include="InputBar.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MovementSystem.h" />
@@ -174,6 +178,7 @@
     <ClInclude Include="System.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="TextArea.h" />
+    <ClInclude Include="TextInput.h" />
     <ClInclude Include="TextInRect.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

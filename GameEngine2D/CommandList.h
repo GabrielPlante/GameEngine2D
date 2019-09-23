@@ -18,7 +18,6 @@ class CommandList
 private:
 	std::set<std::unique_ptr<Command>, CommandCompare> commandList;
 
-	static bool isInitialized;
 	static CommandList* instance;
 
 	//Default constructor, all the command intern to the engine are put in the list here

@@ -18,7 +18,6 @@ private:
 	//Updated at the very begining of each frame, give the time since the begining of the last frame
 	long long timeSinceLastFrame{ 0 };
 
-	static bool isInitialized;
 	static Engine* instance;
 
 	//Boolean that dictate if the main loop continue or stop
