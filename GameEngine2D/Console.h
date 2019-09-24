@@ -28,7 +28,10 @@ private:
 	//The text area in the console
 	TextArea textArea;
 	//This is used to prevent returning a string with a missing character if the user type a letter and at the same time press enter
-	bool needToPressEnter = false;
+	bool needToPushText = false;
+
+	//Used when the user press enter
+	void pushText();
 
 	//Constructor
 	Console(Rectangle coordinate, Color backgroundColor, Color borderColor, int borderSize, int textHeight, int margin);
@@ -55,11 +58,11 @@ public:
 	//Write a text in the input bar
 	void write(const std::string& text) { inputBar.write(text); }
 
-	//Used when the user press enter
-	void enterText();
+	//Delete the last character of the input bar
+	void popText() { inputBar.popText(); }
 
 	//Used to treat the input text as a command
-	//void enterCommand(const CommandList& commandList, GameLoop* gameLoop);
+	void pushCommand();
 
 	//Open or close the console
 	void toggle();

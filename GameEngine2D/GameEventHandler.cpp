@@ -3,6 +3,8 @@
 
 #include "ConsoleEventHandler.h"
 
+#include "Console.h"
+
 std::unique_ptr<EventHandler> GameEventHandler::update(SDL_Event* event) {
 	while (pollEvent(event)) {
 		//If the user want to quit
@@ -11,7 +13,7 @@ std::unique_ptr<EventHandler> GameEventHandler::update(SDL_Event* event) {
 		}
 		//If the user press a
 		else if (event->type == SDL_KEYDOWN && event->key.keysym.sym == SDLK_a) {
-			CommandList::getInstance()->executeCommand("toggleconsole");
+			Console::getInstance()->toggle();
 			return std::unique_ptr<EventHandler>{new ConsoleEventHandler};
 		}
 	}

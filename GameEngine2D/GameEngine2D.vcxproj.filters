@@ -266,9 +266,6 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="ToggleConsoleCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
     <ClInclude Include="EventSystem.h">
       <Filter>Header Files\ECS\System\EventSystem</Filter>
     </ClInclude>
@@ -280,6 +277,18 @@
     </ClInclude>
     <ClInclude Include="ConsoleEventHandler.h">
       <Filter>Header Files\ECS\System\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="StringSplit.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="StringTo.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="TextToCommand.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandError.h">
+      <Filter>Header Files\Command</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

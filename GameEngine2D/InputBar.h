@@ -70,5 +70,8 @@ public:
 
 	//Clear the text and return what was in the inputBar
 	std::unique_ptr<Text> clear();
+
+	//Delete the text in the input bar
+	void deleteText();
 };
 

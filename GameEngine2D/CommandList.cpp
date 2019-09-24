@@ -1,10 +1,10 @@
 #include "CommandList.h"
 #include "Command.h"
+#include "CommandError.h"
 
 #include "Console.h"
 
 #include "StopCommand.h"
-#include "ToggleConsoleCommand.h"
 
 CommandList* CommandList::instance{ nullptr };
 
@@ -24,7 +24,6 @@ void CommandList::quit() {
 CommandList::CommandList()
 {
 	commandList.insert(std::move(std::unique_ptr<Command>{new StopCommand{}}));
-	commandList.insert(std::move(std::unique_ptr<Command>{new ToggleConsoleCommand{}}));
 
 	CONSOLE_LOG("Command list successfully initialised");
 }
@@ -32,8 +31,9 @@ CommandList::CommandList()
 bool CommandList::executeCommand(const std::string& commandName, const std::vector<float>& args) const {
 	std::unique_ptr<Command> command{ new Command{commandName} };
 	auto search = commandList.find(command);
-	if (search == commandList.end())
-		return false;
+	if (search == commandList.end()) {
+		throw CommandError{ "Command \"" + commandName + "\" not found" };
+	}
 	(**search).execute(args);
 	return true;
 }

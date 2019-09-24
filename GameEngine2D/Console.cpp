@@ -1,5 +1,7 @@
 #include "Console.h"
 #include "CommandList.h"
+#include "TextToCommand.h"
+#include "CommandError.h"
 
 //Initialize static attribute
 Console* Console::instance{ nullptr };
@@ -32,8 +34,8 @@ void Console::update(SDL_Renderer* renderer) {
 	inputBar.update(renderer);
 	textArea.update(renderer);
 	if (opened) {
-		if (needToPressEnter)
-			enterText();
+		if (needToPushText)
+			pushText();
 	}
 }
 
@@ -66,27 +68,29 @@ void Console::render(SDL_Renderer* renderer) const {
 	}
 }
 
-void Console::enterText() {
+void Console::pushText() {
 	if (inputBar.getInputText().size() > 0 && !inputBar.doesNeedRendering()) {
 		textArea.addText(inputBar.clear());
-		needToPressEnter = false;
+		needToPushText = false;
 	}
 	else if (inputBar.doesNeedRendering())
-		needToPressEnter = true;
+		needToPushText = true;
 }
 
-/*void Console::enterCommand(const CommandList& commandList, GameLoop* gameLoop) {
+void Console::pushCommand() {
+	if (inputBar.getInputText().size() == 0)
+		return;
 	try {
-		TextToCommand textToCommand{ getCommand() };
-		commandList.executeCommand(textToCommand.getCommandName(), gameLoop, textToCommand.getArgs());
+		TextToCommand textToCommand{ inputBar.getInputText() };
+		CommandList::getInstance()->executeCommand(textToCommand.getCommandName(), textToCommand.getArgs());
 	}
 	catch (CommandError ex) {
-		enterText();
-		TextArea::addText(ex.what(), Color{ 255, 100, 100 });
+		CONSOLE_LOG_ERROR(ex.what());
+		inputBar.deleteText();
 		return;
 	}
-	enterText();
-}*/
+	pushText();
+}
 
 void Console::toggle() {
 	if (!opened) {

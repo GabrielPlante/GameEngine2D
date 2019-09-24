@@ -161,6 +161,7 @@
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Command.h" />
+    <ClInclude Include="CommandError.h" />
     <ClInclude Include="CommandList.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="ConsoleEventHandler.h" />
@@ -184,13 +185,15 @@
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="RenderableRectangle.h" />
     <ClInclude Include="StopCommand.h" />
+    <ClInclude Include="StringSplit.h" />
+    <ClInclude Include="StringTo.h" />
     <ClInclude Include="Subscriber.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="TextArea.h" />
     <ClInclude Include="TextInput.h" />
     <ClInclude Include="TextInRect.h" />
-    <ClInclude Include="ToggleConsoleCommand.h" />
+    <ClInclude Include="TextToCommand.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
