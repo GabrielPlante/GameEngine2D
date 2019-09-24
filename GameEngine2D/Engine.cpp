@@ -48,6 +48,9 @@ Engine::Engine()
 	//-----Every system need to be added BEFORE this line-----
 
 	CONSOLE_LOG("Engine successfully initialised");
+
+	for (int i = 0; i != 100; i++)
+		CONSOLE_LOG("THIS IS A TEST" + std::to_string(i));
 }
 
 void Engine::init() {

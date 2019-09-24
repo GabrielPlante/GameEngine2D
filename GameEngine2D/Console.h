@@ -27,8 +27,6 @@ private:
 	InputBar inputBar;
 	//The text area in the console
 	TextArea textArea;
-	//This is used to prevent returning a string with a missing character if the user type a letter and at the same time press enter
-	bool needToPushText = false;
 
 	//Used when the user press enter
 	void pushText();
@@ -69,5 +67,8 @@ public:
 
 	//Is the console open
 	bool isOpened() const { return opened; }
+
+	//Vertical scroll in the console
+	void verticalScroll(int amount) { textArea.verticalScroll(amount); }
 };
 

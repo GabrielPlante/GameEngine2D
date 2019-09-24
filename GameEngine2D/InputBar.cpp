@@ -63,7 +63,8 @@ void InputBar::render(SDL_Renderer* renderer) const {
 }
 
 void InputBar::renderPendingText(SDL_Renderer* renderer) {
-	graphicText = std::unique_ptr<Text>{ new Text{inputText, position, renderer, font, textColor} };
+	if (inputText.size() > 0)
+		graphicText = std::unique_ptr<Text>{ new Text{inputText, position, renderer, font, textColor} };
 	needRendering = false;
 }
 

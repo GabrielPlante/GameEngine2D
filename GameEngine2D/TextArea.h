@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "Text.h"
+#include "Camera.h"
 
 class TextArea
 {
@@ -14,13 +15,17 @@ private:
 	std::queue<std::string> textToRender;
 	std::queue<Color> textColor;
 	Font font;
+	int scrollMultiplier;
+
+	//The camera is used to define what text will be seen in the text area
+	Camera camera;
 
 	//Add all the text stocked this frame to the text area
 	void addPendingText(SDL_Renderer* renderer);
 
 public:
 	//Constructor
-	TextArea(const Rectangle& position, int textHeight, const std::string& fontFileName = "mainFont.ttf");
+	TextArea(const Rectangle& position, int textHeight, const std::string& fontFileName = "mainFont.ttf", const int scrollMultiplier = 25);
 
 	//Add text in form of the Text object
 	void addText(std::unique_ptr<Text> text) { textList.push_back(std::move(text)); }
@@ -33,5 +38,8 @@ public:
 
 	//Render the textArea
 	void render(SDL_Renderer* renderer) const;
+
+	//Scroll in the text area
+	void verticalScroll(int amount);
 };
 

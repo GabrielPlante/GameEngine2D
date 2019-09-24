@@ -30,6 +30,10 @@ std::unique_ptr<EventHandler> ConsoleEventHandler::update(SDL_Event* event) {
 			text += event->text.text;
 			Console::getInstance()->write(text);
 		}
+		//Scrolling
+		else if (event->type == SDL_MOUSEWHEEL) {
+			Console::getInstance()->verticalScroll(event->wheel.y);
+		}
 	}
 	return nullptr;
 

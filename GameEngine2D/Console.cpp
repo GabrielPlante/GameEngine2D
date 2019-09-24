@@ -23,7 +23,7 @@ void Console::quit() {
 Console::Console(Rectangle coordinate, Color backgroundColor, Color borderColor, int borderSize, int textHeight, int margin)
 	//The input bar
 	:inputBar{ RenderableRectangle{static_cast<int>(coordinate.w - 2 * borderSize - 2 * margin), static_cast<int>(textHeight), backgroundColor},
-		Position<>{coordinate.x + borderSize + margin, coordinate.y + coordinate.h - borderSize - textHeight - margin} },
+		Position<>{coordinate.x + borderSize + margin, coordinate.y + coordinate.h - borderSize - textHeight - margin}, Color{255, 255, 255} },
 	//The text area
 	textArea{ Rectangle{static_cast<long>(coordinate.x + borderSize + margin), static_cast<long>(coordinate.y + borderSize + margin),
 	static_cast<long>(coordinate.w - 2 * borderSize - 2 * margin), static_cast<long>(coordinate.h - 2 * textHeight - 2 * borderSize - 3 * margin), }, textHeight },
@@ -33,10 +33,6 @@ Console::Console(Rectangle coordinate, Color backgroundColor, Color borderColor,
 void Console::update(SDL_Renderer* renderer) {
 	inputBar.update(renderer);
 	textArea.update(renderer);
-	if (opened) {
-		if (needToPushText)
-			pushText();
-	}
 }
 
 void Console::render(SDL_Renderer* renderer) const {
@@ -71,10 +67,7 @@ void Console::render(SDL_Renderer* renderer) const {
 void Console::pushText() {
 	if (inputBar.getInputText().size() > 0 && !inputBar.doesNeedRendering()) {
 		textArea.addText(inputBar.clear());
-		needToPushText = false;
 	}
-	else if (inputBar.doesNeedRendering())
-		needToPushText = true;
 }
 
 void Console::pushCommand() {

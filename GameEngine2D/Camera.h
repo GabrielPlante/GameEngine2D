@@ -13,6 +13,9 @@ public:
 	//Constructor
 	Camera(int x, int y, int w, int h);
 
+	//Constructor
+	Camera(const Rectangle& rectangle) : camera{ rectangle }{}
+
 	//Move the camera by a offset
 	void move(int deltaX, int deltaY);
 
@@ -33,4 +36,7 @@ public:
 
 	//Return true if a rectangle is in the camera. Take absolute coordinate
 	bool isInCamera(const Rectangle& object) const { return camera.overlap(object); };
+
+	//Get the rectangle that is the camera
+	const Rectangle& getRectangle() const { return camera; }
 };
