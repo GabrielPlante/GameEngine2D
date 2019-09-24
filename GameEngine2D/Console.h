@@ -21,7 +21,7 @@ private:
 	int textHeight;
 	int margin;
 
-	bool opened{ false };
+	bool opened{ true };
 
 	//The input bar at the bottom of the console
 	InputBar inputBar;

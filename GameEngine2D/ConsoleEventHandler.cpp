@@ -1,8 +1,6 @@
 #include "ConsoleEventHandler.h"
 #include "CommandList.h"
 
-#include "GameEventHandler.h"
-
 #include "Console.h"
 
 std::unique_ptr<EventHandler> ConsoleEventHandler::update(SDL_Event* event) {
@@ -13,8 +11,7 @@ std::unique_ptr<EventHandler> ConsoleEventHandler::update(SDL_Event* event) {
 		}
 		//If the user want to quit the console
 		else if (event->type == SDL_KEYDOWN && event->key.keysym.sym == SDLK_ESCAPE) {
-			Console::getInstance()->toggle();
-			return std::unique_ptr<EventHandler>{new GameEventHandler};
+			CommandList::getInstance()->executeCommand("quitconsole");
 		}
 		//Return is pressed, enter the command typed
 		else if (event->type == SDL_KEYDOWN && event->key.keysym.sym == SDLK_RETURN) {

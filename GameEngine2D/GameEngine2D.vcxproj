@@ -139,7 +139,6 @@
     <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="Font.cpp" />
-    <ClCompile Include="GameEventHandler.cpp" />
     <ClCompile Include="GraphicSystem.cpp" />
     <ClCompile Include="IDGenerator.cpp" />
     <ClCompile Include="InputBar.cpp" />
@@ -171,7 +170,6 @@
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="Font.h" />
-    <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GraphicSystem.h" />
     <ClInclude Include="Handle.h" />
     <ClInclude Include="IDGenerator.h" />

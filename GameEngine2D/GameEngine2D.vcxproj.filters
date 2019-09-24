@@ -168,9 +168,6 @@
     <ClCompile Include="ConsoleEventHandler.cpp">
       <Filter>Source Files\ECS\System\EventSystem</Filter>
     </ClCompile>
-    <ClCompile Include="GameEventHandler.cpp">
-      <Filter>Source Files\ECS\System\EventSystem</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clock.h">
@@ -270,9 +267,6 @@
       <Filter>Header Files\ECS\System\EventSystem</Filter>
     </ClInclude>
     <ClInclude Include="EventHandler.h">
-      <Filter>Header Files\ECS\System\EventSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEventHandler.h">
       <Filter>Header Files\ECS\System\EventSystem</Filter>
     </ClInclude>
     <ClInclude Include="ConsoleEventHandler.h">

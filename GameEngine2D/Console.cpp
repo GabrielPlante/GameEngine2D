@@ -75,14 +75,16 @@ void Console::pushCommand() {
 		return;
 	try {
 		TextToCommand textToCommand{ inputBar.getInputText() };
-		CommandList::getInstance()->executeCommand(textToCommand.getCommandName(), textToCommand.getArgs());
+		if (CommandList::getInstance()->executeCommand(textToCommand.getCommandName(), textToCommand.getArgs()))
+			pushText();
+		else
+			inputBar.deleteText();
 	}
 	catch (CommandError ex) {
 		CONSOLE_LOG_ERROR(ex.what());
 		inputBar.deleteText();
 		return;
 	}
-	pushText();
 }
 
 void Console::toggle() {

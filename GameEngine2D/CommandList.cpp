@@ -32,7 +32,8 @@ bool CommandList::executeCommand(const std::string& commandName, const std::vect
 	std::unique_ptr<Command> command{ new Command{commandName} };
 	auto search = commandList.find(command);
 	if (search == commandList.end()) {
-		throw CommandError{ "Command \"" + commandName + "\" not found" };
+		CONSOLE_LOG_ERROR("Command \"" + commandName + "\" not found");
+		return false;
 	}
 	(**search).execute(args);
 	return true;

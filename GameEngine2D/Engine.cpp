@@ -36,10 +36,10 @@ Engine::Engine()
 	Console::init(Rectangle{ 100, 100, SCREEN_WIDTH * 2 / 3, SCREEN_HEIGHT * 2 / 3 });
 
 	//Initialise the command list
-	CommandList::getInstance()->init();
+	CommandList::init();
 
-	//Adding the event system, first do it's updated first so the order arrive first
-	addSystem(std::shared_ptr<System>{new EventSystem{}});
+	//Initialise the event system
+	EventSystem::init();
 
 	//-----Every system need to be added AFTER this line-----
 
@@ -48,9 +48,6 @@ Engine::Engine()
 	//-----Every system need to be added BEFORE this line-----
 
 	CONSOLE_LOG("Engine successfully initialised");
-
-	for (int i = 0; i != 100; i++)
-		CONSOLE_LOG("THIS IS A TEST" + std::to_string(i));
 }
 
 void Engine::init() {
@@ -85,6 +82,9 @@ void Engine::mainLoop() {
 }
 
 void Engine::update() {
+	//First update the event
+	EventSystem::getInstance()->update();
+
 	//Each update, the engine update each system
 	for (std::shared_ptr<System> system : systems) {
 		system->update();
