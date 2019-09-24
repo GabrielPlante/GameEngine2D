@@ -85,6 +85,12 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{b4122d69-14b0-4ac6-ab81-11a431dedd91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ECS\System\EventSystem">
+      <UniqueIdentifier>{b8aaf22e-da04-49e5-896d-dced1979c9e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\System\EventSystem">
+      <UniqueIdentifier>{70a6384d-fb69-442b-add7-a410510bed2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -109,9 +115,6 @@
       <Filter>Source Files\ECS\System</Filter>
     </ClCompile>
     <ClCompile Include="GraphicSystem.cpp">
-      <Filter>Source Files\ECS\System</Filter>
-    </ClCompile>
-    <ClCompile Include="EventSystem.cpp">
       <Filter>Source Files\ECS\System</Filter>
     </ClCompile>
     <ClCompile Include="Command.cpp">
@@ -159,6 +162,15 @@
     <ClCompile Include="Position.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="EventSystem.cpp">
+      <Filter>Source Files\ECS\System\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleEventHandler.cpp">
+      <Filter>Source Files\ECS\System\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEventHandler.cpp">
+      <Filter>Source Files\ECS\System\EventSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clock.h">
@@ -195,9 +207,6 @@
       <Filter>Header Files\ECS\System</Filter>
     </ClInclude>
     <ClInclude Include="GraphicSystem.h">
-      <Filter>Header Files\ECS\System</Filter>
-    </ClInclude>
-    <ClInclude Include="EventSystem.h">
       <Filter>Header Files\ECS\System</Filter>
     </ClInclude>
     <ClInclude Include="Command.h">
@@ -259,6 +268,18 @@
     </ClInclude>
     <ClInclude Include="ToggleConsoleCommand.h">
       <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="EventSystem.h">
+      <Filter>Header Files\ECS\System\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Header Files\ECS\System\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEventHandler.h">
+      <Filter>Header Files\ECS\System\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleEventHandler.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
