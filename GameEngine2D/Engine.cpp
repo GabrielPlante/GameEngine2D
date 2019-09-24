@@ -9,14 +9,16 @@
 
 #include "Console.h"
 
+#include "CommandList.h"
+
 #include <iostream>
 
 //Initialize static attribute
 Engine* Engine::instance{ nullptr };
 
 //Size of the screen
-constexpr int SCREEN_WIDTH{ 1200 };
-constexpr int SCREEN_HEIGHT{ 600 };
+constexpr int SCREEN_WIDTH{ 1400 };
+constexpr int SCREEN_HEIGHT{ 800 };
 
 long long Engine::timestep() {
 	long long timeSinceLastReset = engineClock.resetTime();
@@ -33,6 +35,9 @@ Engine::Engine()
 	//Then initialise the console
 	Console::init(Rectangle{ 100, 100, SCREEN_WIDTH * 2 / 3, SCREEN_HEIGHT * 2 / 3 });
 
+	//Initialise the command list
+	CommandList::getInstance()->init();
+
 	//Adding the event system, first do it's updated first so the order arrive first
 	addSystem(std::shared_ptr<System>{new EventSystem{}});
 
@@ -42,7 +47,7 @@ Engine::Engine()
 
 	//-----Every system need to be added BEFORE this line-----
 
-	CONSOLE_LOG("Engine correctly initialised");
+	CONSOLE_LOG("Engine successfully initialised");
 }
 
 void Engine::init() {

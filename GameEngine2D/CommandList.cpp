@@ -1,7 +1,10 @@
 #include "CommandList.h"
 #include "Command.h"
 
+#include "Console.h"
+
 #include "StopCommand.h"
+#include "ToggleConsoleCommand.h"
 
 CommandList* CommandList::instance{ nullptr };
 
@@ -21,6 +24,9 @@ void CommandList::quit() {
 CommandList::CommandList()
 {
 	commandList.insert(std::move(std::unique_ptr<Command>{new StopCommand{}}));
+	commandList.insert(std::move(std::unique_ptr<Command>{new ToggleConsoleCommand{}}));
+
+	CONSOLE_LOG("Command list successfully initialised");
 }
 
 bool CommandList::executeCommand(const std::string& commandName, const std::vector<float>& args) const {

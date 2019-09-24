@@ -185,6 +185,7 @@
     <ClInclude Include="TextArea.h" />
     <ClInclude Include="TextInput.h" />
     <ClInclude Include="TextInRect.h" />
+    <ClInclude Include="ToggleConsoleCommand.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

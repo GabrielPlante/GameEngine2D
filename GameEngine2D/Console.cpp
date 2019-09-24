@@ -29,16 +29,16 @@ Console::Console(Rectangle coordinate, Color backgroundColor, Color borderColor,
 {}
 
 void Console::update(SDL_Renderer* renderer) {
-	if (isOpened) {
-		inputBar.update(renderer);
-		textArea.update(renderer);
+	inputBar.update(renderer);
+	textArea.update(renderer);
+	if (opened) {
 		if (needToPressEnter)
 			enterText();
 	}
 }
 
 void Console::render(SDL_Renderer* renderer) const {
-	if (isOpened) {
+	if (opened) {
 		//First render the background
 		SDL_SetRenderDrawColor(renderer, static_cast<Uint8>(backgroundColor.red), static_cast<Uint8>(backgroundColor.green), static_cast<Uint8>(backgroundColor.blue), static_cast<Uint8>(backgroundColor.alpha));
 		SDL_Rect background{ coordinate.toSDL_Rect() };
@@ -88,16 +88,13 @@ void Console::enterText() {
 	enterText();
 }*/
 
-void Console::open() {
-	if (!isOpened) {
-		isOpened = true;
+void Console::toggle() {
+	if (!opened) {
+		opened = true;
 		inputBar.open();
 	}
-}
-
-void Console::close() {
-	if (isOpened) {
-		isOpened = false;
+	else {
+		opened = false;
 		inputBar.close();
 	}
 }

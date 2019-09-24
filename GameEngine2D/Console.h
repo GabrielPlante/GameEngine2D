@@ -21,7 +21,7 @@ private:
 	int textHeight;
 	int margin;
 
-	bool isOpened{ false };
+	bool opened{ false };
 
 	//The input bar at the bottom of the console
 	InputBar inputBar;
@@ -31,11 +31,10 @@ private:
 	bool needToPressEnter = false;
 
 	//Constructor
-	Console(Rectangle coordinate, Color backgroundColor = Color{ 100, 100, 100 }, Color borderColor = Color{ 200, 200, 200 },
-		int borderSize = 3, int textHeight = 20, int margin = 3);
+	Console(Rectangle coordinate, Color backgroundColor, Color borderColor, int borderSize, int textHeight, int margin);
 public:
 	static void init(Rectangle coordinate, Color backgroundColor = Color{ 100, 100, 100 }, Color borderColor = Color{ 200, 200, 200 },
-		int borderSize = 3, int textHeight = 20, int margin = 3);
+		int borderSize = 3, int textHeight = 15, int margin = 5);
 
 	static Console* getInstance() { return instance; }
 
@@ -50,7 +49,11 @@ public:
 	//Get the command that the user typed in the console
 	//TextToCommand getCommand() const { return TextToCommand{ getInputText() }; }
 
+	//Log a text in the console
 	void log(const std::string& text, const Color& color = Color{ 255, 255, 255 }) { textArea.addText(text, color); }
+
+	//Write a text in the input bar
+	void write(const std::string& text) { inputBar.write(text); }
 
 	//Used when the user press enter
 	void enterText();
@@ -58,10 +61,10 @@ public:
 	//Used to treat the input text as a command
 	//void enterCommand(const CommandList& commandList, GameLoop* gameLoop);
 
-	//Open the console
-	void open();
+	//Open or close the console
+	void toggle();
 
-	//Close the console
-	void close();
+	//Is the console open
+	bool isOpened() const { return opened; }
 };
 

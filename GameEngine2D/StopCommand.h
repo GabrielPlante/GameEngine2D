@@ -7,7 +7,7 @@ class StopCommand:
 public:
 	//Default constructor
 	StopCommand()
-		:Command("Stop")
+		:Command("stop")
 	{}
 
 	//Stop the engine

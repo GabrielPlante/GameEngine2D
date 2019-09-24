@@ -257,5 +257,8 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
+    <ClInclude Include="ToggleConsoleCommand.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
