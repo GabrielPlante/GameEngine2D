@@ -9,5 +9,13 @@ EventSystem::EventSystem() {
 }
 
 void EventSystem::update() {
-	currentEventHandler->update(&event);
+	std::unique_ptr<EventHandler> eventHandler = currentEventHandler->update(&event);
+
+	if (eventHandler) {
+		//If a new event handler take the control
+		switchEventHandler(std::move(eventHandler));
+
+		//Delete all other event
+		while (SDL_PollEvent(&event)){}
+	}
 }

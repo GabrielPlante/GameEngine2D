@@ -6,10 +6,8 @@ InputBar::InputBar(RenderableRectangle graphicRect, Position<> position, Color t
 }
 
 void InputBar::write(const std::string& text) {
-	if (!openingFrame) {
-		inputText += text;
-		needRendering = true;
-	}
+	inputText += text;
+	needRendering = true;
 }
 
 void InputBar::setText(const std::string& text) {
@@ -33,7 +31,6 @@ void InputBar::open() {
 	if (!opened) {
 		opened = true;
 		textInput = std::unique_ptr<TextInput>{ new TextInput() };
-		openingFrame = true;
 	}
 }
 
@@ -45,8 +42,6 @@ void InputBar::close() {
 }
 
 void InputBar::update(SDL_Renderer* renderer) {
-	if (openingFrame)
-		openingFrame = false;
 	if (needRendering) {
 		renderPendingText(renderer);
 	}

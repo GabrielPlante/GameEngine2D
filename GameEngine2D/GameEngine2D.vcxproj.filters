@@ -279,7 +279,7 @@
       <Filter>Header Files\ECS\System\EventSystem</Filter>
     </ClInclude>
     <ClInclude Include="ConsoleEventHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\ECS\System\EventSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

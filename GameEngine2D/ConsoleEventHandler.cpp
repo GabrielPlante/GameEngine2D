@@ -1,13 +1,20 @@
 #include "ConsoleEventHandler.h"
 #include "CommandList.h"
 
+#include "GameEventHandler.h"
+
 #include "Console.h"
 
-void ConsoleEventHandler::update(SDL_Event* event) {
+std::unique_ptr<EventHandler> ConsoleEventHandler::update(SDL_Event* event) {
 	while (pollEvent(event)) {
 		//If the user want to quit
 		if (event->type == SDL_QUIT) {
 			CommandList::getInstance()->executeCommand("stop");
+		}
+		//If the user want to quit the console
+		else if (event->type == SDL_KEYDOWN && event->key.keysym.sym == SDLK_ESCAPE) {
+			CommandList::getInstance()->executeCommand("toggleconsole");
+			return std::unique_ptr<EventHandler>{new GameEventHandler};
 		}
 		//If the user input text
 		else if (event->type == SDL_TEXTINPUT) {
@@ -16,5 +23,6 @@ void ConsoleEventHandler::update(SDL_Event* event) {
 			Console::getInstance()->write(text);
 		}
 	}
+	return nullptr;
 
 }

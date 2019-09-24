@@ -4,6 +4,6 @@ class ConsoleEventHandler :
 	public EventHandler
 {
 public:
-	void update(SDL_Event* event) override;
+	std::unique_ptr<EventHandler> update(SDL_Event* event) override;
 };
 

@@ -28,9 +28,6 @@ private:
 
 	bool opened = false;
 
-	//To tackle the "open letter input" issue
-	bool openingFrame = false;
-
 	//Used to start and stop the SDL input
 	std::unique_ptr<TextInput> textInput;
 
