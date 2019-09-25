@@ -4,21 +4,6 @@
 
 #include "Console.h"
 
-EventSystem* EventSystem::instance{ nullptr };
-
-void EventSystem::init() {
-	if (!instance) {
-		instance = new EventSystem{};
-	}
-}
-
-void EventSystem::quit() {
-	if (instance) {
-		delete instance;
-		instance = nullptr;
-	}
-}
-
 EventSystem::EventSystem() {
 	currentEventHandler = std::unique_ptr<EventHandler>{ new ConsoleEventHandler() };
 	CONSOLE_LOG("Event system successfully initialised");

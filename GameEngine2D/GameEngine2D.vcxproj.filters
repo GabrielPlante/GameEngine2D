@@ -168,6 +168,9 @@
     <ClCompile Include="ConsoleEventHandler.cpp">
       <Filter>Source Files\ECS\System\EventSystem</Filter>
     </ClCompile>
+    <ClCompile Include="SDLInit.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clock.h">

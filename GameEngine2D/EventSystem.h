@@ -7,27 +7,21 @@
 #include "EventHandler.h"
 
 
-class EventSystem
+/// <summary>
+/// The event system class is where every event (given by an SDL_Event) are handled
+/// </summary>
+class EventSystem:
+	public System
 {
 private:
-	static EventSystem* instance;
-
 	//What event system is currently in use
 	std::unique_ptr<EventHandler> currentEventHandler;
 
 	SDL_Event event{ 0 };
 
+public:
 	//Default constructor
 	EventSystem();
-public:
-	//Initialise the singleton
-	static void init();
-
-	//Get the event system instance
-	static EventSystem* getInstance() { return instance; }
-
-	//Destroy the singleton
-	static void quit();
 
 	//What will update all component under this system control
 	void update();

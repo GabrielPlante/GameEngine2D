@@ -4,8 +4,6 @@
 
 //Include of the systems
 #include "EventSystem.h"
-#include "GraphicSystem.h"
-#include "MovementSystem.h"
 
 #include "Console.h"
 
@@ -16,10 +14,6 @@
 //Initialize static attribute
 Engine* Engine::instance{ nullptr };
 
-//Size of the screen
-constexpr int SCREEN_WIDTH{ 1400 };
-constexpr int SCREEN_HEIGHT{ 800 };
-
 long long Engine::timestep() {
 	long long timeSinceLastReset = engineClock.resetTime();
 	timeSinceStart += timeSinceLastReset;
@@ -27,32 +21,29 @@ long long Engine::timestep() {
 }
 
 //In the constructor many systems are added to the engine, the order in wich they are added will be their order of calling, so it matter
-Engine::Engine()
+Engine::Engine(int screenWidth, int screenHeight)
 {
 	//First initialise the graphic system, that initialise sdl and sdl_ttf
-	graphicSystem = std::shared_ptr<GraphicSystem>{ new GraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT} };
+	//graphicSystem = std::shared_ptr<GraphicSystem>{ new GraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT} };
 
 	//Then initialise the console
-	Console::init(Rectangle{ 100, 100, SCREEN_WIDTH * 2 / 3, SCREEN_HEIGHT * 2 / 3 });
+	Console::init(Rectangle{ 100, 100, screenWidth * 2 / 3, screenHeight * 2 / 3 });
 
 	//Initialise the command list
 	CommandList::init();
 
-	//Initialise the event system
-	EventSystem::init();
+	//Initialise the event system, added first into the list so it is updated first
+	addSystem(std::shared_ptr<System>{new EventSystem{}});
 
-	//-----Every system need to be added AFTER this line-----
-
-	addSystem(std::shared_ptr<System>{new MovementSystem{}});
-
-	//-----Every system need to be added BEFORE this line-----
+	//Escape the console
+	CommandList::getInstance()->executeCommand("quitconsole");
 
 	CONSOLE_LOG("Engine successfully initialised");
 }
 
-void Engine::init() {
+void Engine::init(int screenWidth, int screenHeight) {
 	if (!instance) {
-		instance = new Engine{};
+		instance = new Engine{screenWidth, screenHeight};
 	}
 }
 
@@ -82,9 +73,6 @@ void Engine::mainLoop() {
 }
 
 void Engine::update() {
-	//First update the event
-	EventSystem::getInstance()->update();
-
 	//Each update, the engine update each system
 	for (std::shared_ptr<System> system : systems) {
 		system->update();

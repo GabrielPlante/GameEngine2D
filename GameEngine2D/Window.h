@@ -1,5 +1,7 @@
 #pragma once
 #include <SDL.h>
+//To avoid conflict with the actual main
+#undef main
 
 class Window
 {

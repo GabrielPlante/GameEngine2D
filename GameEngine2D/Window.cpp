@@ -7,10 +7,6 @@
 Window::Window(const int screenWidth, const int screenHeight)
 	:screenWidth{ screenWidth }, screenHeight{ screenHeight }
 {
-	//Initialise SDL
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-		throw std::runtime_error("SDL_Init failed");
-
 	//Create window
 	gWindow = SDL_CreateWindow("Ianagd", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
 	if (!gWindow)
@@ -26,21 +22,13 @@ Window::Window(const int screenWidth, const int screenHeight)
 
 	//Alpha blending https://wiki.libsdl.org/SDL_BlendMode
 	SDL_SetRenderDrawBlendMode(gRenderer, SDL_BLENDMODE_BLEND);
-
-	//Temporary solution : initialise ttf in the window
-	if (TTF_Init() < 0)
-		throw std::runtime_error("TTF_Init failed");
 }
 
 Window::~Window()
 {
-	TTF_Quit();
 	//Destroy
 	SDL_DestroyRenderer(gRenderer);
 	SDL_DestroyWindow(gWindow);
 	gRenderer = nullptr;
 	gWindow = nullptr;
-
-	//Quit SDL subsystems
-	SDL_Quit();
 }

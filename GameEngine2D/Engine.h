@@ -7,9 +7,9 @@
 
 class GraphicSystem;
 
-/*
- * Engine class, singleton
-*/
+/// <summary>
+/// Engine class, singleton
+/// </summary>
 class Engine
 {
 private:
@@ -24,23 +24,40 @@ private:
 	bool keepRunning{ true };
 
 	//Time between each frame in milliseconds, with the base being 60 frame per second
-	unsigned int timeBetweenFrame{ 1000/60 };
+	unsigned int timeBetweenFrame{ 1000 / 60 };
 
 	//The vector containing all the systems
 	std::vector<std::shared_ptr<System>> systems;
 
 	//The graphic system have it's own variable to make sure it is updated last
-	std::shared_ptr<GraphicSystem> graphicSystem;
-
-	//Default constructor, private to make it a singleton
-	Engine();
+	std::shared_ptr<System> graphicSystem;
 
 	//Reset the engine clock, but keep track of the time since the engine started, and give how much time passed since the last clock reset
 	long long timestep();
 
+	
+	/// <summary>
+	/// This class is used to initialise and destruct SDL
+	/// </summary>
+	class SDLInit
+	{
+	public:
+		//Constructor, initialise SDL
+		SDLInit();
+
+		//Destructor, stop SDL
+		~SDLInit();
+	};
+		
+	//This will initialise sdl
+	SDLInit sdl_init{};
+
+	//Default constructor, private to make it a singleton
+	Engine(int screenWidth, int screenHeight);
+
 public:
 	//Initialize the engine
-	static void init();
+	static void init(int screenWidth, int screenHeight);
 
 	//Return a pointer to the engine instance, or nullptr if it's not initialized yet
 	static Engine* getInstance() { return instance; }
@@ -62,5 +79,8 @@ public:
 
 	//Updated at the very begining of each frame, give the time since the begining of the last frame
 	long long getTimeSinceLastFrame() const { return timeSinceLastFrame; }
+
+	//Add a graphic system to the engine
+	void addGraphicSystem(std::shared_ptr<System> newGraphicSystem) { graphicSystem = std::move(newGraphicSystem); }
 };
 
