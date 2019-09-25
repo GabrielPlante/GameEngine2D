@@ -162,6 +162,9 @@
     <ClCompile Include="SDLInit.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Renderable\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clock.h">
@@ -274,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="CommandError.h">
       <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\Renderable\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
