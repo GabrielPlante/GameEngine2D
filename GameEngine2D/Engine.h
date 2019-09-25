@@ -4,6 +4,7 @@
 
 #include "Clock.h"
 #include "System.h"
+#include "EventHandler.h"
 
 class GraphicSystem;
 
@@ -53,11 +54,11 @@ private:
 	SDLInit sdl_init{};
 
 	//Default constructor, private to make it a singleton
-	Engine(int screenWidth, int screenHeight);
+	Engine(int screenWidth, int screenHeight, std::unique_ptr<EventHandler> eventHandler);
 
 public:
 	//Initialize the engine
-	static void init(int screenWidth, int screenHeight);
+	static void init(int screenWidth, int screenHeight, std::unique_ptr<EventHandler> eventHandler = nullptr);
 
 	//Return a pointer to the engine instance, or nullptr if it's not initialized yet
 	static Engine* getInstance() { return instance; }

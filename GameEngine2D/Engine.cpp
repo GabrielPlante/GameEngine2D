@@ -21,7 +21,7 @@ long long Engine::timestep() {
 }
 
 //In the constructor many systems are added to the engine, the order in wich they are added will be their order of calling, so it matter
-Engine::Engine(int screenWidth, int screenHeight)
+Engine::Engine(int screenWidth, int screenHeight, std::unique_ptr<EventHandler> eventHandler)
 {
 	//First initialise the graphic system, that initialise sdl and sdl_ttf
 	//graphicSystem = std::shared_ptr<GraphicSystem>{ new GraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT} };
@@ -33,17 +33,18 @@ Engine::Engine(int screenWidth, int screenHeight)
 	CommandList::init();
 
 	//Initialise the event system, added first into the list so it is updated first
-	addSystem(std::shared_ptr<System>{new EventSystem{}});
-
-	//Escape the console
-	CommandList::getInstance()->executeCommand("quitconsole");
+	std::shared_ptr<EventSystem> eventSystem{ new EventSystem };
+	//If the user gave another event handler, use it
+	if (eventHandler)
+		eventSystem->switchEventHandler(std::move(eventHandler));
+	addSystem(std::shared_ptr<System>{eventSystem});
 
 	CONSOLE_LOG("Engine successfully initialised");
 }
 
-void Engine::init(int screenWidth, int screenHeight) {
+void Engine::init(int screenWidth, int screenHeight, std::unique_ptr<EventHandler> eventHandler) {
 	if (!instance) {
-		instance = new Engine{screenWidth, screenHeight};
+		instance = new Engine{screenWidth, screenHeight, std::move(eventHandler)};
 	}
 }
 
