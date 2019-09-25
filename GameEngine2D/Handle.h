@@ -1,13 +1,15 @@
 #pragma once
 
-class Handle
-{
-private:
-	long id;
-public:
-	Handle(long id)
-		: id{ id }
-	{}
+namespace ge {
+	class Handle
+	{
+	private:
+		long id;
+	public:
+		Handle(long id)
+			: id{ id }
+		{}
 
-	long getID() const { return id; }
-};
+		long getID() const { return id; }
+	};
+}

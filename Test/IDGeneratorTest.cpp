@@ -5,7 +5,7 @@
 
 
 TEST(IDGeneratorTest, All) {
-	IDGenerator<int> iDGenerator;
+	ge::IDGenerator<int> iDGenerator;
 	int id1 = iDGenerator.getNewID();
 	int id2 = iDGenerator.getNewID();
 	EXPECT_EQ(id1 + 1, id2);

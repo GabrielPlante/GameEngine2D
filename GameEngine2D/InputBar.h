@@ -3,75 +3,78 @@
 
 #include "TextInRect.h"
 #include "TextInput.h"
-class InputBar
-{
-private:
-	//If true, the inputBar will render the content of inputText in graphicText during the rendering of the frame
-	bool needRendering = false;
 
-	//The input text as a string
-	std::string inputText;
+namespace ge {
+	class InputBar
+	{
+	private:
+		//If true, the inputBar will render the content of inputText in graphicText during the rendering of the frame
+		bool needRendering = false;
 
-	Font font;
+		//The input text as a string
+		std::string inputText;
 
-	//The actual texture rendered
-	std::unique_ptr<Text> graphicText;
+		Font font;
 
-	//Those are needed to recreate the texture each time a character is typed
-	RenderableRectangle graphicRect;
+		//The actual texture rendered
+		std::unique_ptr<Text> graphicText;
 
-	Position<> position;
+		//Those are needed to recreate the texture each time a character is typed
+		RenderableRectangle graphicRect;
 
-	Color textColor;
+		Position<> position;
 
-	std::string fontFileName;
+		Color textColor;
 
-	bool opened = false;
+		std::string fontFileName;
 
-	//Used to start and stop the SDL input
-	std::unique_ptr<TextInput> textInput;
+		bool opened = false;
 
-	//Render the text introduced that frame
-	void renderPendingText(SDL_Renderer* renderer);
+		//Used to start and stop the SDL input
+		std::unique_ptr<TextInput> textInput;
 
-public:
-	//Constructor
-	InputBar(RenderableRectangle graphicRect, Position<> position, Color textColor = Color{ 0, 0, 0 }, const std::string& fontFileName = "mainFont.ttf");
+		//Render the text introduced that frame
+		void renderPendingText(SDL_Renderer* renderer);
 
-	//Add text at the end of the input bar
-	void write(const std::string& text);
+	public:
+		//Constructor
+		InputBar(RenderableRectangle graphicRect, Position<> position, Color textColor = Color{ 0, 0, 0 }, const std::string& fontFileName = "mainFont.ttf");
 
-	//Delete the content of the inputBar and replace it
-	void setText(const std::string& text);
+		//Add text at the end of the input bar
+		void write(const std::string& text);
 
-	//Pop one character of the inputBar, if there is one
-	void popText();
+		//Delete the content of the inputBar and replace it
+		void setText(const std::string& text);
 
-	//Open the inputBar and start the SDL text input
-	void open();
+		//Pop one character of the inputBar, if there is one
+		void popText();
 
-	//Close the inputBar and stop the SDL text input
-	void close();
+		//Open the inputBar and start the SDL text input
+		void open();
 
-	//Refresh the input bar, process the new input text if needed
-	void update(SDL_Renderer* renderer);
+		//Close the inputBar and stop the SDL text input
+		void close();
 
-	//Render the inputBar
-	void render(SDL_Renderer* renderer) const;
+		//Refresh the input bar, process the new input text if needed
+		void update(SDL_Renderer* renderer);
 
-	//Is the input bar opened
-	bool isOpened() const { return opened; }
+		//Render the inputBar
+		void render(SDL_Renderer* renderer) const;
 
-	//Does the input bar need rendering to render new letter in it
-	bool doesNeedRendering() const { return needRendering; }
+		//Is the input bar opened
+		bool isOpened() const { return opened; }
 
-	//Get the text in the input bar
-	const std::string& getInputText() const { return inputText; }
+		//Does the input bar need rendering to render new letter in it
+		bool doesNeedRendering() const { return needRendering; }
 
-	//Clear the text and return what was in the inputBar
-	std::unique_ptr<Text> clear();
+		//Get the text in the input bar
+		const std::string& getInputText() const { return inputText; }
 
-	//Delete the text in the input bar
-	void deleteText();
-};
+		//Clear the text and return what was in the inputBar
+		std::unique_ptr<Text> clear();
 
+		//Delete the text in the input bar
+		void deleteText();
+	};
+
+}

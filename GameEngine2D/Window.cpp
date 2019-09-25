@@ -3,32 +3,33 @@
 #include <stdexcept>
 
 
+namespace ge {
+	Window::Window(const int screenWidth, const int screenHeight)
+		:screenWidth{ screenWidth }, screenHeight{ screenHeight }
+	{
+		//Create window
+		gWindow = SDL_CreateWindow("Ianagd", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
+		if (!gWindow)
+			throw std::runtime_error("SDL_CreateWindow failed");
 
-Window::Window(const int screenWidth, const int screenHeight)
-	:screenWidth{ screenWidth }, screenHeight{ screenHeight }
-{
-	//Create window
-	gWindow = SDL_CreateWindow("Ianagd", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
-	if (!gWindow)
-		throw std::runtime_error("SDL_CreateWindow failed");
+		//Create renderer
+		gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+		if (!gRenderer)
+			throw std::runtime_error("SDL_CreateRenderer failed");
 
-	//Create renderer
-	gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
-	if (!gRenderer)
-		throw std::runtime_error("SDL_CreateRenderer failed");
+		//Everything will be painted black
+		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
 
-	//Everything will be painted black
-	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
+		//Alpha blending https://wiki.libsdl.org/SDL_BlendMode
+		SDL_SetRenderDrawBlendMode(gRenderer, SDL_BLENDMODE_BLEND);
+	}
 
-	//Alpha blending https://wiki.libsdl.org/SDL_BlendMode
-	SDL_SetRenderDrawBlendMode(gRenderer, SDL_BLENDMODE_BLEND);
-}
-
-Window::~Window()
-{
-	//Destroy
-	SDL_DestroyRenderer(gRenderer);
-	SDL_DestroyWindow(gWindow);
-	gRenderer = nullptr;
-	gWindow = nullptr;
+	Window::~Window()
+	{
+		//Destroy
+		SDL_DestroyRenderer(gRenderer);
+		SDL_DestroyWindow(gWindow);
+		gRenderer = nullptr;
+		gWindow = nullptr;
+	}
 }

@@ -4,31 +4,34 @@
 #include "Font.h"
 #include "Color.h"
 #include "Rectangle.h"
-class Text
-{
-private:
-	//No copy constructor because the text keep a surface
-	Text(const Text&) {}
-	//Color of the text
-	Color color;
-	//Rectangle representing the text
-	Rectangle rect;
-	//The actual texture
-	SDL_Texture* texture = nullptr;
-public:
-	//Constructor
-	Text(const std::string& text, const Position<>& position, SDL_Renderer* renderer, const Font& font, const Color& color = Color{ 255, 255, 255 });
 
-	//Render the text, with maybe a source rectangle and a destination rectangle
-	void render(SDL_Renderer* renderer, SDL_Rect* srcRect = nullptr, SDL_Rect* dstRect = nullptr) const;
+namespace ge {
+	class Text
+	{
+	private:
+		//No copy constructor because the text keep a surface
+		Text(const Text&) {}
+		//Color of the text
+		Color color;
+		//Rectangle representing the text
+		Rectangle rect;
+		//The actual texture
+		SDL_Texture* texture = nullptr;
+	public:
+		//Constructor
+		Text(const std::string& text, const Position<>& position, SDL_Renderer* renderer, const Font& font, const Color& color = Color{ 255, 255, 255 });
 
-	//Get the rectangle of the text
-	const Rectangle& getRect() const { return rect; }
+		//Render the text, with maybe a source rectangle and a destination rectangle
+		void render(SDL_Renderer* renderer, SDL_Rect* srcRect = nullptr, SDL_Rect* dstRect = nullptr) const;
 
-	//Move constructor possible
-	Text(Text&& text) = default;
+		//Get the rectangle of the text
+		const Rectangle& getRect() const { return rect; }
 
-	//Destructor
-	~Text();
-};
+		//Move constructor possible
+		Text(Text&& text) = default;
 
+		//Destructor
+		~Text();
+	};
+
+}

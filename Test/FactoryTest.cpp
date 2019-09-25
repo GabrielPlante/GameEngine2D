@@ -5,7 +5,7 @@
 #include "../GameEngine2D/Factory.h"
 
 TEST(FactoryTest, All) {
-	Factory<std::string> factory;
+	ge::Factory<std::string> factory;
 	unsigned int id1 = factory.addComponent("id1");
 	EXPECT_EQ(*factory.getComponent(id1), "id1");
 

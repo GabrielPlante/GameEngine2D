@@ -7,25 +7,27 @@
 #include "EventHandler.h"
 
 
-/// <summary>
-/// The event system class is where every event (given by an SDL_Event) are handled
-/// </summary>
-class EventSystem:
-	public System
-{
-private:
-	//What event system is currently in use
-	std::unique_ptr<EventHandler> currentEventHandler;
+namespace ge {
+	/// <summary>
+	/// The event system class is where every event (given by an SDL_Event) are handled
+	/// </summary>
+	class EventSystem :
+		public System
+	{
+	private:
+		//What event system is currently in use
+		std::unique_ptr<EventHandler> currentEventHandler;
 
-	SDL_Event event{ 0 };
+		SDL_Event event{ 0 };
 
-public:
-	//Default constructor
-	EventSystem();
+	public:
+		//Default constructor
+		EventSystem();
 
-	//What will update all component under this system control
-	void update();
+		//What will update all component under this system control
+		void update();
 
-	void switchEventHandler(std::unique_ptr<EventHandler> eventHandler) { currentEventHandler = std::move(eventHandler); }
-};
+		void switchEventHandler(std::unique_ptr<EventHandler> eventHandler) { currentEventHandler = std::move(eventHandler); }
+	};
 
+}

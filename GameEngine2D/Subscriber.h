@@ -4,24 +4,26 @@
 
 #include "Message.h"
 
-/*
- * A subscriber can subscribe to a publisher to get notified when he have a message
-*/
-class Publisher;
-class Subscriber
-{
-private:
-	std::vector<Publisher*> subscribedPublishers;
-public:
-	//Handle a message a publisher will give to it's subscriber
-	virtual void handleMessage(std::shared_ptr<Message> message) = 0;
-	
-	//Subscribe to a publisher
-	void subscribe(Publisher* publisher);
+namespace ge{
+	/*
+	 * A subscriber can subscribe to a publisher to get notified when he have a message
+	*/
+	class Publisher;
+	class Subscriber
+	{
+	private:
+		std::vector<Publisher*> subscribedPublishers;
+	public:
+		//Handle a message a publisher will give to it's subscriber
+		virtual void handleMessage(std::shared_ptr<Message> message) = 0;
 
-	//Unsubscribe to a publisher
-	void unsubscribe(Publisher* publisher);
+		//Subscribe to a publisher
+		void subscribe(Publisher* publisher);
 
-	//The base class destructor unsubscribe from every publisher in the subscribed list
-	~Subscriber();
-};
+		//Unsubscribe to a publisher
+		void unsubscribe(Publisher* publisher);
+
+		//The base class destructor unsubscribe from every publisher in the subscribed list
+		~Subscriber();
+	};
+}

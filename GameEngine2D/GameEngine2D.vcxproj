@@ -130,7 +130,6 @@
   <ItemGroup>
     <ClCompile Include="Angle.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Command.cpp" />
     <ClCompile Include="CommandList.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="ConsoleEventHandler.cpp" />
@@ -143,13 +142,11 @@
     <ClCompile Include="IDGenerator.cpp" />
     <ClCompile Include="InputBar.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Publisher.cpp" />
     <ClCompile Include="RenderableRectangle.cpp" />
     <ClCompile Include="SDLInit.cpp" />
     <ClCompile Include="Subscriber.cpp" />
-    <ClCompile Include="System.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextArea.cpp" />
     <ClCompile Include="TextInRect.cpp" />
@@ -176,7 +173,6 @@
     <ClInclude Include="IDGenerator.h" />
     <ClInclude Include="InputBar.h" />
     <ClInclude Include="Message.h" />
-    <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Publisher.h" />

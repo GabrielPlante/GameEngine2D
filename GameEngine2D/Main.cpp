@@ -12,9 +12,9 @@ constexpr int SCREEN_HEIGHT{ 800 };
 
 int main() {
 	try {
-		Engine::init(SCREEN_WIDTH, SCREEN_HEIGHT);
-		Engine::getInstance()->addGraphicSystem(std::shared_ptr<System>{new GraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT}});
-		Engine::getInstance()->mainLoop();
+		ge::Engine::init(SCREEN_WIDTH, SCREEN_HEIGHT);
+		ge::Engine::getInstance()->addGraphicSystem(std::shared_ptr<ge::System>{new ge::GraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT}});
+		ge::Engine::getInstance()->mainLoop();
 	}
 	catch (std::exception e) {
 		std::cout << e.what();
