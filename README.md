@@ -7,7 +7,6 @@ Everything the game will have is in stored in component, that are stored a facto
 There are some singleton that you can access from everywhere:
 -The engine
 -The console
--The event console
 -The command list
 
 To create system and component you need to:
@@ -24,6 +23,12 @@ This id can give you access your component at any moment.
 A standard messaging system with the subscriber/publisher pattern is available
 
 How the event system work:
-The engine start with the console and the console event handler on the foreground.
-You need to create your own handler inheriting from EventHandler and make the event system switch to your system.
+The base event system is the console event system.
+You need to create your own handler inheriting from EventHandler and give to the engine at his initialisation.
 The unimplemented command "quitconsole" is called each time the escape button is pressed while in the console.
+
+You also need to create a graphic system inheriting from system and give it to the engine by the method addGraphicSystem.
+
+You can change the font by replacing the "mainFont.ttf" file.
+
+To implement a command, create a class that inherit from Command, call the constructor of Command with the name of your command, and add your command to the commandList singleton with the method addCommand.
