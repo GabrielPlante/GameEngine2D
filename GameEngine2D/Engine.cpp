@@ -9,8 +9,6 @@
 
 #include "CommandList.h"
 
-#include <iostream>
-
 namespace ge {
 	//Initialize static attribute
 	Engine* Engine::instance{ nullptr };
@@ -22,7 +20,7 @@ namespace ge {
 	}
 
 	//In the constructor many systems are added to the engine, the order in wich they are added will be their order of calling, so it matter
-	Engine::Engine(int screenWidth, int screenHeight, std::unique_ptr<EventHandler> eventHandler)
+	Engine::Engine(int screenWidth, int screenHeight)
 	{
 		//First initialise the graphic system, that initialise sdl and sdl_ttf
 		//graphicSystem = std::shared_ptr<GraphicSystem>{ new GraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT} };
@@ -30,22 +28,18 @@ namespace ge {
 		//Then initialise the console
 		Console::init(Rectangle{ 100, 100, screenWidth * 2 / 3, screenHeight * 2 / 3 });
 
+		CONSOLE_LOG("Event system successfully initialised");
+
 		//Initialise the command list
 		CommandList::init();
 
-		//Initialise the event system, added first into the list so it is updated first
-		std::shared_ptr<EventSystem> eventSystem{ new EventSystem };
-		//If the user gave another event handler, use it
-		if (eventHandler)
-			eventSystem->switchEventHandler(std::move(eventHandler));
-		addSystem(std::shared_ptr<System>{eventSystem});
-
 		CONSOLE_LOG("Engine successfully initialised");
+
 	}
 
-	void Engine::init(int screenWidth, int screenHeight, std::unique_ptr<EventHandler> eventHandler) {
+	void Engine::init(int screenWidth, int screenHeight) {
 		if (!instance) {
-			instance = new Engine{ screenWidth, screenHeight, std::move(eventHandler) };
+			instance = new Engine{ screenWidth, screenHeight };
 		}
 	}
 
@@ -63,10 +57,6 @@ namespace ge {
 			//Call the engine update
 			update();
 
-
-			//---TEST---Print the time since last reset and the time since start
-			//std::cout << "Time since last reset : " << timeSinceLastReset/1000 << std::endl << "Time since start : " << timeSinceStart/1000 << std::endl;
-
 			//If less time past since the last frame than what the engine want, it sleep to compensate for it
 			if (engineClock.getTime() < static_cast<long long>(timeBetweenFrame) * 1000) {
 				std::this_thread::sleep_for(std::chrono::microseconds(static_cast<long long>(timeBetweenFrame) * 1000 - engineClock.getTime()));
@@ -75,6 +65,9 @@ namespace ge {
 	}
 
 	void Engine::update() {
+		//Update the event system
+		eventSystem.update();
+
 		//Each update, the engine update each system
 		for (std::shared_ptr<System> system : systems) {
 			system->update();

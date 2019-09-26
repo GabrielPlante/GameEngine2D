@@ -4,7 +4,7 @@
 
 #include "Clock.h"
 #include "System.h"
-#include "EventHandler.h"
+#include "EventSystem.h"
 
 namespace ge {
 	class GraphicSystem;
@@ -31,6 +31,9 @@ namespace ge {
 		//The vector containing all the systems
 		std::vector<std::shared_ptr<System>> systems;
 
+		//The event system
+		EventSystem eventSystem;
+
 		//The graphic system have it's own variable to make sure it is updated last
 		std::shared_ptr<System> graphicSystem;
 
@@ -55,11 +58,11 @@ namespace ge {
 		SDLInit sdl_init{};
 
 		//Default constructor, private to make it a singleton
-		Engine(int screenWidth, int screenHeight, std::unique_ptr<EventHandler> eventHandler);
+		Engine(int screenWidth, int screenHeight);
 
 	public:
 		//Initialize the engine
-		static void init(int screenWidth, int screenHeight, std::unique_ptr<EventHandler> eventHandler = nullptr);
+		static void init(int screenWidth, int screenHeight);
 
 		//Return a pointer to the engine instance, or nullptr if it's not initialized yet
 		static Engine* getInstance() { return instance; }
@@ -81,6 +84,12 @@ namespace ge {
 
 		//Updated at the very begining of each frame, give the time since the begining of the last frame
 		long long getTimeSinceLastFrame() const { return timeSinceLastFrame; }
+
+		//Push an event handler that will be used from now on
+		void pushEventHandler(std::unique_ptr<EventHandler> eventHandler) { eventSystem.pushEventHandler(std::move(eventHandler)); }
+
+		//Pop the top event, the next one will be used from now on
+		void popEventHandler() { eventSystem.popEventHandler(); }
 
 		//Add a graphic system to the engine
 		void addGraphicSystem(std::shared_ptr<System> newGraphicSystem) { graphicSystem = std::move(newGraphicSystem); }

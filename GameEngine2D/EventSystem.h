@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <memory>
+#include <vector>
 
 #include "System.h"
 
@@ -15,8 +16,8 @@ namespace ge {
 		public System
 	{
 	private:
-		//What event system is currently in use
-		std::unique_ptr<EventHandler> currentEventHandler;
+		//The pile used to determine wich event handler is used (the top one is used)
+		std::vector<std::unique_ptr<EventHandler>> eventHandlerPile;
 
 		SDL_Event event{ 0 };
 
@@ -27,7 +28,11 @@ namespace ge {
 		//What will update all component under this system control
 		void update();
 
-		void switchEventHandler(std::unique_ptr<EventHandler> eventHandler) { currentEventHandler = std::move(eventHandler); }
+		//Push an event handler that will be used from now on
+		void pushEventHandler(std::unique_ptr<EventHandler> eventHandler);
+
+		//Pop the top event, the next one will be used from now on
+		void popEventHandler() { if (eventHandlerPile.size() > 1) eventHandlerPile.pop_back(); }
 	};
 
 }

@@ -10,6 +10,6 @@ namespace ge {
 		bool pollEvent(SDL_Event* event) { return SDL_PollEvent(event); }
 	public:
 		//Handle all the event
-		virtual std::unique_ptr<EventHandler> update(SDL_Event* event) = 0;
+		virtual void update(SDL_Event* event) = 0;
 	};
 }

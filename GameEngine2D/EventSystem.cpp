@@ -6,19 +6,17 @@
 
 namespace ge {
 	EventSystem::EventSystem() {
-		currentEventHandler = std::unique_ptr<EventHandler>{ new ConsoleEventHandler() };
-		CONSOLE_LOG("Event system successfully initialised");
+		pushEventHandler(std::unique_ptr<EventHandler>{ new ConsoleEventHandler() });
 	}
 
 	void EventSystem::update() {
-		std::unique_ptr<EventHandler> eventHandler = currentEventHandler->update(&event);
+		eventHandlerPile.back()->update(&event);
+	}
 
-		if (eventHandler) {
-			//If a new event handler take the control
-			switchEventHandler(std::move(eventHandler));
+	void EventSystem::pushEventHandler(std::unique_ptr<EventHandler> eventHandler) {
+		eventHandlerPile.push_back(std::move(eventHandler));
 
-			//Delete all other event
-			while (SDL_PollEvent(&event)) {}
-		}
+		//Delete all other event
+		while (SDL_PollEvent(&event)) {}
 	}
 }

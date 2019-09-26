@@ -4,7 +4,7 @@
 #include "Console.h"
 
 namespace ge {
-	std::unique_ptr<EventHandler> ConsoleEventHandler::update(SDL_Event* event) {
+	void ConsoleEventHandler::update(SDL_Event* event) {
 		while (pollEvent(event)) {
 			//If the user want to quit
 			if (event->type == SDL_QUIT) {
@@ -33,7 +33,5 @@ namespace ge {
 				Console::getInstance()->verticalScroll(event->wheel.y);
 			}
 		}
-		return nullptr;
-
 	}
 }

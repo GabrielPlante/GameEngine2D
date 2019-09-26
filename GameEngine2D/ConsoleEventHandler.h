@@ -7,7 +7,7 @@ namespace ge {
 	{
 	public:
 		//Update the console
-		std::unique_ptr<EventHandler> update(SDL_Event* event) override;
+		void update(SDL_Event* event) override;
 	};
 
 }
