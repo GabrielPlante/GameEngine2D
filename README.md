@@ -24,7 +24,8 @@ A standard messaging system with the subscriber/publisher pattern is available
 
 How the event system work:
 The base event system is the console event system.
-You need to create your own handler inheriting from EventHandler and give to the engine at his initialisation.
+You need to create your own handler inheriting from EventHandler.
+The engine hold a pile of event handler, push your event handler on the pile and it will be used.
 The unimplemented command "quitconsole" is called each time the escape button is pressed while in the console.
 
 You also need to create a graphic system inheriting from system and give it to the engine by the method addGraphicSystem.
