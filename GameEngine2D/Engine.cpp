@@ -37,6 +37,16 @@ namespace ge {
 
 	}
 
+	Engine::~Engine() {
+		CONSOLE_LOG("Engine shutting down");
+
+		//Quit the console
+		Console::quit();
+
+		//Quit the command list
+		CommandList::quit();
+	}
+
 	void Engine::init(int screenWidth, int screenHeight) {
 		if (!instance) {
 			instance = new Engine{ screenWidth, screenHeight };

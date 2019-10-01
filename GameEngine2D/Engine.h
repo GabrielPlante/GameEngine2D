@@ -60,6 +60,9 @@ namespace ge {
 		//Default constructor, private to make it a singleton
 		Engine(int screenWidth, int screenHeight);
 
+		//Default destructor
+		~Engine();
+
 	public:
 		//Initialize the engine
 		static void init(int screenWidth, int screenHeight);
