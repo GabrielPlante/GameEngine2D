@@ -193,7 +193,47 @@
     <ClInclude Include="TextToCommand.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\libjpeg.redist.9.0.1.4\build\native\libjpeg.redist.targets" Condition="Exists('..\packages\libjpeg.redist.9.0.1.4\build\native\libjpeg.redist.targets')" />
+    <Import Project="..\packages\libjpeg.9.0.1.4\build\native\libjpeg.targets" Condition="Exists('..\packages\libjpeg.9.0.1.4\build\native\libjpeg.targets')" />
+    <Import Project="..\packages\libpng.redist.1.6.19.1\build\native\libpng.redist.targets" Condition="Exists('..\packages\libpng.redist.1.6.19.1\build\native\libpng.redist.targets')" />
+    <Import Project="..\packages\libtiff.redist.4.0.6.2\build\native\libtiff.redist.targets" Condition="Exists('..\packages\libtiff.redist.4.0.6.2\build\native\libtiff.redist.targets')" />
+    <Import Project="..\packages\SDL.redist.1.2.15.16\build\native\SDL.redist.targets" Condition="Exists('..\packages\SDL.redist.1.2.15.16\build\native\SDL.redist.targets')" />
+    <Import Project="..\packages\SDL.1.2.15.16\build\native\SDL.targets" Condition="Exists('..\packages\SDL.1.2.15.16\build\native\SDL.targets')" />
+    <Import Project="..\packages\SDL_image.redist.1.2.12.3\build\native\SDL_image.redist.targets" Condition="Exists('..\packages\SDL_image.redist.1.2.12.3\build\native\SDL_image.redist.targets')" />
+    <Import Project="..\packages\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\packages\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.targets')" />
+    <Import Project="..\packages\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\packages\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" />
+    <Import Project="..\packages\libpng.1.6.19.1\build\native\libpng.targets" Condition="Exists('..\packages\libpng.1.6.19.1\build\native\libpng.targets')" />
+    <Import Project="..\packages\libtiff.4.0.6.2\build\native\libtiff.targets" Condition="Exists('..\packages\libtiff.4.0.6.2\build\native\libtiff.targets')" />
+    <Import Project="..\packages\SDL_image.1.2.12.3\build\native\SDL_image.targets" Condition="Exists('..\packages\SDL_image.1.2.12.3\build\native\SDL_image.targets')" />
+    <Import Project="..\packages\sdl2.new.redist.2.0.8\build\native\sdl2.new.redist.targets" Condition="Exists('..\packages\sdl2.new.redist.2.0.8\build\native\sdl2.new.redist.targets')" />
+    <Import Project="..\packages\sdl2.new.2.0.8\build\native\sdl2.new.targets" Condition="Exists('..\packages\sdl2.new.2.0.8\build\native\sdl2.new.targets')" />
+    <Import Project="..\packages\vii.SDL2_mixer.redist.2.0.2\build\native\vii.SDL2_mixer.redist.targets" Condition="Exists('..\packages\vii.SDL2_mixer.redist.2.0.2\build\native\vii.SDL2_mixer.redist.targets')" />
+    <Import Project="..\packages\vii.SDL2_mixer.2.0.2\build\native\vii.SDL2_mixer.targets" Condition="Exists('..\packages\vii.SDL2_mixer.2.0.2\build\native\vii.SDL2_mixer.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\libjpeg.redist.9.0.1.4\build\native\libjpeg.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\libjpeg.redist.9.0.1.4\build\native\libjpeg.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\libjpeg.9.0.1.4\build\native\libjpeg.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\libjpeg.9.0.1.4\build\native\libjpeg.targets'))" />
+    <Error Condition="!Exists('..\packages\libpng.redist.1.6.19.1\build\native\libpng.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\libpng.redist.1.6.19.1\build\native\libpng.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\libtiff.redist.4.0.6.2\build\native\libtiff.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\libtiff.redist.4.0.6.2\build\native\libtiff.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\SDL.redist.1.2.15.16\build\native\SDL.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SDL.redist.1.2.15.16\build\native\SDL.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\SDL.1.2.15.16\build\native\SDL.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SDL.1.2.15.16\build\native\SDL.targets'))" />
+    <Error Condition="!Exists('..\packages\SDL_image.redist.1.2.12.3\build\native\SDL_image.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SDL_image.redist.1.2.12.3\build\native\SDL_image.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.targets'))" />
+    <Error Condition="!Exists('..\packages\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.targets'))" />
+    <Error Condition="!Exists('..\packages\libpng.1.6.19.1\build\native\libpng.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\libpng.1.6.19.1\build\native\libpng.targets'))" />
+    <Error Condition="!Exists('..\packages\libtiff.4.0.6.2\build\native\libtiff.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\libtiff.4.0.6.2\build\native\libtiff.targets'))" />
+    <Error Condition="!Exists('..\packages\SDL_image.1.2.12.3\build\native\SDL_image.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SDL_image.1.2.12.3\build\native\SDL_image.targets'))" />
+    <Error Condition="!Exists('..\packages\sdl2.new.redist.2.0.8\build\native\sdl2.new.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.new.redist.2.0.8\build\native\sdl2.new.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\sdl2.new.2.0.8\build\native\sdl2.new.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.new.2.0.8\build\native\sdl2.new.targets'))" />
+    <Error Condition="!Exists('..\packages\vii.SDL2_mixer.redist.2.0.2\build\native\vii.SDL2_mixer.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\vii.SDL2_mixer.redist.2.0.2\build\native\vii.SDL2_mixer.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\vii.SDL2_mixer.2.0.2\build\native\vii.SDL2_mixer.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\vii.SDL2_mixer.2.0.2\build\native\vii.SDL2_mixer.targets'))" />
+  </Target>
 </Project>

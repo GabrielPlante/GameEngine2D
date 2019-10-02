@@ -282,4 +282,7 @@
       <Filter>Header Files\Renderable\UI</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>
