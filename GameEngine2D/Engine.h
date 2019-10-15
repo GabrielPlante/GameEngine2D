@@ -96,6 +96,12 @@ namespace ge {
 
 		//Add a graphic system to the engine
 		void addGraphicSystem(std::shared_ptr<System> newGraphicSystem) { graphicSystem = std::move(newGraphicSystem); }
+
+		//Get the minimum amount of time that pass between two frame
+		unsigned int getTimeBetweenFrame() const { return timeBetweenFrame; }
+
+		//Set the minimum amount of time that pass between two frame
+		void setTimeBetweenFrame(unsigned int newTimeBetweenFrame) { timeBetweenFrame = newTimeBetweenFrame; }
 	};
 
 }
