@@ -79,8 +79,8 @@ namespace ge {
 		//Called each frame
 		void update();
 
-		//Add a system to the engine
-		void addSystem(std::shared_ptr<System> system) { systems.push_back(system); }
+		//Add a system to the engine, return it's position
+		size_t addSystem(std::shared_ptr<System> system) { systems.push_back(system); return systems.size() - 1; }
 
 		//Stop the main loop, stopping the engine
 		void stop() { keepRunning = false; }
