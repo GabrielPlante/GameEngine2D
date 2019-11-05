@@ -13,18 +13,48 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Systems">
+      <UniqueIdentifier>{02bff114-e0e9-47e3-90f3-f19962c77d9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems">
+      <UniqueIdentifier>{2373212b-4b64-48fd-ae72-155cc93c5621}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Commands">
+      <UniqueIdentifier>{03716a14-21f9-4dc9-83a2-aa48713bc114}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Commands">
+      <UniqueIdentifier>{66b0f860-b316-45af-958c-6ee4ced74a79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\General">
+      <UniqueIdentifier>{9154a6d5-e43b-4435-9121-3ad04700a962}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\General">
+      <UniqueIdentifier>{06ad9a9b-36b3-4a5f-b8bb-4453f6c4738f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameGraphicSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
     <ClCompile Include="GameCore.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\General</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\General</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PhysicSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="GameGraphicSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
     <ClInclude Include="GameCore.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\General</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
