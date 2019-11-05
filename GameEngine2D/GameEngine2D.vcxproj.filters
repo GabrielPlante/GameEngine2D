@@ -209,9 +209,6 @@
     <ClInclude Include="Command.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
-    <ClInclude Include="StopCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
     <ClInclude Include="CommandList.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
@@ -285,6 +282,9 @@
       <Filter>Header Files\Renderable\UI</Filter>
     </ClInclude>
     <ClInclude Include="CommandFps.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandQuit.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
   </ItemGroup>

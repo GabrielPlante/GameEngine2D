@@ -28,8 +28,6 @@ namespace ge {
 		//Then initialise the console
 		Console::init(Rectangle{ 100, 100, screenWidth * 2 / 3, screenHeight * 2 / 3 });
 
-		CONSOLE_LOG("Event system successfully initialised");
-
 		//Initialise the command list
 		CommandList::init();
 

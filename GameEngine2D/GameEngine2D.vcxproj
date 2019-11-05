@@ -164,6 +164,7 @@
     <ClInclude Include="CommandError.h" />
     <ClInclude Include="CommandFps.h" />
     <ClInclude Include="CommandList.h" />
+    <ClInclude Include="CommandQuit.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="ConsoleEventHandler.h" />
     <ClInclude Include="Engine.h" />
@@ -183,7 +184,6 @@
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="RenderableRectangle.h" />
-    <ClInclude Include="StopCommand.h" />
     <ClInclude Include="StringSplit.h" />
     <ClInclude Include="StringTo.h" />
     <ClInclude Include="Subscriber.h" />

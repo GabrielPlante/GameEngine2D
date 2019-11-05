@@ -4,7 +4,7 @@
 
 #include "Console.h"
 
-#include "StopCommand.h"
+#include "CommandQuit.h"
 #include "CommandFps.h"
 
 namespace ge {
@@ -25,7 +25,7 @@ namespace ge {
 
 	CommandList::CommandList()
 	{
-		commandList.insert(std::move(std::unique_ptr<Command>{new StopCommand{}}));
+		commandList.insert(std::move(std::unique_ptr<Command>{new CommandQuit{}}));
 		commandList.insert(std::move(std::unique_ptr<Command>{new CommandFps{}}));
 
 		CONSOLE_LOG("Command list successfully initialised");

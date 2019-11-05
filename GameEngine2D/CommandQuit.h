@@ -3,13 +3,13 @@
 #include "Engine.h"
 
 namespace ge {
-	class StopCommand :
+	class CommandQuit :
 		public Command
 	{
 	public:
 		//Default constructor
-		StopCommand()
-			:Command("stop")
+		CommandQuit()
+			:Command("quit")
 		{}
 
 		//Stop the engine
