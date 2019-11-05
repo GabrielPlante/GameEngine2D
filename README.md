@@ -1,8 +1,10 @@
 # GameEngine2D
 GameEngine2D is the game engine used to support the yet to be made Ianagd game. It is mean to be easy to use, flexible, scalable, reliable and fast.
 
+
 How the engine work:
 Everything the game will have is in stored in component, that are stored a factory.
+
 
 There are some singleton that you can access from everywhere:
 -The engine
@@ -10,9 +12,9 @@ There are some singleton that you can access from everywhere:
 -The command list
 
 To create system and component you need to:
--Create one or multiple component class that is a bag of data
--Create a system class that inherit from System with a factory of your(s) component
--Add that factory to the game engine
+ Create one or multiple component class that is a bag of data
+ / Create a system class that inherit from System with a factory of your(s) component
+ / Add that factory to the game engine
 
 In the update method of your system you can update every component of the system.
 
@@ -26,10 +28,10 @@ How the event system work:
 The base event system is the console event system.
 You need to create your own handler inheriting from EventHandler.
 The engine hold a pile of event handler, push your event handler on the pile and it will be used.
+
 The unimplemented command "quitconsole" is called each time the escape button is pressed while in the console.
 
 You also need to create a graphic system inheriting from system and give it to the engine by the method addGraphicSystem.
-
 You can change the font by replacing the "mainFont.ttf" file.
 
 To implement a command, create a class that inherit from Command, call the constructor of Command with the name of your command, and add your command to the commandList singleton with the method addCommand.
