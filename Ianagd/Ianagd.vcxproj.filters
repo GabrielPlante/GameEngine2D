@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Systems">
-      <UniqueIdentifier>{02bff114-e0e9-47e3-90f3-f19962c77d9f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Systems">
-      <UniqueIdentifier>{2373212b-4b64-48fd-ae72-155cc93c5621}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Commands">
       <UniqueIdentifier>{03716a14-21f9-4dc9-83a2-aa48713bc114}</UniqueIdentifier>
     </Filter>
@@ -31,13 +25,37 @@
     <Filter Include="Header Files\General">
       <UniqueIdentifier>{06ad9a9b-36b3-4a5f-b8bb-4453f6c4738f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ECS">
+      <UniqueIdentifier>{3e26f4a3-633b-4366-8f7b-0edf067e0dae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\Systems">
+      <UniqueIdentifier>{02bff114-e0e9-47e3-90f3-f19962c77d9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS">
+      <UniqueIdentifier>{d636359b-e978-45a4-9132-c1e6a869d457}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\Systems">
+      <UniqueIdentifier>{2373212b-4b64-48fd-ae72-155cc93c5621}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\Entities">
+      <UniqueIdentifier>{71fd4112-2806-4b00-b1df-71c0e6cb1edf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\Components">
+      <UniqueIdentifier>{646d7dd5-5713-46db-bea4-26e83d213276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\Entities">
+      <UniqueIdentifier>{c9351fb5-0add-4a4d-90b4-8c007d57c0bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\Components">
+      <UniqueIdentifier>{39fef433-d635-4e1e-a6c6-afd5b80df858}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameGraphicSystem.cpp">
-      <Filter>Source Files\Systems</Filter>
+      <Filter>Source Files\ECS\Systems</Filter>
     </ClCompile>
     <ClCompile Include="PhysicSystem.cpp">
-      <Filter>Source Files\Systems</Filter>
+      <Filter>Source Files\ECS\Systems</Filter>
     </ClCompile>
     <ClCompile Include="GameCore.cpp">
       <Filter>Source Files\General</Filter>
@@ -45,16 +63,22 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PhysicSystem.h">
-      <Filter>Header Files\Systems</Filter>
+      <Filter>Header Files\ECS\Systems</Filter>
     </ClInclude>
     <ClInclude Include="GameGraphicSystem.h">
-      <Filter>Header Files\Systems</Filter>
+      <Filter>Header Files\ECS\Systems</Filter>
     </ClInclude>
     <ClInclude Include="GameCore.h">
       <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicComponent.h">
+      <Filter>Header Files\ECS\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

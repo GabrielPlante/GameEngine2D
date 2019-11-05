@@ -129,11 +129,13 @@
     <ClCompile Include="GameCore.cpp" />
     <ClCompile Include="GameGraphicSystem.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PhysicComponent.cpp" />
     <ClCompile Include="PhysicSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="GameGraphicSystem.h" />
+    <ClInclude Include="PhysicComponent.h" />
     <ClInclude Include="PhysicSystem.h" />
   </ItemGroup>
   <ItemGroup>

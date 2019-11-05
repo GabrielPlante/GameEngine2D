@@ -150,9 +150,6 @@
     <ClCompile Include="IDGenerator.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Position.cpp">
-      <Filter>Source Files\Utility</Filter>
-    </ClCompile>
     <ClCompile Include="EventSystem.cpp">
       <Filter>Source Files\ECS\System\EventSystem</Filter>
     </ClCompile>

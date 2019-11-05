@@ -1,7 +1,6 @@
 #pragma once
 
 namespace ian {
-	
 	/// <summary>
 	/// The core of the game, here the engine is managed
 	/// </summary>
@@ -14,7 +13,5 @@ namespace ian {
 
 		//Run the game
 		void run();
-
 	};
-
 }

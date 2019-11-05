@@ -91,7 +91,7 @@ namespace ge {
 		//Stop the main loop, stopping the engine
 		void stop() { keepRunning = false; }
 
-		//Updated at the very begining of each frame, give the time since the begining of the last frame
+		//Updated at the very begining of each frame, give the time since the begining of the last frame. The time is in microsecond
 		long long getTimeSinceLastFrame() const { return timeSinceLastFrame; }
 
 		//Push an event handler that will be used from now on

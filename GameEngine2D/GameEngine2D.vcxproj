@@ -144,7 +144,6 @@
     <ClCompile Include="IDGenerator.cpp" />
     <ClCompile Include="InputBar.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Position.cpp" />
     <ClCompile Include="Publisher.cpp" />
     <ClCompile Include="RenderableRectangle.cpp" />
     <ClCompile Include="SDLInit.cpp" />
