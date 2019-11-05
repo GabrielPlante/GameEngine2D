@@ -2,7 +2,12 @@
 #include <SDL.h>
 #include <memory>
 
-namespace ge {
+namespace ge {	
+	/// <summary>
+	/// The EventHandler class need to be derived to have a new event system.
+	/// <para> The derived class must override the void update(SDL_Event* event) method that will be called automatically each frame.</para>
+	/// <para> The method pollEvent is here to easily poll the event </para>
+	/// </summary>
 	class EventHandler
 	{
 	protected:

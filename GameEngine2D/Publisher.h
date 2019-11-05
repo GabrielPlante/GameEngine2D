@@ -4,9 +4,9 @@
 #include "Subscriber.h"
 
 namespace ge {
-	/*
-	 * A publisher host subscribers and notify them when he have a message
-	 */
+	 /// <summary>
+	 /// A publisher host subscribers and notify them when he have a message
+	 /// </summary>
 	class Publisher
 	{
 	private:

@@ -10,7 +10,13 @@ namespace ge {
 	class GraphicSystem;
 
 	/// <summary>
-	/// Engine class, singleton
+	/// Engine class, singleton. It is the back bone of the game engine, everything happen here.
+	/// <para>The engine initialize the console and the command list</para>
+	/// <para>Before calling gameLoop and thus make the engine run, you have to :</para>
+	/// <para>- Add an event handler with pushEventHandler, else the console event handler will be used</para>
+	/// <para>- Add an graphic system with addGraphicSystem, else the engine will crash</para>
+	/// <para>- Add every system you want with addSystem, it will be harder to add them after</para>
+	/// <para>Instead of calling gameLoop, you can implement your own loop that call update, but the stop method and the timestep will not work anymore.</para>
 	/// </summary>
 	class Engine
 	{
