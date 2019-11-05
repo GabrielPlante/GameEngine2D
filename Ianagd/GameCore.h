@@ -2,8 +2,15 @@
 
 #include "..//GameEngine2D/Engine.h"
 
-class GameCore
-{
+namespace ian {
 
-};
+	class GameCore
+	{
+	private:
+	public:
+		//Default constructor
+		GameCore();
 
+	};
+
+}
