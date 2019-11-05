@@ -1,11 +1,13 @@
 #pragma once
 #include "IDGenerator.h"
 
+#include "MessageType.h"
+
 namespace ge {
-	/*
-	 * A message is a way to communicate over all the enginge and the game.
-	 * It can be derived to hold additional data.
-	*/
+	/// <summary>
+	/// A message is a way to communicate over all the enginge and the game.
+	/// <para>It may be derived to hold additional data.</para>
+	/// </summary>
 	class Message
 	{
 	private:
@@ -15,11 +17,6 @@ namespace ge {
 		//Where the message come from
 		unsigned int messageOrigin;
 
-		//Used to give a unused message type ID to a new message
-		static IDGenerator<unsigned int> messageTypeGenerator;
-
-		//Used to give a unused message origin ID to a new message
-		static IDGenerator<unsigned int> messageOriginGenerator;
 	public:
 		//Constructor
 		Message(unsigned int messageType, unsigned int messageOrigin)
@@ -31,11 +28,5 @@ namespace ge {
 
 		//Get the message origin
 		unsigned int getMessageOrigin() const { return messageOrigin; }
-
-		//Give a new unused message type ID
-		static unsigned int getNewMessageType() { return messageTypeGenerator.getNewID(); }
-
-		//Give a new unused message origin ID
-		static unsigned int getNewMessageOrigin() { return messageOriginGenerator.getNewID(); }
 	};
 }

@@ -218,9 +218,6 @@
     <ClInclude Include="IDGenerator.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="MovementSystem.h">
-      <Filter>Header Files\ECS\System</Filter>
-    </ClInclude>
     <ClInclude Include="Message.h">
       <Filter>Header Files\Messaging</Filter>
     </ClInclude>
@@ -283,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="CommandQuit.h">
       <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageType.h">
+      <Filter>Header Files\Messaging</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

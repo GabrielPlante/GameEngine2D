@@ -33,6 +33,9 @@ namespace ge {
 
 		//Pop the top event, the next one will be used from now on
 		void popEventHandler() { if (eventHandlerPile.size() > 1) eventHandlerPile.pop_back(); }
+
+		//As a subscriber, the system need to be able to handle message
+		void handleMessage(std::shared_ptr<Message> message) override {}
 	};
 
 }

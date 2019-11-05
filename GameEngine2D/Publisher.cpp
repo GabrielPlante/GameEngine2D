@@ -1,5 +1,7 @@
 #include "Publisher.h"
 
+#include "Subscriber.h"
+
 namespace ge {
 	void Publisher::unsubscribe(Subscriber* subscriber) {
 		for (auto it = subscribers.begin(); it != subscribers.end(); it++) {

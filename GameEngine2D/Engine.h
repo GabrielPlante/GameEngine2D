@@ -5,6 +5,7 @@
 #include "Clock.h"
 #include "System.h"
 #include "EventSystem.h"
+#include "Publisher.h"
 
 namespace ge {
 	class GraphicSystem;
@@ -17,8 +18,10 @@ namespace ge {
 	/// <para>- Add an graphic system with addGraphicSystem, else the engine will crash</para>
 	/// <para>- Add every system you want with addSystem, it will be harder to add them after</para>
 	/// <para>Instead of calling gameLoop, you can implement your own loop that call update, but the stop method and the timestep will not work anymore.</para>
+	/// <para>It is a publisher, meaning a subscriber can subscribe to him and it can send message to it's subscriber
 	/// </summary>
 	class Engine
+		: public Publisher
 	{
 	private:
 		Clock engineClock;

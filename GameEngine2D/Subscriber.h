@@ -5,10 +5,10 @@
 #include "Message.h"
 
 namespace ge{
-	/*
-	 * A subscriber can subscribe to a publisher to get notified when he have a message
-	*/
-	class Publisher;
+	class Publisher;	
+	/// <summary>
+	/// A subscriber can subscribe to a publisher to get notified when he have a message
+	/// </summary>
 	class Subscriber
 	{
 	private:

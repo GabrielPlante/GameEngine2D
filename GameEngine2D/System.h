@@ -1,5 +1,5 @@
 #pragma once
-#include "Publisher.h"
+#include "Subscriber.h"
 
 namespace ge {
 
@@ -9,7 +9,7 @@ namespace ge {
 	/// </summary>
 	/// <seealso cref="Publisher" />
 	class System
-		:public Publisher
+		:public Subscriber
 	{
 	public:
 		//What will update all component under this system control

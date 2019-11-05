@@ -1,9 +1,10 @@
 #pragma once
 #include <vector>
-
-#include "Subscriber.h"
+#include <memory>
 
 namespace ge {
+	class Subscriber;
+	class Message;
 	 /// <summary>
 	 /// A publisher host subscribers and notify them when he have a message
 	 /// </summary>

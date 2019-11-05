@@ -17,6 +17,8 @@ namespace ge {
 
 		//What will update all component under this system control
 		void update() override;
+		
+		void handleMessage(std::shared_ptr<Message> message) override {}
 	};
 
 }
