@@ -3,6 +3,9 @@
 #include "..//GameEngine2D/Engine.h"
 #include "../GameEngine2D/Angle.h"
 
+#include "MessageType.h"
+#include "CreatePhysicComponent.h"
+
 namespace ian {
 	void PhysicSystem::update() {
 		const float deltaTime{ static_cast<float>(ge::Engine::getInstance()->getTimeSinceLastFrame()) / 1000.0f };
@@ -24,6 +27,16 @@ namespace ian {
 					it->position.y += static_cast<float>(cos(destinationAngle.get()) * deltaMovement);
 				}
 			}
+		}
+	}
+
+	void PhysicSystem::handleMessage(std::shared_ptr<ge::Message> message) {
+		//If the message is a create physic component message
+		if (message->getMessageType() == createPhysicComponent) {
+			//Cast the message in it's proper form
+			std::shared_ptr<CreatePhysicComponent> newPhysicComponent{ std::static_pointer_cast<CreatePhysicComponent>(message) };
+			physicComponentFactory.addComponent(newPhysicComponent->getPhysicComponent());
+
 		}
 	}
 }

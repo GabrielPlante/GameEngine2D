@@ -138,10 +138,8 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EventSystem.cpp" />
-    <ClCompile Include="Factory.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GraphicSystem.cpp" />
-    <ClCompile Include="IDGenerator.cpp" />
     <ClCompile Include="InputBar.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Publisher.cpp" />

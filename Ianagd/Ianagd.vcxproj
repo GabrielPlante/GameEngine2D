@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CreatePhysicComponent.cpp" />
     <ClCompile Include="GameCore.cpp" />
     <ClCompile Include="GameGraphicSystem.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -133,8 +134,10 @@
     <ClCompile Include="PhysicSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CreatePhysicComponent.h" />
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="GameGraphicSystem.h" />
+    <ClInclude Include="MessageOrigin.h" />
     <ClInclude Include="MessageType.h" />
     <ClInclude Include="PhysicComponent.h" />
     <ClInclude Include="PhysicSystem.h" />

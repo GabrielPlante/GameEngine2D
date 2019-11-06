@@ -138,16 +138,10 @@
     <ClCompile Include="Console.cpp">
       <Filter>Source Files\Renderable\Console</Filter>
     </ClCompile>
-    <ClCompile Include="Factory.cpp">
-      <Filter>Source Files\ECS\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Publisher.cpp">
       <Filter>Source Files\Messaging</Filter>
     </ClCompile>
     <ClCompile Include="Angle.cpp">
-      <Filter>Source Files\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="IDGenerator.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="EventSystem.cpp">

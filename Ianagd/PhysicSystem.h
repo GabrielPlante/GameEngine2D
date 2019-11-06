@@ -5,8 +5,6 @@
 
 #include "PhysicComponent.h"
 
-#include "MessageType.h"
-
 namespace ian {
 	class PhysicSystem
 		: public ge::System
@@ -17,6 +15,6 @@ namespace ian {
 		void update() override;
 
 		//As a subscriber, the system need to be able to handle message
-		void handleMessage(std::shared_ptr<ge::Message> message) override {};
+		void handleMessage(std::shared_ptr<ge::Message> message) override;
 	};
 }
