@@ -2,6 +2,7 @@
 
 #include "../GameEngine2D/Message.h"
 #include "../GameEngine2D/Position.h"
+#include "Entity.h"
 
 #include "MessageType.h"
 #include "PhysicComponent.h"
@@ -10,24 +11,18 @@ namespace ian {
 	class CreatePhysicComponent :
 		public ge::Message
 	{
-	public:
+	private:
 		//Actual attribute
-		ge::Position<float> position;
-		ge::Position<float> destination;
-		float speed;
+		PhysicComponent physicComponent;
 
+		ge::Entity* entity;
+	public:
 		//Constructor
-		CreatePhysicComponent(unsigned int messageOrigin, ge::Position<float> position = ge::Position<float>{ 0, 0 },
-			ge::Position<float> destination = ge::Position<float>{ 0, 0 }, float speed = 0)
-			: ge::Message{ createPhysicComponent, messageOrigin }, position{ position }, destination{ destination }, speed{ speed }
+		CreatePhysicComponent(unsigned int messageOrigin, ge::Entity* entity, PhysicComponent physicComponent = PhysicComponent{})
+			: ge::Message{ createPhysicComponent, messageOrigin }, entity{ entity }, physicComponent{ physicComponent }
 		{}
-
 		PhysicComponent getPhysicComponent() const {
-			PhysicComponent component;
-			component.position = position;
-			component.destination = destination;
-			component.speed = speed;
-			return component;
+			return physicComponent;
 		}
 	};
 

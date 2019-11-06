@@ -110,6 +110,9 @@
     <ClInclude Include="GameEventHandler.h">
       <Filter>Header Files\Event</Filter>
     </ClInclude>
+    <ClInclude Include="CreateComponent.h">
+      <Filter>Header Files\Message</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

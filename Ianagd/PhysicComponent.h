@@ -9,13 +9,13 @@ namespace ian {
 	struct PhysicComponent
 	{
 		//The actual position of the entity
-		ge::Position<float> position;
+		ge::Position<float> position{ 0, 0 };
 
 		//For the begining, the destination is only a position
-		ge::Position<float> destination;
+		ge::Position<float> destination{ 0, 0 };
 
 		//The speed of the entity
-		float speed;
+		float speed{ 0 };
 	};
 }
 

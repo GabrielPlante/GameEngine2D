@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandQuitConsole.h" />
+    <ClInclude Include="CreateComponent.h" />
     <ClInclude Include="CreatePhysicComponent.h" />
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="GameEventHandler.h" />
