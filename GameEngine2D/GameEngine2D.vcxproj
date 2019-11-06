@@ -177,7 +177,6 @@
     <ClInclude Include="IDGenerator.h" />
     <ClInclude Include="InputBar.h" />
     <ClInclude Include="Message.h" />
-    <ClInclude Include="MessageType.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Publisher.h" />
     <ClInclude Include="Rectangle.h" />

@@ -281,9 +281,6 @@
     <ClInclude Include="CommandQuit.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
-    <ClInclude Include="MessageType.h">
-      <Filter>Header Files\Messaging</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -20,6 +20,6 @@ namespace ge {
 		void unsubscribe(Subscriber* subscriber);
 
 		//Notify all the subscribers of the message we have
-		void notify(std::shared_ptr<Message> message) const;
+		void publish(std::shared_ptr<Message> message) const;
 	};
 }

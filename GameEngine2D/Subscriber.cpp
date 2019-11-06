@@ -3,7 +3,7 @@
 #include "Publisher.h"
 
 namespace ge {
-	void Subscriber::subscribe(Publisher* publisher) {
+	void Subscriber::subscribeTo(Publisher* publisher) {
 		publisher->subscribe(this);
 		subscribedPublishers.push_back(publisher);
 	}

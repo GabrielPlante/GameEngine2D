@@ -5,6 +5,8 @@
 
 #include "PhysicComponent.h"
 
+#include "MessageType.h"
+
 namespace ian {
 	class PhysicSystem
 		: public ge::System

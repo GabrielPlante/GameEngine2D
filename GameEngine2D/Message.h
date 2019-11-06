@@ -1,8 +1,6 @@
 #pragma once
 #include "IDGenerator.h"
 
-#include "MessageType.h"
-
 namespace ge {
 	/// <summary>
 	/// A message is a way to communicate over all the enginge and the game.
@@ -29,4 +27,4 @@ namespace ge {
 		//Get the message origin
 		unsigned int getMessageOrigin() const { return messageOrigin; }
 	};
-}
+} 

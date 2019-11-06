@@ -17,8 +17,8 @@ namespace ge{
 		//Handle a message a publisher will give to it's subscriber
 		virtual void handleMessage(std::shared_ptr<Message> message) = 0;
 
-		//Subscribe to a publisher
-		void subscribe(Publisher* publisher);
+		//Subscribe to a publisher, and add itself to the publisher subscriber list
+		void subscribeTo(Publisher* publisher);
 
 		//Unsubscribe to a publisher
 		void unsubscribe(Publisher* publisher);

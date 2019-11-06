@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="GameGraphicSystem.h" />
+    <ClInclude Include="MessageType.h" />
     <ClInclude Include="PhysicComponent.h" />
     <ClInclude Include="PhysicSystem.h" />
   </ItemGroup>
