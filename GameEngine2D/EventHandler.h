@@ -20,5 +20,11 @@ namespace ge {
 	public:
 		//Handle all the event
 		virtual void update(SDL_Event* event) = 0;
+
+		//Called when this event handler take the control of the event
+		virtual void takeControl() = 0;
+
+		//Called when this event handler lose the control of the event
+		virtual void loseControl() = 0;
 	};
 }

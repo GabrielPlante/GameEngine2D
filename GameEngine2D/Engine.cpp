@@ -4,6 +4,7 @@
 
 //Include of the systems
 #include "EventSystem.h"
+#include "ConsoleEventHandler.h"
 
 #include "Console.h"
 
@@ -28,10 +29,17 @@ namespace ge {
 		//Then initialise the console
 		Console::init(Rectangle{ 100, 100, screenWidth * 2 / 3, screenHeight * 2 / 3 });
 
+		CONSOLE_LOG("Console successfully initialised");
+
+		std::unique_ptr<EventHandler> consoleEventSystem{ std::unique_ptr<EventHandler>{new ConsoleEventHandler{}} };
+		pushEventHandler(std::move(consoleEventSystem));
+
+		CONSOLE_LOG("Console event handler successfully initialised");
+
 		//Initialise the command list
 		CommandList::init();
 
-		CONSOLE_LOG("Engine successfully initialised");
+		CONSOLE_LOG("Engine successfully initialised")
 
 	}
 

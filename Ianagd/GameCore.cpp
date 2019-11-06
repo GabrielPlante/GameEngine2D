@@ -1,6 +1,7 @@
 #include "GameCore.h"
 
 #include "..//GameEngine2D/Engine.h"
+
 #include "GameGraphicSystem.h"
 #include "PhysicSystem.h"
 
@@ -18,6 +19,7 @@ namespace ian {
 		std::shared_ptr<GameGraphicSystem> gameGraphic{ new GameGraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT} };
 		ge::Engine::getInstance()->addGraphicSystem(gameGraphic);
 
+		//Create and add the physic system to the engine
 		std::shared_ptr<PhysicSystem> physicSystem{ new PhysicSystem{} };
 		physicSystem->subscribeTo(ge::Engine::getInstance());
 		ge::Engine::getInstance()->addSystem(physicSystem);

@@ -49,6 +49,12 @@
     <Filter Include="Header Files\ECS\Components">
       <UniqueIdentifier>{39fef433-d635-4e1e-a6c6-afd5b80df858}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Message">
+      <UniqueIdentifier>{5a2c714c-e668-4bc7-a765-8e1ee12aa64d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Message">
+      <UniqueIdentifier>{2d577481-187e-459a-9502-21e24ddbf305}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameGraphicSystem.cpp">
@@ -86,11 +92,11 @@
     <ClInclude Include="MessageType.h">
       <Filter>Header Files\ECS\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="CreatePhysicComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MessageOrigin.h">
       <Filter>Header Files\ECS\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="CreatePhysicComponent.h">
+      <Filter>Header Files\Message</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

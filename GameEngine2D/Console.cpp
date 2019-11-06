@@ -89,11 +89,21 @@ namespace ge {
 	}
 
 	void Console::toggle() {
+		if (opened)
+			close();
+		else
+			open();
+	}
+
+	void Console::open() {
 		if (!opened) {
 			opened = true;
 			inputBar.open();
 		}
-		else {
+	}
+
+	void Console::close() {
+		if(opened) {
 			opened = false;
 			inputBar.close();
 		}

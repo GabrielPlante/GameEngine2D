@@ -23,7 +23,7 @@ namespace ge {
 
 	public:
 		//Default constructor
-		EventSystem();
+		EventSystem() {}
 
 		//What will update all component under this system control
 		void update();
@@ -32,7 +32,7 @@ namespace ge {
 		void pushEventHandler(std::unique_ptr<EventHandler> eventHandler);
 
 		//Pop the top event, the next one will be used from now on
-		void popEventHandler() { if (eventHandlerPile.size() > 1) eventHandlerPile.pop_back(); }
+		void popEventHandler();
 
 		//As a subscriber, the system need to be able to handle message, however this system will not use it
 		void handleMessage(std::shared_ptr<Message> message) override {}

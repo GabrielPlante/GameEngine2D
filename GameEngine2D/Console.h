@@ -22,7 +22,7 @@ namespace ge {
 		int textHeight;
 		int margin;
 
-		bool opened{ true };
+		bool opened{ false };
 
 		//The input bar at the bottom of the console
 		InputBar inputBar;
@@ -65,6 +65,12 @@ namespace ge {
 
 		//Open or close the console
 		void toggle();
+
+		//Close the console
+		void close();
+
+		//Open the console
+		void open();
 
 		//Is the console open
 		bool isOpened() const { return opened; }
