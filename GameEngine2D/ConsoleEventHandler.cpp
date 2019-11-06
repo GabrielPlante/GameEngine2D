@@ -8,7 +8,7 @@ namespace ge {
 		while (pollEvent(event)) {
 			//If the user want to quit
 			if (event->type == SDL_QUIT) {
-				CommandList::getInstance()->executeCommand("stop");
+				CommandList::getInstance()->executeCommand("quit");
 			}
 			//If the user want to quit the console
 			else if (event->type == SDL_KEYDOWN && event->key.keysym.sym == SDLK_ESCAPE) {

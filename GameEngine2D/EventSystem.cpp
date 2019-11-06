@@ -23,6 +23,7 @@ namespace ge {
 		//Delete all other event
 		while (SDL_PollEvent(&event)) {}
 
+		CONSOLE_LOG("Event handler pushed");
 	}
 
 	void EventSystem::popEventHandler() {
@@ -34,6 +35,8 @@ namespace ge {
 
 			//Inform the new event handler that it took control
 			eventHandlerPile.back()->takeControl();
+
+			CONSOLE_LOG("Event handler popped");
 		}
 		else {
 			CONSOLE_LOG_ERROR("Error: tried to pop the event handler pile with only one event handler left")

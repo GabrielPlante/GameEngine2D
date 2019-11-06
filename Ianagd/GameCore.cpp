@@ -1,9 +1,13 @@
 #include "GameCore.h"
 
 #include "..//GameEngine2D/Engine.h"
+#include "CommandList.h"
 
 #include "GameGraphicSystem.h"
 #include "PhysicSystem.h"
+
+//Include the command
+#include "CommandQuitConsole.h"
 
 //Size of the screen
 constexpr int SCREEN_WIDTH{ 1400 };
@@ -23,6 +27,9 @@ namespace ian {
 		std::shared_ptr<PhysicSystem> physicSystem{ new PhysicSystem{} };
 		physicSystem->subscribeTo(ge::Engine::getInstance());
 		ge::Engine::getInstance()->addSystem(physicSystem);
+
+
+		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandQuitConsole{}}));
 	}
 
 	void GameCore::run() {

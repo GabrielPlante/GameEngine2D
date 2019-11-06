@@ -161,6 +161,7 @@
     <ClInclude Include="CommandError.h" />
     <ClInclude Include="CommandFps.h" />
     <ClInclude Include="CommandList.h" />
+    <ClInclude Include="CommandOpenConsole.h" />
     <ClInclude Include="CommandQuit.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="ConsoleEventHandler.h" />

@@ -103,6 +103,9 @@ namespace ge {
 		//Pop the top event, the next one will be used from now on
 		void popEventHandler() { eventSystem.popEventHandler(); }
 
+		//Get the size of the event handler pile
+		size_t getEventHandlerPileSize() const { return eventSystem.getEventHandlerPileSize(); }
+
 		//Add a graphic system to the engine
 		void addGraphicSystem(std::shared_ptr<System> newGraphicSystem) { graphicSystem = std::move(newGraphicSystem); }
 

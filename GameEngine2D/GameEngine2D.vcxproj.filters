@@ -275,6 +275,9 @@
     <ClInclude Include="CommandQuit.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
+    <ClInclude Include="CommandOpenConsole.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

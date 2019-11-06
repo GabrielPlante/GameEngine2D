@@ -6,6 +6,7 @@
 
 #include "CommandQuit.h"
 #include "CommandFps.h"
+#include "CommandOpenConsole.h"
 
 namespace ge {
 	CommandList* CommandList::instance{ nullptr };
@@ -27,6 +28,7 @@ namespace ge {
 	{
 		commandList.insert(std::move(std::unique_ptr<Command>{new CommandQuit{}}));
 		commandList.insert(std::move(std::unique_ptr<Command>{new CommandFps{}}));
+		commandList.insert(std::move(std::unique_ptr<Command>{new CommandOpenConsole{}}));
 
 		CONSOLE_LOG("Command list successfully initialised");
 	}

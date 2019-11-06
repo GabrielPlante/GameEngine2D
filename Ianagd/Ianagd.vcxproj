@@ -128,14 +128,16 @@
   <ItemGroup>
     <ClCompile Include="CreatePhysicComponent.cpp" />
     <ClCompile Include="GameCore.cpp" />
+    <ClCompile Include="GameEventHandler.cpp" />
     <ClCompile Include="GameGraphicSystem.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="PhysicComponent.cpp" />
     <ClCompile Include="PhysicSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CommandQuitConsole.h" />
     <ClInclude Include="CreatePhysicComponent.h" />
     <ClInclude Include="GameCore.h" />
+    <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GameGraphicSystem.h" />
     <ClInclude Include="MessageOrigin.h" />
     <ClInclude Include="MessageType.h" />

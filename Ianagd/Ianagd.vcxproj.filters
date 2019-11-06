@@ -55,6 +55,12 @@
     <Filter Include="Source Files\Message">
       <UniqueIdentifier>{2d577481-187e-459a-9502-21e24ddbf305}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Event">
+      <UniqueIdentifier>{2e108a11-3c24-4b21-836d-f74bba124ea7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Event">
+      <UniqueIdentifier>{606f1c73-1209-4c12-a997-8087a21ab945}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameGraphicSystem.cpp">
@@ -69,11 +75,11 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
-    <ClCompile Include="PhysicComponent.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GameEventHandler.cpp">
+      <Filter>Source Files\Event</Filter>
     </ClCompile>
     <ClCompile Include="CreatePhysicComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Message</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="CreatePhysicComponent.h">
       <Filter>Header Files\Message</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandQuitConsole.h">
+      <Filter>Header Files\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEventHandler.h">
+      <Filter>Header Files\Event</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
