@@ -1,5 +1,5 @@
 #pragma once
-#include "IDGenerator.h"
+#include <vector>
 
 namespace ge {
 	/// <summary>
@@ -31,4 +31,10 @@ namespace ge {
 		unsigned int getMessageOrigin() const { return messageOrigin; }
 
 	};
-} 
+
+	//Operator override to put float data inside a message
+	void operator<<(Message& message, float data);
+
+	//Operator override to extract float data from a message
+	void operator>>(Message& message, float& data);
+}

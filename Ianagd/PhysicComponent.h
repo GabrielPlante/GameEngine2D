@@ -2,12 +2,14 @@
 #include <vector>
 
 #include "../GameEngine2D/Position.h"
+#include "../GameEngine2D/Component.h"
 
 namespace ian {
 	/// <summary>
 	/// This component hold everything needed for the physic engine to work on the physic of an entity
 	/// </summary>
 	struct PhysicComponent
+		: public ge::Component
 	{
 		//The actual position of the entity
 		ge::Position<float> position{ 0, 0 };

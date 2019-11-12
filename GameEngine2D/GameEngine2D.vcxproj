@@ -133,6 +133,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CommandFps.cpp" />
     <ClCompile Include="CommandList.cpp" />
+    <ClCompile Include="ComponentHandle.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="ConsoleEventHandler.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -142,6 +143,7 @@
     <ClCompile Include="GraphicSystem.cpp" />
     <ClCompile Include="InputBar.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Message.cpp" />
     <ClCompile Include="Publisher.cpp" />
     <ClCompile Include="RenderableRectangle.cpp" />
     <ClCompile Include="SDLInit.cpp" />
@@ -163,6 +165,8 @@
     <ClInclude Include="CommandList.h" />
     <ClInclude Include="CommandOpenConsole.h" />
     <ClInclude Include="CommandQuit.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="ComponentHandle.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="ConsoleEventHandler.h" />
     <ClInclude Include="Engine.h" />
