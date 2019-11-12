@@ -16,9 +16,12 @@ namespace ge {
 		unsigned int messageOrigin;
 
 	public:
+		//The message data
+		std::vector<float> messageData;
+
 		//Constructor
-		Message(unsigned int messageType, unsigned int messageOrigin)
-			:messageType{ messageType }, messageOrigin{ messageOrigin }
+		Message(unsigned int messageType, unsigned int messageOrigin, const std::vector<float>& messageData = std::vector<float>{})
+			:messageType{ messageType }, messageOrigin{ messageOrigin }, messageData{ messageData }
 		{}
 
 		//Get the message type
@@ -26,5 +29,6 @@ namespace ge {
 
 		//Get the message origin
 		unsigned int getMessageOrigin() const { return messageOrigin; }
+
 	};
 } 

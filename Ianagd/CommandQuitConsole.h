@@ -5,8 +5,6 @@
 
 #include "GameEventHandler.h"
 
-#include "Console.h"
-
 namespace ian {
 	class CommandQuitConsole
 		: public ge::Command

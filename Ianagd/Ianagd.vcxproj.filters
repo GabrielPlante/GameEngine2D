@@ -78,8 +78,8 @@
     <ClCompile Include="GameEventHandler.cpp">
       <Filter>Source Files\Event</Filter>
     </ClCompile>
-    <ClCompile Include="CreatePhysicComponent.cpp">
-      <Filter>Source Files\Message</Filter>
+    <ClCompile Include="PhysicComponent.cpp">
+      <Filter>Source Files\ECS\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -100,9 +100,6 @@
     </ClInclude>
     <ClInclude Include="MessageOrigin.h">
       <Filter>Header Files\ECS\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="CreatePhysicComponent.h">
-      <Filter>Header Files\Message</Filter>
     </ClInclude>
     <ClInclude Include="CommandQuitConsole.h">
       <Filter>Header Files\Commands</Filter>

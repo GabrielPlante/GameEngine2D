@@ -1,5 +1,7 @@
 #pragma once
+#include <vector>
 #include <SDL.h>
+
 #include "Angle.h"
 
 namespace ge {
@@ -54,6 +56,22 @@ namespace ge {
 		//Operator != override
 		bool operator!=(const Position<P>& other) { return x != other.x || y != other.y; }
 	};
+
+	template <typename T>
+	//Push a position in a vector
+	void operator<<(std::vector<T>& vector, const Position<T>& position) {
+		vector.push_back(position.x);
+		vector.push_back(position.y);
+	}
+
+	template <typename T>
+	//Extract a position of a vector
+	void operator>>(std::vector<T>& vector, Position<T>& position) {
+		position.y = vector.back();
+		vector.pop_back();
+		position.x = vector.back();
+		vector.pop_back();
+	}
 
 	template <typename T>
 	SDL_Point Position<T>::toSDL_Point() const {

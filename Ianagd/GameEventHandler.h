@@ -1,5 +1,5 @@
 #pragma once
-#include <../GameEngine2D/EventHandler.h>
+#include "../GameEngine2D/EventHandler.h"
 
 namespace ian {
 	class GameEventHandler :

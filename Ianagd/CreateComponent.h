@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Message.h"
-#include "Entity.h"
+#include "../GameEngine2D/Message.h"
+#include "../GameEngine2D/Entity.h"
 
 namespace ian {
 	template <typename Component>
