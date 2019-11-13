@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CreatePhysicComponent.cpp" />
     <ClCompile Include="GameCore.cpp" />
     <ClCompile Include="GameEventHandler.cpp" />
     <ClCompile Include="GameGraphicSystem.cpp" />
@@ -136,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="CommandQuitConsole.h" />
     <ClInclude Include="CreateComponent.h" />
+    <ClInclude Include="CreatePhysicComponent.h" />
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GameGraphicSystem.h" />

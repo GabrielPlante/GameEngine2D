@@ -15,10 +15,13 @@ namespace ge {
 		const unsigned long id;
 
 		//The list of component handle associated with this entity
-		std::vector<ComponentHandle> componentHandle;
+		std::vector<ComponentHandle> componentHandleList;
 	public:
 		//Default constructor
 		Entity();
+		
+		//Give the entity another component handle
+		void addComponentHandle(ComponentHandle&& componentHandle) { componentHandleList.push_back(componentHandle); }
 	};
 
 }

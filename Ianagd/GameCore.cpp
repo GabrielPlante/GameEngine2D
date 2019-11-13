@@ -28,7 +28,7 @@ namespace ian {
 		physicSystem->subscribeTo(ge::Engine::getInstance());
 		ge::Engine::getInstance()->addSystem(physicSystem);
 
-
+		//Add the command to the command list
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandQuitConsole{}}));
 	}
 

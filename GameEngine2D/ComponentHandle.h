@@ -18,7 +18,7 @@ namespace ge {
 			: componentId{ componentId }, associatedSystem{ associatedSystem }
 		{}
 
-		//Send a message to this component
+		//Send a message to the component handled
 		void sendMessage(std::shared_ptr<Message> message) const;
 
 	};

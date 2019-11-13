@@ -35,6 +35,7 @@ namespace ian {
 			//Cast the message in it's proper form
 			//std::shared_ptr<CreatePhysicComponent> newPhysicComponent{ std::static_pointer_cast<CreatePhysicComponent>(message) };
 			//physicComponentFactory.addComponent(newPhysicComponent->getPhysicComponent());
+			//Extract the component from the message data
 			PhysicComponent component;
 			message->messageData >> component;
 			
