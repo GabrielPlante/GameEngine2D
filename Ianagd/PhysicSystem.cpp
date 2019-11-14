@@ -2,8 +2,10 @@
 
 #include "..//GameEngine2D/Engine.h"
 #include "../GameEngine2D/Angle.h"
+#include "../GameEngine2D/ComponentHandle.h"
 
 #include "MessageType.h"
+#include "CreatePhysicComponent.h"
 
 namespace ian {
 	void PhysicSystem::update() {
@@ -33,11 +35,15 @@ namespace ian {
 		//If the message is a create physic component message
 		if (message->getMessageType() == createPhysicComponent) {
 			//Cast the message in it's proper form
-			//std::shared_ptr<CreatePhysicComponent> newPhysicComponent{ std::static_pointer_cast<CreatePhysicComponent>(message) };
-			//physicComponentFactory.addComponent(newPhysicComponent->getPhysicComponent());
+			std::shared_ptr<CreatePhysicComponent> newPhysicComponent{ std::static_pointer_cast<CreatePhysicComponent>(message) };
+			unsigned int componentId{ physicComponentFactory.addComponent(newPhysicComponent->getComponent()) };
+
+			//Callback the entity
+			newPhysicComponent->sendBackHandle(ge::ComponentHandle{ componentId, this });
+
 			//Extract the component from the message data
-			PhysicComponent component;
-			message->messageData >> component;
+			/*PhysicComponent component;
+			message->messageData >> component;*/
 			
 		}
 	}

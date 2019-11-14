@@ -12,6 +12,7 @@ namespace ian {
 	private:
 		ge::Factory<PhysicComponent> physicComponentFactory;
 	public:
+		//Update the physic system, go through all the component and update them
 		void update() override;
 
 		//As a subscriber, the system need to be able to handle message

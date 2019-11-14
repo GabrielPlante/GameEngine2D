@@ -1,22 +1,22 @@
 #pragma once
 #include "../GameEngine2D/Message.h"
 #include "../GameEngine2D/ComponentHandle.h"
+#include "../GameEngine2D/Entity.h"
 
 #include "PhysicComponent.h"
 #include "MessageType.h"
 
 namespace ian {
-	class Entity;
 
 	class CreatePhysicComponent :
 		public ge::Message
 	{
 	private:
-		Entity* entityPtr;
+		ge::Entity* entityPtr;
 		PhysicComponent component;
 	public:
 		//Constructor
-		CreatePhysicComponent(unsigned int messageOrigin, PhysicComponent&& component, Entity* creatorPtr) 
+		CreatePhysicComponent(unsigned int messageOrigin, PhysicComponent&& component, ge::Entity* creatorPtr) 
 			: Message{ createPhysicComponent, messageOrigin }, component{ component }, entityPtr{ creatorPtr }
 		{}
 
