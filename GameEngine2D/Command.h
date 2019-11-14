@@ -4,6 +4,7 @@
 
 namespace ge {
 	/* The command class is used to represent every input the user could have on the game
+	The void execute(const std::vector<float>&) method need to be overrided
 	*/
 	class Command
 	{

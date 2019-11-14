@@ -91,6 +91,9 @@ namespace ge {
 		//Add a system to the engine, return it's position
 		size_t addSystem(std::shared_ptr<System> system) { systems.push_back(system); return systems.size() - 1; }
 
+		//Get the size of the system stack
+		size_t getSystemSize() const { return systems.size(); }
+
 		//Stop the main loop, stopping the engine
 		void stop() { keepRunning = false; }
 

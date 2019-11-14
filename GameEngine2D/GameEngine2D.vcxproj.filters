@@ -290,6 +290,9 @@
     <ClInclude Include="ComponentHandle.h">
       <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
+    <ClInclude Include="CommandGetNbrOfSystem.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
