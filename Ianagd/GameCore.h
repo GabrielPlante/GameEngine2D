@@ -1,5 +1,7 @@
 #pragma once
 
+#include "EntityManager.h"
+
 namespace ian {
 	/// <summary>
 	/// The core of the game, here the engine is managed
@@ -7,6 +9,7 @@ namespace ian {
 	class GameCore
 	{
 	private:
+		EntityManager entityManager;
 	public:
 		//Default constructor
 		GameCore();

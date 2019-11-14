@@ -5,6 +5,8 @@
 
 #include "GameGraphicSystem.h"
 #include "PhysicSystem.h"
+#include "CreatePhysicComponent.h"
+#include "MessageOrigin.h"
 
 //Include the command
 #include "CommandQuitConsole.h"
@@ -30,6 +32,13 @@ namespace ian {
 
 		//Add the command to the command list
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandQuitConsole{}}));
+
+		//Add an entity
+		ge::Entity playerEntity{};
+		PhysicComponent physicComponent{};
+		std::shared_ptr<CreatePhysicComponent> componentMessage{ new CreatePhysicComponent{gameCore, std::move(physicComponent), &playerEntity} };
+		ge::Engine::getInstance()->publish(componentMessage);
+		entityManager.addEntity(std::move(playerEntity));
 	}
 
 	void GameCore::run() {

@@ -19,7 +19,7 @@ namespace ge {
 		std::unordered_map<unsigned int, unsigned int> iDtoPlace;
 	public:
 		//Add a component to the list, and return an id for the component
-		unsigned int addComponent(Component component);
+		unsigned int addComponent(Component&& component);
 
 		//Get a component by his id
 		Component* getComponent(unsigned long id) { return &componentList[iDtoPlace.find(id)->second]; }
@@ -34,8 +34,9 @@ namespace ge {
 		void deleteComponent(unsigned int id);
 	};
 
+
 	template <typename Component>
-	unsigned int Factory<Component>::addComponent(Component component) {
+	unsigned int Factory<Component>::addComponent(Component&& component) {
 		//Push the component in the list
 		componentList.push_back(component);
 

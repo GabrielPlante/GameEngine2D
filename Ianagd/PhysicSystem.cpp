@@ -36,7 +36,8 @@ namespace ian {
 		if (message->getMessageType() == createPhysicComponent) {
 			//Cast the message in it's proper form
 			std::shared_ptr<CreatePhysicComponent> newPhysicComponent{ std::static_pointer_cast<CreatePhysicComponent>(message) };
-			unsigned int componentId{ physicComponentFactory.addComponent(newPhysicComponent->getComponent()) };
+			PhysicComponent component{ newPhysicComponent->getComponent() };
+			unsigned int componentId{ physicComponentFactory.addComponent(std::move(component)) };
 
 			//Callback the entity
 			newPhysicComponent->sendBackHandle(ge::ComponentHandle{ componentId, this });

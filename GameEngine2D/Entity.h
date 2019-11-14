@@ -1,11 +1,10 @@
 #pragma once
+#include <vector>
 
 #include "ComponentHandle.h"
-#include "Subscriber.h"
 
 namespace ge {
 	class Entity
-		: public Subscriber
 	{
 	private:
 		//Count what the next entity will have as an id

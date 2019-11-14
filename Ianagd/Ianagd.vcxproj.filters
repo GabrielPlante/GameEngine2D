@@ -84,6 +84,9 @@
     <ClCompile Include="CreatePhysicComponent.cpp">
       <Filter>Source Files\Message</Filter>
     </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PhysicSystem.h">
@@ -115,6 +118,9 @@
     </ClInclude>
     <ClInclude Include="CreatePhysicComponent.h">
       <Filter>Header Files\Message</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

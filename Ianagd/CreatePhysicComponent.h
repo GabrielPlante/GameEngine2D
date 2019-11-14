@@ -23,6 +23,7 @@ namespace ian {
 		//Get the physic component the entity wanted to create
 		const PhysicComponent& getComponent() const { return component; }
 
+		//Send an handle back to the entity that created this message
 		void sendBackHandle(ge::ComponentHandle&& componentHandle) const;
 	};
 
