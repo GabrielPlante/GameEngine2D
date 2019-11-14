@@ -8,6 +8,7 @@
 #include "CommandFps.h"
 #include "CommandOpenConsole.h"
 #include "CommandGetNbrOfSystem.h"
+#include "CommandGetNbrEventHandler.h"
 
 namespace ge {
 	CommandList* CommandList::instance{ nullptr };
@@ -31,6 +32,7 @@ namespace ge {
 		commandList.insert(std::move(std::unique_ptr<Command>{new CommandFps{}}));
 		commandList.insert(std::move(std::unique_ptr<Command>{new CommandOpenConsole{}}));
 		commandList.insert(std::move(std::unique_ptr<Command>{new CommandGetNbrOfSystem{}}));
+		commandList.insert(std::move(std::unique_ptr<Command>{new CommandGetNbrEventHandler{}}));
 
 		CONSOLE_LOG("Command list successfully initialised");
 	}
