@@ -5,8 +5,10 @@
 
 #include "GameGraphicSystem.h"
 #include "PhysicSystem.h"
-#include "CreatePhysicComponent.h"
 #include "MessageOrigin.h"
+
+#include "PhysicComponent.h"
+#include "PositionComponent.h"
 
 //Include the command
 #include "CommandQuitConsole.h"
@@ -17,6 +19,21 @@ constexpr int SCREEN_HEIGHT{ 800 };
 
 namespace ian {
 
+	//Initialize the instance to nullptr
+	GameCore* GameCore::instance{ nullptr };
+
+	void GameCore::init() {
+		if (!instance)
+			instance = new GameCore{};
+	}
+
+	void GameCore::quit() {
+		if (instance) {
+			delete instance;
+			instance = nullptr;
+		}
+	}
+
 	GameCore::GameCore() {
 		//Initialise the engine
 		ge::Engine::init(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -26,7 +43,7 @@ namespace ian {
 		ge::Engine::getInstance()->addGraphicSystem(gameGraphic);
 
 		//Create and add the physic system to the engine
-		std::shared_ptr<PhysicSystem> physicSystem{ new PhysicSystem{} };
+		std::shared_ptr<PhysicSystem> physicSystem{ new PhysicSystem{&factoryFactory.physicFactory} };
 		physicSystem->subscribeTo(ge::Engine::getInstance());
 		ge::Engine::getInstance()->addSystem(physicSystem);
 
@@ -34,11 +51,22 @@ namespace ian {
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandQuitConsole{}}));
 
 		//Add an entity
+		//Create the component
+		PositionComponent positionComponent{};
+		PhysicComponent physicComponent{ &positionComponent };
+		//Create the entity
 		ge::Entity playerEntity{};
-		PhysicComponent physicComponent{};
-		std::shared_ptr<CreatePhysicComponent> componentMessage{ new CreatePhysicComponent{gameCore, std::move(physicComponent), &playerEntity} };
-		ge::Engine::getInstance()->publish(componentMessage);
-		entityManager.addEntity(std::move(playerEntity));
+		//Add the component to the entity
+		playerEntity.addComponent(&positionComponent);
+		playerEntity.addComponent(&physicComponent);
+		//Add the component to their respective factory
+		factoryFactory.positionFactory.addComponent(std::move(positionComponent));
+		factoryFactory.physicFactory.addComponent(std::move(physicComponent));
+		factoryFactory.entityFactory.addComponent(std::move(playerEntity));
+	}
+
+	GameCore::~GameCore() {
+		ge::Engine::quit();
 	}
 
 	void GameCore::run() {

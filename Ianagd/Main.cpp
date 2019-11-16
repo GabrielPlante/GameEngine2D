@@ -3,9 +3,9 @@
 
 int main() {
 
-	ian::GameCore gameCore{};
+	ian::GameCore::init();
 
-	gameCore.run();
+	ian::GameCore::getInstance()->run();
 
 	return 0;
 }

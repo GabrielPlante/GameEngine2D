@@ -2,6 +2,7 @@
 
 namespace ian {
 
+	/*
 	void operator<<(std::vector<float>& vector, const PhysicComponent& physicComponent) {
 		vector << physicComponent.position;
 		vector << physicComponent.destination;
@@ -14,5 +15,6 @@ namespace ian {
 		vector >> physicComponent.destination;
 		vector >> physicComponent.position;
 	}
+	*/
 
 }

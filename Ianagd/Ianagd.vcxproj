@@ -126,8 +126,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CreatePhysicComponent.cpp" />
-    <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="GameCore.cpp" />
     <ClCompile Include="GameEventHandler.cpp" />
     <ClCompile Include="GameGraphicSystem.cpp" />
@@ -137,9 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandQuitConsole.h" />
-    <ClInclude Include="CreateComponent.h" />
-    <ClInclude Include="CreatePhysicComponent.h" />
-    <ClInclude Include="EntityManager.h" />
+    <ClInclude Include="FactoryFactory.h" />
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GameGraphicSystem.h" />
@@ -147,6 +143,7 @@
     <ClInclude Include="MessageType.h" />
     <ClInclude Include="PhysicComponent.h" />
     <ClInclude Include="PhysicSystem.h" />
+    <ClInclude Include="PositionComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameEngine2D\GameEngine2D.vcxproj">

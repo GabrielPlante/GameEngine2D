@@ -1,9 +1,12 @@
 #pragma once
 #include <vector>
 
-#include "ComponentHandle.h"
+#include "Component.h"
 
-namespace ge {
+namespace ge {	
+	/// <summary>
+	/// An entity hold an id and a list of component. The components are located in a factory
+	/// </summary>
 	class Entity
 	{
 	private:
@@ -13,14 +16,14 @@ namespace ge {
 		//Each entity have a unique id
 		const unsigned long id;
 
-		//The list of component handle associated with this entity
-		std::vector<ComponentHandle> componentHandleList;
+		//The list of component holded by the entity
+		std::vector<Component*> components;
 	public:
 		//Default constructor
 		Entity();
 		
-		//Give the entity another component handle
-		void addComponentHandle(ComponentHandle&& componentHandle) { componentHandleList.push_back(componentHandle); }
+		//Give the entity another component
+		void addComponent(Component* component) { components.push_back(component); }
 	};
 
 }

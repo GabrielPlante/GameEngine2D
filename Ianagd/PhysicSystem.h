@@ -10,8 +10,12 @@ namespace ian {
 		: public ge::System
 	{
 	private:
-		ge::Factory<PhysicComponent> physicComponentFactory;
+		//Pointer to the physic component factory
+		ge::Factory<PhysicComponent>* physicComponentFactory;
 	public:
+		//Constructor
+		PhysicSystem(ge::Factory<PhysicComponent>* physicComponentFactory) : physicComponentFactory{ physicComponentFactory } {}
+
 		//Update the physic system, go through all the component and update them
 		void update() override;
 
