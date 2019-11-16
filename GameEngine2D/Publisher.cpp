@@ -14,7 +14,7 @@ namespace ge {
 
 	void Publisher::publish(std::shared_ptr<Message> message) const {
 		for (auto it = subscribers.begin(); it != subscribers.end(); it++) {
-			(**it).handleMessage(message);
+			(**it).sendMessage(message);
 		}
 	}
 }

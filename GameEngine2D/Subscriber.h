@@ -12,10 +12,20 @@ namespace ge{
 	class Subscriber
 	{
 	private:
+		//Every publisher this subscribed to
 		std::vector<Publisher*> subscribedPublishers;
+
+		//The list of message needed to be proccessed
+		std::vector<std::shared_ptr<Message>> pendingMessages;
 	public:
 		//Handle a message a publisher will give to it's subscriber
 		virtual void handleMessage(std::shared_ptr<Message> message) = 0;
+
+		//Send a message to this subsciber
+		void sendMessage(std::shared_ptr<Message> message) { pendingMessages.push_back(message); }
+
+		//Proccess every pending message
+		void proccessMessages();
 
 		//Subscribe to a publisher, and add itself to the publisher subscriber list
 		void subscribeTo(Publisher* publisher);
