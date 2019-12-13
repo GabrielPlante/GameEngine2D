@@ -1,11 +1,20 @@
 #include "GameCore.h"
 #undef main
 
+#include <stdexcept>
+#include <iostream>
+
+
 int main() {
 
-	ian::GameCore::init();
+	try {
+		ian::GameCore::init();
 
-	ian::GameCore::getInstance()->run();
+		ian::GameCore::getInstance()->run();
+	}
+	catch (std::exception e) {
+		std::cout << e.what();
+	}
 
 	return 0;
 }
