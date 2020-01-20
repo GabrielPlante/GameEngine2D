@@ -9,6 +9,7 @@ namespace ge {
 	private:
 		SDL_Window* gWindow{ nullptr };
 		SDL_Renderer* gRenderer{ nullptr };
+		SDL_GLContext gContext{ nullptr };
 
 		const int screenWidth;
 		const int screenHeight;
