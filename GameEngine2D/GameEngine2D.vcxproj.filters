@@ -297,7 +297,4 @@
       <Filter>Header Files\Command</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
 </Project>
