@@ -10,6 +10,13 @@ namespace ian {
 			if (event->type == SDL_QUIT) {
 				ge::CommandList::getInstance()->executeCommand("quit");
 			}
+			//If a key is pressed
+			else if (event->type == SDL_KEYDOWN) {
+				//If the key is the a letter on the keyboard
+				if (event->key.keysym.sym == SDLK_a) {
+					ge::CommandList::getInstance()->executeCommand("openconsole");
+				}
+			}
 		}
 	}
 }

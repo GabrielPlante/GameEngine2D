@@ -22,7 +22,7 @@ namespace ge {
 		//Those are needed to recreate the texture each time a character is typed
 		RenderableRectangle graphicRect;
 
-		Position<> position;
+		Vector2<> position;
 
 		Color textColor;
 
@@ -38,7 +38,7 @@ namespace ge {
 
 	public:
 		//Constructor
-		InputBar(RenderableRectangle graphicRect, Position<> position, Color textColor = Color{ 0, 0, 0 }, const std::string& fontFileName = "mainFont.ttf");
+		InputBar(RenderableRectangle graphicRect, Vector2<> position, Color textColor = Color{ 0, 0, 0 }, const std::string& fontFileName = "mainFont.ttf");
 
 		//Add text at the end of the input bar
 		void write(const std::string& text);

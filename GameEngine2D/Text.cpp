@@ -3,7 +3,7 @@
 
 
 namespace ge {
-	Text::Text(const std::string& text, const Position<>& position, SDL_Renderer* renderer, const Font& font, const Color& color)
+	Text::Text(const std::string& text, const Vector2<>& position, SDL_Renderer* renderer, const Font& font, const Color& color)
 		:color{ color }
 	{
 		//To compensate for strange ttf behaviour

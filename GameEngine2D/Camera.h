@@ -2,7 +2,7 @@
 #include <SDL.h>
 
 #include "Rectangle.h"
-#include "Position.h"
+#include "Vector2.h"
 
 namespace ge {
 	class Camera
@@ -21,13 +21,13 @@ namespace ge {
 		void move(int deltaX, int deltaY);
 
 		//Set a new position for the camera
-		void setPosition(Position<> newPos);
+		void setPosition(Vector2<> newPos);
 
 		//Convert a position relative to the screen to a absolute in-game position
-		Position<> relativeToAbsolute(int x, int y) const { return Position<>{ x + camera.x, y + camera.y }; }
+		Vector2<> relativeToAbsolute(int x, int y) const { return Vector2<>{ x + camera.x, y + camera.y }; }
 
 		//Convert a absolute in-game position to a position relative to the screen
-		Position<> absoluteToRelative(long int x, long int y) const { return Position<>{ x - camera.x, y - camera.y }; }
+		Vector2<> absoluteToRelative(long int x, long int y) const { return Vector2<>{ x - camera.x, y - camera.y }; }
 
 		//Zoom by a delta
 		void zoom(float deltaW, float deltaH);

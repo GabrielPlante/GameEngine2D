@@ -1,9 +1,8 @@
 #pragma once
 #include "../GameEngine2D/Factory.h"
-#include "../GameEngine2D/Entity.h"
 
-#include "PhysicComponent.h"
-#include "PositionComponent.h"
+#include "RendererComponent.h"
+#include "GameEntity.h"
 
 namespace ian {
 	/// <summary>
@@ -14,13 +13,8 @@ namespace ian {
 	private:
 	public:
 		//The entity factory
-		ge::Factory<ge::Entity> entityFactory;
+		ge::Factory<GameEntity> entityFactory;
 
-		//The position factory, here lie all the position in the game
-		ge::Factory<PositionComponent> positionFactory;
-
-		//The physic factory
-		ge::Factory<PhysicComponent> physicFactory;
-
+		ge::Factory<RendererComponent> rendererComponentFactory;
 	};
 }

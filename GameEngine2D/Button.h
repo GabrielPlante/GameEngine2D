@@ -19,7 +19,7 @@ namespace ge {
 		void changeCommand(std::unique_ptr<Command> newCommandToExecute) { commandToExecute = std::move(newCommandToExecute); }
 
 		//Take the mouse position and check and apply effect and return true if the mouse is hovering
-		bool checkIfHovering(const Position<>& mousePosition);
+		bool checkIfHovering(const Vector2<>& mousePosition);
 
 		//Apply effect of the mouse overing
 		void onHovering();
@@ -31,10 +31,10 @@ namespace ge {
 		void onClick() { commandToExecute->execute(std::vector<float>{}); }
 
 		//Get the button position
-		const Position<>& getPosition() const { return textInRect.getPosition(); }
+		const Vector2<>& getPosition() const { return textInRect.getPosition(); }
 
 		//Is a point in the button
-		bool pointIsIn(const Position<>& point) const;
+		bool pointIsIn(const Vector2<>& point) const;
 	};
 }
 

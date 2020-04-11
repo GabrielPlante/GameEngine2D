@@ -7,7 +7,7 @@ namespace ge {
 	{}
 
 
-	bool Button::checkIfHovering(const Position<>& mousePosition) {
+	bool Button::checkIfHovering(const Vector2<>& mousePosition) {
 		if (!isHovering && pointIsIn(mousePosition)) {
 			onHovering();
 			isHovering = true;
@@ -20,7 +20,7 @@ namespace ge {
 		return false;
 	}
 
-	bool Button::pointIsIn(const Position<>& point) const {
+	bool Button::pointIsIn(const Vector2<>& point) const {
 		return point.x > getPosition().x && point.x < getPosition().x + textInRect.getW() && point.y > getPosition().y && point.y < getPosition().y + textInRect.getH();
 	}
 

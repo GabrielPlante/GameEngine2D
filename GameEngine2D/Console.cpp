@@ -24,7 +24,7 @@ namespace ge {
 	Console::Console(Rectangle coordinate, Color backgroundColor, Color borderColor, int borderSize, int textHeight, int margin)
 		//The input bar
 		:inputBar{ RenderableRectangle{static_cast<int>(coordinate.w - 2 * borderSize - 2 * margin), static_cast<int>(textHeight), backgroundColor},
-			Position<>{coordinate.x + borderSize + margin, coordinate.y + coordinate.h - borderSize - textHeight - margin}, Color{255, 255, 255} },
+			Vector2<>{coordinate.x + borderSize + margin, coordinate.y + coordinate.h - borderSize - textHeight - margin}, Color{255, 255, 255} },
 		//The text area
 		textArea{ Rectangle{static_cast<long>(coordinate.x + borderSize + margin), static_cast<long>(coordinate.y + borderSize + margin),
 		static_cast<long>(coordinate.w - 2 * borderSize - 2 * margin), static_cast<long>(coordinate.h - 2 * textHeight - 2 * borderSize - 3 * margin), }, textHeight },

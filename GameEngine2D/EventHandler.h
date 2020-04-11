@@ -26,5 +26,8 @@ namespace ge {
 
 		//Called when this event handler lose the control of the event
 		virtual void loseControl() = 0;
+
+		//Virtual destructor
+		virtual ~EventHandler() = default;
 	};
 }

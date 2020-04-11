@@ -8,7 +8,7 @@ namespace ge {
 	{
 	public:
 		//Render the texture
-		virtual void render(SDL_Renderer* renderer, const Camera& camera, const Position<>& position) const = 0;
+		virtual void render(SDL_Renderer* renderer, const Camera& camera, const Vector2<>& position) const = 0;
 	};
 
 }

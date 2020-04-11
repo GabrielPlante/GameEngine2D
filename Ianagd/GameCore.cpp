@@ -2,13 +2,12 @@
 
 #include "..//GameEngine2D/Engine.h"
 #include "../GameEngine2D/CommandList.h"
+#include "../GameEngine2D/Rectangle.h"
+#include "../GameEngine2D/Console.h"
+#include "../GameEngine2D/Drawer.h"
 
 #include "GameGraphicSystem.h"
-#include "PhysicSystem.h"
 #include "MessageOrigin.h"
-
-#include "PhysicComponent.h"
-#include "PositionComponent.h"
 
 //Include the command
 #include "CommandQuitConsole.h"
@@ -39,30 +38,34 @@ namespace ian {
 		ge::Engine::init(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 		//Create and add the graphic system to the engine
-		std::shared_ptr<GameGraphicSystem> gameGraphic{ new GameGraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT} };
+		std::shared_ptr<GameGraphicSystem> gameGraphic{ new GameGraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT, &factoryFactory} };
+		//Add the renderer to the drawer
+		ge::Drawer::addRenderer(gameGraphic->getWindowRenderer());
 		ge::Engine::getInstance()->addGraphicSystem(gameGraphic);
-
-		//Create and add the physic system to the engine
-		std::shared_ptr<PhysicSystem> physicSystem{ new PhysicSystem{&factoryFactory.physicFactory} };
-		physicSystem->subscribeTo(ge::Engine::getInstance());
-		ge::Engine::getInstance()->addSystem(physicSystem);
 
 		//Add the command to the command list
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandQuitConsole{}}));
 
+		//Create the texture to add to the entity
+		ge::Drawer drawer;
+		SDL_Renderer* renderer{ drawer.startDrawing(ge::Vector2<int>{50, 50}, ge::Color{255, 0, 0, 255}) };
+		SDL_Rect rect{ ge::Rectangle{0, 0, 50, 50}.toSDL_Rect() };
+		SDL_RenderFillRect(renderer, &rect);//Draw a simple rectangle
+		SDL_Texture* texture = drawer.finishDrawing();
+
 		//Add an entity
-		//Create the component
-		PositionComponent positionComponent{};
-		PhysicComponent physicComponent{ &positionComponent };
 		//Create the entity
-		ge::Entity playerEntity{};
-		//Add the component to the entity
-		playerEntity.addComponent(&positionComponent);
-		playerEntity.addComponent(&physicComponent);
-		//Add the component to their respective factory
-		factoryFactory.positionFactory.addComponent(std::move(positionComponent));
-		factoryFactory.physicFactory.addComponent(std::move(physicComponent));
-		factoryFactory.entityFactory.addComponent(std::move(playerEntity));
+		GameEntity playerEntity{};
+
+		playerEntity.setPosition(ge::Vector2<long> {200, 200});
+
+		unsigned int id = factoryFactory.entityFactory.addComponent(std::move(playerEntity));
+
+		RendererComponent rendererComponent;
+		rendererComponent.owner = factoryFactory.entityFactory.getComponent(id);
+		rendererComponent.size = ge::Vector2<int>{ 50, 50 };
+		rendererComponent.texture = texture;
+		factoryFactory.rendererComponentFactory.addComponent(std::move(rendererComponent));
 	}
 
 	GameCore::~GameCore() {

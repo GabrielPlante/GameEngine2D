@@ -142,6 +142,7 @@
     <ClCompile Include="ComponentHandle.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="ConsoleEventHandler.cpp" />
+    <ClCompile Include="Drawer.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EventSystem.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="ComponentHandle.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="ConsoleEventHandler.h" />
+    <ClInclude Include="Drawer.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EventHandler.h" />
@@ -188,7 +190,7 @@
     <ClInclude Include="IDGenerator.h" />
     <ClInclude Include="InputBar.h" />
     <ClInclude Include="Message.h" />
-    <ClInclude Include="Position.h" />
+    <ClInclude Include="Vector2.h" />
     <ClInclude Include="Publisher.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Renderable.h" />

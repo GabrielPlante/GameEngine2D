@@ -22,10 +22,10 @@ namespace ge {
 		RenderableRectangle(int w, int h, Color color);
 
 		//Render the rectangle
-		void render(SDL_Renderer* renderer, const Camera& camera, const Position<>& position) const override;
+		void render(SDL_Renderer* renderer, const Camera& camera, const Vector2<>& position) const override;
 
 		//Render the rectangle in a position relative to the window
-		void renderWithoutCamera(SDL_Renderer* renderer, const Position<>& position, SDL_Rect* dstRect = nullptr) const;
+		void renderWithoutCamera(SDL_Renderer* renderer, const Vector2<>& position, SDL_Rect* dstRect = nullptr) const;
 
 		//Get the color of the rectangle
 		const Color& getColor() const { return color; }

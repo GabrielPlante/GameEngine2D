@@ -27,11 +27,11 @@ namespace ge {
 
 	void TextArea::addPendingText(SDL_Renderer* renderer) {
 		while (!textToRender.empty()) {
-			addText(std::unique_ptr<Text>{new Text{ textToRender.front(), Position<>{0, 0}, renderer, font, textColor.front() }});
+			addText(std::unique_ptr<Text>{new Text{ textToRender.front(), Vector2<>{0, 0}, renderer, font, textColor.front() }});
 			textToRender.pop();
 			textColor.pop();
 			//Set the camera position to the newly added text
-			camera.setPosition(Position<>{position.x, position.y});
+			camera.setPosition(Vector2<>{position.x, position.y});
 		}
 	}
 
@@ -39,10 +39,10 @@ namespace ge {
 		camera.move(0, -amount * scrollMultiplier);
 		//Prevent the camera from going to much up
 		if (camera.getRectangle().y < position.y - static_cast<int>(textList.size() * font.getHeight()) + position.h) {
-			camera.setPosition(Position<>{camera.getRectangle().x, position.y - static_cast<int>(textList.size() * font.getHeight()) + position.h});
+			camera.setPosition(Vector2<>{camera.getRectangle().x, position.y - static_cast<int>(textList.size() * font.getHeight()) + position.h});
 		}
 		//Prevent the camera from going to much down
 		if (camera.getRectangle().y > position.y)
-			camera.setPosition(Position<>{camera.getRectangle().x, position.y});
+			camera.setPosition(Vector2<>{camera.getRectangle().x, position.y});
 	}
 }

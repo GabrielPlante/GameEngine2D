@@ -12,7 +12,7 @@ namespace ge {
 		camera.y += deltaY;
 	}
 
-	void Camera::setPosition(Position<> newPos) {
+	void Camera::setPosition(Vector2<> newPos) {
 		camera.x = newPos.x;
 		camera.y = newPos.y;
 	}

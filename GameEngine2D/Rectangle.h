@@ -1,6 +1,6 @@
 #pragma once
 #include <SDL.h>
-#include "Position.h"
+#include "Vector2.h"
 
 namespace ge {
 	//A simple rectangle
@@ -18,8 +18,8 @@ namespace ge {
 		//Constructor taking an SDL_Rect
 		Rectangle(const SDL_Rect& rect) :x{ rect.x }, y{ rect.y }, w{ rect.w }, h{ rect.h } {}
 
-		//Constructor taking a Position, the width and the height
-		Rectangle(const Position<>& position, const int w, const int h) :x{ position.x }, y{ position.y }, w{ w }, h{ h } {}
+		//Constructor taking a Vector2, the width and the height
+		Rectangle(const Vector2<>& position, const int w, const int h) :x{ position.x }, y{ position.y }, w{ w }, h{ h } {}
 
 		//Constructor taking coordinate as int, the width and the height
 		Rectangle(const long int x, const long int y, const int w, const int h) :x{ x }, y{ y }, w{ w }, h{ h } {}

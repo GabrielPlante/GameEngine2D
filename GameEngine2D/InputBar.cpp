@@ -1,7 +1,7 @@
 #include "InputBar.h"
 
 namespace ge {
-	InputBar::InputBar(RenderableRectangle graphicRect, Position<> position, Color textColor, const std::string& fontFileName)
+	InputBar::InputBar(RenderableRectangle graphicRect, Vector2<> position, Color textColor, const std::string& fontFileName)
 		:graphicRect{ graphicRect }, position{ position }, textColor{ textColor }, fontFileName{ fontFileName }, font{ graphicRect.getH(), fontFileName }
 	{
 	}

@@ -1,16 +1,16 @@
 #include "TextInRect.h"
 
 namespace ge {
-	TextInRect::TextInRect(RenderableRectangle graphicRect, const std::string& text, SDL_Renderer* renderer, Position<> position, Position<> textPosition, const Font& font, Color textColor,
+	TextInRect::TextInRect(RenderableRectangle graphicRect, const std::string& text, SDL_Renderer* renderer, Vector2<> position, Vector2<> textPosition, const Font& font, Color textColor,
 		int borderSize, Color borderColor)
 		: RenderableRectangle{ graphicRect }, Text{ text, textPosition, renderer, font, textColor }, position{ position }, borderSize{ borderSize }, borderColor{ borderColor }
 	{
 	}
 
-	TextInRect::TextInRect(Color backgroundColor, const std::string& text, SDL_Renderer* renderer, Position<> position, const Font& font, Color textColor,
+	TextInRect::TextInRect(Color backgroundColor, const std::string& text, SDL_Renderer* renderer, Vector2<> position, const Font& font, Color textColor,
 		int borderSize, int textMargin, Color borderColor)
 		: TextInRect{ RenderableRectangle{static_cast<int>(font.getWidth(text) + 2 * borderSize + 2 * textMargin), static_cast<int>(font.getHeight() * 5 / 6 + 2 * borderSize + 2 * textMargin), backgroundColor },
-		text, renderer, position, Position<>{position.x + borderSize + textMargin, position.y + borderSize + textMargin}, font, textColor, borderSize, borderColor }
+		text, renderer, position, Vector2<>{position.x + borderSize + textMargin, position.y + borderSize + textMargin}, font, textColor, borderSize, borderColor }
 	{}
 
 	void TextInRect::render(SDL_Renderer* renderer, SDL_Rect* srcRect, SDL_Rect* dstRect) const {
