@@ -2,6 +2,8 @@
 
 #include "../GameEngine2D/CommandList.h"
 
+#include "GameCore.h"
+
 namespace ian {
 
 	void GameEventHandler::update(SDL_Event* event) {
@@ -16,6 +18,22 @@ namespace ian {
 				if (event->key.keysym.sym == SDLK_a) {
 					ge::CommandList::getInstance()->executeCommand("openconsole");
 				}
+			}
+			//If a mouse button is pressed
+			else if (event->type == SDL_MOUSEBUTTONDOWN) {
+				if (event->button.button == SDL_BUTTON_RIGHT) {
+					int x, y;
+					SDL_GetMouseState(&x, &y);
+					ge::Vector2<> mouseCoordinate{ GameCore::getInstance()->getCamera()->relativeToAbsolute(event->button.x, event->button.y) };
+					GameCore::getInstance()->getFactoryFactory()->movementComponentFactory.getBeginningIterator()->destination = mouseCoordinate;
+					GameCore::getInstance()->getFactoryFactory()->movementComponentFactory.getBeginningIterator()->isMoving = true;
+				}
+			}
+			else if (event->type == SDL_MOUSEWHEEL) {
+				if (event->wheel.y > 0)
+					GameCore::getInstance()->getCamera()->zoom(10/9.0);
+				else if (event->wheel.y < 0)
+					GameCore::getInstance()->getCamera()->zoom(9/10.0);
 			}
 		}
 	}

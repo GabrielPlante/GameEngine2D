@@ -1,8 +1,9 @@
 #pragma once
 #include "../GameEngine2D/Factory.h"
 
-#include "RendererComponent.h"
 #include "GameEntity.h"
+#include "RendererComponent.h"
+#include "MovementComponent.h"
 
 namespace ian {
 	/// <summary>
@@ -16,5 +17,7 @@ namespace ian {
 		ge::Factory<GameEntity> entityFactory;
 
 		ge::Factory<RendererComponent> rendererComponentFactory;
+
+		ge::Factory<MovementComponent> movementComponentFactory;
 	};
 }

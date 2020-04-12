@@ -24,6 +24,9 @@ namespace ge {
 		//Constructor taking coordinate as int, the width and the height
 		Rectangle(const long int x, const long int y, const int w, const int h) :x{ x }, y{ y }, w{ w }, h{ h } {}
 
+		//Resize the rectangle with a delta
+		inline void resize(double delta);
+
 		//Rectangle to SDL_Rect
 		inline SDL_Rect toSDL_Rect() const;
 
@@ -48,5 +51,10 @@ namespace ge {
 		if (y > rectangle.y + rectangle.h || rectangle.y > y + h)
 			return false;
 		return true;
+	}
+
+	void Rectangle::resize(double delta) {
+		w = static_cast<int>(w * delta);
+		h = static_cast<int>(h * delta);
 	}
 }

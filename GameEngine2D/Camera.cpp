@@ -1,12 +1,9 @@
 #include "Camera.h"
 
+#include "../GameEngine2D/Console.h"
+
 namespace ge {
 	//screen + camera = world
-	Camera::Camera(int x, int y, int w, int h)
-		:camera{ x, y, w, h }
-	{
-	}
-
 	void Camera::move(int deltaX, int deltaY) {
 		camera.x += deltaX;
 		camera.y += deltaY;
@@ -17,13 +14,17 @@ namespace ge {
 		camera.y = newPos.y;
 	}
 
-	void Camera::zoom(float deltaW, float deltaH) {
-		camera.w = static_cast<int>(camera.w * deltaW);
-		camera.h = static_cast<int>(camera.h * deltaH);
+	void Camera::zoom(double delta) {
+		if (getZoom() * delta > 10 || getZoom() * delta < 0.1)
+			return;
+		const int previousW = camera.w, previousH = camera.h;
+		camera.resize(1 / delta);
+		move((previousW - camera.w) / 2, (previousH - camera.h) / 2);
+		CONSOLE_LOG(std::to_string(camera.x) + " ; " + std::to_string(camera.w));
 	}
 
-	void Camera::resize(int w, int h) {
-		camera.w = w;
-		camera.h = h;
+	void Camera::resetZoom() {
+		camera.w = originalDimensions.x;
+		camera.h = originalDimensions.y;
 	}
 }

@@ -5,13 +5,13 @@
 #include "Console.h"
 
 namespace ge {
-	class CommandGetNbrOfSystem 
+	class CommandNbrOfSystem 
 		: public Command
 	{
 	public:
 		//Constructor
-		CommandGetNbrOfSystem() 
-			: Command{ "get_nbr_of_system" }
+		CommandNbrOfSystem() 
+			: Command{ "nbr_of_system" }
 		{}
 
 		//Print in the console the number of system in the engine

@@ -10,12 +10,13 @@ namespace ge {
 	private:
 		//The rectangle representing the camera
 		Rectangle camera;
+		Vector2<int> originalDimensions;
 	public:
 		//Constructor
-		Camera(int x, int y, int w, int h);
+		Camera(int x, int y, int w, int h) : Camera{ Rectangle{x, y, w, h} } {}
 
 		//Constructor
-		Camera(const Rectangle& rectangle) : camera{ rectangle } {}
+		Camera(const Rectangle& rectangle) : camera{ rectangle }, originalDimensions{ rectangle.w, rectangle.h } {}
 
 		//Move the camera by a offset
 		void move(int deltaX, int deltaY);
@@ -24,16 +25,23 @@ namespace ge {
 		void setPosition(Vector2<> newPos);
 
 		//Convert a position relative to the screen to a absolute in-game position
-		Vector2<> relativeToAbsolute(int x, int y) const { return Vector2<>{ x + camera.x, y + camera.y }; }
+		Vector2<> relativeToAbsolute(int x, int y) const { return Vector2<>{ static_cast<long>(x / getZoom() + camera.x),
+			static_cast<long>(y / getZoom() + camera.y) }; }
 
 		//Convert a absolute in-game position to a position relative to the screen
-		Vector2<> absoluteToRelative(long int x, long int y) const { return Vector2<>{ x - camera.x, y - camera.y }; }
+		Vector2<> absoluteToRelative(long int x, long int y) const {
+			return Vector2<>{ static_cast<long>((x - camera.x)* getZoom()),
+				static_cast<long>((y - camera.y)* getZoom()) };
+		}
 
 		//Zoom by a delta
-		void zoom(float deltaW, float deltaH);
+		void zoom(double delta);
 
-		//Resize by an offset
-		void resize(int w, int h);
+		//Set a new zoom
+		void resetZoom();
+
+		//Get the current zoom
+		double getZoom() const { return static_cast<double>(originalDimensions.x) / static_cast<double>(camera.w); }
 
 		//Return true if a rectangle is in the camera. Take absolute coordinate
 		bool isInCamera(const Rectangle& object) const { return camera.overlap(object); };

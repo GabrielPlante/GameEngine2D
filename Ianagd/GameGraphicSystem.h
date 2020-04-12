@@ -2,13 +2,12 @@
 
 #include "../GameEngine2D/System.h"
 #include "../GameEngine2D/Window.h"
+#include "../GameEngine2D/Factory.h"
 
 #include "RendererComponent.h"
 
 namespace ian {
 
-	class FactoryFactory;
-	
 	/// <summary>
 	/// The grapic system of the game
 	/// </summary>
@@ -19,10 +18,10 @@ namespace ian {
 	private:
 		ge::Window window;
 
-		FactoryFactory* factoryFactory;
+		ge::Factory<RendererComponent>* rendererComponentFactory;
 	public:
 		//Constructor
-		GameGraphicSystem(int screenWidth, int screenHeight, FactoryFactory* factoryFactory);
+		GameGraphicSystem(int screenWidth, int screenHeight, ge::Factory<RendererComponent>* rendererComponentFactory);
 
 		//Update the system
 		void update() override;

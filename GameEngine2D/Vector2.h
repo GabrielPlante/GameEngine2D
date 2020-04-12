@@ -34,7 +34,7 @@ namespace ge {
 		inline SDL_Point toSDL_Point() const;
 
 		//Find the angle between the point and the direction
-		Angle angle(const Vector2<float> destination) const;
+		Angle angle(const Vector2<> destination) const;
 
 		//Return true if the line formed by this position and the endLinePoint intersect with the given circle
 		bool lineIntersectCircle(const Vector2<T>& endLinePoint, const Vector2<>& circlePosition, int circleRadius);
@@ -86,7 +86,7 @@ namespace ge {
 	}
 
 	template <typename T>
-	Angle Vector2<T>::angle(const Vector2<float> destination) const {
+	Angle Vector2<T>::angle(const Vector2<> destination) const {
 		Angle directionAngle{ static_cast<float>(atan2(-(destination.y - y), destination.x - x)) };
 		if (directionAngle.get() < 0)
 			directionAngle.set(std::abs(directionAngle.get()));

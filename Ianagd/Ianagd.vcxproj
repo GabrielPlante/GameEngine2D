@@ -135,16 +135,22 @@
     <ClCompile Include="GameEventHandler.cpp" />
     <ClCompile Include="GameGraphicSystem.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MovementComponent.h" />
+    <ClCompile Include="MovementSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandQuitConsole.h" />
+    <ClInclude Include="CommandResetZoom.h" />
+    <ClInclude Include="CommandZoom.h" />
     <ClInclude Include="FactoryFactory.h" />
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GameGraphicSystem.h" />
+    <ClInclude Include="GameValues.h" />
     <ClInclude Include="MessageOrigin.h" />
     <ClInclude Include="MessageType.h" />
+    <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="RendererComponent.h" />
   </ItemGroup>
   <ItemGroup>

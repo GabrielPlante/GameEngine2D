@@ -169,8 +169,8 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandError.h" />
     <ClInclude Include="CommandFps.h" />
-    <ClInclude Include="CommandGetNbrEventHandler.h" />
-    <ClInclude Include="CommandGetNbrOfSystem.h" />
+    <ClInclude Include="CommandNbrEventHandler.h" />
+    <ClInclude Include="CommandNbrOfSystem.h" />
     <ClInclude Include="CommandList.h" />
     <ClInclude Include="CommandOpenConsole.h" />
     <ClInclude Include="CommandQuit.h" />

@@ -1,4 +1,5 @@
 #pragma once
+#include "../GameEngine2D/Camera.h"
 
 #include "FactoryFactory.h"
 
@@ -11,6 +12,8 @@ namespace ian {
 	{
 	private:
 		FactoryFactory factoryFactory;
+
+		ge::Camera camera;
 
 		static GameCore* instance;
 
@@ -29,6 +32,12 @@ namespace ian {
 
 		//Quit the game core
 		static void quit();
+
+		//Get a camera pointer
+		ge::Camera* getCamera() { return &camera; }
+
+		//Get factory factory pointer
+		FactoryFactory* getFactoryFactory() { return &factoryFactory; }
 
 		//Run the game
 		void run();

@@ -5,13 +5,13 @@
 #include "Console.h"
 
 namespace ge {
-	class CommandGetNbrEventHandler 
+	class CommandNbrEventHandler 
 		: public Command
 	{
 	public:
 		//Constructor
-		CommandGetNbrEventHandler() 
-			: Command{ "get_nbr_of_event_handler" }
+		CommandNbrEventHandler() 
+			: Command{ "nbr_of_event_handler" }
 		{}
 
 		//Print in the console the number of system in the engine
