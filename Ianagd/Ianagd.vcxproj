@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FactoryFactory.cpp" />
     <ClCompile Include="GameCore.cpp" />
     <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="GameEventHandler.cpp" />

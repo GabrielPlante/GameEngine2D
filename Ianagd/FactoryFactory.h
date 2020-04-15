@@ -13,7 +13,8 @@ namespace ian {
 	class FactoryFactory {
 	private:
 	public:
-		//The entity factory
+		void deleteEntity(unsigned int entityId);
+
 		ge::Factory<GameEntity> entityFactory;
 
 		ge::Factory<RendererComponent> rendererComponentFactory;

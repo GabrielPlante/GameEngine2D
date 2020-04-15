@@ -84,6 +84,9 @@
     <ClCompile Include="MovementComponent.h">
       <Filter>Header Files\ECS\Components</Filter>
     </ClCompile>
+    <ClCompile Include="FactoryFactory.cpp">
+      <Filter>Source Files\ECS\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameGraphicSystem.h">

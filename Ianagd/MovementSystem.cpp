@@ -3,6 +3,7 @@
 #include "../GameEngine2D/Engine.h"
 
 #include "GameValues.h"
+#include "GameEntity.h"
 
 namespace ian {
 	MovementSystem::MovementSystem(ge::Factory<MovementComponent>* movementComponentFactory)
@@ -25,9 +26,19 @@ namespace ian {
 				else {
 					it->owner->changePosition(ge::Vector2<>{
 						static_cast<long>(std::cos(movingAngle.get())* actualSpeed),
-						static_cast<long>(std::sin(movingAngle.get())* actualSpeed)});
+							static_cast<long>(std::sin(movingAngle.get())* actualSpeed)});
 				}
 			}
 		}
+	}
+
+	void MovementSystem::setDestination(unsigned int componentId, ge::Vector2<> destination) {
+		movementComponentFactory->getComponent(componentId)->destination = destination;
+		movementComponentFactory->getComponent(componentId)->isMoving = true;
+	}
+
+	void MovementSystem::createMovementComponent(GameEntity* gameEntity) const {
+		MovementComponent movementComponent;
+		gameEntity->addControlComponentId(0, movementComponentFactory->addComponent(std::move(movementComponent)));
 	}
 }

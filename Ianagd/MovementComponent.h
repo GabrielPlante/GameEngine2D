@@ -2,9 +2,8 @@
 #include "../GameEngine2D/Vector2.h"
 #include "../GameEngine2D/Component.h"
 
-#include "GameEntity.h"
-
 namespace ian {
+	class GameEntity;
 	class MovementComponent
 		: public ge::Component
 	{

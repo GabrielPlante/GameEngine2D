@@ -4,9 +4,8 @@
 #include "../GameEngine2D/Component.h"
 #include "../GameEngine2D/Vector2.h"
 
-#include "GameEntity.h"
-
 namespace ian {
+	class GameEntity;
 
 	class RendererComponent
 		: public ge::Component

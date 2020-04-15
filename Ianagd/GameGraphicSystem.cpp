@@ -1,4 +1,5 @@
 #include "GameGraphicSystem.h"
+#include <SDL.h>
 
 #include "../GameEngine2D/Console.h"
 #include "../GameEngine2D/Rectangle.h"

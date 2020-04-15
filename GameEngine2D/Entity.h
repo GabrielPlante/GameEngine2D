@@ -15,15 +15,9 @@ namespace ge {
 
 		//Each entity have a unique id
 		const unsigned long id;
-
-		//The list of component holded by the entity
-		std::vector<Component*> components;
 	public:
 		//Default constructor
 		Entity();
-		
-		//Give the entity another component
-		void addComponent(Component* component) { components.push_back(component); }
 	};
 
 }

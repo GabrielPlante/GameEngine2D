@@ -1,4 +1,5 @@
 #include "GameCore.h"
+#include <SDL.h>
 
 #include "..//GameEngine2D/Engine.h"
 #include "../GameEngine2D/CommandList.h"
@@ -49,8 +50,9 @@ namespace ian {
 		ge::Engine::getInstance()->addGraphicSystem(gameGraphic);
 
 		//Add the other systems
-		std::shared_ptr<MovementSystem> movementSystem{ new MovementSystem{&factoryFactory.movementComponentFactory} };
+		movementSystem = std::shared_ptr<MovementSystem>{ new MovementSystem{&factoryFactory.movementComponentFactory} };
 		ge::Engine::getInstance()->addSystem(movementSystem);
+
 
 		//Add the command to the command list
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandQuitConsole{}}));
@@ -70,21 +72,19 @@ namespace ian {
 
 		playerEntity.setPosition(ge::Vector2<long> {200, 200});
 
-		unsigned int id = factoryFactory.entityFactory.addComponent(std::move(playerEntity));
+		playerId = factoryFactory.entityFactory.addComponent(std::move(playerEntity));
 
 		//Create his renderer component
 		RendererComponent rendererComponent;
-		rendererComponent.owner = factoryFactory.entityFactory.getComponent(id);
+		rendererComponent.owner = factoryFactory.entityFactory.getComponent(playerId);
 		rendererComponent.size = ge::Vector2<int>{ 50, 50 };
 		rendererComponent.texture = texture;
-		unsigned int idRComp = factoryFactory.rendererComponentFactory.addComponent(std::move(rendererComponent));
-		factoryFactory.entityFactory.getComponent(id)->addComponent(factoryFactory.rendererComponentFactory.getComponent(idRComp));
+		factoryFactory.rendererComponentFactory.addComponent(std::move(rendererComponent));
 
 		//Create his movement component
 		MovementComponent movementComponent;
-		movementComponent.owner = factoryFactory.entityFactory.getComponent(id);
-		unsigned int idMComp = factoryFactory.movementComponentFactory.addComponent(std::move(movementComponent));
-		factoryFactory.entityFactory.getComponent(id)->addComponent(factoryFactory.movementComponentFactory.getComponent(idMComp));
+		movementComponent.owner = factoryFactory.entityFactory.getComponent(playerId);
+		factoryFactory.movementComponentFactory.addComponent(std::move(movementComponent));
 
 		//Create a bot
 		GameEntity bot{};
@@ -102,8 +102,7 @@ namespace ian {
 		rendererComponentBot.owner = factoryFactory.entityFactory.getComponent(idBot);
 		rendererComponentBot.size = ge::Vector2<int>{ 50, 50 };
 		rendererComponentBot.texture = textureBot;
-		unsigned int idRCompBot = factoryFactory.rendererComponentFactory.addComponent(std::move(rendererComponentBot));
-		factoryFactory.entityFactory.getComponent(idBot)->addComponent(factoryFactory.rendererComponentFactory.getComponent(idRCompBot));
+		factoryFactory.rendererComponentFactory.addComponent(std::move(rendererComponentBot));
 
 	}
 
@@ -113,5 +112,9 @@ namespace ian {
 
 	void GameCore::run() {
 		ge::Engine::getInstance()->mainLoop();
+	}
+
+	void GameCore::setDestination(unsigned int componentId, ge::Vector2<> destination) const {
+		movementSystem->setDestination(componentId, destination);
 	}
 }

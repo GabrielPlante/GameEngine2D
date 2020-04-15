@@ -25,8 +25,7 @@ namespace ian {
 					int x, y;
 					SDL_GetMouseState(&x, &y);
 					ge::Vector2<> mouseCoordinate{ GameCore::getInstance()->getCamera()->relativeToAbsolute(event->button.x, event->button.y) };
-					GameCore::getInstance()->getFactoryFactory()->movementComponentFactory.getBeginningIterator()->destination = mouseCoordinate;
-					GameCore::getInstance()->getFactoryFactory()->movementComponentFactory.getBeginningIterator()->isMoving = true;
+					GameCore::getInstance()->setDestination(GameCore::getInstance()->getPlayerId(), mouseCoordinate);
 				}
 			}
 			else if (event->type == SDL_MOUSEWHEEL) {
