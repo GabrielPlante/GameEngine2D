@@ -2,8 +2,4 @@
 
 namespace ian {
 
-	void FactoryFactory::deleteEntity(unsigned int) {
-
-	}
-
 }

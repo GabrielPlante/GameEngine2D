@@ -46,7 +46,7 @@ namespace ge {
 
 		template <typename P>
 		//Return the distance between two point, squared. The other point is a long
-		P distanceSquared(const Vector2<P> destination) const { return pow(x - destination.x, 2) + pow(y - destination.y, 2); }
+		P distanceSquared(const Vector2<P> destination) const { return static_cast<P>(pow(x - destination.x, 2) + pow(y - destination.y, 2)); }
 
 		template <typename P>
 		//Operator == override

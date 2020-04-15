@@ -4,27 +4,24 @@
 
 #include "GameValues.h"
 #include "GameEntity.h"
+#include "GameCore.h"
 
 namespace ian {
-	MovementSystem::MovementSystem(ge::Factory<MovementComponent>* movementComponentFactory)
-		: movementComponentFactory{ movementComponentFactory }
-	{}
-
 	void MovementSystem::update() {
-		for (auto it = movementComponentFactory->getBeginningIterator(); it != movementComponentFactory->getEndIterator(); it++) {
+		for (auto it = F_FACTORY->movementComponentFactory.getBeginningIterator(); it != F_FACTORY->movementComponentFactory.getEndIterator(); it++) {
 			if (it->isMoving) {
 				double actualSpeed{ ge::Engine::getInstance()->getTimeSinceLastFrame() / static_cast<double>(speedDividingFactor) };
 
-				ge::Angle movingAngle{ it->owner->getPosition().angle(it->destination) };
+				ge::Angle movingAngle{ F_FACTORY->entityFactory.getComponent(it->ownerId)->getPosition().angle(it->destination) };
 				int destSign{ 1 };
-				if (it->destination.x != it->owner->getPosition().x)
-					destSign = static_cast<int>((it->destination.x - it->owner->getPosition().x) / std::abs(it->destination.x - it->owner->getPosition().x));
-				if ((it->owner->getPosition().x + std::cos(movingAngle.get()) * actualSpeed) * destSign > it->destination.x * destSign) {
-					it->owner->setPosition(it->destination);
+				if (it->destination.x != F_FACTORY->entityFactory.getComponent(it->ownerId)->getPosition().x)
+					destSign = static_cast<int>((it->destination.x - F_FACTORY->entityFactory.getComponent(it->ownerId)->getPosition().x) / std::abs(it->destination.x - F_FACTORY->entityFactory.getComponent(it->ownerId)->getPosition().x));
+				if ((F_FACTORY->entityFactory.getComponent(it->ownerId)->getPosition().x + std::cos(movingAngle.get()) * actualSpeed) * destSign > it->destination.x * destSign) {
+					F_FACTORY->entityFactory.getComponent(it->ownerId)->setPosition(it->destination);
 					it->isMoving = false;
 				}
 				else {
-					it->owner->changePosition(ge::Vector2<>{
+					F_FACTORY->entityFactory.getComponent(it->ownerId)->changePosition(ge::Vector2<>{
 						static_cast<long>(std::cos(movingAngle.get())* actualSpeed),
 							static_cast<long>(std::sin(movingAngle.get())* actualSpeed)});
 				}
@@ -33,12 +30,12 @@ namespace ian {
 	}
 
 	void MovementSystem::setDestination(unsigned int componentId, ge::Vector2<> destination) {
-		movementComponentFactory->getComponent(componentId)->destination = destination;
-		movementComponentFactory->getComponent(componentId)->isMoving = true;
+		F_FACTORY->movementComponentFactory.getComponent(componentId)->destination = destination;
+		F_FACTORY->movementComponentFactory.getComponent(componentId)->isMoving = true;
 	}
 
 	void MovementSystem::createMovementComponent(GameEntity* gameEntity) const {
 		MovementComponent movementComponent;
-		gameEntity->addControlComponentId(0, movementComponentFactory->addComponent(std::move(movementComponent)));
+		gameEntity->addControlComponentId(0, F_FACTORY->movementComponentFactory.addComponent(std::move(movementComponent)));
 	}
 }

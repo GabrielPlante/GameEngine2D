@@ -1,18 +1,16 @@
 #pragma once
 #include <SDL.h>
 
-#include "../GameEngine2D/Component.h"
 #include "../GameEngine2D/Vector2.h"
 
 namespace ian {
 	class GameEntity;
 
 	class RendererComponent
-		: public ge::Component
 	{
 	public:
 		//The owner entity is needed to access the coordinate
-		GameEntity* owner;
+		unsigned int ownerId;
 
 		//The texture rendered
 		SDL_Texture* texture;

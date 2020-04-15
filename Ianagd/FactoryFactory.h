@@ -4,6 +4,7 @@
 #include "GameEntity.h"
 #include "RendererComponent.h"
 #include "MovementComponent.h"
+#include "CollisionComponent.h"
 
 namespace ian {
 	/// <summary>
@@ -13,12 +14,12 @@ namespace ian {
 	class FactoryFactory {
 	private:
 	public:
-		void deleteEntity(unsigned int entityId);
-
 		ge::Factory<GameEntity> entityFactory;
 
 		ge::Factory<RendererComponent> rendererComponentFactory;
 
 		ge::Factory<MovementComponent> movementComponentFactory;
+
+		ge::Factory<CollisionComponent> collisionComponentFactory;
 	};
 }

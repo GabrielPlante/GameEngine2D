@@ -5,6 +5,8 @@
 
 #include "FactoryFactory.h"
 
+#define F_FACTORY ian::GameCore::getInstance()->getFactoryFactory()
+
 namespace ian {
 	class MovementSystem;
 	/// <summary>

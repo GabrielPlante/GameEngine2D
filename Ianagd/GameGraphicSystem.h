@@ -17,11 +17,9 @@ namespace ian {
 	{
 	private:
 		ge::Window window;
-
-		ge::Factory<RendererComponent>* rendererComponentFactory;
 	public:
 		//Constructor
-		GameGraphicSystem(int screenWidth, int screenHeight, ge::Factory<RendererComponent>* rendererComponentFactory);
+		GameGraphicSystem(int screenWidth, int screenHeight);
 
 		//Update the system
 		void update() override;

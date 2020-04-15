@@ -20,7 +20,6 @@ namespace ge {
 		const int previousW = camera.w, previousH = camera.h;
 		camera.resize(1 / delta);
 		move((previousW - camera.w) / 2, (previousH - camera.h) / 2);
-		CONSOLE_LOG(std::to_string(camera.x) + " ; " + std::to_string(camera.w));
 	}
 
 	void Camera::resetZoom() {

@@ -44,13 +44,13 @@ namespace ian {
 		ge::Engine::init(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 		//Create and add the graphic system to the engine
-		std::shared_ptr<GameGraphicSystem> gameGraphic{ new GameGraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT, &factoryFactory.rendererComponentFactory} };
+		std::shared_ptr<GameGraphicSystem> gameGraphic{ new GameGraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT} };
 		//Add the renderer to the drawer
 		ge::Drawer::addRenderer(gameGraphic->getWindowRenderer());
 		ge::Engine::getInstance()->addGraphicSystem(gameGraphic);
 
 		//Add the other systems
-		movementSystem = std::shared_ptr<MovementSystem>{ new MovementSystem{&factoryFactory.movementComponentFactory} };
+		movementSystem = std::shared_ptr<MovementSystem>{ new MovementSystem{} };
 		ge::Engine::getInstance()->addSystem(movementSystem);
 
 
@@ -76,14 +76,14 @@ namespace ian {
 
 		//Create his renderer component
 		RendererComponent rendererComponent;
-		rendererComponent.owner = factoryFactory.entityFactory.getComponent(playerId);
+		rendererComponent.ownerId = playerId;
 		rendererComponent.size = ge::Vector2<int>{ 50, 50 };
 		rendererComponent.texture = texture;
 		factoryFactory.rendererComponentFactory.addComponent(std::move(rendererComponent));
 
 		//Create his movement component
 		MovementComponent movementComponent;
-		movementComponent.owner = factoryFactory.entityFactory.getComponent(playerId);
+		movementComponent.ownerId = playerId;
 		factoryFactory.movementComponentFactory.addComponent(std::move(movementComponent));
 
 		//Create a bot
@@ -99,11 +99,10 @@ namespace ian {
 
 		//Create his renderer component
 		RendererComponent rendererComponentBot;
-		rendererComponentBot.owner = factoryFactory.entityFactory.getComponent(idBot);
+		rendererComponentBot.ownerId = idBot;
 		rendererComponentBot.size = ge::Vector2<int>{ 50, 50 };
 		rendererComponentBot.texture = textureBot;
 		factoryFactory.rendererComponentFactory.addComponent(std::move(rendererComponentBot));
-
 	}
 
 	GameCore::~GameCore() {
