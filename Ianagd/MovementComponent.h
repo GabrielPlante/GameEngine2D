@@ -6,7 +6,7 @@ namespace ian {
 	{
 	public:
 		//Needed to know the position
-		unsigned int ownerId;
+		unsigned int positionComponentId;
 
 		ge::Vector2<long> destination{ 0, 0 };
 

@@ -9,8 +9,8 @@ namespace ian {
 	class RendererComponent
 	{
 	public:
-		//The owner entity is needed to access the coordinate
-		unsigned int ownerId;
+		//The position
+		unsigned int positionComponentId;
 
 		//The texture rendered
 		SDL_Texture* texture;

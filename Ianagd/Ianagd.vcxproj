@@ -155,6 +155,7 @@
     <ClInclude Include="MessageOrigin.h" />
     <ClInclude Include="MessageType.h" />
     <ClInclude Include="MovementSystem.h" />
+    <ClInclude Include="PositionComponent.h" />
     <ClInclude Include="RendererComponent.h" />
   </ItemGroup>
   <ItemGroup>

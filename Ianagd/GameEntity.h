@@ -1,33 +1,29 @@
 #pragma once
 #include <array>
 
-#include "../GameEngine2D/Entity.h"
-#include "../GameEngine2D/Vector2.h"
-
 namespace ian {
-	class GameEntity :
-		public ge::Entity
+
+	constexpr int positionCompId{ 0 };
+	constexpr int rendererCompId{ 1 };
+	constexpr int movementCompId{ 2 };
+	constexpr int collisionCompId{ 3 };
+
+	class GameEntity
 	{
 	private:
-		ge::Vector2<long> position = ge::Vector2<long>{ 0, 0 };
-
-		//The array of every control component
-		std::array<unsigned int, 1> controlComponentId;
+		/* The array of every component
+		 * 0 : Position component
+		 * 1 : Renderer component
+		 * 2 : Movement component
+		 * 3 : Collision component
+		 */
+		std::array<unsigned int, 4> componentsId;
 	public:
-		//Set the entity position
-		void setPosition(ge::Vector2<long> newPosition) { position = newPosition; }
-
-		//Get the entity position
-		ge::Vector2<long> getPosition() { return position; }
-
-		//Move the entity with an offset
-		void changePosition(ge::Vector2<long> offset) { position += offset; }
-
-		//Add a control component id to this entity
-		void addControlComponentId(int index, unsigned int componentId) { controlComponentId[index] = componentId; }
+		//Add a component id to this entity, return the id of the component in his factory
+		unsigned int createComponent(int type);
 
 		//Get the id of a control component associated with this entity
-		unsigned int getControlComponentId(int index) const { return controlComponentId[index]; }
+		unsigned int getComponentId(int index) const { return componentsId[index]; }
 	};
 }
 

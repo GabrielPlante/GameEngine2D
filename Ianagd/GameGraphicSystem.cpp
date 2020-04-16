@@ -18,8 +18,8 @@ namespace ian {
 		//Every other update goes here
 
 		//Update every renderer associated with an entity
-		for (auto it = F_FACTORY->rendererComponentFactory.getBeginningIterator(); it != F_FACTORY->rendererComponentFactory.getEndIterator(); it++) {
-			ge::Rectangle dstRect{ F_FACTORY->entityFactory.getComponent(it->ownerId)->getPosition(), it->size.x, it->size.y };
+		for (auto it = F_FACTORY->rendererFactory.getBeginningIterator(); it != F_FACTORY->rendererFactory.getEndIterator(); it++) {
+			ge::Rectangle dstRect{ F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position, it->size.x, it->size.y };
 			if (GameCore::getInstance()->getCamera()->isInCamera(dstRect)) {
 				dstRect.resize(GameCore::getInstance()->getCamera()->getZoom());
 				ge::Vector2<long> relativePos{ GameCore::getInstance()->getCamera()->absoluteToRelative(dstRect.x, dstRect.y) };

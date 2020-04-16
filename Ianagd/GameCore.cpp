@@ -16,6 +16,7 @@
 #include "CommandZoom.h"
 #include "CommandResetZoom.h"
 
+
 //Size of the screen
 constexpr int SCREEN_WIDTH{ 1400 };
 constexpr int SCREEN_HEIGHT{ 800 };
@@ -26,8 +27,10 @@ namespace ian {
 	GameCore* GameCore::instance{ nullptr };
 
 	void GameCore::init() {
-		if (!instance)
+		if (!instance) {
 			instance = new GameCore{};
+			instance->setupGame();
+		}
 	}
 
 	void GameCore::quit() {
@@ -35,6 +38,54 @@ namespace ian {
 			delete instance;
 			instance = nullptr;
 		}
+	}
+
+	void GameCore::setupGame() {
+
+		//Create the texture to add to the entity
+		ge::Drawer drawer;
+		SDL_Renderer* renderer{ drawer.startDrawing(ge::Vector2<int>{50, 50}, ge::Color{255, 0, 0, 255}) };
+		SDL_Rect rect{ ge::Rectangle{0, 0, 50, 50}.toSDL_Rect() };
+		SDL_RenderFillRect(renderer, &rect);//Draw a simple rectangle
+		SDL_Texture* texture = drawer.finishDrawing();
+
+		//---Add an entity---
+		//Create the entity with his component list: a position, a texture, a movement, and a collision
+		playerId = factoryFactory.createEntity({ 0, 1, 2, 3 });
+
+		unsigned int posCompIndex{ factoryFactory.getEntityCompId(playerId, positionCompId) };
+		//Set his position
+		factoryFactory.positionFactory.getComponent(posCompIndex)->position = { 200, 200 };
+
+		//Set his renderer component
+		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(playerId, rendererCompId))->positionComponentId = posCompIndex;
+		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(playerId, rendererCompId))->size = { 50, 50 };
+		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(playerId, rendererCompId))->texture = texture;
+
+		//Set his movement component
+		factoryFactory.movementFactory.getComponent(factoryFactory.getEntityCompId(playerId, movementCompId))->positionComponentId = posCompIndex;
+
+		//Set his collision component
+		factoryFactory.collisionFactory.getComponent(factoryFactory.getEntityCompId(playerId, rendererCompId))->size = 50;
+
+		//Create a bot without a movement component
+		unsigned int botId{ factoryFactory.createEntity(std::vector<int>{0, 1, 3}) };
+		posCompIndex = factoryFactory.getEntityCompId(botId, positionCompId);
+		factoryFactory.positionFactory.getComponent(posCompIndex)->position = { 600, 600 };
+
+		//Create the texture to add to the bot
+		renderer = drawer.startDrawing(ge::Vector2<int>{50, 50}, ge::Color{ 0, 0, 255, 255 });
+		SDL_RenderFillRect(renderer, &rect);//Draw a simple rectangle
+		SDL_Texture* textureBot = drawer.finishDrawing();
+
+
+		//Set his renderer component
+		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(botId, rendererCompId))->positionComponentId = posCompIndex;
+		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(botId, rendererCompId))->size = { 50, 50 };
+		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(botId, rendererCompId))->texture = textureBot;
+		
+		//Set his collision component
+		factoryFactory.collisionFactory.getComponent(factoryFactory.getEntityCompId(botId, collisionCompId))->positionComponentId = posCompIndex;
 	}
 
 	GameCore::GameCore()
@@ -58,51 +109,6 @@ namespace ian {
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandQuitConsole{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandZoom{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandResetZoom{}}));
-
-		//Create the texture to add to the entity
-		ge::Drawer drawer;
-		SDL_Renderer* renderer{ drawer.startDrawing(ge::Vector2<int>{50, 50}, ge::Color{255, 0, 0, 255}) };
-		SDL_Rect rect{ ge::Rectangle{0, 0, 50, 50}.toSDL_Rect() };
-		SDL_RenderFillRect(renderer, &rect);//Draw a simple rectangle
-		SDL_Texture* texture = drawer.finishDrawing();
-
-		//Add an entity
-		//Create the entity
-		GameEntity playerEntity{};
-
-		playerEntity.setPosition(ge::Vector2<long> {200, 200});
-
-		playerId = factoryFactory.entityFactory.addComponent(std::move(playerEntity));
-
-		//Create his renderer component
-		RendererComponent rendererComponent;
-		rendererComponent.ownerId = playerId;
-		rendererComponent.size = ge::Vector2<int>{ 50, 50 };
-		rendererComponent.texture = texture;
-		factoryFactory.rendererComponentFactory.addComponent(std::move(rendererComponent));
-
-		//Create his movement component
-		MovementComponent movementComponent;
-		movementComponent.ownerId = playerId;
-		factoryFactory.movementComponentFactory.addComponent(std::move(movementComponent));
-
-		//Create a bot
-		GameEntity bot{};
-		bot.setPosition(ge::Vector2<long> {600, 600});
-		unsigned int idBot = factoryFactory.entityFactory.addComponent(std::move(bot));
-
-		//Create the texture to add to the bot
-		renderer = drawer.startDrawing(ge::Vector2<int>{50, 50}, ge::Color{ 0, 0, 255, 255 });
-		SDL_RenderFillRect(renderer, &rect);//Draw a simple rectangle
-		SDL_Texture* textureBot = drawer.finishDrawing();
-
-
-		//Create his renderer component
-		RendererComponent rendererComponentBot;
-		rendererComponentBot.ownerId = idBot;
-		rendererComponentBot.size = ge::Vector2<int>{ 50, 50 };
-		rendererComponentBot.texture = textureBot;
-		factoryFactory.rendererComponentFactory.addComponent(std::move(rendererComponentBot));
 	}
 
 	GameCore::~GameCore() {

@@ -34,6 +34,9 @@ namespace ian {
 		//Destructor
 		~GameCore();
 
+		//Setup the map, the player...
+		void setupGame();
+
 	public:
 		//Init the game core
 		static void init();

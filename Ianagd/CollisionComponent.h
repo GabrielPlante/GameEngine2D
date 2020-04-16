@@ -4,8 +4,8 @@ namespace ian {
 	class CollisionComponent
 	{
 	public:
-		//The owner of this component(used for the coordinate)
-		unsigned int ownerId;
+		//the position
+		unsigned int positionComponentId;
 
 		//The size of the entity
 		int size{ 0 };

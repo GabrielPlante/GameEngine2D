@@ -4,7 +4,6 @@
 #include "../GameEngine2D/Vector2.h"
 
 namespace ian {
-	class GameEntity;
 	class MovementSystem
 		: public ge::System
 	{
@@ -21,9 +20,6 @@ namespace ian {
 
 		//Set a destination for a component
 		void setDestination(unsigned int componentId, ge::Vector2<> destination);
-
-		//Create a movement component for an entity
-		void createMovementComponent(GameEntity* gameEntity) const;
 	};
 }
 
