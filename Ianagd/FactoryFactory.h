@@ -6,6 +6,9 @@
 #include "RendererComponent.h"
 #include "MovementComponent.h"
 #include "CollisionComponent.h"
+#include "TileComponent.h"
+
+#include "Map.h"
 
 namespace ian {
 	/// <summary>
@@ -30,5 +33,7 @@ namespace ian {
 		ge::Factory<MovementComponent> movementFactory;
 
 		ge::Factory<CollisionComponent> collisionFactory;
+
+		Map map;
 	};
 }

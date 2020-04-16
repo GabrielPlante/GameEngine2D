@@ -24,6 +24,9 @@ namespace ge {
 		//Constructor taking coordinate as int, the width and the height
 		Rectangle(const long int x, const long int y, const int w, const int h) :x{ x }, y{ y }, w{ w }, h{ h } {}
 
+		//Operator override
+		bool operator==(const Rectangle& other) const { return x == other.x && y == other.y && w == other.w && h == other.h; }
+
 		//Resize the rectangle with a delta
 		inline void resize(double delta);
 

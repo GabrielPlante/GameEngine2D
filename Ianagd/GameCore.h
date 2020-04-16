@@ -54,7 +54,7 @@ namespace ian {
 		FactoryFactory* getFactoryFactory() { return &factoryFactory; }
 
 		//Set a destination for a component
-		void setDestination(unsigned int componentId, ge::Vector2<> destination) const;
+		void setDestination(unsigned int entityId, ge::Vector2<> destination);
 
 		//Get the player id
 		unsigned int getPlayerId() const { return playerId; }

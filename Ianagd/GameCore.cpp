@@ -10,12 +10,13 @@
 #include "GameGraphicSystem.h"
 #include "MovementSystem.h"
 #include "MessageOrigin.h"
+#include "MapSystem.h"
 
 //Include the command
 #include "CommandQuitConsole.h"
-#include "CommandZoom.h"
+#include "CommandEntityInfo.h"
 #include "CommandResetZoom.h"
-
+#include "CommandZoom.h"
 
 //Size of the screen
 constexpr int SCREEN_WIDTH{ 1400 };
@@ -47,7 +48,7 @@ namespace ian {
 		SDL_Renderer* renderer{ drawer.startDrawing(ge::Vector2<int>{50, 50}, ge::Color{255, 0, 0, 255}) };
 		SDL_Rect rect{ ge::Rectangle{0, 0, 50, 50}.toSDL_Rect() };
 		SDL_RenderFillRect(renderer, &rect);//Draw a simple rectangle
-		SDL_Texture* texture = drawer.finishDrawing();
+		SDL_Texture* texturePlayer = drawer.finishDrawing();
 
 		//---Add an entity---
 		//Create the entity with his component list: a position, a texture, a movement, and a collision
@@ -60,13 +61,13 @@ namespace ian {
 		//Set his renderer component
 		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(playerId, rendererCompId))->positionComponentId = posCompIndex;
 		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(playerId, rendererCompId))->size = { 50, 50 };
-		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(playerId, rendererCompId))->texture = texture;
+		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(playerId, rendererCompId))->setTexture(texturePlayer);
 
 		//Set his movement component
 		factoryFactory.movementFactory.getComponent(factoryFactory.getEntityCompId(playerId, movementCompId))->positionComponentId = posCompIndex;
 
 		//Set his collision component
-		factoryFactory.collisionFactory.getComponent(factoryFactory.getEntityCompId(playerId, rendererCompId))->size = 50;
+		//factoryFactory.collisionFactory.getComponent(factoryFactory.getEntityCompId(playerId, collisionCompId))->size = 50;
 
 		//Create a bot without a movement component
 		unsigned int botId{ factoryFactory.createEntity(std::vector<int>{0, 1, 3}) };
@@ -82,10 +83,23 @@ namespace ian {
 		//Set his renderer component
 		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(botId, rendererCompId))->positionComponentId = posCompIndex;
 		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(botId, rendererCompId))->size = { 50, 50 };
-		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(botId, rendererCompId))->texture = textureBot;
+		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(botId, rendererCompId))->setTexture(textureBot);
 		
 		//Set his collision component
 		factoryFactory.collisionFactory.getComponent(factoryFactory.getEntityCompId(botId, collisionCompId))->positionComponentId = posCompIndex;
+
+		//Create another bot
+		botId = factoryFactory.createEntity(std::vector<int>{0, 1, 3}) ;
+		posCompIndex = factoryFactory.getEntityCompId(botId, positionCompId);
+		factoryFactory.positionFactory.getComponent(posCompIndex)->position = { 800, 600 };
+		renderer = drawer.startDrawing(ge::Vector2<int>{50, 50}, ge::Color{ 0, 0, 255, 255 });
+		SDL_RenderFillRect(renderer, &rect);
+		textureBot = drawer.finishDrawing();
+		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(botId, rendererCompId))->positionComponentId = posCompIndex;
+		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(botId, rendererCompId))->size = { 50, 50 };
+		factoryFactory.rendererFactory.getComponent(factoryFactory.getEntityCompId(botId, rendererCompId))->setTexture(textureBot);
+		factoryFactory.collisionFactory.getComponent(factoryFactory.getEntityCompId(botId, collisionCompId))->positionComponentId = posCompIndex;
+
 	}
 
 	GameCore::GameCore()
@@ -103,12 +117,18 @@ namespace ian {
 		//Add the other systems
 		movementSystem = std::shared_ptr<MovementSystem>{ new MovementSystem{} };
 		ge::Engine::getInstance()->addSystem(movementSystem);
+		unsigned int mapRendererId{ factoryFactory.rendererFactory.addComponent(RendererComponent{}) };
+		factoryFactory.rendererFactory.getComponent(mapRendererId)->positionComponentId = factoryFactory.positionFactory.addComponent(PositionComponent{});
+		std::shared_ptr<MapSystem> mapSystem{ new MapSystem{mapRendererId} };
+		ge::Engine::getInstance()->addSystem(mapSystem);
+		
 
 
 		//Add the command to the command list
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandQuitConsole{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandZoom{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandResetZoom{}}));
+		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandEntityInfo{}}));
 	}
 
 	GameCore::~GameCore() {
@@ -119,7 +139,7 @@ namespace ian {
 		ge::Engine::getInstance()->mainLoop();
 	}
 
-	void GameCore::setDestination(unsigned int componentId, ge::Vector2<> destination) const {
-		movementSystem->setDestination(componentId, destination);
+	void GameCore::setDestination(unsigned int entityId, ge::Vector2<> destination) {
+		movementSystem->setDestination(factoryFactory.entityFactory.getComponent(entityId)->getComponentId(movementCompId), destination);
 	}
 }

@@ -26,7 +26,7 @@ namespace ian {
 				dstRect.x = relativePos.x;
 				dstRect.y = relativePos.y;
 				SDL_Rect sdlDstRect = dstRect.toSDL_Rect();
-				SDL_RenderCopy(window.getRenderer(), it->texture, it->srcRect, &sdlDstRect);
+				SDL_RenderCopy(window.getRenderer(), it->getTexture(), it->srcRect, &sdlDstRect);
 			}
 		}
 

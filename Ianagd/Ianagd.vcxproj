@@ -137,12 +137,15 @@
     <ClCompile Include="GameEventHandler.cpp" />
     <ClCompile Include="GameGraphicSystem.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapSystem.cpp" />
     <ClCompile Include="MovementComponent.h" />
     <ClCompile Include="MovementSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="CollisionSystem.h" />
+    <ClInclude Include="CommandEntityInfo.h" />
     <ClInclude Include="CommandQuitConsole.h" />
     <ClInclude Include="CommandResetZoom.h" />
     <ClInclude Include="CommandZoom.h" />
@@ -152,11 +155,14 @@
     <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GameGraphicSystem.h" />
     <ClInclude Include="GameValues.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="MapSystem.h" />
     <ClInclude Include="MessageOrigin.h" />
     <ClInclude Include="MessageType.h" />
     <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="PositionComponent.h" />
     <ClInclude Include="RendererComponent.h" />
+    <ClInclude Include="TileComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameEngine2D\GameEngine2D.vcxproj">
