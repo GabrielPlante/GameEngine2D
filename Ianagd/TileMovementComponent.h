@@ -1,14 +1,16 @@
 #pragma once
+#include <stack>
+
 #include "../GameEngine2D/Vector2.h"
 
 namespace ian {
-	class MovementComponent
+	class TileMovementComponent
 	{
 	public:
 		//Needed to know the position
 		unsigned int positionComponentId;
 
-		ge::Vector2<long> destination{ 0, 0 };
+		std::stack<ge::Vector2<int>> destinationStack;
 
 		float speed{ 1 };
 

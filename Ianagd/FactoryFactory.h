@@ -1,12 +1,13 @@
 #pragma once
 #include "../GameEngine2D/Factory.h"
 
-#include "GameEntity.h"
+#include "TileMovementComponent.h"
+#include "CollisionComponent.h"
 #include "PositionComponent.h"
 #include "RendererComponent.h"
 #include "MovementComponent.h"
-#include "CollisionComponent.h"
 #include "TileComponent.h"
+#include "GameEntity.h"
 
 #include "Map.h"
 
@@ -34,6 +35,9 @@ namespace ian {
 
 		ge::Factory<CollisionComponent> collisionFactory;
 
+		ge::Factory<TileMovementComponent> tileMovementFactory;
+
 		Map map;
+
 	};
 }

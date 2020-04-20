@@ -50,16 +50,23 @@ namespace ge {
 
 		template <typename P>
 		//Operator == override
-		bool operator==(const Vector2<P>& other) { return x == other.x && y == other.y; }
+		bool operator==(const Vector2<P>& other) const { return x == other.x && y == other.y; }
 
 		template <typename P>
 		//Operator != override
-		bool operator!=(const Vector2<P>& other) { return x != other.x || y != other.y; }
+		bool operator!=(const Vector2<P>& other) const { return x != other.x || y != other.y; }
 
 		template <typename P>
 		//Add two position
 		void operator+=(const Vector2<P>& other) { x += other.x; y += other.y; }
+
+		template <typename P>
+		//Operator < override for map
+		bool operator<(const Vector2<P>& other) const {
+			return x != other.x ? x < other.x : y < other.y;
+		}
 	};
+
 
 	template <typename T>
 	//Push a position in a vector

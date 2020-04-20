@@ -7,5 +7,8 @@ namespace ian {
 	{
 	public:
 		ge::Color color;
+
+		//Can a entity walk over this tile
+		bool isWalkable{ true };
 	};
 }

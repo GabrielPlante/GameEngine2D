@@ -32,13 +32,17 @@
   <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\gabri\source\repos\GabrielPlante\GameEngine2D\Dependencies\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\gabri\source\repos\GabrielPlante\GameEngine2D\Dependencies\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemGroup>
+    <ClInclude Include="MapTest.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FactoryTest.cpp" />
     <ClCompile Include="IDGeneratorTest.cpp" />
-    <ClCompile Include="test.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -49,6 +53,9 @@
   <ItemGroup>
     <ProjectReference Include="..\GameEngine2D\GameEngine2D.vcxproj">
       <Project>{fb60dcd9-ffaf-46cf-ab53-a9b4d27e85d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Ianagd\Ianagd.vcxproj">
+      <Project>{a30a980a-9807-49c1-9689-687c78c35917}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -83,10 +90,12 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>C:\Users\gabri\source\repos\GabrielPlante\GameEngine2D\Ianagd;C:\Users\gabri\source\repos\GabrielPlante\GameEngine2D\GameEngine2D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

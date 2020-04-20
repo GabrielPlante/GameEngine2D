@@ -8,6 +8,8 @@ namespace ge {
 	class Camera
 	{
 	private:
+		double maxZoom{ 100 };
+		double minZoom{ 0.01 };
 		//The rectangle representing the camera
 		Rectangle camera;
 		Vector2<int> originalDimensions;
@@ -48,5 +50,8 @@ namespace ge {
 
 		//Get the rectangle that is the camera
 		const Rectangle& getRectangle() const { return camera; }
+
+		//Set a new value for the max zoom and the min zoom. The max zoom should be the greater value.
+		void setMinMaxZoom(double newMinZoom, double newMaxZoom) { minZoom = newMinZoom; maxZoom = newMaxZoom; }
 	};
 }

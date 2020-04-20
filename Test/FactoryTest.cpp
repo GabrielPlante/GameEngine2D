@@ -1,5 +1,7 @@
 #include "pch.h"
 
+#include "MapTest.h"
+
 #include <string>
 
 #include "../GameEngine2D/Factory.h"

@@ -4,6 +4,7 @@
 #include "../GameEngine2D/Console.h"
 #include "../GameEngine2D/Rectangle.h"
 
+#include "FactoryFactory.h"
 #include "RendererComponent.h"
 #include "GameCore.h"
 

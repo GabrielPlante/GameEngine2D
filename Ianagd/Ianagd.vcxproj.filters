@@ -61,6 +61,12 @@
     <Filter Include="Source Files\Event">
       <UniqueIdentifier>{606f1c73-1209-4c12-a997-8087a21ab945}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{8aa24a6a-4855-4d1b-8835-0e22d4ce1af2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{ba81603b-d784-4fdc-977a-68b291bc0345}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameGraphicSystem.cpp">
@@ -94,7 +100,10 @@
       <Filter>Source Files\ECS\Systems</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
-      <Filter>Source Files\General</Filter>
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="PathFinder.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,11 +161,17 @@
     <ClInclude Include="MapSystem.h">
       <Filter>Header Files\ECS\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
     <ClInclude Include="CommandEntityInfo.h">
       <Filter>Header Files\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFinder.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMovementComponent.h">
+      <Filter>Header Files\ECS\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

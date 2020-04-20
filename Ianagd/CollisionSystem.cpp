@@ -1,5 +1,6 @@
 #include "CollisionSystem.h"
 
+#include "FactoryFactory.h"
 #include "GameCore.h"
 
 namespace ian {

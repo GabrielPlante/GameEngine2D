@@ -1,36 +1,69 @@
 #include "MovementSystem.h"
 
 #include "../GameEngine2D/Engine.h"
+#include "../GameEngine2D/Camera.h"
 
+#include "FactoryFactory.h"
 #include "GameValues.h"
 #include "GameEntity.h"
+#include "PathFinder.h"
 #include "GameCore.h"
 
 namespace ian {
+	//This function calculate a new position in a straight line between two point given certain speed
+	ge::Vector2<> move(ge::Vector2<> position, ge::Vector2<> destination, float speed) {
+		double actualSpeed{ speed * ge::Engine::getInstance()->getTimeSinceLastFrame() / static_cast<double>(speedDividingFactor) };
+		ge::Angle movingAngle{ position.angle(destination) };
+
+		long destSign{ 1 };
+		if (destination.x != position.x)
+			destSign = static_cast<int>((destination.x - position.x) / std::abs(destination.x - position.x));
+		if ((position.x + std::cos(movingAngle.get()) * actualSpeed) * destSign > destination.x * destSign) {
+			position = destination;
+		}
+		else
+			position += ge::Vector2<>{static_cast<long>(std::cos(movingAngle.get())* actualSpeed), static_cast<long>(std::sin(movingAngle.get())* actualSpeed)};
+		return position;
+	}
+
 	void MovementSystem::update() {
+		//Update the simple movement
 		for (auto it = F_FACTORY->movementFactory.getBeginningIterator(); it != F_FACTORY->movementFactory.getEndIterator(); it++) {
 			if (it->isMoving) {
-				double actualSpeed{ ge::Engine::getInstance()->getTimeSinceLastFrame() / static_cast<double>(speedDividingFactor) };
-
-				ge::Angle movingAngle{ F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position.angle(it->destination) };
-				long destSign{ 1 };
-				if (it->destination.x != F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position.x)
-					destSign = static_cast<int>((it->destination.x - F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position.x) / std::abs(it->destination.x - F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position.x));
-				if ((F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position.x + std::cos(movingAngle.get()) * actualSpeed) * destSign > it->destination.x * destSign) {
-					F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position = it->destination;
+				ge::Vector2<> newPosition{ move(F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position, it->destination, it->speed) };
+				if (newPosition == it->destination)
 					it->isMoving = false;
+				F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position = newPosition;
+			}
+		}
+		//Update the more complex tile related movement
+		for (auto it = F_FACTORY->tileMovementFactory.getBeginningIterator(); it != F_FACTORY->tileMovementFactory.getEndIterator(); it++) {
+			if (it->isMoving) {
+				ge::Vector2<> newPosition{ move(F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position,
+					F_FACTORY->map.relativeToAbsolute(it->destinationStack.top()), it->speed) };
+				if (newPosition == F_FACTORY->map.relativeToAbsolute(it->destinationStack.top())) {
+					it->destinationStack.pop();
+					if (it->destinationStack.empty())
+						it->isMoving = false;
 				}
-				else {
-					F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position += ge::Vector2<>{
-						static_cast<long>(std::cos(movingAngle.get())* actualSpeed),
-							static_cast<long>(std::sin(movingAngle.get())* actualSpeed)};
-				}
+				F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position = newPosition;
 			}
 		}
 	}
 
-	void MovementSystem::setDestination(unsigned int componentId, ge::Vector2<> destination) {
-		F_FACTORY->movementFactory.getComponent(componentId)->destination = destination;
-		F_FACTORY->movementFactory.getComponent(componentId)->isMoving = true;
+	void MovementSystem::setDestination(unsigned int componentId, ge::Vector2<> destination, bool tileMovement) {
+		if (!tileMovement) {
+			F_FACTORY->movementFactory.getComponent(componentId)->destination = destination;
+			F_FACTORY->movementFactory.getComponent(componentId)->isMoving = true;
+		}
+		else {
+			ge::Vector2<> entityPos{ F_FACTORY->positionFactory.getComponent(F_FACTORY->tileMovementFactory.getComponent(componentId)->positionComponentId)->position };
+			PathFinder pathFinder{ F_FACTORY->map.absoluteToRelative(entityPos), F_FACTORY->map.absoluteToRelative(destination) };
+			std::stack<ge::Vector2<int>> pathStack{ pathFinder.findPath() };
+			if (!pathStack.empty()) {
+				F_FACTORY->tileMovementFactory.getComponent(componentId)->destinationStack = pathStack;
+				F_FACTORY->tileMovementFactory.getComponent(componentId)->isMoving = true;
+			}
+		}
 	}
 }

@@ -1,14 +1,17 @@
 #pragma once
 #include <memory>
 
-#include "../GameEngine2D/Camera.h"
+#include "../GameEngine2D/Vector2.h"
 
-#include "FactoryFactory.h"
 
 #define F_FACTORY ian::GameCore::getInstance()->getFactoryFactory()
 
+namespace ge {
+	class Camera;
+}
 namespace ian {
 	class MovementSystem;
+	class FactoryFactory;
 	/// <summary>
 	/// The core of the game, here the engine is managed
 	/// <para>It is a singleton for global access</para>
@@ -16,9 +19,9 @@ namespace ian {
 	class GameCore
 	{
 	private:
-		FactoryFactory factoryFactory;
+		FactoryFactory* factoryFactory;
 
-		ge::Camera camera;
+		ge::Camera* camera;
 
 		//All the control system
 		std::shared_ptr<MovementSystem> movementSystem;
@@ -48,13 +51,13 @@ namespace ian {
 		static void quit();
 
 		//Get a camera pointer
-		ge::Camera* getCamera() { return &camera; }
+		ge::Camera* getCamera() { return camera; }
 
 		//Get factory factory pointer
-		FactoryFactory* getFactoryFactory() { return &factoryFactory; }
+		FactoryFactory* getFactoryFactory() { return factoryFactory; }
 
 		//Set a destination for a component
-		void setDestination(unsigned int entityId, ge::Vector2<> destination);
+		void setDestination(unsigned int entityId, ge::Vector2<> destination, bool tileMovement = false);
 
 		//Get the player id
 		unsigned int getPlayerId() const { return playerId; }

@@ -16,9 +16,13 @@ namespace ian {
 
 		//Transform coordinate to the tile index in the vector. The first number of the array is the double vector index in tileMap, the two other are x and y.
 		std::array<int, 3> coordinateToTile(ge::Vector2<int> coordinate) const;
+
 	public:
 		//Get the coordinate relative to the tile map from an absolute in game position
-		ge::Vector2<int> absoluteToRelative(ge::Vector2<int> absoluteCoordinate) const;
+		ge::Vector2<int> absoluteToRelative(ge::Vector2<> absoluteCoordinate) const;
+
+		//Get an absolute in game position with a position relative to the tile map
+		ge::Vector2<> relativeToAbsolute(ge::Vector2<int> relativeCoordinate) const;
 
 		//Get a pointer to the tile
 		TileComponent* getTile(ge::Vector2<int> tileCoordinate);

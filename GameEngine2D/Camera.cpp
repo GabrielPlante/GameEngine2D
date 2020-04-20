@@ -15,7 +15,7 @@ namespace ge {
 	}
 
 	void Camera::zoom(double delta) {
-		if (getZoom() * delta > 10 || getZoom() * delta < 0.1)
+		if (getZoom() * delta > maxZoom || getZoom() * delta < minZoom)
 			return;
 		const int previousW = camera.w, previousH = camera.h;
 		camera.resize(1 / delta);

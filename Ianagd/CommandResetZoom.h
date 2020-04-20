@@ -3,6 +3,8 @@
 #include "../GameEngine2D/Command.h"
 #include "../GameEngine2D/Console.h"
 
+#include "../GameEngine2D/Camera.h"
+
 #include "GameCore.h"
 
 namespace ian {

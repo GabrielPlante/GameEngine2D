@@ -8,6 +8,7 @@ namespace ian {
 		: public ge::System
 	{
 	private:
+
 	public:
 		//Constructor
 		MovementSystem() {}
@@ -19,7 +20,7 @@ namespace ian {
 		void handleMessage(std::shared_ptr<ge::Message> message) override {};
 
 		//Set a destination for a component
-		void setDestination(unsigned int componentId, ge::Vector2<> destination);
+		void setDestination(unsigned int componentId, ge::Vector2<> destination, bool tileMovement = false);
 	};
 }
 

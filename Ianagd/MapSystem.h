@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../GameEngine2D/System.h"
+#include "../GameEngine2D/Rectangle.h"
 
 #include "GameCore.h"
 
