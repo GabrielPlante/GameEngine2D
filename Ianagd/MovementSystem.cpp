@@ -26,6 +26,40 @@ namespace ian {
 		return position;
 	}
 
+	//Special movement function for moving along the axis only
+	ge::Vector2<> moveAxis(ge::Vector2<> position, std::stack<ge::Vector2<int>>* destinationStack, float speed) {
+		long actualSpeed{ static_cast<long>(speed * ge::Engine::getInstance()->getTimeSinceLastFrame() / static_cast<double>(speedDividingFactor)) };
+		while (actualSpeed != 0 && !destinationStack->empty()) {
+			ge::Vector2<> currentDestination{ F_FACTORY->map.relativeToAbsolute(destinationStack->top()) };
+			//Get the direction
+			if (position.x != currentDestination.x) {
+				//Is the entity going to reach it's next destination this frame
+				if (abs(position.x - currentDestination.x) < actualSpeed) {
+					actualSpeed -= abs(position.x - currentDestination.x);
+					position.x = currentDestination.x;
+					destinationStack->pop();
+				}
+				else {
+					position.x += currentDestination.x > position.x ? actualSpeed : -actualSpeed;
+					actualSpeed = 0;
+				}
+			}
+			else {
+				if (abs(position.y - currentDestination.y) < actualSpeed) {
+					actualSpeed -= abs(position.y - currentDestination.y);
+					position.y = currentDestination.y;
+					destinationStack->pop();
+				}
+				else {
+					position.y += currentDestination.y > position.y ? actualSpeed : -actualSpeed;
+					actualSpeed = 0;
+				}
+
+			}
+		}
+		return position;
+	}
+
 	void MovementSystem::update() {
 		//Update the simple movement
 		for (auto it = F_FACTORY->movementFactory.getBeginningIterator(); it != F_FACTORY->movementFactory.getEndIterator(); it++) {
@@ -39,13 +73,10 @@ namespace ian {
 		//Update the more complex tile related movement
 		for (auto it = F_FACTORY->tileMovementFactory.getBeginningIterator(); it != F_FACTORY->tileMovementFactory.getEndIterator(); it++) {
 			if (it->isMoving) {
-				ge::Vector2<> newPosition{ move(F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position,
-					F_FACTORY->map.relativeToAbsolute(it->destinationStack.top()), it->speed) };
-				if (newPosition == F_FACTORY->map.relativeToAbsolute(it->destinationStack.top())) {
-					it->destinationStack.pop();
-					if (it->destinationStack.empty())
-						it->isMoving = false;
-				}
+				ge::Vector2<> newPosition{ moveAxis(F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position,
+					&it->destinationStack, it->speed) };
+				if (it->destinationStack.empty())
+					it->isMoving = false;
 				F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position = newPosition;
 			}
 		}

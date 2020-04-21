@@ -76,6 +76,9 @@ namespace ian {
 			for (int newX = -1; newX <= 1; newX++) {
 				int tempX{ node.x + newX };
 				for (int newY = -1; newY <= 1; newY++) {
+					//Don't move in diagonal
+					if (newY == newX || newY == -newX)
+						continue;
 					int tempY{ node.y + newY };
 					//If this node around the current one is valid
 					if (isValid({ tempX, tempY })) {
