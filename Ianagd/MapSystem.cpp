@@ -17,6 +17,7 @@ namespace ian {
 		ge::Rectangle cameraRect{ GameCore::getInstance()->getCamera()->getRectangle() };
 		previousCameraRectangle = cameraRect;
 
+		//Here we make sure that we position our rendering rectangle at top left corner of the tile that is in the top left corner of the screen
 		const int cameraOffsetX{ cameraRect.x % tileSize };
 		const int cameraOffsetY{ cameraRect.y % tileSize };
 		ge::Vector2<> position{ cameraRect.x - (cameraRect.x < 0 ? tileSize + cameraOffsetX : cameraOffsetX), cameraRect.y - (cameraRect.y < 0 ? tileSize + cameraOffsetY : cameraOffsetY) };
@@ -33,20 +34,21 @@ namespace ian {
 		for (int i = scene.x; i < scene.x + scene.w; i += tileSize) {
 			int relativePositionY{ 0 };
 			for (int j = scene.y; j < scene.y + scene.h; j += tileSize) {
-				//If the tile doesn't exist, we create it
-				if (!mapPtr->tileExist(mapPtr->absoluteToRelative({ i, j }))) {
-					TileComponent tile;
-					tile.color = { 0, 0, 0 };
-					mapPtr->addTile(mapPtr->absoluteToRelative({ i, j }), std::move(tile));
-				}
-				ge::Color tileColor = mapPtr->getTile(mapPtr->absoluteToRelative({ i, j })).color;
+				ge::Color tileColor{ 0, 0, 0 };
+				//If a tile exist here, we take it's color, else it's black
+				if (mapPtr->tileExist(mapPtr->absoluteToRelative({ i, j })))
+					tileColor = mapPtr->getTile(mapPtr->absoluteToRelative({ i, j })).color;
+				//Set the right render color
 				SDL_SetRenderDrawColor(renderer, static_cast<Uint8>(tileColor.red), static_cast<Uint8>(tileColor.green), static_cast<Uint8>(tileColor.blue), static_cast<Uint8>(tileColor.alpha));
+				//Render the tile
 				SDL_Rect tileRect = ge::Rectangle{ relativePositionX, relativePositionY, tileSize, tileSize }.toSDL_Rect();
 				SDL_RenderFillRect(renderer, &tileRect);
+
 				relativePositionY += tileSize;
 			}
 			relativePositionX += tileSize;
 		}
+		//Update the texture component
 		F_FACTORY->rendererFactory.getComponent(mapRendererId)->setTexture(drawer.finishDrawing());
 		F_FACTORY->rendererFactory.getComponent(mapRendererId)->size = ge::Vector2<int>{ scene.w, scene.h };
 		F_FACTORY->positionFactory.getComponent(F_FACTORY->rendererFactory.getComponent(mapRendererId)->positionComponentId)->position = position;

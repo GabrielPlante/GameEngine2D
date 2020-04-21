@@ -157,6 +157,7 @@
     <ClInclude Include="GameGraphicSystem.h" />
     <ClInclude Include="GameValues.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapRepresentation.h" />
     <ClInclude Include="MapSystem.h" />
     <ClInclude Include="MessageOrigin.h" />
     <ClInclude Include="MessageType.h" />
