@@ -5,10 +5,9 @@
 #include "GameValues.h"
 #include "GameCore.h"
 
-
 namespace ian {
 	bool isValid(ge::Vector2<int> tile) {
-		return F_FACTORY->map.tileExist(tile) && F_FACTORY->map.getTile(tile)->isWalkable;
+		return F_FACTORY->map.tileExist(tile) && F_FACTORY->map.getTile(tile).isWalkable;
 	}
 
 	std::stack<ge::Vector2<int>> PathFinder::makePath(const std::map<ge::Vector2<int>, Node>& map) const {
@@ -18,7 +17,7 @@ namespace ian {
 		std::stack<ge::Vector2<int>> path;
 
 		while (!(map.find({ x, y })->second.parentX == x && map.find({ x, y })->second.parentY == y)
-			&& map.find({ x, y })->second.x != -1 && map.find({ x, y })->second.y != -1) {
+			&& map.find({ x, y })->second.x != INT_MAX && map.find({ x, y })->second.y != INT_MAX) {
 			path.push(map.find({ x, y })->second.toVector2());
 			int tempX = map.find({ x, y })->second.parentX;
 			int tempY = map.find({ x, y })->second.parentY;
@@ -82,7 +81,7 @@ namespace ian {
 					if (isValid({ tempX, tempY })) {
 						//Add it to the all map if it is not already here
 						if (allMap.find({ tempX, tempY }) == allMap.end())
-							allMap.insert(std::pair<ge::Vector2<int>, Node>({ tempX, tempY }, { tempX, tempY, -1, -1, FLT_MAX, FLT_MAX, FLT_MAX }));
+							allMap.insert(std::pair<ge::Vector2<int>, Node>({ tempX, tempY }, { tempX, tempY, INT_MAX, INT_MAX, FLT_MAX, FLT_MAX, FLT_MAX }));
 						//If it is the destination
 						if (ge::Vector2<int>{tempX, tempY} == destination) {
 							allMap.find({ tempX, tempY })->second.parentX = node.x;

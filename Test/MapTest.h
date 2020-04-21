@@ -33,24 +33,6 @@ TEST(MapTest, relativeToAbsolute) {
 	EXPECT_EQ(100, map.relativeToAbsolute({ 0, 2 }).y);
 }
 
-//Commented because the method is usually private
-/*TEST(MapTest, coordinateToTile) {
-	ian::Map map;
-	EXPECT_EQ(0, map.coordinateToTile({ 0, 0 })[0]);
-	EXPECT_EQ(1, map.coordinateToTile({ 0, -1 })[0]);
-	EXPECT_EQ(2, map.coordinateToTile({ -1, 0 })[0]);
-	EXPECT_EQ(3, map.coordinateToTile({ -1, -1 })[0]);
-
-	EXPECT_EQ(0, map.coordinateToTile({ 0, 0 })[1]);
-	EXPECT_EQ(1, map.coordinateToTile({ 1, 0 })[1]);
-	EXPECT_EQ(1, map.coordinateToTile({ 0, 1 })[2]);
-
-	EXPECT_EQ(0, map.coordinateToTile({ -1, 0 })[1]);
-	EXPECT_EQ(1, map.coordinateToTile({ -2, 0 })[1]);
-	EXPECT_EQ(1, map.coordinateToTile({ 0, -2 })[2]);
-	EXPECT_EQ(2, map.coordinateToTile({ 0, 2 })[2]);
-}*/
-
 TEST(MapTest, tileExist) {
 	ian::Map map;
 

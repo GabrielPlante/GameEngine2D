@@ -106,12 +106,12 @@ namespace ian {
 		factoryFactory->collisionFactory.getComponent(factoryFactory->getEntityCompId(botId, collisionCompId))->positionComponentId = posCompIndex;
 
 		//Make the map
-		/*for (int i = 0; i < 20 * tileSize; i += tileSize) {
+		for (int i = 0; i < 20 * tileSize; i += tileSize) {
 			TileComponent tile;
 			tile.color = ge::Color{ 100, 100, 100 };
 			tile.isWalkable = false;
-			factoryFactory->map.addTile(factoryFactory->map.absoluteToRelative({ i, 0 }), std::move(tile));
-		}*/
+			factoryFactory->map.addTile(factoryFactory->map.absoluteToRelative({ i, 2*tileSize }), std::move(tile));
+		}
 
 	}
 

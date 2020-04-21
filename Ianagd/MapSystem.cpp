@@ -7,8 +7,6 @@
 #include "GameValues.h"
 #include "GameCore.h"
 
-#include <iostream>
-
 namespace ian {
 	void MapSystem::renderMap() {
 
@@ -38,10 +36,10 @@ namespace ian {
 				//If the tile doesn't exist, we create it
 				if (!mapPtr->tileExist(mapPtr->absoluteToRelative({ i, j }))) {
 					TileComponent tile;
-					tile.color = { 0, 128, 0 };
+					tile.color = { 0, 0, 0 };
 					mapPtr->addTile(mapPtr->absoluteToRelative({ i, j }), std::move(tile));
 				}
-				ge::Color tileColor = mapPtr->getTile(mapPtr->absoluteToRelative({ i, j }))->color;
+				ge::Color tileColor = mapPtr->getTile(mapPtr->absoluteToRelative({ i, j })).color;
 				SDL_SetRenderDrawColor(renderer, static_cast<Uint8>(tileColor.red), static_cast<Uint8>(tileColor.green), static_cast<Uint8>(tileColor.blue), static_cast<Uint8>(tileColor.alpha));
 				SDL_Rect tileRect = ge::Rectangle{ relativePositionX, relativePositionY, tileSize, tileSize }.toSDL_Rect();
 				SDL_RenderFillRect(renderer, &tileRect);
