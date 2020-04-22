@@ -100,6 +100,9 @@ namespace ge {
 		//Updated at the very begining of each frame, give the time since the begining of the last frame. The time is in microsecond
 		long long getTimeSinceLastFrame() const { return timeSinceLastFrame; }
 
+		//Get the time since the engine with initiliased in microsecond
+		long long getTimeSinceStart() const { return timeSinceStart + engineClock.getTime(); }
+
 		//Push an event handler that will be used from now on
 		void pushEventHandler(std::unique_ptr<EventHandler> eventHandler) { eventSystem.pushEventHandler(std::move(eventHandler)); }
 

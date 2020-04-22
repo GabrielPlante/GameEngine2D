@@ -143,6 +143,7 @@
     <ClCompile Include="MovementComponent.h" />
     <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="PathFinder.cpp" />
+    <ClCompile Include="Wave.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandEntityInfo.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="RendererComponent.h" />
     <ClInclude Include="TileComponent.h" />
     <ClInclude Include="TileMovementComponent.h" />
+    <ClInclude Include="Wave.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameEngine2D\GameEngine2D.vcxproj">

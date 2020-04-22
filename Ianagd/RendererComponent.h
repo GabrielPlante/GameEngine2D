@@ -19,9 +19,14 @@ namespace ian {
 		//Get the texture
 		SDL_Texture* getTexture() const { return texture; }
 
-		//Set a new texture. Will delete the older one if it exist
+		//Set a new texture. Will delete the previous one if it exist
 		void setTexture(SDL_Texture* newTexture) {
 			destroyTexture();
+			texture = newTexture;
+		}
+
+		//Set a new texture without deleting the previous one
+		void setTextureWithoutDelete(SDL_Texture* newTexture) {
 			texture = newTexture;
 		}
 

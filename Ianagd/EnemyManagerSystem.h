@@ -1,9 +1,12 @@
 #pragma once
 #include <vector>
 #include <stack>
+#include <memory>
 
 #include "../GameEngine2D/System.h"
 #include "../GameEngine2D/Vector2.h"
+
+#include "Wave.h"
 
 namespace ian {
 	class EnemyManagerSystem
@@ -13,13 +16,11 @@ namespace ian {
 		ge::Vector2<int> spawnTile;
 		ge::Vector2<int> destinationTile;
 
-		//We keep the path stack to avoid regenerating it for every entity
-		std::stack<ge::Vector2<int>> pathStack;
-
 		//The number of the actual wave
 		int waveNbr{ 0 };
 
-		//std::vector<unsigned int>
+		std::unique_ptr<Wave> wave;
+
 	public:
 		//Constructor
 		EnemyManagerSystem(ge::Vector2<int> spawnTile, ge::Vector2<int> destinationTile);

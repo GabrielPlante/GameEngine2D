@@ -61,7 +61,7 @@ namespace ian {
 		}
 		ge::Vector2<> cameraPosition{ GameCore::getInstance()->getCamera()->getRectangle().x, GameCore::getInstance()->getCamera()->getRectangle().y };
 		GameCore::getInstance()->getCamera()->setPosition({
-			cameraPosition.x + static_cast<long>(cameraMovement.x * ge::Engine::getInstance()->getTimeSinceLastFrame() / speedDividingFactor),
-			cameraPosition.y + static_cast<long>(cameraMovement.y * ge::Engine::getInstance()->getTimeSinceLastFrame() / speedDividingFactor) });
+			cameraPosition.x + static_cast<long>(cameraMovement.x * ge::Engine::getInstance()->getTimeSinceLastFrame() / gv::speedDividingFactor),
+			cameraPosition.y + static_cast<long>(cameraMovement.y * ge::Engine::getInstance()->getTimeSinceLastFrame() / gv::speedDividingFactor) });
 	}
 }

@@ -12,7 +12,7 @@
 namespace ian {
 	//This function calculate a new position in a straight line between two point given certain speed
 	ge::Vector2<> move(ge::Vector2<> position, ge::Vector2<> destination, float speed) {
-		double actualSpeed{ speed * ge::Engine::getInstance()->getTimeSinceLastFrame() / static_cast<double>(speedDividingFactor) };
+		double actualSpeed{ speed * ge::Engine::getInstance()->getTimeSinceLastFrame() / static_cast<double>(gv::speedDividingFactor) };
 		ge::Angle movingAngle{ position.angle(destination) };
 
 		long destSign{ 1 };
@@ -28,7 +28,7 @@ namespace ian {
 
 	//Special movement function for moving along the axis only
 	ge::Vector2<> moveAxis(ge::Vector2<> position, std::stack<ge::Vector2<int>>* destinationStack, float speed) {
-		long actualSpeed{ static_cast<long>(speed * ge::Engine::getInstance()->getTimeSinceLastFrame() / static_cast<double>(speedDividingFactor)) };
+		long actualSpeed{ static_cast<long>(speed * ge::Engine::getInstance()->getTimeSinceLastFrame() / static_cast<double>(gv::speedDividingFactor)) };
 		while (actualSpeed != 0 && !destinationStack->empty()) {
 			ge::Vector2<> currentDestination{ F_FACTORY->map.relativeToAbsolute(destinationStack->top()) };
 			//Get the direction

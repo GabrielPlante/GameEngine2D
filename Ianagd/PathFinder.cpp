@@ -47,7 +47,7 @@ namespace ian {
 		allMap.insert(std::pair<ge::Vector2<int>, Node>({ startNode.x, startNode.y }, startNode));
 
 		//------The main loop------
-		while (!openList.empty() && openList.size() < maxPathSize) {
+		while (!openList.empty() && openList.size() < gv::maxPathSize) {
 			Node node;
 
 			//Find the not visited valid node with the lowest cost
