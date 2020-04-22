@@ -8,11 +8,13 @@
 #include "../GameEngine2D/Camera.h"
 #include "../GameEngine2D/Drawer.h"
 
+#include "EnemyManagerSystem.h"
 #include "GameGraphicSystem.h"
 #include "MapRepresentation.h"
 #include "FactoryFactory.h"
 #include "MovementSystem.h"
 #include "MessageOrigin.h"
+#include "GameSystem.h"
 #include "GameValues.h"
 #include "MapSystem.h"
 
@@ -48,7 +50,7 @@ namespace ian {
 	void GameCore::setupGame() {
 
 		//Create the texture to add to the entity
-		ge::Drawer drawer;
+		/*ge::Drawer drawer;
 		SDL_Renderer* renderer{ drawer.startDrawing(ge::Vector2<int>{50, 50}, ge::Color{255, 0, 0, 255}) };
 		SDL_Rect rect{ ge::Rectangle{0, 0, 50, 50}.toSDL_Rect() };
 		SDL_RenderFillRect(renderer, &rect);//Draw a simple rectangle
@@ -56,7 +58,7 @@ namespace ian {
 
 		//---Add an entity---
 		//Create the entity with his component list: a position, a texture, a movement, and a collision
-		playerId = factoryFactory->createEntity({ 0, 1, 4, 3 });
+		playerId = factoryFactory->createEntity({ positionCompId, rendererCompId, tileMovementCompId });
 
 		unsigned int posCompIndex{ factoryFactory->getEntityCompId(playerId, positionCompId) };
 		//Set his position
@@ -68,69 +70,35 @@ namespace ian {
 		factoryFactory->rendererFactory.getComponent(factoryFactory->getEntityCompId(playerId, rendererCompId))->setTexture(texturePlayer);
 
 		//Set his movement component
-		factoryFactory->tileMovementFactory.getComponent(factoryFactory->getEntityCompId(playerId, tileMovementCompId))->positionComponentId = posCompIndex;
-
-		//Set his collision component
-		//factoryFactory.collisionFactory.getComponent(factoryFactory.getEntityCompId(playerId, collisionCompId))->size = 50;
-
-		//Create a bot without a movement component
-		unsigned int botId{ factoryFactory->createEntity(std::vector<int>{0, 1, 3}) };
-		posCompIndex = factoryFactory->getEntityCompId(botId, positionCompId);
-		factoryFactory->positionFactory.getComponent(posCompIndex)->position = { 600, 600 };
-
-		//Create the texture to add to the bot
-		renderer = drawer.startDrawing(ge::Vector2<int>{50, 50}, ge::Color{ 0, 0, 255, 255 });
-		SDL_RenderFillRect(renderer, &rect);//Draw a simple rectangle
-		SDL_Texture* textureBot = drawer.finishDrawing();
-
-
-		//Set his renderer component
-		factoryFactory->rendererFactory.getComponent(factoryFactory->getEntityCompId(botId, rendererCompId))->positionComponentId = posCompIndex;
-		factoryFactory->rendererFactory.getComponent(factoryFactory->getEntityCompId(botId, rendererCompId))->size = { 50, 50 };
-		factoryFactory->rendererFactory.getComponent(factoryFactory->getEntityCompId(botId, rendererCompId))->setTexture(textureBot);
-		
-		//Set his collision component
-		factoryFactory->collisionFactory.getComponent(factoryFactory->getEntityCompId(botId, collisionCompId))->positionComponentId = posCompIndex;
-
-		//Create another bot
-		botId = factoryFactory->createEntity(std::vector<int>{0, 1, 3}) ;
-		posCompIndex = factoryFactory->getEntityCompId(botId, positionCompId);
-		factoryFactory->positionFactory.getComponent(posCompIndex)->position = { 800, 600 };
-		renderer = drawer.startDrawing(ge::Vector2<int>{50, 50}, ge::Color{ 0, 0, 255, 255 });
-		SDL_RenderFillRect(renderer, &rect);
-		textureBot = drawer.finishDrawing();
-		factoryFactory->rendererFactory.getComponent(factoryFactory->getEntityCompId(botId, rendererCompId))->positionComponentId = posCompIndex;
-		factoryFactory->rendererFactory.getComponent(factoryFactory->getEntityCompId(botId, rendererCompId))->size = { 50, 50 };
-		factoryFactory->rendererFactory.getComponent(factoryFactory->getEntityCompId(botId, rendererCompId))->setTexture(textureBot);
-		factoryFactory->collisionFactory.getComponent(factoryFactory->getEntityCompId(botId, collisionCompId))->positionComponentId = posCompIndex;
+		factoryFactory->tileMovementFactory.getComponent(factoryFactory->getEntityCompId(playerId, tileMovementCompId))->positionComponentId = posCompIndex;*/
 
 		//Make the map
 		std::array<std::array<int, 25>, 25> map{
 			std::array<int, 25>{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-			std::array<int, 25>{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0},
+			std::array<int, 25>{1, 1, 1, 2, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 0},
+			std::array<int, 25>{0, 2, 1, 2, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 1, 1, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 1, 1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 1, 1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 0},
+			std::array<int, 25>{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0}
 		};
 
 		MapRepresentation<25, 25> mapRepresentation{ {0, 0}, map };
@@ -161,14 +129,22 @@ namespace ian {
 		factoryFactory->rendererFactory.getComponent(mapRendererId)->positionComponentId = factoryFactory->positionFactory.addComponent(PositionComponent{});
 		std::shared_ptr<MapSystem> mapSystem{ new MapSystem{mapRendererId} };
 		ge::Engine::getInstance()->addSystem(mapSystem);
+		std::shared_ptr<GameSystem> gameSystem{ new GameSystem{} };
+		ge::Engine::getInstance()->addSystem(gameSystem);
+		std::shared_ptr<EnemyManagerSystem> enemyManagerSystem{ new EnemyManagerSystem{{0, 2}, {22, 24} } };
+		ge::Engine::getInstance()->addSystem(enemyManagerSystem);
 		
-
 
 		//Add the command to the command list
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandQuitConsole{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandZoom{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandResetZoom{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandEntityInfo{}}));
+
+		CONSOLE_LOG("GameCore successfully initialised")
+		CONSOLE_LOG("You can use the command quitconsole or the escape button to leave the console")
+
+		ge::CommandList::getInstance()->executeCommand("quitconsole");
 	}
 
 	GameCore::~GameCore() {

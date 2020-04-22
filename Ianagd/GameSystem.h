@@ -3,19 +3,18 @@
 #include "../GameEngine2D/System.h"
 
 namespace ian {
-	class CollisionSystem
+	class GameSystem
 		: public ge::System
 	{
-	private:
 	public:
 		//Constructor
-		CollisionSystem() {}
+		GameSystem() {}
 
-		//The update method, called each frame
-		void update() override;
+		//Update the game
+		void update() override {}
 
 		//As a subscriber, the system need to be able to handle message
 		void handleMessage(std::shared_ptr<ge::Message> message) override {};
 	};
-}
 
+}

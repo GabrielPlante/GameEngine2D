@@ -1,0 +1,33 @@
+#pragma once
+#include <vector>
+#include <stack>
+
+#include "../GameEngine2D/System.h"
+#include "../GameEngine2D/Vector2.h"
+
+namespace ian {
+	class EnemyManagerSystem
+		: public ge::System
+	{
+	private:
+		ge::Vector2<int> spawnTile;
+		ge::Vector2<int> destinationTile;
+
+		//We keep the path stack to avoid regenerating it for every entity
+		std::stack<ge::Vector2<int>> pathStack;
+
+		//The number of the actual wave
+		int waveNbr{ 0 };
+
+		//std::vector<unsigned int>
+	public:
+		//Constructor
+		EnemyManagerSystem(ge::Vector2<int> spawnTile, ge::Vector2<int> destinationTile);
+
+		//The update method, called each frame
+		void update() override;
+
+		//As a subscriber, the system need to be able to handle message
+		void handleMessage(std::shared_ptr<ge::Message> message) override {};
+	};
+}

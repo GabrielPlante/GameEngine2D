@@ -8,6 +8,7 @@
 namespace ian {
 	constexpr int borderTile{ 0 };
 	constexpr int walkableTile{ 1 };
+	constexpr int buildableTile{ 2 };
 
 	template <int Height, int Width>
 	class MapRepresentation
@@ -32,7 +33,8 @@ namespace ian {
 	void MapRepresentation<W, H>::transfertToMap(Map* map) const {
 		for (int i = 0; i != W; i++) {
 			for (int j = 0; j != H; j++) {
-				map->addTile({ i + mapCoordinate.x, j + mapCoordinate.y }, getTile(mapArray[i][j]));
+				//Invert j and i to get the map with the right orientation
+				map->addTile({ j + mapCoordinate.y, i + mapCoordinate.x }, getTile(mapArray[i][j]));
 			}
 		}
 	}
@@ -43,13 +45,15 @@ namespace ian {
 		switch (tileType)
 		{
 		case borderTile:
-			tile.isWalkable = false;
 			tile.color = { 100, 100, 100 };
 			break;
 		case walkableTile:
 			tile.isWalkable = true;
 			tile.color = { 0, 128, 0 };
 			break;
+		case buildableTile:
+			tile.isBuildable = true;
+			tile.color = { 96, 75, 0 };
 		default:
 			break;
 		}

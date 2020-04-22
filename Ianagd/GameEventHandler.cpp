@@ -44,20 +44,14 @@ namespace ian {
 				}
 			}
 			//If a mouse button is pressed
-			else if (event->type == SDL_MOUSEBUTTONDOWN) {
+			/*else if (event->type == SDL_MOUSEBUTTONDOWN) {
 				if (event->button.button == SDL_BUTTON_RIGHT) {
 					int x, y;
 					SDL_GetMouseState(&x, &y);
 					ge::Vector2<> mouseCoordinate{ GameCore::getInstance()->getCamera()->relativeToAbsolute(event->button.x, event->button.y) };
 					GameCore::getInstance()->setDestination(GameCore::getInstance()->getPlayerId(), mouseCoordinate, true);
-					/*std::cout << "Before the map : " << mouseCoordinate.x << " ; " << mouseCoordinate.y << std::endl;
-					ge::Vector2<int> mapCo{ F_FACTORY->map.absoluteToRelative(mouseCoordinate) };
-					std::cout << "In the map : " << mapCo.x << " ; " << mapCo.y << std::endl;
-					ge::Vector2<> afterCo{ F_FACTORY->map.relativeToAbsolute(mapCo) };
-					std::cout << "After the map : " << afterCo.x << " ; " << afterCo.y << std::endl;
-					std::cout << "----------------------------" << std::endl;*/
 				}
-			}
+			}*/
 			else if (event->type == SDL_MOUSEWHEEL) {
 				if (event->wheel.y > 0)
 					GameCore::getInstance()->getCamera()->zoom(10/9.0);

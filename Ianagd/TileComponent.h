@@ -9,6 +9,9 @@ namespace ian {
 		ge::Color color;
 
 		//Can a entity walk over this tile
-		bool isWalkable{ true };
+		bool isWalkable{ false };
+
+		//Can the player build on this tile
+		bool isBuildable{ false };
 	};
 }

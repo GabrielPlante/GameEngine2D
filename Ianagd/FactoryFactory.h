@@ -2,10 +2,10 @@
 #include "../GameEngine2D/Factory.h"
 
 #include "TileMovementComponent.h"
-#include "CollisionComponent.h"
 #include "PositionComponent.h"
 #include "RendererComponent.h"
 #include "MovementComponent.h"
+#include "HealthComponent.h"
 #include "TileComponent.h"
 #include "GameEntity.h"
 
@@ -33,8 +33,9 @@ namespace ian {
 
 		ge::Factory<MovementComponent> movementFactory;
 
-		ge::Factory<CollisionComponent> collisionFactory;
+		ge::Factory<HealthComponent> healthFactory;
 
+		//The tile movement factory is last because it has vector wich change in lenght
 		ge::Factory<TileMovementComponent> tileMovementFactory;
 
 		Map map;

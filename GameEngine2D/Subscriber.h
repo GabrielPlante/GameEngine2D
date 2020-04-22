@@ -22,7 +22,7 @@ namespace ge{
 		virtual void handleMessage(std::shared_ptr<Message> message) = 0;
 
 		//Send a message to this subsciber
-		void sendMessage(std::shared_ptr<Message> message) { pendingMessages.push_back(message); }
+		void receiveMessage(std::shared_ptr<Message> message) { pendingMessages.push_back(message); }
 
 		//Proccess every pending message
 		void proccessMessages();

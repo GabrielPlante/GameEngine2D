@@ -130,12 +130,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CollisionSystem.cpp" />
+    <ClCompile Include="EnemyManagerSystem.cpp" />
     <ClCompile Include="FactoryFactory.cpp" />
     <ClCompile Include="GameCore.cpp" />
     <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="GameEventHandler.cpp" />
     <ClCompile Include="GameGraphicSystem.cpp" />
+    <ClCompile Include="GameSystem.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapSystem.cpp" />
@@ -144,18 +145,19 @@
     <ClCompile Include="PathFinder.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CollisionComponent.h" />
-    <ClInclude Include="CollisionSystem.h" />
     <ClInclude Include="CommandEntityInfo.h" />
     <ClInclude Include="CommandQuitConsole.h" />
     <ClInclude Include="CommandResetZoom.h" />
     <ClInclude Include="CommandZoom.h" />
+    <ClInclude Include="EnemyManagerSystem.h" />
     <ClInclude Include="FactoryFactory.h" />
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GameGraphicSystem.h" />
+    <ClInclude Include="GameSystem.h" />
     <ClInclude Include="GameValues.h" />
+    <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapRepresentation.h" />
     <ClInclude Include="MapSystem.h" />
