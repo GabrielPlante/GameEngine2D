@@ -1,9 +1,11 @@
 # GameEngine2D
-GameEngine2D is the game engine used to support the yet to be made Ianagd game. It is mean to be easy to use, flexible, scalable, reliable and fast.
+GameEngine2D is the game engine used to support the yet to be made Ianagd game. It is meant to be easy to use, flexible, scalable, reliable and fast.
 
 
 How the engine work:
-Everything the game will have is in stored in component, that are stored a factory.
+It use the Entity - Component - System architecture.
+Entity are composed of component, and systems work on component.
+This make a game simpler than a raw object oriented design, and better performance with fewer cache miss.
 
 
 There are some singleton that you can access from everywhere:
@@ -20,7 +22,7 @@ In the update method of your system you can update every component of the system
 
 How the factory work:
 You give it a component, it will add it to it's system, and give you an id back.
-This id can give you access your component at any moment.
+This id can give you access to your component at any moment.
 
 A standard messaging system with the subscriber/publisher pattern is available
 
