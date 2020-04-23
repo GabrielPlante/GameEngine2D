@@ -1,14 +1,15 @@
+#include "CommandError.h"
 #include "CommandList.h"
 #include "Command.h"
-#include "CommandError.h"
 
 #include "Console.h"
 
-#include "CommandQuit.h"
-#include "CommandFps.h"
+#include "CommandNbrEventHandler.h"
 #include "CommandOpenConsole.h"
 #include "CommandNbrOfSystem.h"
-#include "CommandNbrEventHandler.h"
+#include "CommandTimeScale.h"
+#include "CommandQuit.h"
+#include "CommandFps.h"
 
 namespace ge {
 	CommandList* CommandList::instance{ nullptr };
@@ -28,11 +29,12 @@ namespace ge {
 
 	CommandList::CommandList()
 	{
-		commandList.insert(std::move(std::unique_ptr<Command>{new CommandQuit{}}));
-		commandList.insert(std::move(std::unique_ptr<Command>{new CommandFps{}}));
+		commandList.insert(std::move(std::unique_ptr<Command>{new CommandNbrEventHandler{}}));
 		commandList.insert(std::move(std::unique_ptr<Command>{new CommandOpenConsole{}}));
 		commandList.insert(std::move(std::unique_ptr<Command>{new CommandNbrOfSystem{}}));
-		commandList.insert(std::move(std::unique_ptr<Command>{new CommandNbrEventHandler{}}));
+		commandList.insert(std::move(std::unique_ptr<Command>{new CommandTimeScale{}}));
+		commandList.insert(std::move(std::unique_ptr<Command>{new CommandQuit{}}));
+		commandList.insert(std::move(std::unique_ptr<Command>{new CommandFps{}}));
 
 		CONSOLE_LOG("Command list successfully initialised");
 	}

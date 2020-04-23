@@ -120,6 +120,9 @@ namespace ge {
 
 		//Set the minimum amount of time that pass between two frame
 		void setTimeBetweenFrame(unsigned int newTimeBetweenFrame) { timeBetweenFrame = newTimeBetweenFrame; }
+
+		//Set a new time scale. A time scale change the way the time flow. If time scale is 2, the time will pass 2 time faster
+		void setTimeScale(double newTimeScale) { engineClock.setTimeScale(newTimeScale); }
 	};
 
 }
