@@ -9,4 +9,9 @@ namespace ian {
 		}
 		return entityId;
 	}
+
+	void FactoryFactory::deleteEntity(unsigned int entityId) {
+		entityFactory.getComponent(entityId)->deleteAllComponent();
+		entityFactory.deleteComponent(entityId);
+	}
 }

@@ -15,9 +15,9 @@ namespace ge {
 		return renderer;
 	}
 
-	SDL_Texture* Drawer::finishDrawing() const {
+	TextureWrapper Drawer::finishDrawing() const {
 		//Now every drawing will affect the global renderer not the texture
 		SDL_SetRenderTarget(renderer, NULL);
-		return texture;
+		return TextureWrapper{ texture };
 	}
 }

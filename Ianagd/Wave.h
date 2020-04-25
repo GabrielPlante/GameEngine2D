@@ -2,6 +2,7 @@
 #include <vector>
 #include <stack>
 
+#include "../GameEngine2D/TextureWrapper.h"
 #include "../GameEngine2D/Vector2.h"
 #include "../GameEngine2D/Color.h"
 
@@ -17,7 +18,6 @@ namespace ian {
 		ge::Vector2<int> destinationTile;
 
 		std::vector<unsigned int> entityIdList;
-		std::vector<unsigned int> deadEntityIdList;
 
 		//Enemy properties
 		int nbrOfEnemy;
@@ -25,10 +25,7 @@ namespace ian {
 		float enemySpeed;
 		ge::Vector2<int> startTile;
 		std::stack<ge::Vector2<int>> pathStack;
-		SDL_Texture* enemyTexture;
-
-		//Delete all the dead entities
-		void deleteEntities();
+		ge::TextureWrapper enemyTexture;
 
 		//Spawn an enemy
 		void spawnEnemy();
@@ -46,6 +43,6 @@ namespace ian {
 		ge::Vector2<int> update();
 
 		//Check if the wave ended (ie: all the enemy are dead)
-		bool checkWaveEnded();
+		bool checkWaveEnded() { return entityIdList.empty(); }
 	};
 }

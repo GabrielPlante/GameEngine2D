@@ -49,7 +49,7 @@ namespace ian {
 			relativePositionX += gv::tileSize;
 		}
 		//Update the texture component
-		F_FACTORY->rendererFactory.getComponent(mapRendererId)->setTexture(drawer.finishDrawing());
+		F_FACTORY->rendererFactory.getComponent(mapRendererId)->texture = (drawer.finishDrawing());
 		F_FACTORY->rendererFactory.getComponent(mapRendererId)->size = ge::Vector2<int>{ scene.w, scene.h };
 		F_FACTORY->positionFactory.getComponent(F_FACTORY->rendererFactory.getComponent(mapRendererId)->positionComponentId)->position = position;
 	}

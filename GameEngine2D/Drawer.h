@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 
+#include "TextureWrapper.h"
 #include "Vector2.h"
 #include "Color.h"
 
@@ -20,6 +21,7 @@ namespace ge {
 		//Start the drawing on the given renderer
 		SDL_Renderer* startDrawing(Vector2<int> size, Color color, Uint32 format = SDL_PIXELFORMAT_RGBA8888);
 
-		SDL_Texture* finishDrawing() const;
+		//Finish the drawing process and get the texture that represent the drawing
+		TextureWrapper finishDrawing() const;
 	};
 }

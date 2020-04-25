@@ -1,6 +1,7 @@
 #pragma once
 #include "../GameEngine2D/Factory.h"
 
+#include "DamageDealerComponent.h"
 #include "TileMovementComponent.h"
 #include "PositionComponent.h"
 #include "RendererComponent.h"
@@ -22,6 +23,9 @@ namespace ian {
 		//Create an game entity with a list of component
 		unsigned int createEntity(const std::vector<int>& componentList);
 
+		//Delete an entity
+		void deleteEntity(unsigned int entityId);
+
 		//Get a component from an entity
 		unsigned int getEntityCompId(unsigned int entityId, int type) { return entityFactory.getComponent(entityId)->getComponentId(type); }
 
@@ -34,6 +38,8 @@ namespace ian {
 		ge::Factory<MovementComponent> movementFactory;
 
 		ge::Factory<HealthComponent> healthFactory;
+
+		ge::Factory<DamageDealerComponent> damageDealerFactory;
 
 		//The tile movement factory is last because it has vector wich change in lenght
 		ge::Factory<TileMovementComponent> tileMovementFactory;

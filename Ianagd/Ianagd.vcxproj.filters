@@ -107,6 +107,9 @@
     <ClCompile Include="Wave.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="DamageDealerSystem.cpp">
+      <Filter>Source Files\ECS\Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameGraphicSystem.h">
@@ -182,6 +185,12 @@
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="GameSystem.h">
+      <Filter>Header Files\ECS\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageDealerComponent.h">
+      <Filter>Header Files\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageDealerSystem.h">
       <Filter>Header Files\ECS\Systems</Filter>
     </ClInclude>
   </ItemGroup>

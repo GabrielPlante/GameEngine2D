@@ -1,34 +1,15 @@
 #pragma once
 #include <SDL.h>
 
+#include "../GameEngine2D/TextureWrapper.h"
 #include "../GameEngine2D/Vector2.h"
 
 namespace ian {
 	class RendererComponent
 	{
-	private:
-		//The texture rendered, private for RAII
-		SDL_Texture* texture{ nullptr };
-
-		//Destroy the current texture
-		void destroyTexture() {
-			if (texture != nullptr)
-				SDL_DestroyTexture(texture);
-		}
 	public:
-		//Get the texture
-		SDL_Texture* getTexture() const { return texture; }
-
-		//Set a new texture. Will delete the previous one if it exist
-		void setTexture(SDL_Texture* newTexture) {
-			destroyTexture();
-			texture = newTexture;
-		}
-
-		//Set a new texture without deleting the previous one
-		void setTextureWithoutDelete(SDL_Texture* newTexture) {
-			texture = newTexture;
-		}
+		//The texture
+		ge::TextureWrapper texture;
 
 		//The position
 		unsigned int positionComponentId;

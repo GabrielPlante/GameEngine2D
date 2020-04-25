@@ -158,6 +158,7 @@
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextArea.cpp" />
     <ClCompile Include="TextInRect.cpp" />
+    <ClCompile Include="TextureWrapper.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +191,7 @@
     <ClInclude Include="IDGenerator.h" />
     <ClInclude Include="InputBar.h" />
     <ClInclude Include="Message.h" />
+    <ClInclude Include="TextureWrapper.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Publisher.h" />
     <ClInclude Include="Rectangle.h" />

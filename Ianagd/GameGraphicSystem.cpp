@@ -21,13 +21,13 @@ namespace ian {
 		//Update every renderer associated with an entity
 		for (auto it = F_FACTORY->rendererFactory.getBeginningIterator(); it != F_FACTORY->rendererFactory.getEndIterator(); it++) {
 			ge::Rectangle dstRect{ F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position, it->size.x, it->size.y };
-			if (GameCore::getInstance()->getCamera()->isInCamera(dstRect) && it->getTexture() != nullptr) {
+			if (GameCore::getInstance()->getCamera()->isInCamera(dstRect) && it->texture.get() != nullptr) {
 				dstRect.resize(GameCore::getInstance()->getCamera()->getZoom());
 				ge::Vector2<long> relativePos{ GameCore::getInstance()->getCamera()->absoluteToRelative(dstRect.x, dstRect.y) };
 				dstRect.x = relativePos.x;
 				dstRect.y = relativePos.y;
 				SDL_Rect sdlDstRect = dstRect.toSDL_Rect();
-				SDL_RenderCopy(window.getRenderer(), it->getTexture(), it->srcRect, &sdlDstRect);
+				SDL_RenderCopy(window.getRenderer(), it->texture.get(), it->srcRect, &sdlDstRect);
 			}
 		}
 

@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DamageDealerSystem.cpp" />
     <ClCompile Include="EnemyManagerSystem.cpp" />
     <ClCompile Include="FactoryFactory.cpp" />
     <ClCompile Include="GameCore.cpp" />
@@ -150,6 +151,8 @@
     <ClInclude Include="CommandQuitConsole.h" />
     <ClInclude Include="CommandResetZoom.h" />
     <ClInclude Include="CommandZoom.h" />
+    <ClInclude Include="DamageDealerComponent.h" />
+    <ClInclude Include="DamageDealerSystem.h" />
     <ClInclude Include="EnemyManagerSystem.h" />
     <ClInclude Include="FactoryFactory.h" />
     <ClInclude Include="GameCore.h" />

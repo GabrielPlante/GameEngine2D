@@ -1,8 +1,8 @@
 #pragma once
 #include <array>
 #include <stack>
-//#include <SDL.h>
 
+#include "../GameEngine2D/TextureWrapper.h"
 #include "../GameEngine2D/Vector2.h"
 
 struct SDL_Texture;
@@ -28,6 +28,9 @@ namespace ian {
 		 */
 		std::array<unsigned int, 5> componentsId;
 	public:
+		//Default constructor
+		GameEntity();
+
 		//Add a component id to this entity, return the id of the component in his factory
 		unsigned int createComponent(int type);
 
@@ -35,11 +38,14 @@ namespace ian {
 		unsigned int getComponentId(int index) const { return componentsId[index]; }
 
 		//Delete a component of the entity
-		void deleteComponent(int index);
+		GameEntity* deleteComponent(int index);
+
+		//Delete every component this entity has
+		void deleteAllComponent();
 
 		//Component manager
 		GameEntity* managePosition(ge::Vector2<> position);
-		GameEntity* manageRenderer(SDL_Texture* texture, ge::Vector2<int> size, SDL_Rect* srcRect = nullptr);
+		GameEntity* manageRenderer(const ge::TextureWrapper& texture, ge::Vector2<int> size, SDL_Rect* srcRect = nullptr);
 		GameEntity* manageMovement(ge::Vector2<> destination = { 0, 0 }, float speed = 1, bool isMoving = false);
 		GameEntity* manageTileMovement(std::stack<ge::Vector2<int>> destination = {}, float speed = 1, bool isMoving = false);
 		GameEntity* manageHealth(int health);

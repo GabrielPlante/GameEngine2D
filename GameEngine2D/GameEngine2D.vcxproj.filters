@@ -164,6 +164,9 @@
     <ClCompile Include="Drawer.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="TextureWrapper.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clock.h">
@@ -297,6 +300,9 @@
     </ClInclude>
     <ClInclude Include="CommandTimeScale.h">
       <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureWrapper.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

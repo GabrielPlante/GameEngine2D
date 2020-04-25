@@ -6,6 +6,12 @@
 #include "GameCore.h"
 
 namespace ian {
+	GameEntity::GameEntity() {
+		//Initialise the components id to 0
+		for (int i = 0; i != componentsId.size(); i++) {
+			componentsId[i] = 0;
+		}
+	}
 	unsigned int GameEntity::createComponent(int type) {
 		unsigned int componentId{ 0 };
 		switch (type)
@@ -48,7 +54,7 @@ namespace ian {
 		return componentId;
 	}
 
-	void GameEntity::deleteComponent(int index) {
+	GameEntity* GameEntity::deleteComponent(int index) {
 		switch (index)
 		{
 		case positionCompId:
@@ -56,7 +62,6 @@ namespace ian {
 			componentsId[index] = 0;
 			break;
 		case rendererCompId:
-			F_FACTORY->rendererFactory.getComponent(componentsId[index])->setTexture(nullptr);
 			F_FACTORY->rendererFactory.deleteComponent(componentsId[index]);
 			componentsId[index] = 0;
 			break;
@@ -75,6 +80,14 @@ namespace ian {
 		default:
 			break;
 		}
+		return this;
+	}
+
+	void GameEntity::deleteAllComponent() {
+		for (int i = 0; i != componentsId.size(); i++) {
+			if (componentsId[i] != 0)
+				deleteComponent(i);
+		}
 	}
 
 	GameEntity* GameEntity::managePosition(ge::Vector2<> position) {
@@ -82,9 +95,9 @@ namespace ian {
 		return this;
 	}
 
-	GameEntity* GameEntity::manageRenderer(SDL_Texture* texture, ge::Vector2<int> size, SDL_Rect* srcRect) {
+	GameEntity* GameEntity::manageRenderer(const ge::TextureWrapper& texture, ge::Vector2<int> size, SDL_Rect* srcRect) {
 		F_FACTORY->rendererFactory.getComponent(componentsId[rendererCompId])->positionComponentId = componentsId[positionCompId];
-		F_FACTORY->rendererFactory.getComponent(componentsId[rendererCompId])->setTexture(texture);
+		F_FACTORY->rendererFactory.getComponent(componentsId[rendererCompId])->texture = texture;
 		F_FACTORY->rendererFactory.getComponent(componentsId[rendererCompId])->size = size;
 		F_FACTORY->rendererFactory.getComponent(componentsId[rendererCompId])->srcRect = srcRect;
 		return this;
@@ -107,6 +120,7 @@ namespace ian {
 	}
 
 	GameEntity* GameEntity::manageHealth(int health) {
+		F_FACTORY->healthFactory.getComponent(componentsId[healthCompId])->positionComponentId = componentsId[positionCompId];
 		F_FACTORY->healthFactory.getComponent(componentsId[healthCompId])->health = health;
 		return this;
 	}

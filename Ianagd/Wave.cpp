@@ -60,12 +60,9 @@ namespace ian {
 		while (it != entityIdList.end()) {
 			//If it is dead
 			if (F_FACTORY->healthFactory.getComponent(F_FACTORY->getEntityCompId(*it, healthCompId))->health <= 0) {
-				//Delete his health and movement component and make him invisible
-				F_FACTORY->entityFactory.getComponent(*it)->deleteComponent(healthCompId);
-				F_FACTORY->entityFactory.getComponent(*it)->deleteComponent(tileMovementCompId);
-				F_FACTORY->rendererFactory.getComponent(F_FACTORY->getEntityCompId(*it, rendererCompId))->setTextureWithoutDelete(nullptr);
-				//Add it to the dead entity list and remove it from the active entity list
-				deadEntityIdList.push_back(*it);
+				//Delete the entity from the entity factory
+				F_FACTORY->deleteEntity(*it);
+				//Delete the entity from the list of active entity in this wave
 				it = entityIdList.erase(it);
 				//Take in account his death
 				nbrOfDead++;
@@ -82,12 +79,9 @@ namespace ian {
 		while (it != entityIdList.end()) {
 			//If it finished
 			if (F_FACTORY->map.absoluteToRelative(F_FACTORY->positionFactory.getComponent(F_FACTORY->getEntityCompId(*it, positionCompId))->position) == destinationTile) {
-				//Delete his health and movement component and make him invisible
-				F_FACTORY->entityFactory.getComponent(*it)->deleteComponent(healthCompId);
-				F_FACTORY->entityFactory.getComponent(*it)->deleteComponent(tileMovementCompId);
-				F_FACTORY->rendererFactory.getComponent(F_FACTORY->getEntityCompId(*it, rendererCompId))->setTextureWithoutDelete(nullptr);
-				//Add it to the dead entity list and remove it from the active entity list
-				deadEntityIdList.push_back(*it);
+				//Delete the entity from the entity factory
+				F_FACTORY->deleteEntity(*it);
+				//Delete the entity from the list of active entity in this wave
 				it = entityIdList.erase(it);
 				//Take in account his death
 				nbrOfFinished++;
@@ -96,26 +90,5 @@ namespace ian {
 				it++;
 		}
 		return nbrOfFinished;
-	}
-
-	bool Wave::checkWaveEnded() {
-		if (entityIdList.empty()) {
-			//If all the enemy are dead, end the wave
-			deleteEntities();
-			return true;
-		}
-		return false;
-	}
-
-	void Wave::deleteEntities() {
-		//Delete every entity
-		for (auto it = deadEntityIdList.begin(); it != deadEntityIdList.end();) {
-			F_FACTORY->entityFactory.getComponent(*it)->deleteComponent(positionCompId);
-			F_FACTORY->rendererFactory.deleteComponent(F_FACTORY->getEntityCompId(*it, rendererCompId));
-			it = deadEntityIdList.erase(it);
-		}
-
-		//Delete the texture
-		SDL_DestroyTexture(enemyTexture);
 	}
 }
