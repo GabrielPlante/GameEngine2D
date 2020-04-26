@@ -144,6 +144,7 @@
     <ClCompile Include="MovementComponent.h" />
     <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="PathFinder.cpp" />
+    <ClCompile Include="ShotRendererSystem.cpp" />
     <ClCompile Include="Wave.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,8 +172,11 @@
     <ClInclude Include="PathFinder.h" />
     <ClInclude Include="PositionComponent.h" />
     <ClInclude Include="RendererComponent.h" />
+    <ClInclude Include="ShotRendererComponent.h" />
+    <ClInclude Include="ShotRendererSystem.h" />
     <ClInclude Include="TileComponent.h" />
     <ClInclude Include="TileMovementComponent.h" />
+    <ClInclude Include="UIComponent.h" />
     <ClInclude Include="Wave.h" />
   </ItemGroup>
   <ItemGroup>

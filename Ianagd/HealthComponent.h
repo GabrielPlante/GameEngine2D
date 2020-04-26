@@ -7,5 +7,7 @@ namespace ian{
 		unsigned int positionComponentId;
 
 		int health{ 0 };
+
+		int maxHealth{ 0 };
 	};
 }

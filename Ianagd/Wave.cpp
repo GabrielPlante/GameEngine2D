@@ -14,7 +14,7 @@ namespace ian {
 		unsigned int entityId{ F_FACTORY->createEntity({positionCompId, rendererCompId, tileMovementCompId, healthCompId}) };
 		F_FACTORY->entityFactory.getComponent(entityId)
 			->managePosition(F_FACTORY->map.relativeToAbsolute(startTile))
-			->manageRenderer(enemyTexture, { gv::tileSize, gv::tileSize })
+			->manageRenderer(enemyTexture)
 			->manageTileMovement(pathStack, enemySpeed, true)
 			->manageHealth(enemyHealth);
 		entityIdList.push_back(entityId);

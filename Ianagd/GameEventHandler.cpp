@@ -22,16 +22,16 @@ namespace ian {
 				if (event->key.keysym.sym == SDLK_a) {
 					ge::CommandList::getInstance()->executeCommand("openconsole");
 				}
-				else if (event->key.keysym.sym == SDLK_LEFT) {
+				if (event->key.keysym.sym == SDLK_LEFT) {
 					cameraMovement.x = -1;
 				}
-				else if (event->key.keysym.sym == SDLK_RIGHT) {
+				if (event->key.keysym.sym == SDLK_RIGHT) {
 					cameraMovement.x = 1;
 				}
-				else if (event->key.keysym.sym == SDLK_UP) {
+				if (event->key.keysym.sym == SDLK_UP) {
 					cameraMovement.y = -1;
 				}
-				else if (event->key.keysym.sym == SDLK_DOWN) {
+				if (event->key.keysym.sym == SDLK_DOWN) {
 					cameraMovement.y = 1;
 				}
 			}
@@ -39,7 +39,7 @@ namespace ian {
 				if (event->key.keysym.sym == SDLK_LEFT || event->key.keysym.sym == SDLK_RIGHT) {
 					cameraMovement.x = 0;
 				}
-				else if (event->key.keysym.sym == SDLK_UP || event->key.keysym.sym == SDLK_DOWN) {
+				if (event->key.keysym.sym == SDLK_UP || event->key.keysym.sym == SDLK_DOWN) {
 					cameraMovement.y = 0;
 				}
 			}

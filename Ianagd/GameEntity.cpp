@@ -1,6 +1,7 @@
 #include "GameEntity.h"
 
 #include "../GameEngine2D/Console.h"
+#include "../GameEngine2D/Engine.h"
 
 #include "FactoryFactory.h"
 #include "GameCore.h"
@@ -46,6 +47,12 @@ namespace ian {
 			componentId = F_FACTORY->healthFactory.addComponent(std::move(healthComponent));
 			break;
 		}
+		case damageDealerCompId:
+		{
+			DamageDealerComponent damageDealerComponent;
+			componentId = F_FACTORY->damageDealerFactory.addComponent(std::move(damageDealerComponent));
+			break;
+		}
 		default:
 			CONSOLE_LOG_ERROR("GameEntity::CreateComponent error: this type of component doesn't exist or can't be added to an entity")
 			return 0;
@@ -77,6 +84,10 @@ namespace ian {
 			F_FACTORY->healthFactory.deleteComponent(componentsId[index]);
 			componentsId[index] = 0;
 			break;
+		case damageDealerCompId:
+			F_FACTORY->damageDealerFactory.deleteComponent(componentsId[index]);
+			componentsId[index] = 0;
+			break;
 		default:
 			break;
 		}
@@ -95,10 +106,9 @@ namespace ian {
 		return this;
 	}
 
-	GameEntity* GameEntity::manageRenderer(const ge::TextureWrapper& texture, ge::Vector2<int> size, SDL_Rect* srcRect) {
+	GameEntity* GameEntity::manageRenderer(const ge::TextureWrapper& texture, SDL_Rect* srcRect) {
 		F_FACTORY->rendererFactory.getComponent(componentsId[rendererCompId])->positionComponentId = componentsId[positionCompId];
 		F_FACTORY->rendererFactory.getComponent(componentsId[rendererCompId])->texture = texture;
-		F_FACTORY->rendererFactory.getComponent(componentsId[rendererCompId])->size = size;
 		F_FACTORY->rendererFactory.getComponent(componentsId[rendererCompId])->srcRect = srcRect;
 		return this;
 	}
@@ -122,6 +132,16 @@ namespace ian {
 	GameEntity* GameEntity::manageHealth(int health) {
 		F_FACTORY->healthFactory.getComponent(componentsId[healthCompId])->positionComponentId = componentsId[positionCompId];
 		F_FACTORY->healthFactory.getComponent(componentsId[healthCompId])->health = health;
+		F_FACTORY->healthFactory.getComponent(componentsId[healthCompId])->maxHealth = health;
+		return this;
+	}
+
+	GameEntity* GameEntity::manageDamageDealer(int damage, int range, int reloadingTime) {
+		F_FACTORY->damageDealerFactory.getComponent(componentsId[damageDealerCompId])->damage = damage;
+		F_FACTORY->damageDealerFactory.getComponent(componentsId[damageDealerCompId])->range = range;
+		F_FACTORY->damageDealerFactory.getComponent(componentsId[damageDealerCompId])->reloadingTime = reloadingTime;
+		F_FACTORY->damageDealerFactory.getComponent(componentsId[damageDealerCompId])->lastShotTime = ge::Engine::getInstance()->getTimeSinceStart();
+		F_FACTORY->damageDealerFactory.getComponent(componentsId[damageDealerCompId])->positionComponentId = componentsId[positionCompId];
 		return this;
 	}
 }

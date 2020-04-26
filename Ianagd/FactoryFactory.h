@@ -3,11 +3,13 @@
 
 #include "DamageDealerComponent.h"
 #include "TileMovementComponent.h"
+#include "ShotRendererComponent.h"
 #include "PositionComponent.h"
 #include "RendererComponent.h"
 #include "MovementComponent.h"
 #include "HealthComponent.h"
 #include "TileComponent.h"
+#include "UIComponent.h"
 #include "GameEntity.h"
 
 #include "Map.h"
@@ -35,11 +37,15 @@ namespace ian {
 
 		ge::Factory<RendererComponent> rendererFactory;
 
+		ge::Factory<UIComponent> uiFactory;
+
 		ge::Factory<MovementComponent> movementFactory;
 
 		ge::Factory<HealthComponent> healthFactory;
 
 		ge::Factory<DamageDealerComponent> damageDealerFactory;
+
+		ge::Factory<ShotRendererComponent> shotRendererFactory;
 
 		//The tile movement factory is last because it has vector wich change in lenght
 		ge::Factory<TileMovementComponent> tileMovementFactory;

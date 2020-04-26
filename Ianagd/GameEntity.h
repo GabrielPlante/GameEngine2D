@@ -15,6 +15,7 @@ namespace ian {
 	constexpr int movementCompId{ 2 };
 	constexpr int tileMovementCompId{ 3 };
 	constexpr int healthCompId{ 4 };
+	constexpr int damageDealerCompId{ 5 };
 
 	class GameEntity
 	{
@@ -25,8 +26,9 @@ namespace ian {
 		 * 2 : Movement component
 		 * 3 : Tile movement component
 		 * 4 : Health component
+		 * 5 : Damage dealer component
 		 */
-		std::array<unsigned int, 5> componentsId;
+		std::array<unsigned int, 6> componentsId;
 	public:
 		//Default constructor
 		GameEntity();
@@ -45,10 +47,11 @@ namespace ian {
 
 		//Component manager
 		GameEntity* managePosition(ge::Vector2<> position);
-		GameEntity* manageRenderer(const ge::TextureWrapper& texture, ge::Vector2<int> size, SDL_Rect* srcRect = nullptr);
+		GameEntity* manageRenderer(const ge::TextureWrapper& texture, SDL_Rect* srcRect = nullptr);
 		GameEntity* manageMovement(ge::Vector2<> destination = { 0, 0 }, float speed = 1, bool isMoving = false);
 		GameEntity* manageTileMovement(std::stack<ge::Vector2<int>> destination = {}, float speed = 1, bool isMoving = false);
 		GameEntity* manageHealth(int health);
+		GameEntity* manageDamageDealer(int damage, int range, int reloadingTime);
 	};
 }
 

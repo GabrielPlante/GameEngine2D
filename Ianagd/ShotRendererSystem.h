@@ -1,18 +1,12 @@
 #pragma once
-#include <vector>
 
 #include "../GameEngine2D/System.h"
 
 namespace ian {
-	class DamageDealerSystem
+	class ShotRendererSystem
 		:public ge::System
 	{
-	private:
-		std::vector<unsigned int> shotRenderersId;
 	public:
-		//Constructor
-		DamageDealerSystem() {}
-
 		//Update the system
 		void update() override;
 

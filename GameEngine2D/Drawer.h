@@ -22,6 +22,6 @@ namespace ge {
 		SDL_Renderer* startDrawing(Vector2<int> size, Color color, Uint32 format = SDL_PIXELFORMAT_RGBA8888);
 
 		//Finish the drawing process and get the texture that represent the drawing
-		TextureWrapper finishDrawing() const;
+		TextureWrapper finishDrawing();
 	};
 }

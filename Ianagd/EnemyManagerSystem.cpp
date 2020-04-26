@@ -24,6 +24,8 @@ namespace ian {
 			if (ge::Engine::getInstance()->getTimeSinceStart() - timeSinceLastWave > gv::timeBetweenWaves) {
 				waveNbr++;
 				timeSinceLastWave = 0;
+				//wave = std::unique_ptr<Wave>{ new Wave{gv::waveValues[waveNbr - 1].nbrOfEnemy, gv::waveValues[waveNbr - 1].enemyHealth,
+					//gv::waveValues[waveNbr - 1].enemySpeed, spawnTile, destinationTile, gv::waveValues[waveNbr - 1].color} };
 				switch (waveNbr)
 				{
 				case 1:

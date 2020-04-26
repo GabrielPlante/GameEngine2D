@@ -61,9 +61,20 @@ namespace ge {
 			//Get the other parameter
 			id = other.getId();
 			texture = other.get();
-			instanceCounter.find(id)->second++;
+			if (texture != nullptr)
+				instanceCounter.find(id)->second++;
 
 			return *this;
+		}
+
+		//Operator = to assign a texture directly
+		TextureWrapper& operator=(SDL_Texture* newTexture) {
+			clean();
+			texture = newTexture;
+			if (newTexture != nullptr) {
+				id = idGenerator.getNewID();
+				instanceCounter.insert(std::pair<unsigned int, int>(id, 1));
+			}
 		}
 
 		//Get a pointer to the texture. /!\ the pointer must not be stored

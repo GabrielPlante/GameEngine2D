@@ -22,12 +22,13 @@ namespace ian {
 		const int cameraOffsetY{ cameraRect.y % gv::tileSize };
 		ge::Vector2<> position{ cameraRect.x - (cameraRect.x < 0 ? gv::tileSize + cameraOffsetX : cameraOffsetX), cameraRect.y - (cameraRect.y < 0 ? gv::tileSize + cameraOffsetY : cameraOffsetY) };
 
-		ge::Rectangle scene{ position, cameraRect.w + gv::tileSize, cameraRect.h + gv::tileSize };
+		ge::Rectangle scene{ position, cameraRect.w + gv::tileSize * 3 / 2, cameraRect.h + gv::tileSize * 3 / 2 };
 
 		//Get the renderer to render to
 		SDL_Renderer* renderer{ drawer.startDrawing({scene.w, scene.h}, ge::Color{}) };
 
 		Map* mapPtr{ &GameCore::getInstance()->getFactoryFactory()->map };
+
 
 		//There might be a better system to check if there is every tile in the camera
 		int relativePositionX{ 0 };
@@ -36,8 +37,9 @@ namespace ian {
 			for (int j = scene.y; j < scene.y + scene.h; j += gv::tileSize) {
 				ge::Color tileColor{ 0, 0, 0 };
 				//If a tile exist here, we take it's color, else it's black
-				if (mapPtr->tileExist(mapPtr->absoluteToRelative({ i, j })))
+				if (mapPtr->tileExist(mapPtr->absoluteToRelative({ i, j }))) {
 					tileColor = mapPtr->getTile(mapPtr->absoluteToRelative({ i, j })).color;
+				}
 				//Set the right render color
 				SDL_SetRenderDrawColor(renderer, static_cast<Uint8>(tileColor.red), static_cast<Uint8>(tileColor.green), static_cast<Uint8>(tileColor.blue), static_cast<Uint8>(tileColor.alpha));
 				//Render the tile
@@ -50,13 +52,14 @@ namespace ian {
 		}
 		//Update the texture component
 		F_FACTORY->rendererFactory.getComponent(mapRendererId)->texture = (drawer.finishDrawing());
-		F_FACTORY->rendererFactory.getComponent(mapRendererId)->size = ge::Vector2<int>{ scene.w, scene.h };
 		F_FACTORY->positionFactory.getComponent(F_FACTORY->rendererFactory.getComponent(mapRendererId)->positionComponentId)->position = position;
+
+		//SDL_SetTextureBlendMode(F_FACTORY->rendererFactory.getComponent(mapRendererId)->texture.get(), SDL_BLENDMODE_NONE);
 	}
 
 	void MapSystem::update() {
-		if (!(GameCore::getInstance()->getCamera()->getRectangle() == previousCameraRectangle))
+		if (!(GameCore::getInstance()->getCamera()->getRectangle() == previousCameraRectangle)) {
 			renderMap();
-
+		}
 	}
 }
