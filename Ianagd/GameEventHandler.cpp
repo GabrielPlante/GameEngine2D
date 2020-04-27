@@ -9,7 +9,6 @@
 #include "GameCore.h"
 
 namespace ian {
-
 	void GameEventHandler::update(SDL_Event* event) {
 		while (pollEvent(event)) {
 			//If the user want to quit
@@ -44,14 +43,15 @@ namespace ian {
 				}
 			}
 			//If a mouse button is pressed
-			/*else if (event->type == SDL_MOUSEBUTTONDOWN) {
-				if (event->button.button == SDL_BUTTON_RIGHT) {
-					int x, y;
-					SDL_GetMouseState(&x, &y);
-					ge::Vector2<> mouseCoordinate{ GameCore::getInstance()->getCamera()->relativeToAbsolute(event->button.x, event->button.y) };
-					GameCore::getInstance()->setDestination(GameCore::getInstance()->getPlayerId(), mouseCoordinate, true);
+			else if (event->type == SDL_MOUSEBUTTONDOWN) {
+				if (event->button.button == SDL_BUTTON_LEFT) {
+					ge::Vector2<int> mousPos;
+					SDL_GetMouseState(&mousPos.x, &mousPos.y);
+					mousPos.x += gv::tileSize / 2;
+					mousPos.y += gv::tileSize / 2;
+					GameCore::getInstance()->getTowerManager()->buildTower(GameCore::getInstance()->getCamera()->relativeToAbsolute(mousPos.x, mousPos.y), 0);
 				}
-			}*/
+			}
 			else if (event->type == SDL_MOUSEWHEEL) {
 				if (event->wheel.y > 0)
 					GameCore::getInstance()->getCamera()->zoom(10/9.0);

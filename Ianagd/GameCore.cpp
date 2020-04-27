@@ -135,7 +135,7 @@ namespace ian {
 		ge::Engine::getInstance()->update();
 
 		//Create the texture for the wrapper
-		ge::Drawer drawer;
+		/*ge::Drawer drawer;
 		SDL_Renderer* renderer{ drawer.startDrawing({gv::tileSize, gv::tileSize}, {0, 0, 255}) };
 		SDL_Rect rect{ ge::Rectangle{0, 0, gv::tileSize, gv::tileSize}.toSDL_Rect() };
 		SDL_RenderFillRect(renderer, &rect);
@@ -147,12 +147,13 @@ namespace ian {
 			//->managePosition({ factoryFactory->map.relativeToAbsolute({5, 3}) })
 			->managePosition({ factoryFactory->map.relativeToAbsolute({9, 13}) })
 			->manageRenderer(texture)
-			->manageDamageDealer(25, 300, 1000);
+			->manageDamageDealer(25, 300, 1000);*/
 
 		//Create a text
-		ge::Rectangle textRect{ SCREEN_WIDTH / 2 - 200, 0, 400, 100 };
-		renderer = drawer.startDrawing({ textRect.w, textRect.h }, { 100, 100, 100, 150 });
-		ge::TextInRect text{ { 0, 0, 0, 0 }, "Ianagd", renderer, { 0, 0 }, ge::Font{ textRect.h }, { 100, 100, 255 } };
+		ge::Drawer drawer;
+		ge::Rectangle textRect{ SCREEN_WIDTH / 2 - 100, 0, 200, 50 };
+		SDL_Renderer* renderer{ drawer.startDrawing({ textRect.w, textRect.h }, { 100, 100, 100, 150 }) };
+		ge::TextInRect text{ { 0, 0, 0, 0 }, "Gold:", renderer, { 0, 0 }, ge::Font{ textRect.h }, { 100, 100, 255 } };
 		text.render(renderer);
 
 		UIComponent textComponent;
@@ -162,6 +163,9 @@ namespace ian {
 		textPos.setPosition(ge::Vector2<>{ textRect.x, textRect.y });
 		textComponent.positionComponentId = factoryFactory->positionFactory.addComponent(std::move(textPos));
 		factoryFactory->uiFactory.addComponent(std::move(textComponent));
+
+		//Update game values
+		factoryFactory->gameComponent.playerGold = gv::startingGold;
 	}
 
 	GameCore::~GameCore() {

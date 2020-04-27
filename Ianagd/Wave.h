@@ -43,6 +43,6 @@ namespace ian {
 		ge::Vector2<int> update();
 
 		//Check if the wave ended (ie: all the enemy are dead)
-		bool checkWaveEnded() { return entityIdList.empty(); }
+		bool checkWaveEnded() { return entityIdList.empty() && nbrOfEnemy == 0; }
 	};
 }

@@ -24,34 +24,21 @@ namespace ian {
 			if (ge::Engine::getInstance()->getTimeSinceStart() - timeSinceLastWave > gv::timeBetweenWaves) {
 				waveNbr++;
 				timeSinceLastWave = 0;
-				//wave = std::unique_ptr<Wave>{ new Wave{gv::waveValues[waveNbr - 1].nbrOfEnemy, gv::waveValues[waveNbr - 1].enemyHealth,
-					//gv::waveValues[waveNbr - 1].enemySpeed, spawnTile, destinationTile, gv::waveValues[waveNbr - 1].color} };
-				switch (waveNbr)
-				{
-				case 1:
-					wave = std::unique_ptr<Wave>{ new Wave{gv::wave1.nbrOfEnemy, gv::wave1.enemyHealth, gv::wave1.enemySpeed,
-						spawnTile, destinationTile, {100, 0, 0}} };
-					break;
-				case 2:
-					wave = std::unique_ptr<Wave>{ new Wave{gv::wave2.nbrOfEnemy, gv::wave2.enemyHealth, gv::wave3.enemySpeed,
-						spawnTile, destinationTile, {128, 80, 80}} };
-					break;
-				case 3:
-					wave = std::unique_ptr<Wave>{ new Wave{gv::wave3.nbrOfEnemy, gv::wave3.enemyHealth, gv::wave3.enemySpeed,
-						spawnTile, destinationTile, {255, 0, 0}} };
-					break;
-				}
+				wave = std::unique_ptr<Wave>{ new Wave{gv::wavesValues[waveNbr - 1].nbrOfEnemy, gv::wavesValues[waveNbr - 1].enemyHealth,
+					gv::wavesValues[waveNbr - 1].enemySpeed, spawnTile, destinationTile, gv::wavesValues[waveNbr - 1].color} };
 			}
 		}
 		//If we are in a wave
 		else{
-			wave->update();
+			ge::Vector2<int> waveStat{ wave->update() };
+			F_FACTORY->gameComponent.playerGold += waveStat.x * gv::wavesValues[waveNbr - 1].goldPerEnemy;
 			//If the wave ended
 			if (wave->checkWaveEnded()) {
 				timeSinceLastWave = ge::Engine::getInstance()->getTimeSinceStart();
 				wave.reset();
-				if (waveNbr == gv::nbrOfWave)
+				if (waveNbr == gv::nbrOfWave) {
 					hasGameEnded = true;
+				}
 			}
 		}
 	}

@@ -140,7 +140,7 @@ namespace ian {
 		F_FACTORY->damageDealerFactory.getComponent(componentsId[damageDealerCompId])->damage = damage;
 		F_FACTORY->damageDealerFactory.getComponent(componentsId[damageDealerCompId])->range = range;
 		F_FACTORY->damageDealerFactory.getComponent(componentsId[damageDealerCompId])->reloadingTime = reloadingTime;
-		F_FACTORY->damageDealerFactory.getComponent(componentsId[damageDealerCompId])->lastShotTime = ge::Engine::getInstance()->getTimeSinceStart();
+		F_FACTORY->damageDealerFactory.getComponent(componentsId[damageDealerCompId])->lastShotTime = 0;
 		F_FACTORY->damageDealerFactory.getComponent(componentsId[damageDealerCompId])->positionComponentId = componentsId[positionCompId];
 		return this;
 	}

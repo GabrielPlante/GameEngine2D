@@ -54,5 +54,14 @@ TEST(MapTest, tileExist) {
 	EXPECT_TRUE(map.tileExist({ -1, -1 }));
 
 	EXPECT_TRUE(!map.tileExist({ 1, 1 }));
+}
 
+TEST(MapTest, absoluteRelative) {
+	ian::Map map;
+	for (int i = -10; i != 10; i++) {
+		for (int j = -10; j != 10; j++) {
+			ge::Vector2<int> pos{ i, j };
+			EXPECT_EQ(pos, map.absoluteToRelative(map.relativeToAbsolute(pos)));
+		}
+	}
 }

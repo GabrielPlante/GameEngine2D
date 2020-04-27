@@ -15,9 +15,11 @@ namespace ge {
 		return renderer;
 	}
 
-	TextureWrapper Drawer::finishDrawing() {
+	TextureWrapper Drawer::finishDrawing(bool blend) {
 		//Now every drawing will affect the global renderer not the texture
 		SDL_SetRenderTarget(renderer, NULL);
+		if (blend)
+			SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
 		TextureWrapper textureWrap{ texture };
 		texture = nullptr;
 		return textureWrap;

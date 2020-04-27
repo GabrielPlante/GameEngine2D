@@ -138,6 +138,7 @@
     <ClCompile Include="GameEventHandler.cpp" />
     <ClCompile Include="GameGraphicSystem.cpp" />
     <ClCompile Include="GameSystem.cpp" />
+    <ClCompile Include="GameValues.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapSystem.cpp" />
@@ -145,6 +146,7 @@
     <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="ShotRendererSystem.cpp" />
+    <ClCompile Include="TowerManager.cpp" />
     <ClCompile Include="Wave.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +158,7 @@
     <ClInclude Include="DamageDealerSystem.h" />
     <ClInclude Include="EnemyManagerSystem.h" />
     <ClInclude Include="FactoryFactory.h" />
+    <ClInclude Include="GameComponent.h" />
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameEventHandler.h" />
@@ -176,6 +179,7 @@
     <ClInclude Include="ShotRendererSystem.h" />
     <ClInclude Include="TileComponent.h" />
     <ClInclude Include="TileMovementComponent.h" />
+    <ClInclude Include="TowerManager.h" />
     <ClInclude Include="UIComponent.h" />
     <ClInclude Include="Wave.h" />
   </ItemGroup>

@@ -3,6 +3,7 @@
 
 #include "../GameEngine2D/Vector2.h"
 
+#include "TowerManager.h"
 
 #define F_FACTORY ian::GameCore::getInstance()->getFactoryFactory()
 
@@ -10,7 +11,7 @@ namespace ge {
 	class Camera;
 }
 namespace ian {
-	class MovementSystem;
+	class GameSystem;
 	class FactoryFactory;
 	/// <summary>
 	/// The core of the game, here the engine is managed
@@ -23,10 +24,9 @@ namespace ian {
 
 		ge::Camera* camera;
 
-		//The id of the player
-		unsigned int playerId;
-
 		static GameCore* instance;
+
+		TowerManager towerManager;
 
 		//Default constructor, private because it is a singleton
 		GameCore();
@@ -53,8 +53,8 @@ namespace ian {
 		//Get factory factory pointer
 		FactoryFactory* getFactoryFactory() { return factoryFactory; }
 
-		//Get the player id
-		unsigned int getPlayerId() const { return playerId; }
+		//Get the tower manager
+		TowerManager* getTowerManager() { return &towerManager; }
 
 		//Run the game
 		void run();
