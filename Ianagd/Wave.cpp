@@ -78,7 +78,7 @@ namespace ian {
 		auto it = entityIdList.begin();
 		while (it != entityIdList.end()) {
 			//If it finished
-			if (F_FACTORY->map.absoluteToRelative(F_FACTORY->positionFactory.getComponent(F_FACTORY->getEntityCompId(*it, positionCompId))->position) == destinationTile) {
+			if (F_FACTORY->map.absoluteToRelative(F_FACTORY->positionFactory.getComponent(F_FACTORY->getEntityCompId(*it, positionCompId))->getPosition()) == destinationTile) {
 				//Delete the entity from the entity factory
 				F_FACTORY->deleteEntity(*it);
 				//Delete the entity from the list of active entity in this wave

@@ -102,7 +102,7 @@ namespace ian {
 	}
 
 	GameEntity* GameEntity::managePosition(ge::Vector2<> position) {
-		F_FACTORY->positionFactory.getComponent(componentsId[positionCompId])->position = position;
+		F_FACTORY->positionFactory.getComponent(componentsId[positionCompId])->setPosition(position);
 		return this;
 	}
 

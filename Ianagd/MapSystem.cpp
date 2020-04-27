@@ -7,11 +7,10 @@
 #include "GameValues.h"
 #include "GameCore.h"
 
+#include <iostream>
+
 namespace ian {
 	void MapSystem::renderMap() {
-
-		//Initialise the drawer
-		ge::Drawer drawer;
 
 		//Get the camera dimension
 		ge::Rectangle cameraRect{ GameCore::getInstance()->getCamera()->getRectangle() };
@@ -23,6 +22,9 @@ namespace ian {
 		ge::Vector2<> position{ cameraRect.x - (cameraRect.x < 0 ? gv::tileSize + cameraOffsetX : cameraOffsetX), cameraRect.y - (cameraRect.y < 0 ? gv::tileSize + cameraOffsetY : cameraOffsetY) };
 
 		ge::Rectangle scene{ position, cameraRect.w + gv::tileSize * 3 / 2, cameraRect.h + gv::tileSize * 3 / 2 };
+
+		//Initialise the drawer
+		ge::Drawer drawer;
 
 		//Get the renderer to render to
 		SDL_Renderer* renderer{ drawer.startDrawing({scene.w, scene.h}, ge::Color{}) };
@@ -52,7 +54,7 @@ namespace ian {
 		}
 		//Update the texture component
 		F_FACTORY->rendererFactory.getComponent(mapRendererId)->texture = (drawer.finishDrawing());
-		F_FACTORY->positionFactory.getComponent(F_FACTORY->rendererFactory.getComponent(mapRendererId)->positionComponentId)->position = position;
+		F_FACTORY->positionFactory.getComponent(F_FACTORY->rendererFactory.getComponent(mapRendererId)->positionComponentId)->setPosition(position);
 
 		//SDL_SetTextureBlendMode(F_FACTORY->rendererFactory.getComponent(mapRendererId)->texture.get(), SDL_BLENDMODE_NONE);
 	}

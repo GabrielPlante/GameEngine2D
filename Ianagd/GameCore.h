@@ -23,9 +23,6 @@ namespace ian {
 
 		ge::Camera* camera;
 
-		//All the control system
-		std::shared_ptr<MovementSystem> movementSystem;
-
 		//The id of the player
 		unsigned int playerId;
 
@@ -55,9 +52,6 @@ namespace ian {
 
 		//Get factory factory pointer
 		FactoryFactory* getFactoryFactory() { return factoryFactory; }
-
-		//Set a destination for a component
-		void setDestination(unsigned int entityId, ge::Vector2<> destination, bool tileMovement = false);
 
 		//Get the player id
 		unsigned int getPlayerId() const { return playerId; }

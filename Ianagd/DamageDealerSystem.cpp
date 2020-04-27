@@ -30,11 +30,11 @@ namespace ian {
 		}
 
 		//The right coordinate
-		long finalX{ (startPosition.x < endPosition.x ? startPosition.x : endPosition.x) + gv::tileSize / 2 };
-		long finalY{ (startPosition.y < endPosition.y ? startPosition.y : endPosition.y) + gv::tileSize / 2 };
+		double finalX{ static_cast<double>((startPosition.x < endPosition.x ? startPosition.x : endPosition.x) + gv::tileSize / 2) };
+		double finalY{ static_cast<double>((startPosition.y < endPosition.y ? startPosition.y : endPosition.y) + gv::tileSize / 2) };
 		//The position component
 		PositionComponent positionComponent;
-		positionComponent.position = { finalX, finalY };
+		positionComponent.setPosition(ge::Vector2<double>{ finalX, finalY });
 		//The renderer component
 		RendererComponent rendererComponent;
 		rendererComponent.texture = drawer.finishDrawing();
@@ -61,15 +61,15 @@ namespace ian {
 				//For every health component
 				for (auto ith = F_FACTORY->healthFactory.getBeginningIterator(); ith != F_FACTORY->healthFactory.getEndIterator(); ith++) {
 					//If the health is in range of this damage dealer
-					if (F_FACTORY->positionFactory.getComponent(itd->positionComponentId)->position.distanceSquared(
-						F_FACTORY->positionFactory.getComponent(ith->positionComponentId)->position) < pow(itd->range, 2)) {
+					if (F_FACTORY->positionFactory.getComponent(itd->positionComponentId)->getPosition().distanceSquared(
+						F_FACTORY->positionFactory.getComponent(ith->positionComponentId)->getPosition()) < pow(itd->range, 2)) {
 						//Shot it
 						ith->health -= itd->damage;
 						itd->lastShotTime = ge::Engine::getInstance()->getTimeSinceStart();
 
 						//Create the graphic shot
-						shotRenderersId.push_back(createShot(F_FACTORY->positionFactory.getComponent(itd->positionComponentId)->position,
-							F_FACTORY->positionFactory.getComponent(ith->positionComponentId)->position));
+						shotRenderersId.push_back(createShot(F_FACTORY->positionFactory.getComponent(itd->positionComponentId)->getPosition(),
+							F_FACTORY->positionFactory.getComponent(ith->positionComponentId)->getPosition()));
 						//Escape this for loop to pass to the next damage dealer
 						break;
 					}

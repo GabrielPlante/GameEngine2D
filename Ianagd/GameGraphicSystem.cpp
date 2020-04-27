@@ -30,7 +30,7 @@ namespace ian {
 		//Update every renderer associated with an entity
 		for (auto it = F_FACTORY->rendererFactory.getBeginningIterator(); it != F_FACTORY->rendererFactory.getEndIterator(); it++) {
 			//Get the position of the component
-			ge::Vector2<> itPosition{ F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position };
+			ge::Vector2<> itPosition{ F_FACTORY->positionFactory.getComponent(it->positionComponentId)->getPosition() };
 			//Create his destination rectangle (ie where it is on the map) and take his size
 			ge::Rectangle dstRect{ itPosition.x - gv::tileSize / 2, itPosition.y - gv::tileSize / 2 , it->getSize().x, it->getSize().y };
 			//If the position is in the renderer, we draw it
@@ -44,7 +44,7 @@ namespace ian {
 		SDL_SetRenderDrawColor(window.getRenderer(), static_cast<Uint8>(255), 0, 0, static_cast<Uint8>(255));
 		for (auto it = F_FACTORY->healthFactory.getBeginningIterator(); it != F_FACTORY->healthFactory.getEndIterator(); it++) {
 			//Get the position of the component
-			ge::Vector2<> itPosition{ F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position };
+			ge::Vector2<> itPosition{ F_FACTORY->positionFactory.getComponent(it->positionComponentId)->getPosition() };
 			//Create his destination rectangle (ie where it is on the map) and take his size
 			ge::Rectangle dstRect{ itPosition.x - gv::tileSize / 2, itPosition.y - gv::tileSize, gv::tileSize * it->health / it->maxHealth, gv::tileSize / 10 };
 			if (GameCore::getInstance()->getCamera()->isInCamera(dstRect)) {
@@ -56,7 +56,7 @@ namespace ian {
 		//Render the UI just before the console
 		for (auto it = F_FACTORY->uiFactory.getBeginningIterator(); it != F_FACTORY->uiFactory.getEndIterator(); it++) {
 			if (it->texture.get() != nullptr) {
-				ge::Vector2<> texturePos{ F_FACTORY->positionFactory.getComponent(it->positionComponentId)->position };
+				ge::Vector2<> texturePos{ F_FACTORY->positionFactory.getComponent(it->positionComponentId)->getPosition() };
 				SDL_Rect textureRect{ ge::Rectangle{texturePos, it->getSize().x, it->getSize().y}.toSDL_Rect() };
 				SDL_RenderCopy(window.getRenderer(), it->texture.get(), NULL, &textureRect);
 			}

@@ -68,8 +68,7 @@ namespace ian {
 		ge::Engine::getInstance()->addGraphicSystem(gameGraphic);
 
 		//Create all the other systems
-		movementSystem = std::shared_ptr<MovementSystem>{ new MovementSystem{} };
-
+		std::shared_ptr<MovementSystem> movementSystem{ new MovementSystem{} };
 		unsigned int mapRendererId{ factoryFactory->rendererFactory.addComponent(RendererComponent{}) };
 		std::shared_ptr<MapSystem> mapSystem{ new MapSystem{mapRendererId} };
 		std::shared_ptr<ShotRendererSystem> shotRendererSystem{ new ShotRendererSystem{} };
@@ -132,6 +131,9 @@ namespace ian {
 		MapRepresentation<25, 25> mapRepresentation{ {0, 0}, map };
 		mapRepresentation.transfertToMap(&factoryFactory->map);
 
+		//Workaround for a bug with UI rendering
+		ge::Engine::getInstance()->update();
+
 		//Create the texture for the wrapper
 		ge::Drawer drawer;
 		SDL_Renderer* renderer{ drawer.startDrawing({gv::tileSize, gv::tileSize}, {0, 0, 255}) };
@@ -148,7 +150,7 @@ namespace ian {
 			->manageDamageDealer(25, 300, 1000);
 
 		//Create a text
-		/*ge::Rectangle textRect{ SCREEN_WIDTH / 2 - 200, 0, 400, 100 };
+		ge::Rectangle textRect{ SCREEN_WIDTH / 2 - 200, 0, 400, 100 };
 		renderer = drawer.startDrawing({ textRect.w, textRect.h }, { 100, 100, 100, 150 });
 		ge::TextInRect text{ { 0, 0, 0, 0 }, "Ianagd", renderer, { 0, 0 }, ge::Font{ textRect.h }, { 100, 100, 255 } };
 		text.render(renderer);
@@ -157,9 +159,9 @@ namespace ian {
 		textComponent.texture = drawer.finishDrawing();
 		SDL_SetTextureBlendMode(textComponent.texture.get(), SDL_BLENDMODE_BLEND);
 		PositionComponent textPos;
-		textPos.position = { textRect.x, textRect.y };
+		textPos.setPosition(ge::Vector2<>{ textRect.x, textRect.y });
 		textComponent.positionComponentId = factoryFactory->positionFactory.addComponent(std::move(textPos));
-		factoryFactory->uiFactory.addComponent(std::move(textComponent));*/
+		factoryFactory->uiFactory.addComponent(std::move(textComponent));
 	}
 
 	GameCore::~GameCore() {
@@ -168,12 +170,5 @@ namespace ian {
 
 	void GameCore::run() {
 		ge::Engine::getInstance()->mainLoop();
-	}
-
-	void GameCore::setDestination(unsigned int entityId, ge::Vector2<> destination, bool tileMovement) {
-		if (!tileMovement)
-			movementSystem->setDestination(factoryFactory->entityFactory.getComponent(entityId)->getComponentId(movementCompId), destination, tileMovement);
-		else
-			movementSystem->setDestination(factoryFactory->entityFactory.getComponent(entityId)->getComponentId(tileMovementCompId), destination, tileMovement);
 	}
 }
