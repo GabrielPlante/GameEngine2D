@@ -5,7 +5,7 @@ const std::vector<gv::WaveValues> gv::wavesValues{
 	gv::WaveValues{ 5, 100, 0.2f, 50, {100, 0, 0} },
 	gv::WaveValues{ 8, 100, 0.3f, 50, {128, 80, 80} },
 	gv::WaveValues{ 2, 800, 0.2f, 250, {255, 0, 0} },
-	gv::WaveValues{ 10, 300, 1, 200, {0, 0, 0}},
+	gv::WaveValues{ 10, 200, 1, 200, {0, 0, 0}},
 	gv::WaveValues{ 10, 2000, 0.6f, 200, {0, 0, 0}}
 };
 

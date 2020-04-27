@@ -18,9 +18,6 @@ namespace ian {
 
 		bool hasGameEnded{ false };
 
-		//Time since the last wave ended, 0 if a wave is already running
-		long long timeSinceLastWave;
-
 		//The number of the actual wave
 		int waveNbr{ 0 };
 

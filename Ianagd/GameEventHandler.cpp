@@ -9,8 +9,6 @@
 #include "GameValues.h"
 #include "GameCore.h"
 
-#include <iostream>
-
 namespace ian {
 	void buildTower(int type) {
 		ge::Vector2<int> mousPos;
@@ -100,6 +98,7 @@ namespace ian {
 			}
 			//If a mouse button is pressed
 			else if (event->type == SDL_MOUSEBUTTONDOWN) {
+				const ge::Vector2<int> mousePos{ getMousePos() };
 				if (event->button.button == SDL_BUTTON_LEFT) {
 					if (towerSelected > -1) {
 						buildTower(towerSelected);
@@ -107,12 +106,16 @@ namespace ian {
 					}
 					else {
 						for (int i = 0; i != gv::towersValues.size(); i++) {
-							ge::Vector2<int> mousePos{ getMousePos() };
 							if (mousePos.y > 800 - gv::tileSize && mousePos.x < (i + 1) * gv::tileSize) {
 								towerSelected = i;
 								break;
 							}
 						}
+					}
+					if (mousePos.x < 10 * gv::tileSize && mousePos.y < 2 * gv::tileSize && F_FACTORY->gameComponent.startNewWave == -1) {
+						F_FACTORY->gameComponent.startNewWave = 1;
+						F_FACTORY->positionFactory.getComponent(F_FACTORY->uiFactory.getComponent(F_FACTORY->gameComponent.starterUiId)->positionComponentId)
+							->setPosition(ge::Vector2<>{0, -gv::tileSize * 2});
 					}
 				}
 				else if (event->button.button == SDL_BUTTON_RIGHT) {

@@ -179,6 +179,18 @@ namespace ian {
 			towerComp.texture = drawer.finishDrawing();
 			factoryFactory->uiFactory.addComponent(std::move(towerComp));
 		}
+
+		//Create the starting button
+		ge::Rectangle startRect{ 0, 0, 10 * gv::tileSize, 2 * gv::tileSize };
+		renderer = drawer.startDrawing({ startRect.w, startRect.h }, { 100, 100, 100, 100 });
+		ge::TextInRect textStart{ { 100, 100, 100, 100 }, "Start wave", renderer, { 0, 0 }, ge::Font{ startRect.h }, { 100, 100, 255 } };
+		textStart.render(renderer);
+		PositionComponent startPosComp;
+		startPosComp.setPosition(ge::Vector2<long>{startRect.x, startRect.y});
+		UIComponent startComponent;
+		startComponent.positionComponentId = factoryFactory->positionFactory.addComponent(std::move(startPosComp));
+		startComponent.texture = drawer.finishDrawing(true);
+		factoryFactory->gameComponent.starterUiId = factoryFactory->uiFactory.addComponent(std::move(startComponent));
 	}
 
 	GameCore::~GameCore() {
