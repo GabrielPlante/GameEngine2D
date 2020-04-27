@@ -157,8 +157,7 @@ namespace ian {
 		text.render(renderer);
 
 		UIComponent textComponent;
-		textComponent.texture = drawer.finishDrawing();
-		SDL_SetTextureBlendMode(textComponent.texture.get(), SDL_BLENDMODE_BLEND);
+		textComponent.texture = drawer.finishDrawing(true);
 		PositionComponent textPos;
 		textPos.setPosition(ge::Vector2<>{ textRect.x, textRect.y });
 		textComponent.positionComponentId = factoryFactory->positionFactory.addComponent(std::move(textPos));
@@ -166,6 +165,20 @@ namespace ian {
 
 		//Update game values
 		factoryFactory->gameComponent.playerGold = gv::startingGold;
+
+		//Create tower button
+		for (int i = 0; i != gv::towersValues.size(); i++) {
+			renderer = drawer.startDrawing({ gv::tileSize, gv::tileSize }, gv::towersValues[i].color);
+			SDL_Rect towerRect{ ge::Rectangle{0, 0, gv::tileSize, gv::tileSize}.toSDL_Rect() };
+			SDL_RenderFillRect(renderer, &towerRect);
+			//Set the position to the bottom screen
+			PositionComponent posTower;
+			posTower.setPosition(ge::Vector2<>{i* gv::tileSize, SCREEN_HEIGHT - gv::tileSize});
+			UIComponent towerComp;
+			towerComp.positionComponentId = factoryFactory->positionFactory.addComponent(std::move(posTower));
+			towerComp.texture = drawer.finishDrawing();
+			factoryFactory->uiFactory.addComponent(std::move(towerComp));
+		}
 	}
 
 	GameCore::~GameCore() {

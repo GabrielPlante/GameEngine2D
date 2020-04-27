@@ -17,7 +17,6 @@ public:
 	//Value common to all wave
 	static constexpr long long timeBetweenWaves{ 2 * 1000 * 1000 };//In micro second
 	static constexpr long long timeBetweenSpawn{ 1000 * 1000 };//In micro second
-	static constexpr int nbrOfWave{ 5 };
 
 	struct WaveValues {
 		const int nbrOfEnemy;

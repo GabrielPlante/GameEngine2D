@@ -36,7 +36,7 @@ namespace ian {
 			if (wave->checkWaveEnded()) {
 				timeSinceLastWave = ge::Engine::getInstance()->getTimeSinceStart();
 				wave.reset();
-				if (waveNbr == gv::nbrOfWave) {
+				if (waveNbr == gv::wavesValues.size()) {
 					hasGameEnded = true;
 				}
 			}

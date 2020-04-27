@@ -8,6 +8,14 @@ namespace ian {
 	{
 	private: 
 		ge::Vector2<int> cameraMovement;
+
+		int towerSelected{ -1 };
+
+		unsigned int towerSelId{ 0 };
+		unsigned int towerRangeId{ 0 };
+
+		//Handle the tower selected ui
+		void handleTowSelUi();
 	public:
 		//Handle all the event
 		void update(SDL_Event* event) override;
