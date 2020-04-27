@@ -44,5 +44,8 @@ namespace ian {
 
 		//Check if the wave ended (ie: all the enemy are dead)
 		bool checkWaveEnded() { return entityIdList.empty() && nbrOfEnemy == 0; }
+
+		//Destructor
+		~Wave();
 	};
 }

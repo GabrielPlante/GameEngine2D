@@ -193,6 +193,27 @@ namespace ian {
 		factoryFactory->gameComponent.starterUiId = factoryFactory->uiFactory.addComponent(std::move(startComponent));
 	}
 
+	void GameCore::endGame() {
+		//Create a text
+		ge::Drawer drawer;
+		ge::Rectangle textRect{ SCREEN_WIDTH / 2 - 200, SCREEN_HEIGHT / 2 - 50, 400, 100 };
+		SDL_Renderer* renderer{ drawer.startDrawing({ textRect.w, textRect.h }, { 0, 0, 0, 0 }) };
+		std::string endText;
+		if (factoryFactory->gameComponent.startNewWave == 2)
+			endText = "You lost !";
+		else
+			endText = "You win !";
+		ge::TextInRect text{ { 0, 0, 0, 0 }, endText, renderer, { 0, 0 }, ge::Font{ textRect.h }, { 255, 50, 50 } };
+		text.render(renderer);
+
+		UIComponent textComponent;
+		textComponent.texture = drawer.finishDrawing(true);
+		PositionComponent textPos;
+		textPos.setPosition(ge::Vector2<>{ textRect.x, textRect.y });
+		textComponent.positionComponentId = factoryFactory->positionFactory.addComponent(std::move(textPos));
+		factoryFactory->uiFactory.addComponent(std::move(textComponent));
+	}
+
 	GameCore::~GameCore() {
 		ge::Engine::quit();
 	}

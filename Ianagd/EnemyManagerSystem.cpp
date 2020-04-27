@@ -2,7 +2,6 @@
 
 #include "../GameEngine2D/Rectangle.h"
 #include "../GameEngine2D/Engine.h"
-#include "../GameEngine2D/Drawer.h"
 
 #include "FactoryFactory.h"
 #include "PathFinder.h"
@@ -28,6 +27,10 @@ namespace ian {
 		//If we are in a wave
 		else if (F_FACTORY->gameComponent.startNewWave == 0) {
 			ge::Vector2<int> waveStat{ wave->update() };
+			if (waveStat.y > 0) {
+				hasGameEnded = true;
+				F_FACTORY->gameComponent.startNewWave = 2;
+			}
 			F_FACTORY->gameComponent.playerGold += waveStat.x * gv::wavesValues[waveNbr - 1].goldPerEnemy;
 			//If the wave ended
 			if (wave->checkWaveEnded()) {
@@ -35,12 +38,17 @@ namespace ian {
 				F_FACTORY->gameComponent.startNewWave = -1;
 				if (waveNbr == gv::wavesValues.size()) {
 					hasGameEnded = true;
+					F_FACTORY->gameComponent.startNewWave = 3;
 				}
 				else {
 					F_FACTORY->positionFactory.getComponent(F_FACTORY->uiFactory.getComponent(F_FACTORY->gameComponent.starterUiId)->positionComponentId)
 						->setPosition(ge::Vector2<>{0, 0});
 				}
 			}
+		}
+		if (hasGameEnded) {
+			wave.reset();
+			GameCore::getInstance()->endGame();
 		}
 	}
 }

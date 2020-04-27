@@ -56,6 +56,9 @@ namespace ian {
 		//Get the tower manager
 		TowerManager* getTowerManager() { return &towerManager; }
 
+		//End the game
+		void endGame();
+
 		//Run the game
 		void run();
 	};

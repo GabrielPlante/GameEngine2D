@@ -91,4 +91,11 @@ namespace ian {
 		}
 		return nbrOfFinished;
 	}
+
+	Wave::~Wave() {
+		while (!entityIdList.empty()) {
+			F_FACTORY->deleteEntity(entityIdList[entityIdList.size()-1]);
+			entityIdList.pop_back();
+		}
+	}
 }
