@@ -2,6 +2,12 @@
 
 namespace ian {
 
+	constexpr int interWave{ -1 };
+	constexpr int waveInProgress{ 0 };
+	constexpr int goForNextWave{ 1 };
+	constexpr int playerLost{ 2 };
+	constexpr int playerWin{ 3 };
+
 	//This component hold every object global to the game
 	class GameComponent
 	{

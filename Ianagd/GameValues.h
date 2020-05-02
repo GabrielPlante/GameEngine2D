@@ -30,6 +30,7 @@ public:
 
 	//Wave values
 	static const std::vector<WaveValues> wavesValues;
+	static constexpr int nbrOfEnemyForLoss{ 0 };
 
 	//Other game values
 	static constexpr int startingGold{ 150 };

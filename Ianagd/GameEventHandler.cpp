@@ -112,8 +112,8 @@ namespace ian {
 							}
 						}
 					}
-					if (mousePos.x < 10 * gv::tileSize && mousePos.y < 2 * gv::tileSize && F_FACTORY->gameComponent.startNewWave == -1) {
-						F_FACTORY->gameComponent.startNewWave = 1;
+					if (mousePos.x < 10 * gv::tileSize && mousePos.y < 2 * gv::tileSize && F_FACTORY->gameComponent.startNewWave == interWave) {
+						F_FACTORY->gameComponent.startNewWave = goForNextWave;
 						F_FACTORY->positionFactory.getComponent(F_FACTORY->uiFactory.getComponent(F_FACTORY->gameComponent.starterUiId)->positionComponentId)
 							->setPosition(ge::Vector2<>{0, -gv::tileSize * 2});
 					}

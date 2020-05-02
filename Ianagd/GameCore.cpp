@@ -199,7 +199,7 @@ namespace ian {
 		ge::Rectangle textRect{ SCREEN_WIDTH / 2 - 200, SCREEN_HEIGHT / 2 - 50, 400, 100 };
 		SDL_Renderer* renderer{ drawer.startDrawing({ textRect.w, textRect.h }, { 0, 0, 0, 0 }) };
 		std::string endText;
-		if (factoryFactory->gameComponent.startNewWave == 2)
+		if (factoryFactory->gameComponent.startNewWave == playerLost)
 			endText = "You lost !";
 		else
 			endText = "You win !";

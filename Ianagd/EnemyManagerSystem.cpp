@@ -18,37 +18,39 @@ namespace ian {
 		if (hasGameEnded)
 			return;
 		//If it is time to begin a new wave
-		if (F_FACTORY->gameComponent.startNewWave == 1) {
-			F_FACTORY->gameComponent.startNewWave = 0;
+		if (F_FACTORY->gameComponent.startNewWave == goForNextWave) {
+			F_FACTORY->gameComponent.startNewWave = waveInProgress;
 			waveNbr++;
 			wave = std::unique_ptr<Wave>{ new Wave{gv::wavesValues[waveNbr - 1].nbrOfEnemy, gv::wavesValues[waveNbr - 1].enemyHealth,
 				gv::wavesValues[waveNbr - 1].enemySpeed, spawnTile, destinationTile, gv::wavesValues[waveNbr - 1].color} };
 		}
 		//If we are in a wave
-		else if (F_FACTORY->gameComponent.startNewWave == 0) {
+		else if (F_FACTORY->gameComponent.startNewWave == waveInProgress) {
 			ge::Vector2<int> waveStat{ wave->update() };
-			if (waveStat.y > 0) {
+			//If any enemy cross the line
+			if (waveStat.y > gv::nbrOfEnemyForLoss) {
 				hasGameEnded = true;
-				F_FACTORY->gameComponent.startNewWave = 2;
+				F_FACTORY->gameComponent.startNewWave = playerLost;
 			}
-			F_FACTORY->gameComponent.playerGold += waveStat.x * gv::wavesValues[waveNbr - 1].goldPerEnemy;
 			//If the wave ended
-			if (wave->checkWaveEnded()) {
+			else if (wave->checkWaveEnded()) {
 				wave.reset();
-				F_FACTORY->gameComponent.startNewWave = -1;
+				F_FACTORY->gameComponent.startNewWave = interWave;
 				if (waveNbr == gv::wavesValues.size()) {
 					hasGameEnded = true;
-					F_FACTORY->gameComponent.startNewWave = 3;
+					F_FACTORY->gameComponent.startNewWave = playerWin;
 				}
 				else {
 					F_FACTORY->positionFactory.getComponent(F_FACTORY->uiFactory.getComponent(F_FACTORY->gameComponent.starterUiId)->positionComponentId)
 						->setPosition(ge::Vector2<>{0, 0});
 				}
 			}
+			F_FACTORY->gameComponent.playerGold += waveStat.x * gv::wavesValues[waveNbr - 1].goldPerEnemy;
 		}
 		if (hasGameEnded) {
 			wave.reset();
 			GameCore::getInstance()->endGame();
 		}
+
 	}
 }
