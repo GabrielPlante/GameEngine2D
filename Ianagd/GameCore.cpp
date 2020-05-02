@@ -23,6 +23,7 @@
 #include "MapSystem.h"
 
 //Include the command
+#include "CommandToggleGraphics.h"
 #include "CommandQuitConsole.h"
 #include "CommandEntityInfo.h"
 #include "CommandResetZoom.h"
@@ -87,10 +88,11 @@ namespace ian {
 		factoryFactory->rendererFactory.getComponent(mapRendererId)->positionComponentId = factoryFactory->positionFactory.addComponent(PositionComponent{});
 		
 		//Add the command to the command list
+		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandToggleGraphics{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandQuitConsole{}}));
-		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandZoom{}}));
-		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandResetZoom{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandEntityInfo{}}));
+		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandResetZoom{}}));
+		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandZoom{}}));
 
 		CONSOLE_LOG("GameCore successfully initialised")
 		CONSOLE_LOG("You can use the command quitconsole or the escape button to leave the console")
@@ -133,21 +135,6 @@ namespace ian {
 
 		//Workaround for a bug with UI rendering
 		ge::Engine::getInstance()->update();
-
-		//Create the texture for the wrapper
-		/*ge::Drawer drawer;
-		SDL_Renderer* renderer{ drawer.startDrawing({gv::tileSize, gv::tileSize}, {0, 0, 255}) };
-		SDL_Rect rect{ ge::Rectangle{0, 0, gv::tileSize, gv::tileSize}.toSDL_Rect() };
-		SDL_RenderFillRect(renderer, &rect);
-		ge::TextureWrapper texture{ drawer.finishDrawing() };
-
-		//Create the tower
-		unsigned int towerId{ factoryFactory->createEntity({positionCompId, rendererCompId, damageDealerCompId}) };
-		factoryFactory->entityFactory.getComponent(towerId)
-			//->managePosition({ factoryFactory->map.relativeToAbsolute({5, 3}) })
-			->managePosition({ factoryFactory->map.relativeToAbsolute({9, 13}) })
-			->manageRenderer(texture)
-			->manageDamageDealer(25, 300, 1000);*/
 
 		//Create a text
 		ge::Drawer drawer;
@@ -194,24 +181,30 @@ namespace ian {
 	}
 
 	void GameCore::endGame() {
-		//Create a text
-		ge::Drawer drawer;
-		ge::Rectangle textRect{ SCREEN_WIDTH / 2 - 200, SCREEN_HEIGHT / 2 - 50, 400, 100 };
-		SDL_Renderer* renderer{ drawer.startDrawing({ textRect.w, textRect.h }, { 0, 0, 0, 0 }) };
-		std::string endText;
-		if (factoryFactory->gameComponent.startNewWave == playerLost)
-			endText = "You lost !";
-		else
-			endText = "You win !";
-		ge::TextInRect text{ { 0, 0, 0, 0 }, endText, renderer, { 0, 0 }, ge::Font{ textRect.h }, { 255, 50, 50 } };
-		text.render(renderer);
+		if (factoryFactory->gameComponent.graphicsOn) {
+			//Create a text
+			ge::Drawer drawer;
+			ge::Rectangle textRect{ SCREEN_WIDTH / 2 - 200, SCREEN_HEIGHT / 2 - 50, 400, 100 };
+			SDL_Renderer* renderer{ drawer.startDrawing({ textRect.w, textRect.h }, { 0, 0, 0, 0 }) };
+			std::string endText;
+			if (factoryFactory->gameComponent.startNewWave == playerLost)
+				endText = "You lost !";
+			else
+				endText = "You win !";
+			ge::TextInRect text{ { 0, 0, 0, 0 }, endText, renderer, { 0, 0 }, ge::Font{ textRect.h }, { 255, 50, 50 } };
+			text.render(renderer);
 
-		UIComponent textComponent;
-		textComponent.texture = drawer.finishDrawing(true);
-		PositionComponent textPos;
-		textPos.setPosition(ge::Vector2<>{ textRect.x, textRect.y });
-		textComponent.positionComponentId = factoryFactory->positionFactory.addComponent(std::move(textPos));
-		factoryFactory->uiFactory.addComponent(std::move(textComponent));
+			UIComponent textComponent;
+			textComponent.texture = drawer.finishDrawing(true);
+			PositionComponent textPos;
+			textPos.setPosition(ge::Vector2<>{ textRect.x, textRect.y });
+			textComponent.positionComponentId = factoryFactory->positionFactory.addComponent(std::move(textPos));
+			factoryFactory->uiFactory.addComponent(std::move(textComponent));
+		}
+		if (factoryFactory->gameComponent.startNewWave == playerLost)
+			CONSOLE_LOG("You lost")
+		else
+			CONSOLE_LOG("You win")
 	}
 
 	GameCore::~GameCore() {

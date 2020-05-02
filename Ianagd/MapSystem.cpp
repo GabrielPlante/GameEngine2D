@@ -60,7 +60,7 @@ namespace ian {
 	}
 
 	void MapSystem::update() {
-		if (!(GameCore::getInstance()->getCamera()->getRectangle() == previousCameraRectangle)) {
+		if (F_FACTORY->gameComponent.graphicsOn && !(GameCore::getInstance()->getCamera()->getRectangle() == previousCameraRectangle)) {
 			renderMap();
 		}
 	}

@@ -18,5 +18,8 @@ namespace ian {
 		int startNewWave{ -1 };
 
 		unsigned int starterUiId{ 0 };
+
+		//Are the graphic off the game on
+		bool graphicsOn{ true };
 	};
 }

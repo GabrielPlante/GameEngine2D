@@ -217,5 +217,8 @@
     <ClInclude Include="TowerManager.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="CommandToggleGraphics.h">
+      <Filter>Header Files\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

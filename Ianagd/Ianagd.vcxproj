@@ -160,6 +160,7 @@
     <ClInclude Include="CommandEntityInfo.h" />
     <ClInclude Include="CommandQuitConsole.h" />
     <ClInclude Include="CommandResetZoom.h" />
+    <ClInclude Include="CommandToggleGraphics.h" />
     <ClInclude Include="CommandZoom.h" />
     <ClInclude Include="DamageDealerComponent.h" />
     <ClInclude Include="DamageDealerSystem.h" />

@@ -8,13 +8,15 @@
 namespace ian {
 
 	void ShotRendererSystem::update() {
-		for (auto it = F_FACTORY->shotRendererFactory.getBeginningIterator(); it != F_FACTORY->shotRendererFactory.getEndIterator(); it++) {
-			ge::Vector2<int> size{ F_FACTORY->rendererFactory.getComponent(it->rendererCompId)->getSize() };
+		if (F_FACTORY->gameComponent.graphicsOn) {
+			for (auto it = F_FACTORY->shotRendererFactory.getBeginningIterator(); it != F_FACTORY->shotRendererFactory.getEndIterator(); it++) {
+				ge::Vector2<int> size{ F_FACTORY->rendererFactory.getComponent(it->rendererCompId)->getSize() };
 
-			SDL_SetTextureAlphaMod(F_FACTORY->rendererFactory.getComponent(it->rendererCompId)->texture.get(), it->alpha);
+				SDL_SetTextureAlphaMod(F_FACTORY->rendererFactory.getComponent(it->rendererCompId)->texture.get(), it->alpha);
 
-			//Decrement the alpha
-			it->alpha -= 5;
+				//Decrement the alpha
+				it->alpha -= 5;
+			}
 		}
 	}
 }

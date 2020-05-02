@@ -67,9 +67,11 @@ namespace ian {
 						ith->health -= itd->damage;
 						itd->lastShotTime = ge::Engine::getInstance()->getTimeSinceStart();
 
-						//Create the graphic shot
-						shotRenderersId.push_back(createShot(F_FACTORY->positionFactory.getComponent(itd->positionComponentId)->getPosition(),
-							F_FACTORY->positionFactory.getComponent(ith->positionComponentId)->getPosition()));
+						if (F_FACTORY->gameComponent.graphicsOn) {
+							//Create the graphic shot
+							shotRenderersId.push_back(createShot(F_FACTORY->positionFactory.getComponent(itd->positionComponentId)->getPosition(),
+								F_FACTORY->positionFactory.getComponent(ith->positionComponentId)->getPosition()));
+						}
 						//Escape this for loop to pass to the next damage dealer
 						break;
 					}
