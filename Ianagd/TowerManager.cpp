@@ -7,8 +7,6 @@
 #include "GameValues.h"
 #include "GameCore.h"
 
-#include <iostream>
-
 namespace ian {
 	bool TowerManager::buildTower(ge::Vector2<> position, int type) {
 		//If the player doesn't have enough money to buy it

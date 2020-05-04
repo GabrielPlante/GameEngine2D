@@ -32,8 +32,13 @@ namespace ge {
 
 		//Delete a component
 		void deleteComponent(unsigned int id);
+
+		//Clear the factory
+		void clear();
 	};
 
+
+	//Function definition are here because of template restriction
 
 	template <typename Component>
 	unsigned int Factory<Component>::addComponent(Component&& component) {
@@ -69,6 +74,19 @@ namespace ge {
 			}
 			it++;
 		}
+	}
+
+	template <typename Component>
+	void Factory<Component>::clear() {
+		//Clear the vector containing the object
+		componentList.clear();
+
+		//Clear the map
+		iDtoPlace.clear();
+
+		//Reset the id generator
+		iDGenerator = IDGenerator<>{};
+
 	}
 
 }

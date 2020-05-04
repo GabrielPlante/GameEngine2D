@@ -22,7 +22,7 @@ namespace ge {
 		T y;
 
 		//Constructor taking position
-		Vector2(T x, T y) :x{ x }, y{ y } {}
+		constexpr Vector2(T x, T y) :x{ x }, y{ y } {}
 
 		//Constructor with a SDL_Point
 		Vector2(const SDL_Point& point) :x{ point.x }, y{ point.y } {}

@@ -94,6 +94,9 @@ namespace ge {
 		//Get the size of the system stack
 		size_t getSystemSize() const { return systems.size(); }
 
+		//Clear every systems except the graphic and the event system
+		void clearSystems() { systems.clear(); }
+
 		//Stop the main loop, stopping the engine
 		void stop() { keepRunning = false; }
 

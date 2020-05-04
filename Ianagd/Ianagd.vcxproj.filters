@@ -220,5 +220,8 @@
     <ClInclude Include="CommandToggleGraphics.h">
       <Filter>Header Files\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="CommandRestartGame.h">
+      <Filter>Header Files\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

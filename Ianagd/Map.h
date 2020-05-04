@@ -29,5 +29,7 @@ namespace ian {
 		//Add a tile to the map. If the tile already exist it is replaced. If the tile is not connected to the other it generate empty tile
 		void addTile(ge::Vector2<int> tileCoordinate, TileComponent&& tile);
 
+		//Clear the map
+		void clearMap() { tileMap.clear(); }
 	};
 }

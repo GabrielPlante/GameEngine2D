@@ -24,6 +24,7 @@
 
 //Include the command
 #include "CommandToggleGraphics.h"
+#include "CommandRestartGame.h"
 #include "CommandQuitConsole.h"
 #include "CommandEntityInfo.h"
 #include "CommandResetZoom.h"
@@ -32,6 +33,9 @@
 //Size of the screen
 constexpr int SCREEN_WIDTH{ 1400 };
 constexpr int SCREEN_HEIGHT{ 800 };
+
+constexpr ge::Vector2<int> enemyStartPosition{ 0, 2 };
+constexpr ge::Vector2<int> enemyEndPosition{ 22, 24 };
 
 namespace ian {
 
@@ -52,6 +56,27 @@ namespace ian {
 		}
 	}
 
+	void addSystem(FactoryFactory* factoryFactory) {
+		//Create all the other systems
+		std::shared_ptr<MovementSystem> movementSystem{ new MovementSystem{} };
+		unsigned int mapRendererId{ factoryFactory->rendererFactory.addComponent(RendererComponent{}) };
+		std::shared_ptr<MapSystem> mapSystem{ new MapSystem{mapRendererId} };
+		std::shared_ptr<ShotRendererSystem> shotRendererSystem{ new ShotRendererSystem{} };
+		std::shared_ptr<GameSystem> gameSystem{ new GameSystem{} };
+		std::shared_ptr<DamageDealerSystem> damageDealerSystem{ new DamageDealerSystem{} };
+		std::shared_ptr<EnemyManagerSystem> enemyManagerSystem{ new EnemyManagerSystem{enemyStartPosition, enemyEndPosition } };
+
+		//Add them to the engine
+		ge::Engine::getInstance()->addSystem(enemyManagerSystem);
+		ge::Engine::getInstance()->addSystem(damageDealerSystem);
+		ge::Engine::getInstance()->addSystem(shotRendererSystem);
+		ge::Engine::getInstance()->addSystem(movementSystem);
+		ge::Engine::getInstance()->addSystem(gameSystem);
+		ge::Engine::getInstance()->addSystem(mapSystem);
+
+		factoryFactory->rendererFactory.getComponent(mapRendererId)->positionComponentId = factoryFactory->positionFactory.addComponent(PositionComponent{});
+	}
+
 	GameCore::GameCore()
 	{
 		//Initialise the engine
@@ -68,27 +93,12 @@ namespace ian {
 		ge::Drawer::addRenderer(gameGraphic->getWindowRenderer());
 		ge::Engine::getInstance()->addGraphicSystem(gameGraphic);
 
-		//Create all the other systems
-		std::shared_ptr<MovementSystem> movementSystem{ new MovementSystem{} };
-		unsigned int mapRendererId{ factoryFactory->rendererFactory.addComponent(RendererComponent{}) };
-		std::shared_ptr<MapSystem> mapSystem{ new MapSystem{mapRendererId} };
-		std::shared_ptr<ShotRendererSystem> shotRendererSystem{ new ShotRendererSystem{} };
-		std::shared_ptr<GameSystem> gameSystem{ new GameSystem{} };
-		std::shared_ptr<DamageDealerSystem> damageDealerSystem{ new DamageDealerSystem{} };
-		std::shared_ptr<EnemyManagerSystem> enemyManagerSystem{ new EnemyManagerSystem{{0, 2}, {22, 24} } };
-
-		//Add them to the engine
-		ge::Engine::getInstance()->addSystem(enemyManagerSystem);
-		ge::Engine::getInstance()->addSystem(damageDealerSystem);
-		ge::Engine::getInstance()->addSystem(shotRendererSystem);
-		ge::Engine::getInstance()->addSystem(movementSystem);
-		ge::Engine::getInstance()->addSystem(gameSystem);
-		ge::Engine::getInstance()->addSystem(mapSystem);
-
-		factoryFactory->rendererFactory.getComponent(mapRendererId)->positionComponentId = factoryFactory->positionFactory.addComponent(PositionComponent{});
-		
+		//Add every other system
+		addSystem(factoryFactory);
+	
 		//Add the command to the command list
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandToggleGraphics{}}));
+		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandRestartGame{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandQuitConsole{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandEntityInfo{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandResetZoom{}}));
@@ -205,6 +215,37 @@ namespace ian {
 			CONSOLE_LOG("You lost")
 		else
 			CONSOLE_LOG("You win")
+	}
+
+	void GameCore::restartGame() {
+		//Clear the engine
+		ge::Engine::getInstance()->clearSystems();
+
+		//Clear the factories
+		factoryFactory->entityFactory.clear();
+		factoryFactory->positionFactory.clear();
+		factoryFactory->rendererFactory.clear();
+		factoryFactory->uiFactory.clear();
+		factoryFactory->movementFactory.clear();
+		factoryFactory->healthFactory.clear();
+		factoryFactory->damageDealerFactory.clear();
+		factoryFactory->shotRendererFactory.clear();
+		factoryFactory->tileMovementFactory.clear();
+
+		//Reset the game component
+		factoryFactory->gameComponent = GameComponent{};
+
+		//Clear the map
+		factoryFactory->map.clearMap();
+
+		//Clear the tower manager
+		towerManager.clear();
+
+		//Add the systems
+		addSystem(factoryFactory);
+
+		//Setup the game
+		setupGame();
 	}
 
 	GameCore::~GameCore() {

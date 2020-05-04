@@ -59,6 +59,9 @@ namespace ian {
 		//End the game
 		void endGame();
 
+		//Restart the game
+		void restartGame();
+
 		//Run the game
 		void run();
 	};
