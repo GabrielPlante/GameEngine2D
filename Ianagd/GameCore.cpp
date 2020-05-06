@@ -24,9 +24,11 @@
 
 //Include the command
 #include "CommandToggleGraphics.h"
+#include "CommandStartNewWave.h"
 #include "CommandRestartGame.h"
 #include "CommandQuitConsole.h"
 #include "CommandEntityInfo.h"
+#include "CommandPlaceTower.h"
 #include "CommandResetZoom.h"
 #include "CommandZoom.h"
 
@@ -98,9 +100,11 @@ namespace ian {
 	
 		//Add the command to the command list
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandToggleGraphics{}}));
+		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandStartNewWave{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandRestartGame{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandQuitConsole{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandEntityInfo{}}));
+		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandPlaceTower{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandResetZoom{}}));
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandZoom{}}));
 

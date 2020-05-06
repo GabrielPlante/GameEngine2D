@@ -223,5 +223,11 @@
     <ClInclude Include="CommandRestartGame.h">
       <Filter>Header Files\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="CommandPlaceTower.h">
+      <Filter>Header Files\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandStartNewWave.h">
+      <Filter>Header Files\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

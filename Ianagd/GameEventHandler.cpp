@@ -15,7 +15,10 @@ namespace ian {
 		SDL_GetMouseState(&mousPos.x, &mousPos.y);
 		mousPos.x += gv::tileSize / 2;
 		mousPos.y += gv::tileSize / 2;
-		GameCore::getInstance()->getTowerManager()->buildTower(GameCore::getInstance()->getCamera()->relativeToAbsolute(mousPos.x, mousPos.y), type);
+		ge::Vector2<> absoluteMousePos{ GameCore::getInstance()->getCamera()->relativeToAbsolute(mousPos.x, mousPos.y) };
+		std::vector<float> args{ static_cast<float>(absoluteMousePos.x), static_cast<float>(absoluteMousePos.y), static_cast<float>(type) };
+		//ge::CommandList::getInstance()->executeCommand("place_tower", args);
+		EXEC_ARGS("place_tower", args)
 	}
 
 	//Draw a circle : https://stackoverflow.com/questions/38334081/howto-draw-circles-arcs-and-vector-graphics-in-sdl
@@ -73,7 +76,8 @@ namespace ian {
 			else if (event->type == SDL_KEYDOWN) {
 				//If the key is the a letter on the keyboard
 				if (event->key.keysym.sym == SDLK_a) {
-					ge::CommandList::getInstance()->executeCommand("openconsole");
+					//ge::CommandList::getInstance()->executeCommand("openconsole");
+					EXEC("openconsole")
 				}
 				if (event->key.keysym.sym == SDLK_LEFT) {
 					cameraMovement.x = -1;
@@ -100,10 +104,12 @@ namespace ian {
 			else if (event->type == SDL_MOUSEBUTTONDOWN) {
 				const ge::Vector2<int> mousePos{ getMousePos() };
 				if (event->button.button == SDL_BUTTON_LEFT) {
+					//If the player already selected a tower, build it
 					if (towerSelected > -1) {
 						buildTower(towerSelected);
 						towerSelected = -1;
 					}
+					//If the player didn't select a tower, check if he selected it
 					else {
 						for (int i = 0; i != gv::towersValues.size(); i++) {
 							if (mousePos.y > 800 - gv::tileSize && mousePos.x < (i + 1) * gv::tileSize) {
@@ -113,9 +119,7 @@ namespace ian {
 						}
 					}
 					if (mousePos.x < 10 * gv::tileSize && mousePos.y < 2 * gv::tileSize && F_FACTORY->gameComponent.startNewWave == interWave) {
-						F_FACTORY->gameComponent.startNewWave = goForNextWave;
-						F_FACTORY->positionFactory.getComponent(F_FACTORY->uiFactory.getComponent(F_FACTORY->gameComponent.starterUiId)->positionComponentId)
-							->setPosition(ge::Vector2<>{0, -gv::tileSize * 2});
+						EXEC("start_new_wave")
 					}
 				}
 				else if (event->button.button == SDL_BUTTON_RIGHT) {
@@ -148,8 +152,7 @@ namespace ian {
 			//Start the rendering proccess
 			SDL_Renderer* renderer{ drawer.startDrawing({gv::tileSize, gv::tileSize}, uiColor) };
 			ge::Vector2<int> mousPos{ getMousePos() };
-			SDL_Rect rect{ ge::Rectangle{0, 0, gv::tileSize, gv::tileSize}.toSDL_Rect() };
-			SDL_RenderFillRect(renderer, &rect);
+			SDL_RenderFillRect(renderer, NULL);
 			//Create the position component
 			PositionComponent posComp;
 			posComp.setPosition(ge::Vector2<double>{ static_cast<double>(mousPos.x), static_cast<double>(mousPos.y) });

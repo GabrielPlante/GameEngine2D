@@ -158,9 +158,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandEntityInfo.h" />
+    <ClInclude Include="CommandPlaceTower.h" />
     <ClInclude Include="CommandQuitConsole.h" />
     <ClInclude Include="CommandResetZoom.h" />
     <ClInclude Include="CommandRestartGame.h" />
+    <ClInclude Include="CommandStartNewWave.h" />
     <ClInclude Include="CommandToggleGraphics.h" />
     <ClInclude Include="CommandZoom.h" />
     <ClInclude Include="DamageDealerComponent.h" />

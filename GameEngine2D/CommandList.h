@@ -3,6 +3,9 @@
 #include <set>
 #include <memory>
 
+#define EXEC(X) ge::CommandList::getInstance()->executeCommand(X);
+#define EXEC_ARGS(X, Y) ge::CommandList::getInstance()->executeCommand(X, Y);
+
 namespace ge {
 	class Command;
 

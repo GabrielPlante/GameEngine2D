@@ -31,8 +31,7 @@ namespace ian {
 		//Make the texture (one for every entity)
 		ge::Drawer drawer;
 		SDL_Renderer* renderer{ drawer.startDrawing({gv::tileSize, gv::tileSize}, enemyColor) };
-		SDL_Rect rect{ ge::Rectangle{0, 0, gv::tileSize, gv::tileSize}.toSDL_Rect() };
-		SDL_RenderFillRect(renderer, &rect);
+		SDL_RenderFillRect(renderer, NULL);
 		enemyTexture = drawer.finishDrawing();
 
 		//Spawn one entity
