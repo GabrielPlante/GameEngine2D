@@ -76,8 +76,8 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>..\Dependencies\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Dependencies\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\gabri\source\repos\GabrielPlante\GameEngine2D\Dependencies\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\gabri\source\repos\GabrielPlante\GameEngine2D\Dependencies\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -98,6 +98,7 @@
       <ConformanceMode>true</ConformanceMode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <EnablePREfast>false</EnablePREfast>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,6 +144,7 @@
     <ClCompile Include="Angle.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CircleCreator.cpp" />
     <ClCompile Include="CommandFps.cpp" />
     <ClCompile Include="CommandList.cpp" />
     <ClCompile Include="ComponentHandle.cpp" />
@@ -154,10 +156,12 @@
     <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GraphicSystem.cpp" />
+    <ClCompile Include="HexagonCreator.cpp" />
     <ClCompile Include="InputBar.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="Publisher.cpp" />
+    <ClCompile Include="RectangleCreator.cpp" />
     <ClCompile Include="RenderableRectangle.cpp" />
     <ClCompile Include="SDLInit.cpp" />
     <ClCompile Include="Subscriber.cpp" />
@@ -171,6 +175,7 @@
     <ClInclude Include="Angle.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CircleCreator.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Command.h" />
@@ -190,13 +195,16 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="EventSystem.h" />
-    <ClInclude Include="Factory.h" />
+    <ClInclude Include="HexagonCreator.h" />
+    <ClInclude Include="RectangleCreator.h" />
+    <ClInclude Include="Storage.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GraphicSystem.h" />
     <ClInclude Include="Handle.h" />
     <ClInclude Include="IDGenerator.h" />
     <ClInclude Include="InputBar.h" />
     <ClInclude Include="Message.h" />
+    <ClInclude Include="TextureCreator.h" />
     <ClInclude Include="TextureWrapper.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Publisher.h" />
@@ -212,6 +220,7 @@
     <ClInclude Include="TextInput.h" />
     <ClInclude Include="TextInRect.h" />
     <ClInclude Include="TextToCommand.h" />
+    <ClInclude Include="VectorOfVector.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

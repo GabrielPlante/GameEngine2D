@@ -39,7 +39,7 @@ namespace ge {
 			CONSOLE_LOG("Event handler popped");
 		}
 		else {
-			CONSOLE_LOG_ERROR("Error: tried to pop the last event handler of the pile")
+			CONSOLE_LOG_ERROR("Error: tried to pop the last event handler of the pile");
 		}
 	}
 }

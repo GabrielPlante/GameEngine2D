@@ -19,7 +19,7 @@ namespace ge {
 			if (!Console::getInstance()->isOpened())
 				Engine::getInstance()->pushEventHandler(std::move(std::unique_ptr<EventHandler>{new ConsoleEventHandler{}}));
 			else
-				CONSOLE_LOG_ERROR("Error: Console already opened")
+				CONSOLE_LOG_ERROR("Error: Console already opened");
 		}
 	};
 }

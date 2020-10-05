@@ -7,16 +7,16 @@
 
 namespace ge {
 	/*
-	 * Factory is the template class that will hold every component of a component type
+	 * Storage is the template class that will hold every component of a component type
 	 * The id given after adding a component is garanted not to change
 	*/
 	template <typename Component>
-	class Factory
+	class Storage
 	{
 	private:
-		IDGenerator<> iDGenerator;
-		std::vector<Component> componentList;
-		std::unordered_map<unsigned int, unsigned int> iDtoPlace;
+		static IDGenerator<> iDGenerator;
+		static std::vector<Component> componentList;
+		static std::unordered_map<unsigned int, unsigned int> iDtoPlace;
 	public:
 		//Add a component to the list, and return an id for the component
 		unsigned int addComponent(Component&& component);
@@ -37,11 +37,19 @@ namespace ge {
 		void clear();
 	};
 
+	//Static member initialisation
+	template <typename T>
+	IDGenerator<> Storage<T>::iDGenerator{};
+	template <typename T>
+	std::vector<T> Storage<T>::componentList{};
+	template <typename T>
+	std::unordered_map<unsigned int, unsigned int> Storage<T>::iDtoPlace{};
+
 
 	//Function definition are here because of template restriction
 
 	template <typename Component>
-	unsigned int Factory<Component>::addComponent(Component&& component) {
+	unsigned int Storage<Component>::addComponent(Component&& component) {
 		//Push the component in the list
 		componentList.push_back(component);
 
@@ -56,7 +64,7 @@ namespace ge {
 	}
 
 	template <typename Component>
-	void Factory<Component>::deleteComponent(unsigned int id) {
+	void Storage<Component>::deleteComponent(unsigned int id) {
 		//Get the place of the component to delete
 		unsigned int componentPlace{ iDtoPlace.find(id)->second };
 
@@ -77,7 +85,7 @@ namespace ge {
 	}
 
 	template <typename Component>
-	void Factory<Component>::clear() {
+	void Storage<Component>::clear() {
 		//Clear the vector containing the object
 		componentList.clear();
 

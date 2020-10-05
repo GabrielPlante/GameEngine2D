@@ -2,6 +2,7 @@
 #include <SDL.h>
 //To avoid conflict with the actual main
 #undef main
+#include <string>
 
 namespace ge {
 	class Window
@@ -14,7 +15,7 @@ namespace ge {
 		const int screenHeight;
 	public:
 		//Constructor
-		Window(const int screenWidth, const int screenHeight);
+		Window(const int screenWidth, const int screenHeight, const std::string& title = "Ianagd");
 
 		//Clear the window (call before drawing anything)
 		void clear() {

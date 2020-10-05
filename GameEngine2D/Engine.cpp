@@ -39,7 +39,7 @@ namespace ge {
 		//Initialise the command list
 		CommandList::init();
 
-		CONSOLE_LOG("Engine successfully initialised")
+		CONSOLE_LOG("Engine successfully initialised");
 
 	}
 

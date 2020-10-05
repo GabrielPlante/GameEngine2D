@@ -2,12 +2,14 @@
 #include <SDL_ttf.h>
 #include <stdexcept>
 
+#include "Drawer.h"
+
 namespace ge {
-	Window::Window(const int screenWidth, const int screenHeight)
+	Window::Window(const int screenWidth, const int screenHeight, const std::string& title)
 		:screenWidth{ screenWidth }, screenHeight{ screenHeight }
 	{
 		//Create window
-		gWindow = SDL_CreateWindow("Ianagd", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
 		if (!gWindow)
 			throw std::runtime_error("SDL_CreateWindow failed");
 
@@ -22,6 +24,9 @@ namespace ge {
 
 		//Alpha blending https://wiki.libsdl.org/SDL_BlendMode
 		SDL_SetRenderDrawBlendMode(gRenderer, SDL_BLENDMODE_BLEND);
+
+		//Add the renderer to the drawer
+		Drawer::addRenderer(gRenderer);
 	}
 
 	Window::~Window()

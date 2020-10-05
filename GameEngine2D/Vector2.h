@@ -25,10 +25,10 @@ namespace ge {
 		constexpr Vector2(T x, T y) :x{ x }, y{ y } {}
 
 		//Constructor with a SDL_Point
-		Vector2(const SDL_Point& point) :x{ point.x }, y{ point.y } {}
+		constexpr Vector2(const SDL_Point& point) :x{ point.x }, y{ point.y } {}
 
 		//Default constructor
-		Vector2() {}
+		constexpr Vector2() {}
 
 		//Vector2 to a SDL_Point
 		inline SDL_Point toSDL_Point() const;
@@ -64,6 +64,12 @@ namespace ge {
 		//Operator < override for map
 		bool operator<(const Vector2<P>& other) const {
 			return x != other.x ? x < other.x : y < other.y;
+		}
+
+		//Overloading of the type cast, so static_cast can be used on the Vector2D
+		template <typename P>
+		operator P() const {
+			return Vector2<P>{static_cast<P>(x), static_cast<P>(y)};
 		}
 	};
 
@@ -120,5 +126,12 @@ namespace ge {
 		int deltaY = static_cast<int>(y - max(rectanglePosition.y, min(y, rectanglePosition.x + h)));
 		return (pow(deltaX, 2) + pow(deltaY, 2)) <= pow(circleRadius, 2);
 	}
+
+	template <typename T, const int primeConstant>
+	struct Vector2Hash {
+		std::size_t operator()(const Vector2<T>& v) const {
+			return (primeConstant + v.x) * primeConstant + v.y;
+		}
+	};
 
 }

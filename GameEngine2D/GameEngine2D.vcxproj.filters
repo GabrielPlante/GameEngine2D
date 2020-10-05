@@ -87,6 +87,12 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{b4122d69-14b0-4ac6-ab81-11a431dedd91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Renderable\TextureCreator">
+      <UniqueIdentifier>{e6c2cc5d-3cad-48f1-b8a2-b7cc7b0c3a2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderable\TextureCreator">
+      <UniqueIdentifier>{e2d236c9-4cf3-474f-b9cc-21cbc60767d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -167,6 +173,15 @@
     <ClCompile Include="TextureWrapper.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="RectangleCreator.cpp">
+      <Filter>Source Files\Renderable\TextureCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleCreator.cpp">
+      <Filter>Source Files\Renderable\TextureCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="HexagonCreator.cpp">
+      <Filter>Source Files\Renderable\TextureCreator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clock.h">
@@ -210,9 +225,6 @@
     </ClInclude>
     <ClInclude Include="Handle.h">
       <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Factory.h">
-      <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
     <ClInclude Include="IDGenerator.h">
       <Filter>Header Files\Utils</Filter>
@@ -302,6 +314,24 @@
       <Filter>Header Files\Command</Filter>
     </ClInclude>
     <ClInclude Include="TextureWrapper.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Storage.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureCreator.h">
+      <Filter>Header Files\Renderable\TextureCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleCreator.h">
+      <Filter>Header Files\Renderable\TextureCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleCreator.h">
+      <Filter>Header Files\Renderable\TextureCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="HexagonCreator.h">
+      <Filter>Header Files\Renderable\TextureCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorOfVector.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>

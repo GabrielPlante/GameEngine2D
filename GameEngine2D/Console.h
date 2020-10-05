@@ -4,8 +4,8 @@
 #include "TextArea.h"
 
 namespace ge {
-#define CONSOLE_LOG(X) ge::Console::getInstance()->log(X);
-#define CONSOLE_LOG_ERROR(X) ge::Console::getInstance()->log(X, ge::Color{255, 100, 100});
+#define CONSOLE_LOG(X) ge::Console::getInstance()->log(X)
+#define CONSOLE_LOG_ERROR(X) ge::Console::getInstance()->log(X, ge::Color{255, 100, 100})
 
 	class Console
 	{

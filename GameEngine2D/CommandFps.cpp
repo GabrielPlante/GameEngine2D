@@ -3,7 +3,7 @@
 #include "Console.h"
 #include "Engine.h"
 
-constexpr int FPS_MIN{ 10 };
+constexpr int FPS_MIN{ 5 };
 
 namespace ge {
 	void CommandFps::execute(const std::vector<float>& args) {
