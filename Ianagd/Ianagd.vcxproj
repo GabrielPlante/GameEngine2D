@@ -20,8 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{FB60DCD9-FFAF-46CF-AB53-A9B4D27E85D9}</ProjectGuid>
-    <RootNamespace>GameEngine2D</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{79937918-ea2a-4dcf-96a1-9968fb343af4}</ProjectGuid>
+    <RootNamespace>Ianagd</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -29,27 +30,27 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -69,161 +70,103 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
     <IncludePath>..\Dependencies\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\Dependencies\lib;$(LibraryPath)</LibraryPath>
-    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\gabri\source\repos\GabrielPlante\GameEngine2D\Dependencies\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\gabri\source\repos\GabrielPlante\GameEngine2D\Dependencies\lib;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>..\Dependencies\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Dependencies\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <EnablePREfast>false</EnablePREfast>
-      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
-    <Lib>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Angle.cpp" />
-    <ClCompile Include="Button.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CircleCreator.cpp" />
-    <ClCompile Include="CommandFps.cpp" />
-    <ClCompile Include="CommandList.cpp" />
-    <ClCompile Include="ComponentHandle.cpp" />
-    <ClCompile Include="Console.cpp" />
-    <ClCompile Include="ConsoleEventHandler.cpp" />
-    <ClCompile Include="Drawer.cpp" />
-    <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="EventSystem.cpp" />
-    <ClCompile Include="Font.cpp" />
+    <ClCompile Include="Core.cpp" />
+    <ClCompile Include="GameEventHandler.cpp" />
     <ClCompile Include="GraphicSystem.cpp" />
-    <ClCompile Include="HexagonCreator.cpp" />
-    <ClCompile Include="InputBar.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Message.cpp" />
-    <ClCompile Include="Publisher.cpp" />
-    <ClCompile Include="RectangleCreator.cpp" />
-    <ClCompile Include="RenderableRectangle.cpp" />
-    <ClCompile Include="SDLInit.cpp" />
-    <ClCompile Include="Subscriber.cpp" />
-    <ClCompile Include="Text.cpp" />
-    <ClCompile Include="TextArea.cpp" />
-    <ClCompile Include="TextInRect.cpp" />
-    <ClCompile Include="TextureWrapper.cpp" />
-    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Angle.h" />
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="CircleCreator.h" />
-    <ClInclude Include="Clock.h" />
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="Command.h" />
-    <ClInclude Include="CommandError.h" />
-    <ClInclude Include="CommandFps.h" />
-    <ClInclude Include="CommandNbrEventHandler.h" />
-    <ClInclude Include="CommandNbrOfSystem.h" />
-    <ClInclude Include="CommandList.h" />
-    <ClInclude Include="CommandOpenConsole.h" />
-    <ClInclude Include="CommandQuit.h" />
-    <ClInclude Include="CommandTimeScale.h" />
-    <ClInclude Include="ComponentHandle.h" />
-    <ClInclude Include="Console.h" />
-    <ClInclude Include="ConsoleEventHandler.h" />
-    <ClInclude Include="Drawer.h" />
-    <ClInclude Include="Engine.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="EventHandler.h" />
-    <ClInclude Include="EventSystem.h" />
-    <ClInclude Include="HexagonCreator.h" />
-    <ClInclude Include="RectangleCreator.h" />
-    <ClInclude Include="Storage.h" />
-    <ClInclude Include="Font.h" />
+    <ClInclude Include="CommandQuitConsole.h" />
+    <ClInclude Include="Core.h" />
+    <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GraphicSystem.h" />
-    <ClInclude Include="Handle.h" />
-    <ClInclude Include="IDGenerator.h" />
-    <ClInclude Include="InputBar.h" />
-    <ClInclude Include="Message.h" />
-    <ClInclude Include="TextureCreator.h" />
-    <ClInclude Include="TextureWrapper.h" />
-    <ClInclude Include="Vector2.h" />
-    <ClInclude Include="Publisher.h" />
-    <ClInclude Include="Rectangle.h" />
-    <ClInclude Include="Renderable.h" />
-    <ClInclude Include="RenderableRectangle.h" />
-    <ClInclude Include="StringSplit.h" />
-    <ClInclude Include="StringTo.h" />
-    <ClInclude Include="Subscriber.h" />
-    <ClInclude Include="System.h" />
-    <ClInclude Include="Text.h" />
-    <ClInclude Include="TextArea.h" />
-    <ClInclude Include="TextInput.h" />
-    <ClInclude Include="TextInRect.h" />
-    <ClInclude Include="TextToCommand.h" />
-    <ClInclude Include="VectorOfVector.h" />
-    <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameEngine2D\GameEngine2D.vcxproj">
+      <Project>{fb60dcd9-ffaf-46cf-ab53-a9b4d27e85d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Map\Map.vcxproj">
+      <Project>{ee4676c5-bd4e-459a-a421-f62ba47de404}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>

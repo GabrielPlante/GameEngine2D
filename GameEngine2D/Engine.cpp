@@ -23,9 +23,6 @@ namespace ge {
 	//In the constructor many systems are added to the engine, the order in wich they are added will be their order of calling, so it matter
 	Engine::Engine(int screenWidth, int screenHeight)
 	{
-		//First initialise the graphic system, that initialise sdl and sdl_ttf
-		//graphicSystem = std::shared_ptr<GraphicSystem>{ new GraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT} };
-
 		//Then initialise the console
 		Console::init(Rectangle{ 100, 100, screenWidth * 2 / 3, screenHeight * 2 / 3 });
 
