@@ -13,33 +13,75 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\ECS">
+      <UniqueIdentifier>{d951c661-3e6a-4f22-965b-0e4ee803d1af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\Entity">
+      <UniqueIdentifier>{2e3d0306-d846-4767-ac52-31a11a3ab7b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\Component">
+      <UniqueIdentifier>{8deb0776-ba72-4025-8669-84e45d075850}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\System">
+      <UniqueIdentifier>{7936d5ce-1d53-48ca-a038-2afc260b2f35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Command">
+      <UniqueIdentifier>{95538fa6-a854-4b1b-b413-a7b17e5fa8f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{33f857b5-1b64-4ce5-a26a-36ba8dc3ca88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\General">
+      <UniqueIdentifier>{0663d642-8d85-477a-9384-c1ad029dafc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS">
+      <UniqueIdentifier>{bc1643cb-18c3-4a78-9c4b-2d465f14df50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\Entity">
+      <UniqueIdentifier>{3652e891-14c5-4d05-aedf-b8138c6eb299}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\Component">
+      <UniqueIdentifier>{f1752103-f406-4223-a0b2-8c18d01c287a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\System">
+      <UniqueIdentifier>{5c0ba13f-312d-47a2-a051-299b19d0079f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command">
+      <UniqueIdentifier>{bd478912-e5c9-450b-ab3b-84a87f0721ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\General">
+      <UniqueIdentifier>{17a40546-3e5e-4c46-9826-f95b96607fa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{215c27b3-3cdc-4250-b915-af549a6fa9d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Core.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphicSystem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\General</Filter>
     </ClCompile>
     <ClCompile Include="GameEventHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicSystem.cpp">
+      <Filter>Source Files\ECS\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files\General</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GraphicSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CommandQuitConsole.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\ECS\System</Filter>
     </ClInclude>
     <ClInclude Include="GameEventHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandQuitConsole.h">
+      <Filter>Header Files\Command</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

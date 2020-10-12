@@ -16,14 +16,12 @@ namespace ian {
 		ge::Window window;
 
 		ge::TextureWrapper mapTexture;
-
-		//Does the graphic system need to generate the map
-		static bool generateMap;
 	public:
-		//The texture of the map need to be generated
-		static void needGenerateMap() { generateMap = true; }
 		//Constructor
 		GraphicSystem(int screenWidth, int screenHeight);
+
+		//Add a map texture to the engine
+		void addMapTexture(ge::TextureWrapper newMapTexture) { mapTexture = newMapTexture; }
 
 		//Update the system
 		void update() override;

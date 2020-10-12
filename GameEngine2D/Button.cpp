@@ -24,7 +24,7 @@ namespace ge {
 		return point.x > getPosition().x && point.x < getPosition().x + textInRect.getW() && point.y > getPosition().y && point.y < getPosition().y + textInRect.getH();
 	}
 
-	void Button::onHovering() {
+	/*void Button::onHovering() {
 		textInRect.changeColor(Color{ textInRect.getColor().red + offSetOnHovering.red, textInRect.getColor().green + offSetOnHovering.green,
 			textInRect.getColor().blue + offSetOnHovering.blue, textInRect.getColor().alpha + offSetOnHovering.alpha });
 	}
@@ -32,5 +32,5 @@ namespace ge {
 	void Button::unHovering() {
 		textInRect.changeColor(Color{ textInRect.getColor().red - offSetOnHovering.red, textInRect.getColor().green - offSetOnHovering.green,
 			textInRect.getColor().blue - offSetOnHovering.blue, textInRect.getColor().alpha - offSetOnHovering.alpha });
-	}
+	}*/
 }

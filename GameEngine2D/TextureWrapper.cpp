@@ -1,5 +1,7 @@
 #include "TextureWrapper.h"
 
+#include <stdexcept>
+
 namespace ge {
 	IDGenerator<> TextureWrapper::idGenerator{};
 	std::map<unsigned int, int> TextureWrapper::instanceCounter{};
@@ -64,14 +66,18 @@ namespace ge {
 	}
 
 	void TextureWrapper::render(SDL_Renderer* renderer, ge::Vector2<int> position, SDL_Rect* srcRect, SDL_Rect* dstRect) const {
+		int success{ 0 };
 		//If no destination rectangle is provided, build it ourself
 		if (!dstRect) {
 			SDL_Rect rect{ getTextureRect() };
 			rect.x = position.x;
 			rect.y = position.y;
-			SDL_RenderCopy(renderer, texture, srcRect, &rect);
+			success = SDL_RenderCopy(renderer, texture, srcRect, &rect);
 		}
 		else
-			SDL_RenderCopy(renderer, texture, srcRect, dstRect);
+			success = SDL_RenderCopy(renderer, texture, srcRect, dstRect);
+		if (success == -1) {
+			throw std::exception(SDL_GetError());
+		}
 	}
 }

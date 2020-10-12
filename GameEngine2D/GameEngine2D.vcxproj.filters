@@ -9,12 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Header Files\System">
-      <UniqueIdentifier>{43eaab83-3b9c-4db6-8b0b-139f435ad597}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\System">
-      <UniqueIdentifier>{b3f29e9d-1f08-46ca-8324-9eee47889630}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Renderable">
       <UniqueIdentifier>{deee19dd-86eb-40c6-90a6-9506fc284f57}</UniqueIdentifier>
     </Filter>
@@ -93,16 +87,22 @@
     <Filter Include="Source Files\Renderable\TextureCreator">
       <UniqueIdentifier>{e2d236c9-4cf3-474f-b9cc-21cbc60767d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\General">
+      <UniqueIdentifier>{43eaab83-3b9c-4db6-8b0b-139f435ad597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\General">
+      <UniqueIdentifier>{b3f29e9d-1f08-46ca-8324-9eee47889630}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
-      <Filter>Source Files\System</Filter>
+      <Filter>Source Files\General</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>Source Files\System</Filter>
+      <Filter>Source Files\General</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files\System</Filter>
+      <Filter>Source Files\General</Filter>
     </ClCompile>
     <ClCompile Include="Font.cpp">
       <Filter>Source Files\Renderable\Text</Filter>
@@ -123,7 +123,7 @@
       <Filter>Source Files\Messaging</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\System</Filter>
+      <Filter>Source Files\General</Filter>
     </ClCompile>
     <ClCompile Include="RenderableRectangle.cpp">
       <Filter>Source Files\Renderable</Filter>
@@ -153,7 +153,7 @@
       <Filter>Source Files\ECS\System\EventSystem</Filter>
     </ClCompile>
     <ClCompile Include="SDLInit.cpp">
-      <Filter>Source Files\System</Filter>
+      <Filter>Source Files\General</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\Renderable\UI</Filter>
@@ -188,10 +188,10 @@
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Engine.h">
-      <Filter>Header Files\System</Filter>
+      <Filter>Header Files\General</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
-      <Filter>Header Files\System</Filter>
+      <Filter>Header Files\General</Filter>
     </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>Header Files\Renderable\Text</Filter>
@@ -260,7 +260,7 @@
       <Filter>Header Files\Renderable\Console</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Header Files\System</Filter>
+      <Filter>Header Files\General</Filter>
     </ClInclude>
     <ClInclude Include="EventSystem.h">
       <Filter>Header Files\ECS\System\EventSystem</Filter>

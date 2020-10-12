@@ -3,6 +3,8 @@
 #include "../GameEngine2D/Engine.h"
 #include "../GameEngine2D/CommandList.h"
 
+#include "../Map/MapGenerator.h"
+
 #include "CommandQuitConsole.h"
 
 #include "GraphicSystem.h"
@@ -32,9 +34,18 @@ namespace ian {
 		//Fill the command list
 		fillCommandList();
 
+
 		//Add a graphic system
 		std::shared_ptr<GraphicSystem> graphicSystem{ new GraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT} };
 		gRenderer = graphicSystem->getWindowRenderer();
+
+		//Generate the map and it's texture
+		map::MapGenerator::generate(10, { 0, 80, 0 });
+		ge::TextureWrapper mapTexture{ map::MapGenerator::generateTexture(20, {SCREEN_WIDTH, SCREEN_HEIGHT}) };
+
+		//Add the texture to the graphic system
+		graphicSystem->addMapTexture(mapTexture);
+
 		ge::Engine::getInstance()->addGraphicSystem(std::move(graphicSystem));
 
 		//Add the other systems
