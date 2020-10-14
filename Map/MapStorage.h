@@ -15,19 +15,19 @@ namespace map {
 		static ge::VectorOfVector<TileComponent> map;
 	public:
 		//Add a tile to the map. Return true if the tile was added, return false if there was already a tile
-		void addTile(ge::Vector2<int> position, TileComponent&& tile) { map.addElement(position, std::move(tile)); }
+		void addTile(ge::Vector2<size_t> position, TileComponent&& tile) { map.addElement(position, std::move(tile)); }
 
 		//Delete the tile at the position. Return true if the tile was deleted, and false if there was no tile at the position
-		void deleteTile(ge::Vector2<int> position) { map.deleteElement(position); }
+		void deleteTile(ge::Vector2<size_t> position) { map.deleteElement(position); }
 
 		//Check if there is a tile at the position specified, return true if there is one
-		bool tileExist(ge::Vector2<int> position) const { return map.elementExist(position); }
+		bool tileExist(ge::Vector2<size_t> position) const { return map.elementExist(position); }
 
 		//Get a tile
-		const TileComponent& getTile(ge::Vector2<int> position) const { return map[position]; }
+		const TileComponent& getTile(ge::Vector2<size_t> position) const { return map[position]; }
 
-		//Get a pointer on the tile
-		TileComponent* modifyTile(ge::Vector2<int> position) { return &map[position]; }
+		//Get a posize_ter on the tile
+		TileComponent* modifyTile(ge::Vector2<size_t> position) { return &map[position]; }
 
 		//The map iterator
 		ge::VectorOfVector<TileComponent>::Iterator getBeginningIterator() { return map.begin(); }

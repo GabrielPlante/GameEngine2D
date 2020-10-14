@@ -11,8 +11,8 @@ namespace map {
 	void MapGenerator::generate(int mapSize, ge::Color color) {
 		MapStorage storage;
 		//For every tile
-		for (int i = 0; i <= 2 * mapSize; i++) {
-			for (int j = 0; j <= 2 * mapSize; j++) {
+		for (size_t i = 0; i <= 2 * mapSize; i++) {
+			for (size_t j = 0; j <= 2 * mapSize; j++) {
 				if (i + j >= mapSize && i + j <= 3 * mapSize) {
 					TileComponent tile;
 					tile.isInit = true;
@@ -26,7 +26,7 @@ namespace map {
 	ge::TextureWrapper MapGenerator::generateTexture(int tileSize, ge::Vector2<int> mapSize) {
 
 		//Compute the tile dimension
-		const double tileWidth{ tileSize * sqrt(3.0) };
+		const double tileWidth{ tileSize * 1.73205080757 };
 		const double tileHeight{ tileSize * 2.0 };
 
 		//Create the base hexagon. Only the color of this hexagon will be changed to render every other hexagon

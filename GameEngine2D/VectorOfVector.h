@@ -20,26 +20,26 @@ namespace ge {
 		VectorOfVector(std::function<T()> buildDefaultElement, std::function<bool(const T&)> isValid) : buildDefaultElement{ buildDefaultElement }, isValid{ isValid } {}
 
 		//Add an element at a given position
-		void addElement(ge::Vector2<int> position, T&& element);
+		void addElement(ge::Vector2<size_t> position, T&& element);
 
 		//Delete an element at a given position
-		void deleteElement(ge::Vector2<int> position);
+		void deleteElement(ge::Vector2<size_t> position);
 
 		//Check if an element exist
-		bool elementExist(ge::Vector2<int> position) const { return vector.size() > position.x && vector[position.x].size() > position.y && isValid(vector[position.x][position.y]); }
+		bool elementExist(ge::Vector2<size_t> position) const { return vector.size() > position.x && vector[position.x].size() > position.y && isValid(vector[position.x][position.y]); }
 
 		//Get the element at the given position. Does not check if the element exist
-		T& operator[](ge::Vector2<int> position) { return vector[position.x][position.y]; }
-		const T& operator[](ge::Vector2<int> position) const { return vector[position.x][position.y]; }
+		T& operator[](ge::Vector2<size_t> position) { return vector[position.x][position.y]; }
+		const T& operator[](ge::Vector2<size_t> position) const { return vector[position.x][position.y]; }
 
 		class Iterator {
 		private:
 			VectorOfVector<T>* vectorOfVector;
-			ge::Vector2<int> position{ 0, 0 };
+			ge::Vector2<size_t> position{ 0, 0 };
 			bool hasEnded{ false };
 		public:
 			//Constructor
-			Iterator(VectorOfVector<T>* vectorOfVector, ge::Vector2<int> startPosition = { 0, 0 }) : vectorOfVector{ vectorOfVector }, position{ startPosition } {
+			Iterator(VectorOfVector<T>* vectorOfVector, ge::Vector2<size_t> startPosition = { 0, 0 }) : vectorOfVector{ vectorOfVector }, position{ startPosition } {
 				if (!vectorOfVector->elementExist(position))
 					(*this)++;
 			}
@@ -55,7 +55,7 @@ namespace ge {
 			T& operator*() { return (*vectorOfVector)[position]; }
 
 			//Get the actual position of the iterator
-			Vector2<int> getPosition() const{ return position; }
+			Vector2<size_t> getPosition() const{ return position; }
 		};
 
 		//Get the operator at the beggining of the vector of vector
@@ -65,7 +65,7 @@ namespace ge {
 	//Implementation here because template cannot be put in cpp file
 
 	template <typename T>
-	void VectorOfVector<T>::addElement(ge::Vector2<int> position, T&& element) {
+	void VectorOfVector<T>::addElement(ge::Vector2<size_t> position, T&& element) {
 		//Make sure the first vector is big enough, fill it with empty vector if needed
 		while (vector.size() <= position.x) {
 			vector.push_back(std::vector<T>{});
@@ -79,7 +79,7 @@ namespace ge {
 	}
 
 	template <typename T>
-	void VectorOfVector<T>::deleteElement(ge::Vector2<int> position) {
+	void VectorOfVector<T>::deleteElement(ge::Vector2<size_t> position) {
 		if (elementExist(position))
 			vector[position.x][position.y] = buildDefaultElement();
 	}
