@@ -45,9 +45,7 @@ namespace map {
 		ge::Vector2<size_t> tilePosition{ getTile(position) };
 
 		//Create the component
-		MapEntityComponent entity;
-		entity.id = idGenerator.getNewID();
-		entity.position = position;
+		MapEntityComponent entity{ idGenerator.getNewID(), position };
 
 		//Add the component to the storage
 		MapStorage storage;
@@ -91,9 +89,7 @@ namespace map {
 		tilePosition = getTile(newPosition);
 
 		//Create the component
-		MapEntityComponent entity;
-		entity.id = id;
-		entity.position = newPosition;
+		MapEntityComponent entity{ id, newPosition };
 
 		//Add the component to the storage
 		storage.modifyTile(tilePosition)->entities.push_back(std::move(entity));

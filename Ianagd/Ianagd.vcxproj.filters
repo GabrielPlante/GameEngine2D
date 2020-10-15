@@ -69,6 +69,9 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
+    <ClCompile Include="MovementSystem.cpp">
+      <Filter>Source Files\ECS\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicSystem.h">
@@ -82,6 +85,12 @@
     </ClInclude>
     <ClInclude Include="CommandQuitConsole.h">
       <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementSystem.h">
+      <Filter>Header Files\ECS\System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

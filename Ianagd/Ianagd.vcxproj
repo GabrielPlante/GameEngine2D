@@ -151,12 +151,15 @@
     <ClCompile Include="GameEventHandler.cpp" />
     <ClCompile Include="GraphicSystem.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MovementSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandQuitConsole.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GraphicSystem.h" />
+    <ClInclude Include="MovementComponent.h" />
+    <ClInclude Include="MovementSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameEngine2D\GameEngine2D.vcxproj">

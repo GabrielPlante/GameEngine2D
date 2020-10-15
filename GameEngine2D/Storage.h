@@ -19,22 +19,22 @@ namespace ge {
 		static std::unordered_map<unsigned int, unsigned int> iDtoPlace;
 	public:
 		//Add a component to the list, and return an id for the component
-		unsigned int addComponent(Component&& component);
+		static unsigned int addComponent(Component&& component);
 
 		//Get a component by his id
-		Component* getComponent(unsigned long id) { return &componentList[iDtoPlace.find(id)->second]; }
+		static Component* getComponent(unsigned long id) { return &componentList[iDtoPlace.find(id)->second]; }
 
 		//Get the iterator to the first element of the list
-		typename std::vector<Component>::iterator getBeginningIterator() { return componentList.begin(); }
+		static typename std::vector<Component>::iterator begin() { return componentList.begin(); }
 
 		//Get the iterator to the end of the list (the element past the last element)
-		typename std::vector<Component>::iterator getEndIterator() { return componentList.end(); }
+		static typename std::vector<Component>::iterator end() { return componentList.end(); }
 
 		//Delete a component
-		void deleteComponent(unsigned int id);
+		static void deleteComponent(unsigned int id);
 
 		//Clear the factory
-		void clear();
+		static void clear();
 	};
 
 	//Static member initialisation
