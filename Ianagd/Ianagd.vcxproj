@@ -158,6 +158,7 @@
     <ClInclude Include="Core.h" />
     <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GraphicSystem.h" />
+    <ClInclude Include="GameValues.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MovementSystem.h" />
   </ItemGroup>

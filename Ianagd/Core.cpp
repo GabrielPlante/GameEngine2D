@@ -1,13 +1,18 @@
 #include "Core.h"
 
-#include "../GameEngine2D/Engine.h"
 #include "../GameEngine2D/CommandList.h"
+#include "../GameEngine2D/Storage.h"
+#include "../GameEngine2D/Engine.h"
 
 #include "../Map/MapGenerator.h"
 
 #include "CommandQuitConsole.h"
 
+#include "MovementSystem.h"
 #include "GraphicSystem.h"
+#include "GameValues.h"
+
+#include "MovementComponent.h"
 
 //Size of the screen
 constexpr int SCREEN_WIDTH{ 1400 };
@@ -16,6 +21,10 @@ constexpr int SCREEN_HEIGHT{ 800 };
 namespace ian {
 	void fillCommandList() {
 		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandQuitConsole{}}));
+	}
+
+	void fillSystem() {
+		ge::Engine::getInstance()->addSystem(std::shared_ptr<ge::System>{new MovementSystem{}});
 	}
 
 	Core* Core::instance{ nullptr };
@@ -41,7 +50,7 @@ namespace ian {
 
 		//Generate the map and it's texture
 		map::MapGenerator::generate(10, { 0, 80, 0 });
-		ge::TextureWrapper mapTexture{ map::MapGenerator::generateTexture(20, {SCREEN_WIDTH, SCREEN_HEIGHT}) };
+		ge::TextureWrapper mapTexture{ map::MapGenerator::generateTexture(gv::tileSize, {SCREEN_WIDTH, SCREEN_HEIGHT}) };
 
 		//Add the texture to the graphic system
 		graphicSystem->addMapTexture(mapTexture);
@@ -49,6 +58,7 @@ namespace ian {
 		ge::Engine::getInstance()->addGraphicSystem(std::move(graphicSystem));
 
 		//Add the other systems
+		fillSystem();
 
 		//Quit the console and reduce fps to reduce work load
 		EXEC("quitconsole");

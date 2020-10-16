@@ -13,6 +13,7 @@ namespace map {
 	private:
 		static ge::IDGenerator<unsigned int> idGenerator;
 
+		//Get the tile out of a position
 		static ge::Vector2<size_t> getTile(ge::Vector2<double> position);
 	public:
 		//Create a map entity at a certain position, return the id of the map entity
@@ -72,7 +73,7 @@ namespace map {
 	}
 
 	template <int tileSize>
-	static void MapEntityHandler<tileSize>::moveEntity(ge::Vector2<double> oldPosition, unsigned int id, ge::Vector2<double> newPosition) {
+	void MapEntityHandler<tileSize>::moveEntity(ge::Vector2<double> oldPosition, unsigned int id, ge::Vector2<double> newPosition) {
 		//Compute the tile dimension
 		ge::Vector2<size_t> tilePosition{ getTile(oldPosition) };
 
@@ -96,7 +97,7 @@ namespace map {
 	}
 
 	template <int tileSize>
-	static ge::Vector2<MapEntityComponent> MapEntityHandler<tileSize>::getNeighborEntities(ge::Vector2<double> position, unsigned int id) {
+	ge::Vector2<MapEntityComponent> MapEntityHandler<tileSize>::getNeighborEntities(ge::Vector2<double> position, unsigned int id) {
 		//Get the tile position
 		ge::Vector2<size_t> tilePosition{ getTile(position) };
 

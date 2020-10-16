@@ -10,6 +10,6 @@ namespace ian {
 		void update() override;
 
 		//As a subscriber, a system need to be able to handle a message
-		//void handleMessage(std::shared_ptr<Message> message) override {}
+		void handleMessage(std::shared_ptr<ge::Message> message) override {}
 	};
 }
