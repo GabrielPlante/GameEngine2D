@@ -12,7 +12,7 @@
 #include "GraphicSystem.h"
 #include "GameValues.h"
 
-#include "MovementComponent.h"
+#include "EntityHandler.h"
 
 //Size of the screen
 constexpr int SCREEN_WIDTH{ 1400 };
@@ -62,7 +62,11 @@ namespace ian {
 
 		//Quit the console and reduce fps to reduce work load
 		EXEC("quitconsole");
-		EXEC_ARGS("fps", { 10 });
+		EXEC_ARGS("fps", { 60 });
+
+		unsigned int playerId{ EntityHandler::createEntity({400, 400}, 200) };
+
+		EntityHandler::setDestination(playerId, { 600, 600 });
 	}
 
 	void Core::run() {

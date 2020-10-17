@@ -29,6 +29,9 @@ namespace map {
 		static ge::Vector2<MapEntityComponent> getNeighborEntities(ge::Vector2<double> position, unsigned int id);
 	};
 
+	template <int tileSize>
+	ge::IDGenerator<unsigned int> MapEntityHandler<tileSize>::idGenerator{};
+
 	//Implementation here because templated class
 
 	template <int tileSize>
@@ -41,20 +44,25 @@ namespace map {
 	}
 
 	template <int tileSize>
-	static unsigned int MapEntityHandler<tileSize>::createMapEntity(ge::Vector2<double> position) {
+	unsigned int MapEntityHandler<tileSize>::createMapEntity(ge::Vector2<double> position) {
 		//Compute the tile dimension
 		ge::Vector2<size_t> tilePosition{ getTile(position) };
 
 		//Create the component
 		MapEntityComponent entity{ idGenerator.getNewID(), position };
 
+		//Get the id
+		unsigned int entityId{ entity.id };
+
 		//Add the component to the storage
 		MapStorage storage;
 		storage.modifyTile(tilePosition)->entities.push_back(std::move(entity));
+
+		return entityId;
 	}
 
 	template <int tileSize>
-	static bool MapEntityHandler<tileSize>::deleteEntity(ge::Vector2<double> position, unsigned int id) {
+	bool MapEntityHandler<tileSize>::deleteEntity(ge::Vector2<double> position, unsigned int id) {
 		//Compute the tile dimension
 		ge::Vector2<size_t> tilePosition{ getTile(position) };
 
@@ -83,6 +91,7 @@ namespace map {
 			//If found, delete the entity
 			if (it->id == id) {
 				storage.modifyTile(tilePosition)->entities.erase(it);
+				break;
 			}
 		}
 

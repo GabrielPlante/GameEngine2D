@@ -14,9 +14,9 @@ namespace ian {
 
 	void renderEntities(SDL_Renderer* renderer) {
 		for (auto it = ge::Storage<MovementComponent>::begin(); it != ge::Storage<MovementComponent>::end(); it++) {
-			ge::CircleCreator circleCreator{ 5, { 100, 100, 100 } };
+			ge::CircleCreator circleCreator{ 15, { 100, 100, 100 }, true };
 			auto circle{ circleCreator.getTexture() };
-			circle.render(renderer, { 400, 400 });
+			circle.render(renderer, { static_cast<int>(it->position.x), static_cast<int>(it->position.y) });
 		}
 	}
 

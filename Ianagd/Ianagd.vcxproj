@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
+    <ClCompile Include="EntityHandler.cpp" />
     <ClCompile Include="GameEventHandler.cpp" />
     <ClCompile Include="GraphicSystem.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -156,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="CommandQuitConsole.h" />
     <ClInclude Include="Core.h" />
+    <ClInclude Include="EntityHandler.h" />
     <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GraphicSystem.h" />
     <ClInclude Include="GameValues.h" />

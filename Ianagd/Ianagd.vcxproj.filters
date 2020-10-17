@@ -72,6 +72,9 @@
     <ClCompile Include="MovementSystem.cpp">
       <Filter>Source Files\ECS\System</Filter>
     </ClCompile>
+    <ClCompile Include="EntityHandler.cpp">
+      <Filter>Source Files\ECS\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicSystem.h">
@@ -94,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="GameValues.h">
       <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityHandler.h">
+      <Filter>Header Files\ECS\Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
