@@ -9,7 +9,6 @@
 #include "GameValues.h"
 
 #include "../GameEngine2D/Console.h"
-#include <iostream>
 
 namespace ian {
 	void moveEntity(std::vector<MovementComponent>::iterator it) {
@@ -28,7 +27,6 @@ namespace ian {
 		//If the entity if going to overshoot it's target, don't
 		if (ratioCovered > 1) {
 			ratioCovered = 1;
-			it->isMoving = false;
 		}
 
 		//The new position
@@ -43,7 +41,7 @@ namespace ian {
 		//For every movement component
 		for (auto it = ge::Storage<MovementComponent>::begin(); it != ge::Storage<MovementComponent>::end(); it++) {
 			//If it is moving
-			if (it->isMoving) {
+			if (it->position != it->destination) {
 				//Move the entity
 				moveEntity(it);
 			}

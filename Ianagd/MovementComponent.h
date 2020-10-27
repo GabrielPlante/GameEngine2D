@@ -16,9 +16,6 @@ namespace ian {
 		//The destination of this component
 		ge::Vector2<double> destination;
 
-		//Is the entity moving
-		bool isMoving{ false };
-
 		//The movespeed of the entity, in pixel per second
 		unsigned int movespeed;
 	};

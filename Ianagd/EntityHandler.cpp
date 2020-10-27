@@ -17,6 +17,5 @@ namespace ian {
 
 	void EntityHandler::setDestination(unsigned int entityId, ge::Vector2<double> destination) {
 		ge::Storage<MovementComponent>::getComponent(entityId)->destination = destination;
-		ge::Storage<MovementComponent>::getComponent(entityId)->isMoving = true;
 	}
 }
