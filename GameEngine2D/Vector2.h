@@ -68,7 +68,7 @@ namespace ge {
 
 		//Overloading of the type cast, so static_cast can be used on the Vector2D
 		template <typename P>
-		operator P() const {
+		operator Vector2<P>() const {
 			return Vector2<P>{static_cast<P>(x), static_cast<P>(y)};
 		}
 	};

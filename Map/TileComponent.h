@@ -13,6 +13,9 @@ namespace map {
 		//The tile color
 		ge::Color color;
 
+		//Is the tile walkalble
+		bool isWalkable{ true };
+
 		//The entities in the tile
 		std::vector<MapEntityComponent> entities;
 	};

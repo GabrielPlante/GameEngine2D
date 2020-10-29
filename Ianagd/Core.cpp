@@ -5,6 +5,7 @@
 #include "../GameEngine2D/Engine.h"
 
 #include "../Map/MapGenerator.h"
+#include "../Map/PathFinder.h"
 
 #include "CommandQuitConsole.h"
 

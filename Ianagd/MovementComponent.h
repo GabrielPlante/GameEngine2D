@@ -1,4 +1,5 @@
 #pragma once
+#include <stack>
 
 #include "../Map/MapEntityComponent.h"
 
@@ -18,5 +19,7 @@ namespace ian {
 
 		//The movespeed of the entity, in pixel per second
 		unsigned int movespeed;
+
+		std::stack<ge::Vector2<size_t>> destinationStack;
 	};
 }

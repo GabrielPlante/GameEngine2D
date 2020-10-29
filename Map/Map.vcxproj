@@ -28,6 +28,7 @@
     <ClCompile Include="MapEntityHandler.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="MapStorage.cpp" />
+    <ClCompile Include="PathFinder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HexagonalMap.h" />
@@ -35,6 +36,7 @@
     <ClInclude Include="MapEntityHandler.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="MapStorage.h" />
+    <ClInclude Include="PathFinder.h" />
     <ClInclude Include="TileComponent.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
