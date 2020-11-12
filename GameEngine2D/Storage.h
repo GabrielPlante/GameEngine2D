@@ -2,25 +2,24 @@
 #include <vector>
 #include <unordered_map>
 
-#include "IDGenerator.h"
-
-
 namespace ge {
 	/*
-	 * Storage is the template class that will hold every component of a component type
-	 * The id given after adding a component is garanted not to change
+	 * Storage is the template class that hold every component of a component type
+	 * The user of this class need to provide an id for each component
 	*/
 	template <typename Component>
 	class Storage
 	{
 	private:
-		static IDGenerator<> iDGenerator;
 		static std::vector<Component> componentList;
 		static std::unordered_map<unsigned int, unsigned int> iDtoPlace;
-	public:
-		//Add a component to the list, and return an id for the component
-		static unsigned int addComponent(Component&& component);
 
+		friend class Entity;
+
+		//Add a component to the list with an id, return true if the id was not taken
+		static bool addComponent(Component&& component, unsigned int id);
+
+	public:
 		//Get a component by his id
 		static Component* getComponent(unsigned long id) { return &componentList[iDtoPlace.find(id)->second]; }
 
@@ -37,9 +36,6 @@ namespace ge {
 		static void clear();
 	};
 
-	//Static member initialisation
-	template <typename T>
-	IDGenerator<> Storage<T>::iDGenerator{};
 	template <typename T>
 	std::vector<T> Storage<T>::componentList{};
 	template <typename T>
@@ -49,18 +45,21 @@ namespace ge {
 	//Function definition are here because of template restriction
 
 	template <typename Component>
-	unsigned int Storage<Component>::addComponent(Component&& component) {
-		//Push the component in the list
-		componentList.push_back(component);
+	bool Storage<Component>::addComponent(Component&& component, unsigned int id) {
+		//If the id already exist, return false
+		if (iDtoPlace.find(id) != iDtoPlace.end()) {
+			return false;
+		}
+		else {
+			//Push the component in the list
+			componentList.push_back(component);
 
-		//Get the ID for this component
-		unsigned int id{ iDGenerator.getNewID() };
+			//Insert ID in the map
+			unsigned int componentListSize{ static_cast<unsigned int>(componentList.size() - 1) };
+			iDtoPlace.insert(std::make_pair(id, componentListSize));
 
-		//Insert ID in the map
-		unsigned int componentListSize{ static_cast<unsigned int>(componentList.size() - 1) };
-		iDtoPlace.insert(std::make_pair(id, componentListSize));
-
-		return id;
+			return true;
+		}
 	}
 
 	template <typename Component>
@@ -70,9 +69,6 @@ namespace ge {
 
 		//Delete the component
 		componentList.erase(componentList.begin() + componentPlace);
-
-		//Delete the ID in the table
-		iDtoPlace.erase(id);
 
 		//Decrement the place of all other component
 		auto it = iDtoPlace.begin();
@@ -91,10 +87,6 @@ namespace ge {
 
 		//Clear the map
 		iDtoPlace.clear();
-
-		//Reset the id generator
-		iDGenerator = IDGenerator<>{};
-
 	}
 
 }

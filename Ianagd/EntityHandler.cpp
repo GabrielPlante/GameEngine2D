@@ -1,6 +1,6 @@
 #include "EntityHandler.h"
 
-#include "../GameEngine2D/Storage.h"
+#include "../GameEngine2D/Entity.h"
 
 #include "../Map/MapEntityHandler.h"
 #include "../Map/HexagonalMap.h"
@@ -11,10 +11,18 @@
 
 namespace ian {
 	unsigned int EntityHandler::createEntity(ge::Vector2<double> position, unsigned int movespeed) {
-		unsigned int mapEntityId{ map::MapEntityHandler<gv::tileSize>::createMapEntity(position) };
+		//Create the entity
+		unsigned int entityID{ ge::Entity::Create() };
 
-		MovementComponent movComp{ mapEntityId, position, position, movespeed };
-		return ge::Storage<MovementComponent>::addComponent(std::move(movComp));
+		//Create the map entityID
+		map::MapEntityHandler<gv::tileSize>::createMapEntity(position, entityID);
+
+		//Create the movement component and give it to the entity
+		MovementComponent movComp{ entityID, position, position, movespeed };
+		ge::Storage<ge::Entity>::getComponent(entityID)->addComponent(std::move(movComp));
+
+		//Return the entityID
+		return entityID;
 	}
 
 	void EntityHandler::setDestination(unsigned int entityId, ge::Vector2<double> destination) {
