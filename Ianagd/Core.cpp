@@ -15,9 +15,6 @@
 
 #include "EntityHandler.h"
 
-//Include the cpp for template instantiation
-#include "../Map/MapEntityHandler.cpp"
-
 //Size of the screen
 constexpr int SCREEN_WIDTH{ 1400 };
 constexpr int SCREEN_HEIGHT{ 800 };

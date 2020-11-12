@@ -34,7 +34,7 @@ namespace ian {
 		return ge::Vector2<double>{position.x + (destination.x - position.x) * ratioCovered, position.y + (destination.y - position.y) * ratioCovered};
 	}
 
-	void moveEntity(std::vector<MovementComponent>::iterator it) {
+	void moveEntity(ge::Storage<MovementComponent>::iterator it) {
 		ge::Vector2<double> newPosition{ computeMove(it->position, static_cast<ge::Vector2<double>>(map::HexagonalMap::relativeToAbsolute(it->destinationStack.top(), gv::tileWidth, gv::tileHeight)), it->movespeed) };
 
 		//Move the entity in the map

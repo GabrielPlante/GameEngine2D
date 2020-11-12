@@ -19,7 +19,7 @@ namespace ian {
 
 		//Create the movement component and give it to the entity
 		MovementComponent movComp{ entityID, position, position, movespeed };
-		ge::Storage<ge::Entity>::getComponent(entityID)->addComponent(std::move(movComp));
+		ge::Storage<ge::Entity>::get(entityID).addComponent(std::move(movComp));
 
 		//Return the entityID
 		return entityID;
@@ -27,13 +27,13 @@ namespace ian {
 
 	void EntityHandler::setDestination(unsigned int entityId, ge::Vector2<double> destination) {
 		//Get the component from the storage
-		MovementComponent* component{ ge::Storage<MovementComponent>::getComponent(entityId) };
+		MovementComponent& component{ ge::Storage<MovementComponent>::get(entityId) };
 		//Get the position and destination tile
-		ge::Vector2<size_t> positionTile{ map::HexagonalMap::absoluteToRelative(component->position, gv::tileWidth, gv::tileHeight) };
+		ge::Vector2<size_t> positionTile{ map::HexagonalMap::absoluteToRelative(component.position, gv::tileWidth, gv::tileHeight) };
 		ge::Vector2<size_t> destinationTile{ map::HexagonalMap::absoluteToRelative(destination, gv::tileWidth, gv::tileHeight) };
 		//Create the path finder object
 		map::PathFinder pathFinder{ positionTile, destinationTile };
 		//Compute the path and store it
-		component->destinationStack = pathFinder.findPath();
+		component.destinationStack = pathFinder.findPath();
 	}
 }

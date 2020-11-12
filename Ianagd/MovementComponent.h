@@ -5,8 +5,12 @@
 
 namespace ian {
 	struct MovementComponent {
+		//Full constructor
 		MovementComponent(unsigned int mapEntityId, ge::Vector2<double> destination, ge::Vector2<double> position, unsigned int movespeed)
 			: mapEntityId{ mapEntityId }, destination{ destination }, position{ position }, movespeed{ movespeed } {}
+
+		//Default constructor
+		MovementComponent() {}
 
 		//The id of the map entity component associated with this component
 		unsigned int mapEntityId{ 0 };

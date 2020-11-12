@@ -4,23 +4,29 @@
 
 #include <string>
 
-#include "../GameEngine2D/Factory.h"
+#include "../GameEngine2D/Entity.h"
 
 TEST(FactoryTest, All) {
-	ge::Factory<std::string> factory;
-	unsigned int id1 = factory.addComponent("id1");
-	EXPECT_EQ(*factory.getComponent(id1), "id1");
+	unsigned int id1{ ge::Entity::Create() };
+	ge::Entity& ent1{ ge::Storage<ge::Entity>::get(id1) };
+	ge::Storage<std::string> factory;
+	ent1.addComponent(std::string("id1"));
+	EXPECT_EQ(factory.get(id1), "id1");
 
-	unsigned int id2 = factory.addComponent("id2");
-	unsigned int id3 = factory.addComponent("id3");
-	EXPECT_EQ(*factory.getComponent(id2), "id2");
-	EXPECT_EQ(*factory.getComponent(id3), "id3");
+	unsigned int id2{ ge::Entity::Create() };
+	unsigned int id3{ ge::Entity::Create() };
+	ge::Entity& ent2{ ge::Storage<ge::Entity>::get(id2) };
+	ge::Entity& ent3{ ge::Storage<ge::Entity>::get(id3) };
+	ge::Storage<ge::Entity>::get(id2).addComponent(std::string("id2"));
+	ent3.addComponent(std::string("id3"));
+	EXPECT_EQ(factory.get(id2), "id2");
+	EXPECT_EQ(factory.get(id3), "id3");
 
 	factory.deleteComponent(id2);
-	EXPECT_EQ(*factory.getComponent(id3), "id3");
+	EXPECT_EQ(factory.get(id3), "id3");
 
-	auto it = factory.getBeginningIterator();
+	auto it = factory.begin();
 	EXPECT_EQ(*it, "id1");
 	it++;
-	EXPECT_EQ(*it, "id3");
+	EXPECT_EQ(*it, "id2");
 }

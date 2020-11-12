@@ -25,7 +25,7 @@ namespace ge {
 	T IDGenerator<T>::getNewID() {
 		if (deletedID.empty()) {
 			maxUsedID++;
-			return maxUsedID;
+			return maxUsedID - 1;
 		}
 		else {
 			T id = deletedID.back();
