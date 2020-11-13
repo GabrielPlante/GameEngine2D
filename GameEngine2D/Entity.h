@@ -1,5 +1,6 @@
 #pragma once
 
+#include "EntityHandle.h"
 #include "IDGenerator.h"
 #include "Storage.h"
 
@@ -20,11 +21,7 @@ namespace ge {
 		Entity() : id{ idGenerator.getNewID() } {}
 	public:
 		//Create an entity, add it to the entity storage and return the id of the entity
-		static unsigned int Create();
-
-		//Static method to ease the adding a component
-		template <typename Component>
-		static void addComponent(Component&& component, unsigned int entityID) { Storage<Component>::addComponent(std::move(component), entityID); }
+		static EntityHandle Create();
 
 		//Get the id of this entity
 		unsigned int getID() const { return id; }

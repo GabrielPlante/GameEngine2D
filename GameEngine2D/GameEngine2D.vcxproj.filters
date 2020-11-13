@@ -334,5 +334,8 @@
     <ClInclude Include="VectorOfVector.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="EntityHandle.h">
+      <Filter>Header Files\ECS\Entity</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

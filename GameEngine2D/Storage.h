@@ -23,7 +23,7 @@ namespace ge {
 		class StorageIterator {
 		private:
 			//The intern index of the unused component list
-			size_t unusedComponentSetID{ 0 };
+			std::unordered_set<unsigned int>::iterator unusedComponentSetIT{ unusedComponentSet.begin() };
 		public:
 			//The intern index
 			size_t index;
@@ -44,9 +44,9 @@ namespace ge {
 			//Prefix incrementor
 			StorageIterator& operator++() {
 				//If this component is not used
-				while (Storage::unusedComponentSet.find(static_cast<unsigned int>(unusedComponentSetID)) != Storage::unusedComponentSet.end() && 
-					*Storage::unusedComponentSet.find(static_cast<unsigned int>(unusedComponentSetID)) == index) {
-					unusedComponentSetID++;
+				while (unusedComponentSetIT != Storage::unusedComponentSet.end() && 
+					*unusedComponentSetIT == index) {
+					unusedComponentSetIT++;
 
 					index++;
 				}

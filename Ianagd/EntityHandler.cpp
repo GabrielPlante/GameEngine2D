@@ -12,17 +12,17 @@
 namespace ian {
 	unsigned int EntityHandler::createEntity(ge::Vector2<double> position, unsigned int movespeed) {
 		//Create the entity
-		unsigned int entityID{ ge::Entity::Create() };
+		ge::EntityHandle entityHandle{ ge::Entity::Create() };
 
-		//Create the map entityID
-		map::MapEntityHandler<gv::tileSize>::createMapEntity(position, entityID);
+		//Create the map entityHandle
+		map::MapEntityHandler<gv::tileSize>::createMapEntity(position, entityHandle);
 
 		//Create the movement component and give it to the entity
-		MovementComponent movComp{ entityID, position, position, movespeed };
-		ge::Storage<ge::Entity>::get(entityID).addComponent(std::move(movComp));
+		MovementComponent movComp{ entityHandle, position, position, movespeed };
+		entityHandle.addComponent(std::move(movComp));
 
-		//Return the entityID
-		return entityID;
+		//Return the entityHandle
+		return entityHandle;
 	}
 
 	void EntityHandler::setDestination(unsigned int entityId, ge::Vector2<double> destination) {

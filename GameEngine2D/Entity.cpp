@@ -5,7 +5,7 @@
 namespace ge {
 	IDGenerator<unsigned int> Entity::idGenerator = IDGenerator<unsigned int>{};
 
-	unsigned int Entity::Create() {
+	EntityHandle Entity::Create() {
 		//Create the entity
 		Entity entity;
 		unsigned int entityID{ entity.getID() };
