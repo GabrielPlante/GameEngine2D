@@ -37,7 +37,7 @@ namespace ian {
 	}
 
 	void moveEntity(ge::Storage<MovementComponent>::iterator it) {
-		ge::Entity entity{ static_cast<unsigned int>(it.index) };
+		ge::Entity entity{ static_cast<unsigned int>(it.id()) };
 		ge::Vector2<double> newPosition{ computeMove(entity.getComponent<ge::TransformComponent>().position,
 			static_cast<ge::Vector2<double>>(map::HexagonalMap::relativeToAbsolute(it->destinationStack.top(), gv::tileWidth, gv::tileHeight)), it->movespeed) };
 

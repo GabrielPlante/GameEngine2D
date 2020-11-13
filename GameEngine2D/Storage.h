@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <unordered_set>
+#include <unordered_map>
 
 namespace ge {
 	/*
@@ -11,8 +11,12 @@ namespace ge {
 	class Storage
 	{
 	private:
+		//Where the component are stored
 		static std::vector<Component> componentList;
-		static std::unordered_set<unsigned int> unusedComponentSet;
+		//The map with id in key and the place of the component in the component list in value (allow to retrieve the component place with the key)
+		static std::unordered_map<unsigned int, unsigned int> idToPlace;
+		//The vector that allow to retrieve the id from the place
+		static std::vector<unsigned int> placeToID;
 
 		friend class Entity;
 
@@ -20,7 +24,7 @@ namespace ge {
 		static bool addComponent(Component&& component, unsigned int id);
 
 		//Get a component by his id
-		static Component& get(unsigned long id) { return componentList[id]; }
+		static Component& get(unsigned long id) { return componentList[idToPlace.find(id)->second]; }
 
 		//Delete a component
 		static void deleteComponent(unsigned int id);
@@ -28,11 +32,12 @@ namespace ge {
 	public:
 		class StorageIterator {
 		private:
-			//The intern index of the unused component list
-			std::unordered_set<unsigned int>::iterator unusedComponentSetIT{ unusedComponentSet.begin() };
-		public:
 			//The intern index
 			unsigned int index;
+
+		public:
+			//Get the id of this component
+			unsigned int id() const { return placeToID[index]; }
 
 			//Constructor
 			StorageIterator(unsigned int index) : index{ index } {}
@@ -49,13 +54,6 @@ namespace ge {
 
 			//Prefix incrementor
 			StorageIterator& operator++() {
-				//If this component is not used
-				while (unusedComponentSetIT != Storage::unusedComponentSet.end() && 
-					*unusedComponentSetIT == index) {
-					unusedComponentSetIT++;
-
-					index++;
-				}
 				index++;
 				return *this;
 			}
@@ -90,52 +88,64 @@ namespace ge {
 		static void clear();
 	};
 
+	//Initialise the statis variable
 	template <typename T>
 	std::vector<T> Storage<T>::componentList;
 	template <typename T>
-	std::unordered_set<unsigned int> Storage<T>::unusedComponentSet;
+	std::unordered_map<unsigned int, unsigned int> Storage<T>::idToPlace;
+	template <typename T>
+	std::vector<unsigned int> Storage<T>::placeToID;
 
 
 	//Function definition are here because of template restriction
 
 	template <typename Component>
 	bool Storage<Component>::addComponent(Component&& component, unsigned int id) {
-		//First case : the vector is smaller than the id
-
-		while (componentList.size() < id)
-			componentList.push_back(Component{});
-
-		//If the vector is juste one smaller than the id, then this component should be the next one
-		if (componentList.size() == id) {
-			componentList.push_back(component);
-			return true;
+		//Insert the element in the map, and at the same time check if there isn't already a component with the same id
+		if (idToPlace.insert(std::make_pair<unsigned int, unsigned int>(std::move(id), static_cast<unsigned int>(componentList.size()))).second == false) {
+			return false;
 		}
 
-		//Second case : the id already exist
-		//Maybe it is deleted
-		if (unusedComponentSet.find(id) != unusedComponentSet.end()) {
-			//If it is the case, mark it as not deleted and replace the deleted one
-			unusedComponentSet.erase(id);
-			componentList[id] = component;
-			return true;
-		}
-		//Else, it is already in use, return false
-		return false;
+		//Add the component on the top of the vector
+		componentList.push_back(component);
+
+		//Push the id in the place to id vector
+		placeToID.push_back(static_cast<unsigned int>(componentList.size()) - 1);
+
+		return true;
 	}
 
 	template <typename Component>
 	void Storage<Component>::deleteComponent(unsigned int id) {
-		//Mark the id as being unused
-		unusedComponentSet.insert(id);
+		//Get the place of the component to delete
+		unsigned int componentPlace{ idToPlace.find(id)->second };
+
+		//Delete the component
+		componentList.erase(componentList.begin() + componentPlace);
+
+		placeToID.erase(placeToID.begin() + componentPlace);
+
+		//Delete the ID in the table
+		idToPlace.erase(id);
+
+		//Decrement the place of all other component
+		auto it = idToPlace.begin();
+		while (it != idToPlace.end()) {
+			if (it->second > componentPlace) {
+				it->second--;
+			}
+			it++;
+		}
 	}
 
 	template <typename Component>
 	void Storage<Component>::clear() {
-		//Clear the vector containing the object
+		//Clear the 3 containers
 		componentList.clear();
 
-		//Clear the map
-		unusedComponentSet.clear();
+		placeToID.clear();
+
+		idToPlace.clear();
 	}
 
 }
