@@ -19,6 +19,12 @@ namespace ge {
 		//Add a component to the list with an id, return true if the id was not taken
 		static bool addComponent(Component&& component, unsigned int id);
 
+		//Get a component by his id
+		static Component& get(unsigned long id) { return componentList[id]; }
+
+		//Delete a component
+		static void deleteComponent(unsigned int id);
+
 	public:
 		class StorageIterator {
 		private:
@@ -26,10 +32,10 @@ namespace ge {
 			std::unordered_set<unsigned int>::iterator unusedComponentSetIT{ unusedComponentSet.begin() };
 		public:
 			//The intern index
-			size_t index;
+			unsigned int index;
 
 			//Constructor
-			StorageIterator(size_t index) : index{ index } {}
+			StorageIterator(unsigned int index) : index{ index } {}
 
 			//Operator ->
 			Component* operator->() {
@@ -74,17 +80,11 @@ namespace ge {
 
 		using iterator = StorageIterator;
 
-		//Get a component by his id
-		static Component& get(unsigned long id) { return componentList[id]; }
-
 		//Get the iterator to the first element of the list
 		static typename iterator begin() { return iterator{ 0 }; }
 
 		//Get the iterator to the end of the list (the element past the last element)
-		static typename iterator end() { return iterator{ componentList.size() }; }
-
-		//Delete a component
-		static void deleteComponent(unsigned int id);
+		static typename iterator end() { return iterator{ static_cast<unsigned int>(componentList.size()) }; }
 
 		//Clear the factory
 		static void clear();

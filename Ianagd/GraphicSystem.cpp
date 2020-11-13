@@ -1,5 +1,6 @@
 #include "GraphicSystem.h"
 
+#include "../GameEngine2D/TransformComponent.h"
 #include "../GameEngine2D/Console.h"
 #include "../GameEngine2D/Storage.h"
 
@@ -13,10 +14,13 @@ namespace ian {
 	{}
 
 	void renderEntities(SDL_Renderer* renderer) {
-		for (auto it = ge::Storage<MovementComponent>::begin(); it != ge::Storage<MovementComponent>::end(); it++) {
-			ge::CircleCreator circleCreator{ 15, { 100, 100, 100 }, true };
+		for (auto it = ge::Storage<ge::TransformComponent>::begin(); it != ge::Storage<ge::TransformComponent>::end(); it++) {
+			//Create the circle
+			constexpr int circleRadius{ 16 };
+			ge::CircleCreator circleCreator{ circleRadius, { 100, 100, 100 }, true };
 			auto circle{ circleCreator.getTexture() };
-			circle.render(renderer, { static_cast<int>(it->position.x), static_cast<int>(it->position.y) });
+			//Render the circle, with the center of the circle in the position
+			circle.render(renderer, { static_cast<int>(it->position.x - circleRadius), static_cast<int>(it->position.y - circleRadius) });
 		}
 	}
 

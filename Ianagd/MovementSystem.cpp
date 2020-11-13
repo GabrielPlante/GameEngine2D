@@ -1,7 +1,9 @@
 #include "MovementSystem.h"
 
+#include "../GameEngine2D/TransformComponent.h"
 #include "../GameEngine2D/Storage.h"
 #include "../GameEngine2D/Engine.h"
+#include "../GameEngine2D/Entity.h"
 
 #include "../Map/MapEntityHandler.h"
 #include "../Map/HexagonalMap.h"
@@ -35,11 +37,13 @@ namespace ian {
 	}
 
 	void moveEntity(ge::Storage<MovementComponent>::iterator it) {
-		ge::Vector2<double> newPosition{ computeMove(it->position, static_cast<ge::Vector2<double>>(map::HexagonalMap::relativeToAbsolute(it->destinationStack.top(), gv::tileWidth, gv::tileHeight)), it->movespeed) };
+		ge::Entity entity{ static_cast<unsigned int>(it.index) };
+		ge::Vector2<double> newPosition{ computeMove(entity.getComponent<ge::TransformComponent>().position,
+			static_cast<ge::Vector2<double>>(map::HexagonalMap::relativeToAbsolute(it->destinationStack.top(), gv::tileWidth, gv::tileHeight)), it->movespeed) };
 
 		//Move the entity in the map
-		map::MapEntityHandler<gv::tileSize>::moveEntity(it->position, it->mapEntityId, newPosition);
-		it->position = newPosition;
+		map::MapEntityHandler<gv::tileSize>::moveEntity(entity.getComponent<ge::TransformComponent>().position , it->mapEntityId, newPosition);
+		entity.getComponent<ge::TransformComponent>().position = newPosition;
 
 		//If we reached the next point of the stack, pop it
 		if (newPosition == static_cast<ge::Vector2<double>>(map::HexagonalMap::relativeToAbsolute(it->destinationStack.top(), gv::tileWidth, gv::tileHeight)))

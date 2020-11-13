@@ -1,11 +1,13 @@
 #pragma once
 
-#include "EntityHandle.h"
 #include "IDGenerator.h"
 #include "Storage.h"
 
 namespace ge {	
-	//An entity
+	/* Every component in the game is created and belong to an entity
+	* The class entity provide tool to manage component and access component
+	* This class can be used as a handle
+	*/
 	class Entity
 	{
 	private:
@@ -19,12 +21,14 @@ namespace ge {
 		friend class Storage<Entity>;
 		//Constructor
 		Entity() : id{ idGenerator.getNewID() } {}
-	public:
-		//Create an entity, add it to the entity storage and return the id of the entity
-		static EntityHandle Create();
 
-		//Get the id of this entity
-		unsigned int getID() const { return id; }
+	public:
+		//Copy constructor and constructor from an unsigned are ok because the id stay the same
+		Entity(const Entity& entity) : id{ entity.id } {}
+		Entity(unsigned int id) : id{ id } {}
+
+		//Create an entity, add it to the entity storage and return the id of the entity
+		static Entity Create();
 
 		//Add a component to this entity
 		template <typename Component>
@@ -32,10 +36,13 @@ namespace ge {
 
 		//Get a component from this entity
 		template <typename Component>
-		Component* getComponent() const { return Storage<Component>::getComponent(id); }
+		Component& getComponent() const { return Storage<Component>::get(id); }
 
 		//Delete a component
 		template <typename Component>
 		void deleteComponent() const { Storage<Component>::deleteComponent(id); }
+
+		//Operator to convert to unsigned int
+		operator unsigned int() const { return id; }
 	};
 }

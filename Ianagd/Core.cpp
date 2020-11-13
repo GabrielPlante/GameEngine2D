@@ -15,6 +15,8 @@
 
 #include "EntityHandler.h"
 
+#include <iostream>
+
 //Size of the screen
 constexpr int SCREEN_WIDTH{ 1400 };
 constexpr int SCREEN_HEIGHT{ 800 };

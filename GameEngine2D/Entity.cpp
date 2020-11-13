@@ -1,18 +1,24 @@
 #include "Entity.h"
 
+#include "TransformComponent.h"
 #include "Storage.h"
 
 namespace ge {
 	IDGenerator<unsigned int> Entity::idGenerator = IDGenerator<unsigned int>{};
 
-	EntityHandle Entity::Create() {
+	Entity Entity::Create() {
 		//Create the entity
 		Entity entity;
-		unsigned int entityID{ entity.getID() };
+
+		//Make a copy of the entity because the original one will be moved into the storage
+		Entity entityHandle{ entity };
 
 		//Add the entity to the storage
-		Storage<Entity>::addComponent(std::move(entity), entityID);
+		Storage<Entity>::addComponent(std::move(entity), entityHandle);
 
-		return entityID;
+		//Add it's transform component
+		entityHandle.addComponent(TransformComponent{});
+
+		return entityHandle;
 	}
 }
