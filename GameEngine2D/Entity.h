@@ -1,12 +1,12 @@
 #pragma once
 
+#include "TransformComponent.h"
 #include "IDGenerator.h"
 #include "Storage.h"
 
 namespace ge {	
 	/* Every component in the game is created and belong to an entity
 	* The class entity provide tool to manage component and access component
-	* This class can be used as a handle
 	*/
 	class Entity
 	{
@@ -28,7 +28,7 @@ namespace ge {
 		Entity(unsigned int id) : id{ id } {}
 
 		//Create an entity, add it to the entity storage and return the id of the entity
-		static Entity Create();
+		static Entity Create(TransformComponent&& transform = TransformComponent{});
 
 		//Add a component to this entity
 		template <typename Component>

@@ -13,14 +13,14 @@
 
 namespace ian {
 	unsigned int EntityHandler::createEntity(ge::Vector2<double> position, unsigned int movespeed) {
+		//Create the transform component
+		ge::TransformComponent transform{ position, 0 };
+
 		//Create the entity
-		ge::Entity entityHandle{ ge::Entity::Create() };
+		ge::Entity entityHandle{ ge::Entity::Create(std::move(transform)) };
 
 		//Create the map entityHandle
 		map::MapEntityHandler<gv::tileSize>::createMapEntity(position, entityHandle);
-
-		//Set the right position
-		entityHandle.getComponent<ge::TransformComponent>().position = position;
 
 		//Create the movement component and give it to the entity
 		MovementComponent movComp{ entityHandle, position, movespeed };
