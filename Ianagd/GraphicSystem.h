@@ -26,9 +26,6 @@ namespace ian {
 		//Update the system
 		void update() override;
 
-		//As a subscriber, the system need to be able to handle message
-		void handleMessage(std::shared_ptr<ge::Message> message) override {};
-
 		//Get the renderer from the window
 		SDL_Renderer* getWindowRenderer() const { return window.getRenderer(); }
 	};

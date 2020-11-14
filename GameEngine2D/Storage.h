@@ -21,8 +21,9 @@ namespace ge {
 		friend class Entity;
 
 		//Method to handle component are private to only be accessed by an entity(wich is a friend class)
-		//Add a component to the list with an id, return true if the id was not taken
-		static bool addComponent(Component&& component, unsigned int id);
+
+		//Add a component to the list with an id, return the component
+		static Component& addComponent(Component&& component, unsigned int id);
 
 		//Get a component by his id
 		static Component& get(unsigned long id) { return componentList[idToPlace.find(id)->second]; }
@@ -101,7 +102,7 @@ namespace ge {
 	//Function definition are here because of template restriction
 
 	template <typename Component>
-	bool Storage<Component>::addComponent(Component&& component, unsigned int id) {
+	Component& Storage<Component>::addComponent(Component&& component, unsigned int id) {
 		//Keep the vector sorted (start at the end because the element is more likely to be at the end)
 		auto i{ placeToID.size() };
 
@@ -111,7 +112,7 @@ namespace ge {
 
 		//Insert the element in the map, and at the same time check if there isn't already a component with the same id
 		if (idToPlace.insert(std::make_pair<unsigned int, unsigned int>(std::move(id), static_cast<unsigned int>(i))).second == false) {
-			return false;
+			return componentList[i];
 		}
 
 		//Add the component on the top of the vector
@@ -120,7 +121,7 @@ namespace ge {
 		//Push the id in the place to id vector
 		placeToID.insert(placeToID.begin() + i, id);
 
-		return true;
+		return componentList[i];
 	}
 
 	template <typename Component>

@@ -1,5 +1,6 @@
 #include "Core.h"
 
+#include "../GameEngine2D/ScriptComponent.h"
 #include "../GameEngine2D/CommandList.h"
 #include "../GameEngine2D/Storage.h"
 #include "../GameEngine2D/Engine.h"
@@ -67,9 +68,21 @@ namespace ian {
 		EXEC("quitconsole");
 		EXEC_ARGS("fps", { 60 });
 
-		unsigned int playerId{ EntityHandler::createEntity({400, 400}, 200) };
+		ge::Entity playerId{ EntityHandler::createEntity({400, 400}, 200) };
 
-		EntityHandler::setDestination(playerId, { 600, 600 });
+		class PlayerControl : public ge::Script
+		{
+		public:
+			void onUpdate() override {
+				SDL_PumpEvents();
+				ge::Vector2<int> mousePosition;
+				if (SDL_GetMouseState(&mousePosition.x, &mousePosition.y) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
+					EntityHandler::setDestination(entity, static_cast<ge::Vector2<double>>(mousePosition));
+				}
+			}
+		};
+
+		playerId.addComponent<ge::ScriptComponent>().bindScript<PlayerControl>();
 	}
 
 	void Core::run() {

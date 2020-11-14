@@ -3,8 +3,9 @@
 #include <thread>
 
 //Include of the systems
-#include "EventSystem.h"
 #include "ConsoleEventHandler.h"
+#include "ScriptSystem.h"
+#include "EventSystem.h"
 
 #include "Console.h"
 
@@ -35,6 +36,8 @@ namespace ge {
 
 		//Initialise the command list
 		CommandList::init();
+
+		addSystem(std::shared_ptr<ge::System>{new ScriptSystem{}});
 
 		CONSOLE_LOG("Engine successfully initialised");
 

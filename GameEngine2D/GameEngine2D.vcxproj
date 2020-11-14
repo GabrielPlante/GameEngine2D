@@ -152,7 +152,6 @@
     <ClCompile Include="CircleCreator.cpp" />
     <ClCompile Include="CommandFps.cpp" />
     <ClCompile Include="CommandList.cpp" />
-    <ClCompile Include="ComponentHandle.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="ConsoleEventHandler.cpp" />
     <ClCompile Include="Drawer.cpp" />
@@ -168,6 +167,7 @@
     <ClCompile Include="Publisher.cpp" />
     <ClCompile Include="RectangleCreator.cpp" />
     <ClCompile Include="RenderableRectangle.cpp" />
+    <ClCompile Include="ScriptSystem.cpp" />
     <ClCompile Include="SDLInit.cpp" />
     <ClCompile Include="Subscriber.cpp" />
     <ClCompile Include="Text.cpp" />
@@ -192,7 +192,6 @@
     <ClInclude Include="CommandOpenConsole.h" />
     <ClInclude Include="CommandQuit.h" />
     <ClInclude Include="CommandTimeScale.h" />
-    <ClInclude Include="ComponentHandle.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="ConsoleEventHandler.h" />
     <ClInclude Include="Drawer.h" />
@@ -202,6 +201,9 @@
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="HexagonCreator.h" />
     <ClInclude Include="RectangleCreator.h" />
+    <ClInclude Include="Script.h" />
+    <ClInclude Include="ScriptComponent.h" />
+    <ClInclude Include="ScriptSystem.h" />
     <ClInclude Include="Storage.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GraphicSystem.h" />

@@ -34,9 +34,6 @@ namespace ge {
 		//Pop the top event, the next one will be used from now on
 		void popEventHandler();
 
-		//As a subscriber, the system need to be able to handle message, however this system will not use it
-		void handleMessage(std::shared_ptr<Message> message) override {}
-
 		//Get the size of the event handler pile
 		size_t getEventHandlerPileSize() const { return eventHandlerPile.size(); }
 	};

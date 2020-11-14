@@ -161,9 +161,6 @@
     <ClCompile Include="CommandFps.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentHandle.cpp">
-      <Filter>Source Files\ECS\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Message.cpp">
       <Filter>Source Files\Messaging</Filter>
     </ClCompile>
@@ -181,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="HexagonCreator.cpp">
       <Filter>Source Files\Renderable\TextureCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptSystem.cpp">
+      <Filter>Source Files\ECS\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -295,9 +295,6 @@
     <ClInclude Include="CommandOpenConsole.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentHandle.h">
-      <Filter>Header Files\ECS\Component</Filter>
-    </ClInclude>
     <ClInclude Include="Vector2.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
@@ -336,6 +333,15 @@
     </ClInclude>
     <ClInclude Include="TransformComponent.h">
       <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptComponent.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Script.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptSystem.h">
+      <Filter>Header Files\ECS\System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

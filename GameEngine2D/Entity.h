@@ -29,7 +29,7 @@ namespace ge {
 
 		//Add a component to this entity
 		template <typename Component>
-		void addComponent(Component&& component) const { Storage<Component>::addComponent(std::move(component), id); }
+		Component& addComponent(Component&& component = Component{}) const { return Storage<Component>::addComponent(std::move(component), id); }
 
 		//Get a component from this entity
 		template <typename Component>

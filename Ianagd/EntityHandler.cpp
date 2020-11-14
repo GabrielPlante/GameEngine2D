@@ -1,7 +1,5 @@
 #include "EntityHandler.h"
 
-#include "../GameEngine2D/Entity.h"
-
 #include "../GameEngine2D/TransformComponent.h"
 
 #include "../Map/MapEntityHandler.h"
@@ -12,12 +10,9 @@
 #include "GameValues.h"
 
 namespace ian {
-	unsigned int EntityHandler::createEntity(ge::Vector2<double> position, unsigned int movespeed) {
-		//Create the transform component
-		ge::TransformComponent transform{ position, 0 };
-
+	ge::Entity EntityHandler::createEntity(ge::Vector2<double> position, unsigned int movespeed) {
 		//Create the entity
-		ge::Entity entityHandle{ ge::Entity::Create(std::move(transform)) };
+		ge::Entity entityHandle{ ge::Entity::Create({position, 0}) };
 
 		//Create the map entityHandle
 		map::MapEntityHandler<gv::tileSize>::createMapEntity(position, entityHandle);
