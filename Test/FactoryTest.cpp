@@ -1,10 +1,11 @@
 #include "pch.h"
 
-#include "MapTest.h"
+//#include "MapTest.h"
 
 #include <string>
 
 #include "../GameEngine2D/Entity.h"
+#undef main
 
 TEST(FactoryTest, All) {
 	ge::Entity id1{ ge::Entity::Create() };

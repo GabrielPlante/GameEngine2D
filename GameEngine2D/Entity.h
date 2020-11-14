@@ -16,9 +16,6 @@ namespace ge {
 		//The id of the entity
 		unsigned int id;
 
-		//This is because the storage need to create default composant in case an added component got an ID too big
-		//However, this will never happen in the entity class since it dictate the ID generated
-		friend class Storage<Entity>;
 		//Constructor
 		Entity() : id{ idGenerator.getNewID() } {}
 
