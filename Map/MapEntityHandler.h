@@ -15,7 +15,7 @@ namespace map {
 		//Get the tile out of a position
 		static ge::Vector2<size_t> getTile(ge::Vector2<double> position);
 	public:
-		//Create a map entity at a certain position, return the id of the map entity
+		//Create a map entity at a certain position
 		static void createMapEntity(ge::Vector2<double> position, unsigned int id);
 
 		//Delete an entity, return true if the entity is found and deleted

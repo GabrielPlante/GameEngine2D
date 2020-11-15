@@ -42,7 +42,7 @@ namespace ian {
 			static_cast<ge::Vector2<double>>(map::HexagonalMap::relativeToAbsolute(it->destinationStack.top(), gv::tileWidth, gv::tileHeight)), it->movespeed) };
 
 		//Move the entity in the map
-		map::MapEntityHandler<gv::tileSize>::moveEntity(entity.getComponent<ge::TransformComponent>().position , it->mapEntityId, newPosition);
+		map::MapEntityHandler<gv::tileSize>::moveEntity(entity.getComponent<ge::TransformComponent>().position , it.id(), newPosition);
 		entity.getComponent<ge::TransformComponent>().position = newPosition;
 
 		//If we reached the next point of the stack, pop it

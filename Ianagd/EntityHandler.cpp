@@ -18,7 +18,7 @@ namespace ian {
 		map::MapEntityHandler<gv::tileSize>::createMapEntity(position, entityHandle);
 
 		//Create the movement component and give it to the entity
-		MovementComponent movComp{ entityHandle, position, movespeed };
+		MovementComponent movComp{ position, movespeed };
 		entityHandle.addComponent(std::move(movComp));
 
 		//Return the entityHandle

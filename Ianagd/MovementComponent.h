@@ -5,9 +5,6 @@
 
 namespace ian {
 	struct MovementComponent {
-		//The id of the map entity component associated with this component
-		unsigned int mapEntityId{ 0 };
-
 		//The destination of this component
 		ge::Vector2<double> destination;
 

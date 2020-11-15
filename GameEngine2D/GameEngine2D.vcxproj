@@ -161,6 +161,7 @@
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GraphicSystem.cpp" />
     <ClCompile Include="HexagonCreator.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="InputBar.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Message.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="HexagonCreator.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="RectangleCreator.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="ScriptComponent.h" />

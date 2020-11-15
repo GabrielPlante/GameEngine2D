@@ -7,15 +7,18 @@
 namespace ge {
 	void ScriptSystem::update() {
 		for (auto it = Storage<ScriptComponent>::begin(); it != Storage<ScriptComponent>::end(); it++) {
-			//If the component is not initialised but binded to a script, initialise it
-			if (!it->isInitialised && it->script) {
-				it->isInitialised = true;
-				it->script->entity = it.id();
-				it->script->onCreate();
+			//Initialise the non initialised script
+			while (it->uninitialisedScript.size() > 0) {
+				//Create the last script of the list
+				Script* script{ it->scripts[it->uninitialisedScript.back()] };
+				script->entity = it.id();
+				script->onCreate();
+				//Remove it from the uninitialised scripts
+				it->uninitialisedScript.pop_back();
 			}
 			//If the component is binded to a script, update the script
-			if (it->script)
-				it->script->onUpdate();
+			for (Script* script : it->scripts)
+				script->onUpdate();
 		}
 	}
 }
