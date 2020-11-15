@@ -1,6 +1,7 @@
 #pragma once
 
 #include "TransformComponent.h"
+#include "ComponentHandler.h"
 #include "IDGenerator.h"
 #include "Storage.h"
 
@@ -29,7 +30,8 @@ namespace ge {
 
 		//Add a component to this entity
 		template <typename Component>
-		Component& addComponent(Component&& component = Component{}) const { return Storage<Component>::addComponent(std::move(component), id); }
+		Component& addComponent(Component&& component = Component{}) const { Storage<ComponentHandler>::get(id).addComponent<Component>();
+			return Storage<Component>::addComponent(std::move(component), id); }
 
 		//Get a component from this entity
 		template <typename Component>
@@ -37,7 +39,10 @@ namespace ge {
 
 		//Delete a component
 		template <typename Component>
-		void deleteComponent() const { Storage<Component>::deleteComponent(id); }
+		void deleteComponent() const { Storage<ComponentHandler>::get(id).deleteComponent<Component>(); }
+
+		//Delete the entity and all it's component
+		void deleteEntity() { Storage<ComponentHandler>::get(id).clear(); Storage<ComponentHandler>::deleteComponent(id); }
 
 		//Operator to convert to unsigned int
 		operator unsigned int() const { return id; }

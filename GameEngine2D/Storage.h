@@ -19,6 +19,8 @@ namespace ge {
 		static std::vector<unsigned int> placeToID;
 
 		friend class Entity;
+		//No other choice
+		friend struct ComponentHandler;
 
 		//Method to handle component are private to only be accessed by an entity(wich is a friend class)
 

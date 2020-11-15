@@ -11,6 +11,8 @@
 
 #include "CommandList.h"
 
+#include "Entity.h"
+
 namespace ge {
 	//Initialize static attribute
 	Engine* Engine::instance{ nullptr };
@@ -46,6 +48,9 @@ namespace ge {
 	Engine::~Engine() {
 		CONSOLE_LOG("Engine shutting down");
 
+		//Delete every entity and every component
+		Storage<ComponentHandler>::clear();
+
 		//Quit the console
 		Console::quit();
 
@@ -78,6 +83,9 @@ namespace ge {
 				std::this_thread::sleep_for(std::chrono::microseconds(static_cast<long long>(timeBetweenFrame) * 1000 - engineClock.getTime()));
 			}
 		}
+
+		//Quit properly the engine
+		Engine::quit();
 	}
 
 	void Engine::update() {

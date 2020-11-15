@@ -192,6 +192,7 @@
     <ClInclude Include="CommandOpenConsole.h" />
     <ClInclude Include="CommandQuit.h" />
     <ClInclude Include="CommandTimeScale.h" />
+    <ClInclude Include="ComponentHandler.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="ConsoleEventHandler.h" />
     <ClInclude Include="Drawer.h" />

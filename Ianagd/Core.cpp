@@ -70,19 +70,17 @@ namespace ian {
 
 		ge::Entity playerId{ EntityHandler::createEntity({400, 400}, 200) };
 
-		class PlayerControl : public ge::Script
-		{
-		public:
-			void onUpdate() override {
-				SDL_PumpEvents();
-				ge::Vector2<int> mousePosition;
-				if (SDL_GetMouseState(&mousePosition.x, &mousePosition.y) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
-					EntityHandler::setDestination(entity, static_cast<ge::Vector2<double>>(mousePosition));
-				}
+		//Create the class that control the player
+		class PlayerControl : public ge::Script {
+		public: void onUpdate() override {
 			}
 		};
 
 		playerId.addComponent<ge::ScriptComponent>().bindScript<PlayerControl>();
+	}
+
+	Core::~Core() {
+		ge::Engine::quit();
 	}
 
 	void Core::run() {

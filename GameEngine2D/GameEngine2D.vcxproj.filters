@@ -343,5 +343,8 @@
     <ClInclude Include="ScriptSystem.h">
       <Filter>Header Files\ECS\System</Filter>
     </ClInclude>
+    <ClInclude Include="ComponentHandler.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

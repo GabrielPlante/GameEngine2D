@@ -10,6 +10,9 @@ namespace ian {
 		//Constructor private for singleton
 		Core();
 
+		//Default constructor
+		~Core();
+
 		//The global renderer
 		SDL_Renderer* gRenderer;
 
