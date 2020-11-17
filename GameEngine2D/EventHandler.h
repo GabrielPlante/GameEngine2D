@@ -22,10 +22,10 @@ namespace ge {
 		virtual void update(SDL_Event* event) = 0;
 
 		//Called when this event handler take the control of the event
-		virtual void takeControl() = 0;
+		virtual void takeControl() {}
 
 		//Called when this event handler lose the control of the event
-		virtual void loseControl() = 0;
+		virtual void loseControl() {}
 
 		//Virtual destructor
 		virtual ~EventHandler() = default;

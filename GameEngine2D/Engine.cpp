@@ -3,11 +3,9 @@
 #include <thread>
 
 //Include of the systems
-#include "ConsoleEventHandler.h"
+#include "DefaultEventHandler.h"
 #include "ScriptSystem.h"
 #include "EventSystem.h"
-
-#include "Console.h"
 
 #include "CommandList.h"
 
@@ -24,43 +22,29 @@ namespace ge {
 	}
 
 	//In the constructor many systems are added to the engine, the order in wich they are added will be their order of calling, so it matter
-	Engine::Engine(int screenWidth, int screenHeight)
+	Engine::Engine()
 	{
-		//Then initialise the console
-		Console::init(Rectangle{ 100, 100, screenWidth * 2 / 3, screenHeight * 2 / 3 });
-
-		CONSOLE_LOG("Console successfully initialised");
-
-		std::unique_ptr<EventHandler> consoleEventSystem{ std::unique_ptr<EventHandler>{new ConsoleEventHandler{}} };
-		pushEventHandler(std::move(consoleEventSystem));
-
-		CONSOLE_LOG("Console event handler successfully initialised");
+		std::unique_ptr<EventHandler> defaultEventSystem{ std::unique_ptr<EventHandler>{new DefaultEventHandler{}} };
+		pushEventHandler(std::move(defaultEventSystem));
 
 		//Initialise the command list
 		CommandList::init();
 
 		addSystem(std::shared_ptr<ge::System>{new ScriptSystem{}});
 
-		CONSOLE_LOG("Engine successfully initialised");
-
 	}
 
 	Engine::~Engine() {
-		CONSOLE_LOG("Engine shutting down");
-
 		//Delete every entity and every component
 		Storage<ComponentHandler>::clear();
-
-		//Quit the console
-		Console::quit();
 
 		//Quit the command list
 		CommandList::quit();
 	}
 
-	void Engine::init(int screenWidth, int screenHeight) {
+	void Engine::init() {
 		if (!instance) {
-			instance = new Engine{ screenWidth, screenHeight };
+			instance = new Engine{};
 		}
 	}
 

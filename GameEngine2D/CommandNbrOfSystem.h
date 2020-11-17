@@ -2,7 +2,8 @@
 
 #include "Command.h"
 #include "Engine.h"
-#include "Console.h"
+
+#include <iostream>
 
 namespace ge {
 	class CommandNbrOfSystem 
@@ -16,7 +17,7 @@ namespace ge {
 
 		//Print in the console the number of system in the engine
 		void execute(const std::vector<float>&) override {
-			CONSOLE_LOG(std::to_string(Engine::getInstance()->getSystemSize()));
+			std::cout << (std::to_string(Engine::getInstance()->getSystemSize())) << std::endl;
 		}
 	};
 }

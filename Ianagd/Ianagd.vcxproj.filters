@@ -60,9 +60,6 @@
     <ClCompile Include="Core.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
-    <ClCompile Include="GameEventHandler.cpp">
-      <Filter>Source Files\General</Filter>
-    </ClCompile>
     <ClCompile Include="GraphicSystem.cpp">
       <Filter>Source Files\ECS\System</Filter>
     </ClCompile>
@@ -80,14 +77,8 @@
     <ClInclude Include="GraphicSystem.h">
       <Filter>Header Files\ECS\System</Filter>
     </ClInclude>
-    <ClInclude Include="GameEventHandler.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
     <ClInclude Include="Core.h">
       <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="CommandQuitConsole.h">
-      <Filter>Header Files\Command</Filter>
     </ClInclude>
     <ClInclude Include="MovementComponent.h">
       <Filter>Header Files\ECS\Component</Filter>

@@ -63,12 +63,6 @@
     <Filter Include="Source Files\Renderable\UI">
       <UniqueIdentifier>{53227ac0-833f-486a-b5a8-3504e2a835ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Renderable\Console">
-      <UniqueIdentifier>{5846bebc-b61e-42c1-9be9-c606f408b842}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Renderable\Console">
-      <UniqueIdentifier>{66c90a7f-4bc2-4e23-9944-8e4daee3afe6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\ECS\System\EventSystem">
       <UniqueIdentifier>{b8aaf22e-da04-49e5-896d-dced1979c9e4}</UniqueIdentifier>
     </Filter>
@@ -137,9 +131,6 @@
     <ClCompile Include="InputBar.cpp">
       <Filter>Source Files\Renderable\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Console.cpp">
-      <Filter>Source Files\Renderable\Console</Filter>
-    </ClCompile>
     <ClCompile Include="Publisher.cpp">
       <Filter>Source Files\Messaging</Filter>
     </ClCompile>
@@ -147,9 +138,6 @@
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="EventSystem.cpp">
-      <Filter>Source Files\ECS\System\EventSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="ConsoleEventHandler.cpp">
       <Filter>Source Files\ECS\System\EventSystem</Filter>
     </ClCompile>
     <ClCompile Include="SDLInit.cpp">
@@ -184,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultEventHandler.cpp">
+      <Filter>Source Files\ECS\System\EventSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -259,9 +250,6 @@
     <ClInclude Include="InputBar.h">
       <Filter>Header Files\Renderable\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Console.h">
-      <Filter>Header Files\Renderable\Console</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
@@ -269,9 +257,6 @@
       <Filter>Header Files\ECS\System\EventSystem</Filter>
     </ClInclude>
     <ClInclude Include="EventHandler.h">
-      <Filter>Header Files\ECS\System\EventSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="ConsoleEventHandler.h">
       <Filter>Header Files\ECS\System\EventSystem</Filter>
     </ClInclude>
     <ClInclude Include="StringSplit.h">
@@ -293,9 +278,6 @@
       <Filter>Header Files\Command</Filter>
     </ClInclude>
     <ClInclude Include="CommandQuit.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="CommandOpenConsole.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
     <ClInclude Include="Vector2.h">
@@ -351,6 +333,9 @@
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultEventHandler.h">
+      <Filter>Header Files\ECS\System\EventSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

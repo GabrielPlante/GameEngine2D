@@ -1,7 +1,5 @@
 #include "Camera.h"
 
-#include "../GameEngine2D/Console.h"
-
 namespace ge {
 	//screen + camera = world
 	void Camera::move(int deltaX, int deltaY) {

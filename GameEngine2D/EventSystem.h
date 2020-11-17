@@ -22,11 +22,8 @@ namespace ge {
 		SDL_Event event{ 0 };
 
 	public:
-		//Default constructor
-		EventSystem() {}
-
 		//What will update all component under this system control
-		void update();
+		void update() { eventHandlerPile.back()->update(&event); }
 
 		//Push an event handler that will be used from now on
 		void pushEventHandler(std::unique_ptr<EventHandler> eventHandler);

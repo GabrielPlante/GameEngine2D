@@ -8,8 +8,6 @@
 #include "../Map/MapGenerator.h"
 #include "../Map/PathFinder.h"
 
-#include "CommandQuitConsole.h"
-
 #include "MovementSystem.h"
 #include "GraphicSystem.h"
 #include "GameValues.h"
@@ -24,7 +22,6 @@ constexpr int SCREEN_HEIGHT{ 800 };
 
 namespace ian {
 	void fillCommandList() {
-		ge::CommandList::getInstance()->addCommand(std::move(std::unique_ptr<ge::Command>{new CommandQuitConsole{}}));
 	}
 
 	void fillSystem() {
@@ -42,7 +39,7 @@ namespace ian {
 
 	Core::Core() {
 		//Init the engine
-		ge::Engine::init(SCREEN_WIDTH, SCREEN_HEIGHT);
+		ge::Engine::init();
 
 		//Fill the command list
 		fillCommandList();
@@ -64,11 +61,9 @@ namespace ian {
 		//Add the other systems
 		fillSystem();
 
-		//Quit the console and reduce fps to reduce work load
-		EXEC("quitconsole");
-		EXEC_ARGS("fps", { 60 });
-
 		ge::Entity playerId{ EntityHandler::createEntity({400, 400}, 200) };
+
+		EXEC_ARGS("fps", { 60 });
 
 		//Create the class that control the player
 		class PlayerControl : public ge::Script {

@@ -1,14 +1,15 @@
 #include "CommandFps.h"
 
-#include "Console.h"
 #include "Engine.h"
+
+#include <iostream>
 
 constexpr int FPS_MIN{ 5 };
 
 namespace ge {
 	void CommandFps::execute(const std::vector<float>& args) {
 		if (args.empty()) {
-			CONSOLE_LOG("FPS " + std::to_string(1 / (static_cast<double>(Engine::getInstance()->getTimeBetweenFrame()) / 1000.0)));
+			std::cout << ("FPS " + std::to_string(1 / (static_cast<double>(Engine::getInstance()->getTimeBetweenFrame()) / 1000.0))) << std::endl;
 		}
 		else {
 			if (args[0] > FPS_MIN)

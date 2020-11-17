@@ -1,12 +1,9 @@
 #include "EventSystem.h"
 #include "CommandList.h"
-#include "Console.h"
+
+#include <iostream>
 
 namespace ge {
-
-	void EventSystem::update() {
-		eventHandlerPile.back()->update(&event);
-	}
 
 	void EventSystem::pushEventHandler(std::unique_ptr<EventHandler> eventHandler) {
 
@@ -22,8 +19,6 @@ namespace ge {
 
 		//Delete all other event
 		while (SDL_PollEvent(&event)) {}
-
-		CONSOLE_LOG("Event handler pushed");
 	}
 
 	void EventSystem::popEventHandler() {
@@ -35,11 +30,9 @@ namespace ge {
 
 			//Inform the new event handler that it took control
 			eventHandlerPile.back()->takeControl();
-
-			CONSOLE_LOG("Event handler popped");
 		}
 		else {
-			CONSOLE_LOG_ERROR("Error: tried to pop the last event handler of the pile");
+			std::cout << ("Error: tried to pop the last event handler of the pile") << std::endl;
 		}
 	}
 }

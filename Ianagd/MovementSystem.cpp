@@ -11,8 +11,6 @@
 #include "MovementComponent.h"
 #include "GameValues.h"
 
-#include "../GameEngine2D/Console.h"
-
 namespace ian {
 	ge::Vector2<double> computeMove(ge::Vector2<double> position, ge::Vector2<double> destination, int movespeed) {
 		//Get the time that passed since the last frame

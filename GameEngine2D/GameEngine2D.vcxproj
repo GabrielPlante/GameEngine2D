@@ -152,8 +152,7 @@
     <ClCompile Include="CircleCreator.cpp" />
     <ClCompile Include="CommandFps.cpp" />
     <ClCompile Include="CommandList.cpp" />
-    <ClCompile Include="Console.cpp" />
-    <ClCompile Include="ConsoleEventHandler.cpp" />
+    <ClCompile Include="DefaultEventHandler.cpp" />
     <ClCompile Include="Drawer.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -190,12 +189,10 @@
     <ClInclude Include="CommandNbrEventHandler.h" />
     <ClInclude Include="CommandNbrOfSystem.h" />
     <ClInclude Include="CommandList.h" />
-    <ClInclude Include="CommandOpenConsole.h" />
     <ClInclude Include="CommandQuit.h" />
     <ClInclude Include="CommandTimeScale.h" />
     <ClInclude Include="ComponentHandler.h" />
-    <ClInclude Include="Console.h" />
-    <ClInclude Include="ConsoleEventHandler.h" />
+    <ClInclude Include="DefaultEventHandler.h" />
     <ClInclude Include="Drawer.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Entity.h" />
