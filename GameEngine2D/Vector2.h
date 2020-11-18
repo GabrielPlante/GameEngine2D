@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include <SDL.h>
 
 #include "Angle.h"
 
@@ -24,14 +23,8 @@ namespace ge {
 		//Constructor taking position
 		constexpr Vector2(T x, T y) :x{ x }, y{ y } {}
 
-		//Constructor with a SDL_Point
-		constexpr Vector2(const SDL_Point& point) :x{ point.x }, y{ point.y } {}
-
 		//Default constructor
 		constexpr Vector2() {}
-
-		//Vector2 to a SDL_Point
-		inline SDL_Point toSDL_Point() const;
 
 		//Find the angle between the point and the direction
 		Angle angle(const Vector2<> destination) const;
@@ -88,14 +81,6 @@ namespace ge {
 		vector.pop_back();
 		position.x = vector.back();
 		vector.pop_back();
-	}
-
-	template <typename T>
-	SDL_Point Vector2<T>::toSDL_Point() const {
-		SDL_Point point;
-		point.x = static_cast<int>(x);
-		point.y = static_cast<int>(y);
-		return point;
 	}
 
 	template <typename T>

@@ -1,5 +1,4 @@
 #pragma once
-#include <SDL.h>
 
 #include "Rectangle.h"
 #include "Vector2.h"

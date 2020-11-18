@@ -1,41 +1,26 @@
 #include "Window.h"
-#include <SDL_ttf.h>
 #include <stdexcept>
-
-#include "Drawer.h"
+#include <GLFW/glfw3.h>
 
 namespace ge {
 	Window::Window(const int screenWidth, const int screenHeight, const std::string& title)
 		:screenWidth{ screenWidth }, screenHeight{ screenHeight }
 	{
-		//Create window
-		gWindow = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
-		if (!gWindow)
-			throw std::runtime_error("SDL_CreateWindow failed");
+		/* Create a windowed mode window and its OpenGL context */
+		window = glfwCreateWindow(screenWidth, screenHeight, title.c_str(), NULL, NULL);
+		if (!window)
+		{
+			glfwTerminate();
+			throw std::runtime_error("Could not create a window");
+		}
 
-
-		//Create renderer
-		gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
-		if (!gRenderer)
-			throw std::runtime_error("SDL_CreateRenderer failed");
-
-		//Everything will be painted black
-		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
-
-		//Alpha blending https://wiki.libsdl.org/SDL_BlendMode
-		SDL_SetRenderDrawBlendMode(gRenderer, SDL_BLENDMODE_BLEND);
-
-		//Add the renderer to the drawer
-		Drawer::addRenderer(gRenderer);
+		/* Make the window's context current */
+		glfwMakeContextCurrent(window);
 	}
+
 
 	Window::~Window()
 	{
-		//Destroy
-		SDL_DestroyRenderer(gRenderer);
-		SDL_DestroyWindow(gWindow);
-		gRenderer = nullptr;
-		gWindow = nullptr;
 	}
 }
 

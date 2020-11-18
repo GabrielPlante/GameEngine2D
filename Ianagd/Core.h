@@ -1,6 +1,5 @@
 #pragma once
 
-struct SDL_Renderer;
 namespace ian {
 	class Core
 	{
@@ -12,9 +11,6 @@ namespace ian {
 
 		//Default constructor
 		~Core();
-
-		//The global renderer
-		SDL_Renderer* gRenderer;
 
 	public:
 		//Init the singleton
@@ -28,8 +24,5 @@ namespace ian {
 
 		//Run the core
 		void run();
-
-		//Get the global renderer of the map
-		SDL_Renderer* getRenderer() const { return gRenderer; }
 	};
 }

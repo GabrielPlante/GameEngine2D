@@ -51,20 +51,18 @@ namespace ge {
 
 
 		/// <summary>
-		/// This class is used to initialise and destruct SDL
+		/// This class is used to initialise and destruct librariries
 		/// </summary>
-		class SDLInit
+		class Init
 		{
 		public:
-			//Constructor, initialise SDL
-			SDLInit();
+			Init();
 
-			//Destructor, stop SDL
-			~SDLInit();
+			~Init();
 		};
 
-		//This will initialise sdl
-		SDLInit sdl_init{};
+		//This will initialise the librariries
+		Init initLibraries{};
 
 		//Default constructor, private to make it a singleton
 		Engine();

@@ -60,9 +60,6 @@
     <ClCompile Include="Core.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
-    <ClCompile Include="GraphicSystem.cpp">
-      <Filter>Source Files\ECS\System</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
@@ -74,9 +71,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GraphicSystem.h">
-      <Filter>Header Files\ECS\System</Filter>
-    </ClInclude>
     <ClInclude Include="Core.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>

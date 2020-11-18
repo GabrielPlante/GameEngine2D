@@ -1,5 +1,4 @@
 #pragma once
-#include <SDL.h>
 #include "Vector2.h"
 
 namespace ge {
@@ -15,9 +14,6 @@ namespace ge {
 		//Default constructor
 		Rectangle() {}
 
-		//Constructor taking an SDL_Rect
-		Rectangle(const SDL_Rect& rect) :x{ rect.x }, y{ rect.y }, w{ rect.w }, h{ rect.h } {}
-
 		//Constructor taking a Vector2, the width and the height
 		Rectangle(const Vector2<>& position, const int w, const int h) :x{ position.x }, y{ position.y }, w{ w }, h{ h } {}
 
@@ -30,21 +26,9 @@ namespace ge {
 		//Resize the rectangle with a delta
 		inline void resize(double delta);
 
-		//Rectangle to SDL_Rect
-		inline SDL_Rect toSDL_Rect() const;
-
 		//Check if two rectangle are overlapping, return true if they are
 		inline bool overlap(const Rectangle& rectangle) const;
 	};
-
-	SDL_Rect Rectangle::toSDL_Rect() const {
-		SDL_Rect rect;
-		rect.x = x;
-		rect.y = y;
-		rect.w = w;
-		rect.h = h;
-		return rect;
-	}
 
 	bool Rectangle::overlap(const Rectangle& rectangle) const {
 		//Check if an rectangle is more left than the other

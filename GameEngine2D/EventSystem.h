@@ -1,5 +1,4 @@
 #pragma once
-#include <SDL.h>
 #include <memory>
 #include <vector>
 
@@ -19,11 +18,9 @@ namespace ge {
 		//The pile used to determine wich event handler is used (the top one is used)
 		std::vector<std::unique_ptr<EventHandler>> eventHandlerPile;
 
-		SDL_Event event{ 0 };
-
 	public:
 		//What will update all component under this system control
-		void update() { eventHandlerPile.back()->update(&event); }
+		void update() { /*eventHandlerPile.back()->update();*/ }
 
 		//Push an event handler that will be used from now on
 		void pushEventHandler(std::unique_ptr<EventHandler> eventHandler);

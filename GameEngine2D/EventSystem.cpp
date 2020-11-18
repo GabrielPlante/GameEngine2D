@@ -18,7 +18,7 @@ namespace ge {
 		eventHandlerPile.back()->takeControl();
 
 		//Delete all other event
-		while (SDL_PollEvent(&event)) {}
+		//while (SDL_PollEvent(&event)) {}
 	}
 
 	void EventSystem::popEventHandler() {

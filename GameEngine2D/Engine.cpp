@@ -3,6 +3,7 @@
 #include <thread>
 
 //Include of the systems
+#include "DefaultGraphicSystem.h"
 #include "DefaultEventHandler.h"
 #include "ScriptSystem.h"
 #include "EventSystem.h"
@@ -10,6 +11,9 @@
 #include "CommandList.h"
 
 #include "Entity.h"
+
+constexpr int SCREEN_WIDTH{ 1400 };
+constexpr int SCREEN_HEIGHT{ 800 };
 
 namespace ge {
 	//Initialize static attribute
@@ -27,11 +31,12 @@ namespace ge {
 		std::unique_ptr<EventHandler> defaultEventSystem{ std::unique_ptr<EventHandler>{new DefaultEventHandler{}} };
 		pushEventHandler(std::move(defaultEventSystem));
 
-		//Initialise the command list
 		CommandList::init();
 
 		addSystem(std::shared_ptr<ge::System>{new ScriptSystem{}});
 
+		//Set the graphic system to the default one
+		graphicSystem.reset(new DefaultGraphicSystem{ SCREEN_WIDTH, SCREEN_HEIGHT });
 	}
 
 	Engine::~Engine() {

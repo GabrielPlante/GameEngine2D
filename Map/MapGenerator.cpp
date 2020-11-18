@@ -1,8 +1,5 @@
 #include "MapGenerator.h"
 
-#include "../GameEngine2D/HexagonCreator.h"
-#include "../GameEngine2D/Drawer.h"
-
 #include "TileComponent.h"
 #include "HexagonalMap.h"
 #include "MapStorage.h"
@@ -23,7 +20,7 @@ namespace map {
 		}
 	}
 
-	ge::TextureWrapper MapGenerator::generateTexture(int tileSize, ge::Vector2<int> mapSize) {
+	/*ge::TextureWrapper MapGenerator::generateTexture(int tileSize, ge::Vector2<int> mapSize) {
 
 		//Compute the tile dimension
 		const double tileWidth{ tileSize * 1.73205080757 };
@@ -51,5 +48,5 @@ namespace map {
 		}
 
 		return drawer.finishDrawing();
-	}
+	}*/
 }

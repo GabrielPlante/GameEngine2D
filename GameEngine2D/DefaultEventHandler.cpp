@@ -1,18 +1,10 @@
 #include "DefaultEventHandler.h"
+#include <GLFW/glfw3.h>
 
 #include "CommandList.h"
 
 namespace ge {
-	void DefaultEventHandler::update(SDL_Event* event)
+	void DefaultEventHandler::update()
 	{
-		while (pollEvent(event)) {
-			//If the user want to quit
-			if (event->type == SDL_QUIT) {
-				EXEC("quit");
-			}
-			//If a mouse button is pressed
-			/*else if (event->type == SDL_MOUSEBUTTONDOWN) {
-			}*/
-		}
 	}
 }

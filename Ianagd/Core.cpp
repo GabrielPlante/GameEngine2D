@@ -9,14 +9,12 @@
 #include "../Map/PathFinder.h"
 
 #include "MovementSystem.h"
-#include "GraphicSystem.h"
 #include "GameValues.h"
 
 #include "EntityHandler.h"
 
 #include <iostream>
 
-//Size of the screen
 constexpr int SCREEN_WIDTH{ 1400 };
 constexpr int SCREEN_HEIGHT{ 800 };
 
@@ -44,19 +42,17 @@ namespace ian {
 		//Fill the command list
 		fillCommandList();
 
-
 		//Add a graphic system
-		std::shared_ptr<GraphicSystem> graphicSystem{ new GraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT} };
-		gRenderer = graphicSystem->getWindowRenderer();
+		//std::shared_ptr<GraphicSystem> graphicSystem{ new GraphicSystem{SCREEN_WIDTH, SCREEN_HEIGHT} };
+		//gRenderer = graphicSystem->getWindowRenderer();
 
 		//Generate the map and it's texture
 		map::MapGenerator::generate(10, { 0, 80, 0 });
-		ge::TextureWrapper mapTexture{ map::MapGenerator::generateTexture(gv::tileSize, {SCREEN_WIDTH, SCREEN_HEIGHT}) };
 
 		//Add the texture to the graphic system
-		graphicSystem->addMapTexture(mapTexture);
+		//graphicSystem->addMapTexture(mapTexture);
 
-		ge::Engine::getInstance()->addGraphicSystem(std::move(graphicSystem));
+		//ge::Engine::getInstance()->addGraphicSystem(std::move(graphicSystem));
 
 		//Add the other systems
 		fillSystem();

@@ -1,5 +1,4 @@
 #pragma once
-#include <SDL.h>
 #include <memory>
 
 #include "Publisher.h"
@@ -14,12 +13,9 @@ namespace ge {
 	class EventHandler
 		: public Publisher
 	{
-	protected:
-		//Poll the next event, return false if there is no more event to pull
-		bool pollEvent(SDL_Event* event) { return SDL_PollEvent(event); }
 	public:
 		//Handle all the event
-		virtual void update(SDL_Event* event) = 0;
+		virtual void update() = 0;
 
 		//Called when this event handler take the control of the event
 		virtual void takeControl() {}

@@ -15,12 +15,6 @@
     <Filter Include="Header Files\Renderable">
       <UniqueIdentifier>{956b3358-90c2-4cfa-978d-9286345c2c92}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Renderable\Text">
-      <UniqueIdentifier>{eb3b8201-fca8-48f4-8169-a93a06ac858d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Renderable\Text">
-      <UniqueIdentifier>{9351f364-e889-4086-a32c-3f156c4ed047}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\ECS">
       <UniqueIdentifier>{2257439f-e9c3-4741-a669-4dbedb35d166}</UniqueIdentifier>
     </Filter>
@@ -57,12 +51,6 @@
     <Filter Include="Source Files\Messaging">
       <UniqueIdentifier>{65963e35-3bc2-40c6-ace5-be7257ee0c02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Renderable\UI">
-      <UniqueIdentifier>{8fc54d2f-a3f4-4819-b2ca-8f8dd326e126}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Renderable\UI">
-      <UniqueIdentifier>{53227ac0-833f-486a-b5a8-3504e2a835ce}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\ECS\System\EventSystem">
       <UniqueIdentifier>{b8aaf22e-da04-49e5-896d-dced1979c9e4}</UniqueIdentifier>
     </Filter>
@@ -74,12 +62,6 @@
     </Filter>
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{b4122d69-14b0-4ac6-ab81-11a431dedd91}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Renderable\TextureCreator">
-      <UniqueIdentifier>{e6c2cc5d-3cad-48f1-b8a2-b7cc7b0c3a2d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Renderable\TextureCreator">
-      <UniqueIdentifier>{e2d236c9-4cf3-474f-b9cc-21cbc60767d6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\General">
       <UniqueIdentifier>{43eaab83-3b9c-4db6-8b0b-139f435ad597}</UniqueIdentifier>
@@ -98,17 +80,8 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>Source Files\Renderable\Text</Filter>
-    </ClCompile>
-    <ClCompile Include="Text.cpp">
-      <Filter>Source Files\Renderable\Text</Filter>
-    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\ECS\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphicSystem.cpp">
-      <Filter>Source Files\ECS\System</Filter>
     </ClCompile>
     <ClCompile Include="CommandList.cpp">
       <Filter>Source Files\Command</Filter>
@@ -119,18 +92,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
-    <ClCompile Include="RenderableRectangle.cpp">
-      <Filter>Source Files\Renderable</Filter>
-    </ClCompile>
-    <ClCompile Include="TextInRect.cpp">
-      <Filter>Source Files\Renderable\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="TextArea.cpp">
-      <Filter>Source Files\Renderable\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="InputBar.cpp">
-      <Filter>Source Files\Renderable\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Publisher.cpp">
       <Filter>Source Files\Messaging</Filter>
     </ClCompile>
@@ -140,32 +101,11 @@
     <ClCompile Include="EventSystem.cpp">
       <Filter>Source Files\ECS\System\EventSystem</Filter>
     </ClCompile>
-    <ClCompile Include="SDLInit.cpp">
-      <Filter>Source Files\General</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files\Renderable\UI</Filter>
-    </ClCompile>
     <ClCompile Include="CommandFps.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="Message.cpp">
       <Filter>Source Files\Messaging</Filter>
-    </ClCompile>
-    <ClCompile Include="Drawer.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureWrapper.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="RectangleCreator.cpp">
-      <Filter>Source Files\Renderable\TextureCreator</Filter>
-    </ClCompile>
-    <ClCompile Include="CircleCreator.cpp">
-      <Filter>Source Files\Renderable\TextureCreator</Filter>
-    </ClCompile>
-    <ClCompile Include="HexagonCreator.cpp">
-      <Filter>Source Files\Renderable\TextureCreator</Filter>
     </ClCompile>
     <ClCompile Include="ScriptSystem.cpp">
       <Filter>Source Files\ECS\System</Filter>
@@ -175,6 +115,15 @@
     </ClCompile>
     <ClCompile Include="DefaultEventHandler.cpp">
       <Filter>Source Files\ECS\System\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultGraphicSystem.cpp">
+      <Filter>Source Files\ECS\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Init.cpp">
+      <Filter>Source Files\General</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -187,16 +136,7 @@
     <ClInclude Include="Window.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>Header Files\Renderable\Text</Filter>
-    </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>Header Files\Renderable\Text</Filter>
-    </ClInclude>
     <ClInclude Include="Color.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Rectangle.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Angle.h">
@@ -208,17 +148,11 @@
     <ClInclude Include="System.h">
       <Filter>Header Files\ECS\System</Filter>
     </ClInclude>
-    <ClInclude Include="GraphicSystem.h">
-      <Filter>Header Files\ECS\System</Filter>
-    </ClInclude>
     <ClInclude Include="Command.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
     <ClInclude Include="CommandList.h">
       <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="Handle.h">
-      <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="IDGenerator.h">
       <Filter>Header Files\Utils</Filter>
@@ -232,24 +166,6 @@
     <ClInclude Include="Publisher.h">
       <Filter>Header Files\Messaging</Filter>
     </ClInclude>
-    <ClInclude Include="Renderable.h">
-      <Filter>Header Files\Renderable</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderableRectangle.h">
-      <Filter>Header Files\Renderable</Filter>
-    </ClInclude>
-    <ClInclude Include="TextInRect.h">
-      <Filter>Header Files\Renderable\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="TextArea.h">
-      <Filter>Header Files\Renderable\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="TextInput.h">
-      <Filter>Source Files\Renderable\Text</Filter>
-    </ClInclude>
-    <ClInclude Include="InputBar.h">
-      <Filter>Header Files\Renderable\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
@@ -262,17 +178,11 @@
     <ClInclude Include="StringSplit.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="StringTo.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="TextToCommand.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="CommandError.h">
       <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files\Renderable\UI</Filter>
     </ClInclude>
     <ClInclude Include="CommandFps.h">
       <Filter>Header Files\Command</Filter>
@@ -281,9 +191,6 @@
       <Filter>Header Files\Command</Filter>
     </ClInclude>
     <ClInclude Include="Vector2.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Drawer.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="CommandNbrEventHandler.h">
@@ -295,23 +202,8 @@
     <ClInclude Include="CommandTimeScale.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
-    <ClInclude Include="TextureWrapper.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="Storage.h">
       <Filter>Header Files\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureCreator.h">
-      <Filter>Header Files\Renderable\TextureCreator</Filter>
-    </ClInclude>
-    <ClInclude Include="RectangleCreator.h">
-      <Filter>Header Files\Renderable\TextureCreator</Filter>
-    </ClInclude>
-    <ClInclude Include="CircleCreator.h">
-      <Filter>Header Files\Renderable\TextureCreator</Filter>
-    </ClInclude>
-    <ClInclude Include="HexagonCreator.h">
-      <Filter>Header Files\Renderable\TextureCreator</Filter>
     </ClInclude>
     <ClInclude Include="VectorOfVector.h">
       <Filter>Header Files\Utils</Filter>
@@ -336,6 +228,18 @@
     </ClInclude>
     <ClInclude Include="DefaultEventHandler.h">
       <Filter>Header Files\ECS\System\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultGraphicSystem.h">
+      <Filter>Header Files\ECS\System</Filter>
+    </ClInclude>
+    <ClInclude Include="StringTo.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
