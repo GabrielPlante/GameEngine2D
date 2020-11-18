@@ -1,6 +1,7 @@
 #include "Window.h"
 #include <stdexcept>
-#include <GLFW/glfw3.h>
+
+#include <iostream>
 
 namespace ge {
 	Window::Window(const int screenWidth, const int screenHeight, const std::string& title)
@@ -16,11 +17,17 @@ namespace ge {
 
 		/* Make the window's context current */
 		glfwMakeContextCurrent(window);
+
+		if (glewInit() != GLEW_OK)
+			throw std::runtime_error("Could not initialise GLEW");
+
+		//std::cout << "OpenGL version : " << glGetString(GL_VERSION) << std::endl;
 	}
 
 
 	Window::~Window()
 	{
+		glfwDestroyWindow(window);
 	}
 }
 
