@@ -2,10 +2,13 @@
 #include <vector>
 #include <memory>
 
-#include "Clock.h"
-#include "System.h"
 #include "EventSystem.h"
 #include "Publisher.h"
+#include "Window.h"
+#include "System.h"
+#include "Clock.h"
+
+#define ENGINE ge::Engine::getInstance()
 
 namespace ge {
 	class GraphicSystem;
@@ -34,14 +37,13 @@ namespace ge {
 		//Boolean that dictate if the main loop continue or stop
 		bool keepRunning{ true };
 
-		//Time between each frame in milliseconds, with the base being 60 frame per second
-		unsigned int timeBetweenFrame{ 1000 / 60 };
-
 		//The vector containing all the systems
 		std::vector<std::shared_ptr<System>> systems;
 
-		//The event system
+		//The event system have it's own variable to make sure it is updated first
 		EventSystem eventSystem;
+
+		Window* mainWindow;
 
 		//The graphic system have it's own variable to make sure it is updated last
 		std::shared_ptr<System> graphicSystem;
@@ -62,7 +64,7 @@ namespace ge {
 		};
 
 		//This will initialise the librariries
-		Init initLibraries{};
+		Init initLibraries;
 
 		//Default constructor, private to make it a singleton
 		Engine();
@@ -71,6 +73,9 @@ namespace ge {
 		~Engine();
 
 	public:
+		//Time between each frame in milliseconds, with the base being 60 frame per second
+		unsigned int timeBetweenFrame{ 1000 / 60 };
+
 		//Initialize the engine
 		static void init();
 
@@ -98,13 +103,16 @@ namespace ge {
 		//Stop the main loop, stopping the engine
 		void stop() { keepRunning = false; }
 
+		//Get the main window
+		Window& getWindow() { return *mainWindow; }
+
 		//Updated at the very begining of each frame, give the time since the begining of the last frame. The time is in microsecond
 		long long getTimeSinceLastFrame() const { return timeSinceLastFrame; }
 
 		//Get the time since the engine with initiliased in microsecond
 		long long getTimeSinceStart() const { return timeSinceStart + engineClock.getTime(); }
 
-		//Push an event handler that will be used from now on
+		//Push an event handler that will be used from now on (a default one is provided)
 		void pushEventHandler(std::unique_ptr<EventHandler> eventHandler) { eventSystem.pushEventHandler(std::move(eventHandler)); }
 
 		//Pop the top event, the next one will be used from now on
@@ -113,14 +121,8 @@ namespace ge {
 		//Get the size of the event handler pile
 		size_t getEventHandlerPileSize() const { return eventSystem.getEventHandlerPileSize(); }
 
-		//Add a graphic system to the engine
+		//Add a graphic system to the engine (a default one is provided)
 		void addGraphicSystem(std::shared_ptr<System> newGraphicSystem) { graphicSystem = std::move(newGraphicSystem); }
-
-		//Get the minimum amount of time that pass between two frame
-		unsigned int getTimeBetweenFrame() const { return timeBetweenFrame; }
-
-		//Set the minimum amount of time that pass between two frame
-		void setTimeBetweenFrame(unsigned int newTimeBetweenFrame) { timeBetweenFrame = newTimeBetweenFrame; }
 
 		//Set a new time scale. A time scale change the way the time flow. If time scale is 2, the time will pass 2 time faster
 		void setTimeScale(double newTimeScale) { engineClock.setTimeScale(newTimeScale); }

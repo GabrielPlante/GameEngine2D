@@ -127,6 +127,7 @@ namespace ge {
 
 	Shader::~Shader()
 	{
-		glDeleteProgram(shaderID);
+		if (shaderID != 0)
+			glDeleteProgram(shaderID);
 	}
 }

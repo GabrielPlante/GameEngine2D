@@ -1,17 +1,17 @@
 #pragma once
 
 #include "System.h"
-#include "Window.h"
+#include "Shader.h"
 
 namespace ge {
     class DefaultGraphicSystem :
         public System
     {
     private:
-		Window window;
+        Shader defaultShader;
     public:
 		//Constructor
-		DefaultGraphicSystem(int screenWidth, int screenHeight);
+		DefaultGraphicSystem(Shader&& defaultShader);
 
         //Render
         void update() override;
