@@ -5,10 +5,29 @@
 #include "CommandList.h"
 #include "Engine.h"
 
+#ifdef DEBUG_GE
+#include <iostream>
+
+void glErrorHandling(GLenum source,
+    GLenum type,
+    GLuint id,
+    GLenum severity,
+    GLsizei,
+    const GLchar* message,
+    const void*) {
+    
+    std::cout << "An error occured with OpenGL:\nError source: " << source << ", type: " << type << ", ID: " << id << ", severity: " << severity << std::endl;
+    std::cout << "Message: " << message << std::endl;
+}
+#endif
+
 namespace ge {
 	DefaultGraphicSystem::DefaultGraphicSystem(Shader&& defaultShader)
         : defaultShader{ std::move(defaultShader) }
 	{
+#ifdef DEBUG_GE
+        glDebugMessageCallback(glErrorHandling, NULL);
+#endif
 	}
 
 	void DefaultGraphicSystem::update()

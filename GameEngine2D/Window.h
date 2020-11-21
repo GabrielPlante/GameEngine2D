@@ -7,9 +7,6 @@ namespace ge {
 	class Window
 	{
 	private:
-		const int screenWidth;
-		const int screenHeight;
-
 		GLFWwindow* window;
 	public:
 		//Constructor

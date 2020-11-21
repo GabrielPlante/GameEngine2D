@@ -5,7 +5,6 @@
 
 namespace ge {
 	Window::Window(const int screenWidth, const int screenHeight, const std::string& title)
-		:screenWidth{ screenWidth }, screenHeight{ screenHeight }
 	{
 		/* Create a windowed mode window and its OpenGL context */
 		window = glfwCreateWindow(screenWidth, screenHeight, title.c_str(), NULL, NULL);

@@ -12,6 +12,10 @@
 
 #include "Entity.h"
 
+#ifdef DEBUG_GE
+#include <iostream>
+#endif
+
 constexpr int SCREEN_WIDTH{ 1400 };
 constexpr int SCREEN_HEIGHT{ 800 };
 
@@ -61,6 +65,11 @@ void main(){
 		Shader shader{ vertexSrc, fragmentSrc };
 		//Set the graphic system to the default one
 		graphicSystem.reset(new DefaultGraphicSystem{ std::move(shader) });
+
+#ifdef DEBUG_GE
+		std::cout << "Debug mode" << std::endl;
+		std::cout << glGetString(GL_VERSION) << std::endl;
+#endif
 	}
 
 	Engine::~Engine() {
