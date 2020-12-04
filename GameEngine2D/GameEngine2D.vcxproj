@@ -161,6 +161,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="Publisher.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ScriptSystem.cpp" />
     <ClCompile Include="Init.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -187,8 +188,10 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="EventSystem.h" />
+    <ClInclude Include="GLBuffer.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="ScriptComponent.h" />
     <ClInclude Include="ScriptSystem.h" />
@@ -205,6 +208,7 @@
     <ClInclude Include="System.h" />
     <ClInclude Include="TextToCommand.h" />
     <ClInclude Include="VectorOfVector.h" />
+    <ClInclude Include="Vertex.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

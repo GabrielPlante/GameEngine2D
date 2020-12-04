@@ -6,6 +6,9 @@
 namespace ge {
 	Window::Window(const int screenWidth, const int screenHeight, const std::string& title)
 	{
+#ifdef DEBUG_GE
+		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
+#endif
 		/* Create a windowed mode window and its OpenGL context */
 		window = glfwCreateWindow(screenWidth, screenHeight, title.c_str(), NULL, NULL);
 		if (!window)

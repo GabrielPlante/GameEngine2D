@@ -1,22 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Source Files\Renderable">
-      <UniqueIdentifier>{deee19dd-86eb-40c6-90a6-9506fc284f57}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Renderable">
       <UniqueIdentifier>{956b3358-90c2-4cfa-978d-9286345c2c92}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ECS">
-      <UniqueIdentifier>{2257439f-e9c3-4741-a669-4dbedb35d166}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\ECS">
       <UniqueIdentifier>{036a6b90-5539-4fb1-8c8a-cf7c949b40fb}</UniqueIdentifier>
@@ -24,35 +14,17 @@
     <Filter Include="Header Files\ECS\Entity">
       <UniqueIdentifier>{f0e29bf2-05c2-4897-b678-7974b838cce7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ECS\Entity">
-      <UniqueIdentifier>{53faf6e9-d30f-4363-ba6c-113254a5148f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\ECS\Component">
       <UniqueIdentifier>{603776e6-eb41-49a3-a0ae-c1c29ecd51a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ECS\Component">
-      <UniqueIdentifier>{6fb6a3d7-737a-4fe7-bc81-b984191b74ac}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\ECS\System">
       <UniqueIdentifier>{4bc889c3-6a4f-4b12-b846-4b98ffd2736f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ECS\System">
-      <UniqueIdentifier>{849010fb-f05b-4f8b-9296-76e81cc29fad}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Command">
       <UniqueIdentifier>{8e01687e-22b9-45d3-9fa9-3a3133bba9b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Command">
-      <UniqueIdentifier>{190e50f0-e062-4acd-9941-b315f1e6eb51}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Messaging">
       <UniqueIdentifier>{505c23c5-7ae6-4891-b4dc-0033606631e2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Messaging">
-      <UniqueIdentifier>{65963e35-3bc2-40c6-ace5-be7257ee0c02}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ECS\System\EventSystem">
-      <UniqueIdentifier>{b8aaf22e-da04-49e5-896d-dced1979c9e4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\ECS\System\EventSystem">
       <UniqueIdentifier>{70a6384d-fb69-442b-add7-a410510bed2f}</UniqueIdentifier>
@@ -60,11 +32,39 @@
     <Filter Include="Header Files\Utils">
       <UniqueIdentifier>{d5a6f378-16bd-4538-8804-7452fb50c332}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Utils">
-      <UniqueIdentifier>{b4122d69-14b0-4ac6-ab81-11a431dedd91}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\General">
       <UniqueIdentifier>{43eaab83-3b9c-4db6-8b0b-139f435ad597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Renderable">
+      <UniqueIdentifier>{deee19dd-86eb-40c6-90a6-9506fc284f57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS">
+      <UniqueIdentifier>{2257439f-e9c3-4741-a669-4dbedb35d166}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\Entity">
+      <UniqueIdentifier>{53faf6e9-d30f-4363-ba6c-113254a5148f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\Component">
+      <UniqueIdentifier>{6fb6a3d7-737a-4fe7-bc81-b984191b74ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\System">
+      <UniqueIdentifier>{849010fb-f05b-4f8b-9296-76e81cc29fad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\System\EventSystem">
+      <UniqueIdentifier>{b8aaf22e-da04-49e5-896d-dced1979c9e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command">
+      <UniqueIdentifier>{190e50f0-e062-4acd-9941-b315f1e6eb51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Messaging">
+      <UniqueIdentifier>{65963e35-3bc2-40c6-ace5-be7257ee0c02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{b4122d69-14b0-4ac6-ab81-11a431dedd91}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\General">
       <UniqueIdentifier>{b3f29e9d-1f08-46ca-8324-9eee47889630}</UniqueIdentifier>
@@ -124,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="Init.cpp">
       <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source Files\Renderable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +242,15 @@
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Rectangle.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="GLBuffer.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
