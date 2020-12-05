@@ -1,7 +1,7 @@
 #include "Entity.h"
 
 namespace ge {
-	IDGenerator<unsigned int> Entity::idGenerator = IDGenerator<unsigned int>{};
+	IDGenerator<uint32_t> Entity::idGenerator = IDGenerator<uint32_t>{};
 
 	Entity Entity::Create(TransformComponent&& transform) {
 		//Create the entity

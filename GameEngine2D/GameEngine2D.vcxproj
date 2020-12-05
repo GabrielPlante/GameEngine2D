@@ -188,7 +188,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="EventSystem.h" />
-    <ClInclude Include="GLBuffer.h" />
+    <ClInclude Include="Batch.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Renderer.h" />

@@ -5,7 +5,7 @@ namespace ge {
 	/*
 	 * IDGenerator give you an valid and unique ID, and allow you to delete an existing ID
 	*/
-	template <typename T = unsigned int>
+	template <typename T = uint32_t>
 	class IDGenerator {
 	private:
 		std::vector<T> deletedID;

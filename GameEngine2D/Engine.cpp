@@ -16,6 +16,8 @@
 #include <iostream>
 #endif
 
+#include "Batch.h"
+
 constexpr int SCREEN_WIDTH{ 1400 };
 constexpr int SCREEN_HEIGHT{ 800 };
 
@@ -24,9 +26,9 @@ namespace ge {
 	Engine* Engine::instance{ nullptr };
 
 	long long Engine::timestep() {
-		long long timeSinceLastReset = engineClock.resetTime();
-		timeSinceStart += timeSinceLastReset;
-		return timeSinceLastReset;
+		timeSinceLastFrame = engineClock.resetTime();
+		timeSinceStart += timeSinceLastFrame;
+		return timeSinceLastFrame;
 	}
 
 	//In the constructor many systems are added to the engine, the order in wich they are added will be their order of calling, so it matter
@@ -98,7 +100,8 @@ void main(){
 
 	void Engine::mainLoop() {
 		while (keepRunning) {
-			timeSinceLastFrame = timestep();
+			//Calculate the time since the last frame
+			timestep();
 
 			//Call the engine update
 			update();

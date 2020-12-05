@@ -13,7 +13,7 @@ namespace ge {
 		}
 		else {
 			if (args[0] > FPS_MIN)
-				ENGINE->timeBetweenFrame = static_cast<unsigned int>(1000/args[0]);
+				ENGINE->timeBetweenFrame = static_cast<uint32_t>(1000/args[0]);
 		}
 	}
 }

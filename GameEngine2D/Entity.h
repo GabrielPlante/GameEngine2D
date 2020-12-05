@@ -12,10 +12,10 @@ namespace ge {
 	class Entity
 	{
 	private:
-		static IDGenerator<unsigned int> idGenerator;
+		static IDGenerator<uint32_t> idGenerator;
 
 		//The id of the entity
-		unsigned int id;
+		uint32_t id;
 
 		//Constructor
 		Entity() : id{ idGenerator.getNewID() } {}
@@ -23,7 +23,7 @@ namespace ge {
 	public:
 		//Copy constructor and constructor from an unsigned are ok because the id stay the same
 		Entity(const Entity& entity) : id{ entity.id } {}
-		Entity(unsigned int id) : id{ id } {}
+		Entity(uint32_t id) : id{ id } {}
 
 		//Create an entity, add it to the entity storage and return the id of the entity
 		static Entity Create(TransformComponent&& transform = TransformComponent{});
@@ -44,7 +44,7 @@ namespace ge {
 		//Delete the entity and all it's component
 		void deleteEntity() { Storage<ComponentHandler>::get(id).clear(); Storage<ComponentHandler>::deleteComponent(id); }
 
-		//Operator to convert to unsigned int
-		operator unsigned int() const { return id; }
+		//Operator to convert to uint32_t
+		operator uint32_t() const { return id; }
 	};
 }

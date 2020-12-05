@@ -22,9 +22,12 @@ void glErrorHandling(GLenum source,
 }
 #endif
 
+#include "Vector2.h"
+#include "Batch.h"
+
 namespace ge {
 	DefaultGraphicSystem::DefaultGraphicSystem(Shader&& defaultShader)
-        : defaultShader{ std::move(defaultShader) }
+        : defaultShader{ std::move(defaultShader) }, squareBatch{ {{2, GL_FLOAT, GL_FALSE, (const void*)0}} }
 	{
 #ifdef DEBUG_GE
         //Enable OpenGL debuging
@@ -38,32 +41,36 @@ namespace ge {
             0, NULL,
             GL_FALSE); // disable all messages with source `GL_DEBUG_SOURCE_APPLICATION`
 #endif
-	}
 
-	void DefaultGraphicSystem::update()
-	{
-        constexpr int size{ 8 };
-        float position[size] = {
-            0.0f, -0.5f,
-            0.0f,  0.5f,
-            0.5f, -0.5f,
-            0.5f,  0.5f,
+        constexpr int size{ 4 };
+        std::array<Vector2<float>, size> position{
+            Vector2<float>{0.0f, -0.5f},
+            Vector2<float>{0.0f,  0.5f},
+            Vector2<float>{0.5f, -0.5f},
+            Vector2<float>{0.5f,  0.5f}
         };
 
         constexpr int iSize{ 6 };
-        unsigned int indices[iSize] = {
+        std::array<uint32_t, iSize> indexes{
             0, 1, 2,
             1, 2, 3
         };
-        unsigned int buffer;
-        glGenBuffers(1, &buffer);
+
+        squareBatch.addObject(position, indexes);
+
+	}
+
+    void DefaultGraphicSystem::update()
+    {
+        /*uint32_t buffer;
+        glCreateBuffers(1, &buffer);
         glBindBuffer(GL_ARRAY_BUFFER, buffer);
         glBufferData(GL_ARRAY_BUFFER, size * sizeof(float), position, GL_STATIC_DRAW);
 
-        unsigned int ibo;
-        glGenBuffers(1, &ibo);
+        uint32_t ibo;
+        glCreateBuffers(1, &ibo);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, iSize * sizeof(unsigned int), indices, GL_STATIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, iSize * sizeof(uint32_t), indices, GL_STATIC_DRAW);*/
 
         /*defaultShader.bind();
         glEnableVertexAttribArray(0);
@@ -76,7 +83,8 @@ namespace ge {
             glClear(GL_COLOR_BUFFER_BIT);
 
             //glDrawArrays(GL_TRIANGLES, 0, 3);
-            Renderer::render(&defaultShader, iSize);
+            //Renderer::render(&defaultShader, iSize);
+            squareBatch.renderBatch();
 
             /* Swap front and back buffers */
             glfwSwapBuffers(ENGINE->getWindow());

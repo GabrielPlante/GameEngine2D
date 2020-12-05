@@ -10,25 +10,25 @@ namespace ge {
 	{
 	private:
 		//What the message is about
-		unsigned int messageType;
+		uint32_t messageType;
 
 		//Where the message come from
-		unsigned int messageOrigin;
+		uint32_t messageOrigin;
 
 	public:
 		//The message data
 		std::vector<float> messageData;
 
 		//Constructor
-		Message(unsigned int messageType, unsigned int messageOrigin, const std::vector<float>& messageData = std::vector<float>{})
+		Message(uint32_t messageType, uint32_t messageOrigin, const std::vector<float>& messageData = std::vector<float>{})
 			:messageType{ messageType }, messageOrigin{ messageOrigin }, messageData{ messageData }
 		{}
 
 		//Get the message type
-		unsigned int getMessageType() const { return messageType; }
+		uint32_t getMessageType() const { return messageType; }
 
 		//Get the message origin
-		unsigned int getMessageOrigin() const { return messageOrigin; }
+		uint32_t getMessageOrigin() const { return messageOrigin; }
 
 	};
 

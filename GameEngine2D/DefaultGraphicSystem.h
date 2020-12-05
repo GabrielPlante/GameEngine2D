@@ -2,6 +2,8 @@
 
 #include "System.h"
 #include "Shader.h"
+#include "Batch.h"
+#include "Vector2.h"
 
 namespace ge {
     class DefaultGraphicSystem :
@@ -9,6 +11,7 @@ namespace ge {
     {
     private:
         Shader defaultShader;
+        Batch<Vector2<float>, 1, 4, 6> squareBatch;
     public:
 		//Constructor
 		DefaultGraphicSystem(Shader&& defaultShader);

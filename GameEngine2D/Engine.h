@@ -74,7 +74,7 @@ namespace ge {
 
 	public:
 		//Time between each frame in milliseconds, with the base being 60 frame per second
-		unsigned int timeBetweenFrame{ 1000 / 60 };
+		uint32_t timeBetweenFrame{ 1000 / 60 };
 
 		//Initialize the engine
 		static void init();

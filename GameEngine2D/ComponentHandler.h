@@ -6,14 +6,14 @@
 namespace ge {
 	struct ComponentHandler {
 	private:
-		unsigned int entityID;
+		uint32_t entityID;
 
 		//The vector that store the deleter of each component of an entity
-		std::vector<void(*)(unsigned int)> componentDeleter{};
+		std::vector<void(*)(uint32_t)> componentDeleter{};
 
 	public:
 		//Default constructor
-		ComponentHandler(unsigned int entityID) : entityID{ entityID } {}
+		ComponentHandler(uint32_t entityID) : entityID{ entityID } {}
 
 		//Add a component to this handle
 		template<typename Component>
@@ -38,7 +38,7 @@ namespace ge {
 		Storage<Component>::deleteComponent(entityID);
 		//Delete the deleter function
 		for (size_t i = 0; i != componentDeleter.size(); i++) {
-			void(*deleteFunction)(unsigned int);
+			void(*deleteFunction)(uint32_t);
 			deleteFunction = Storage<Component>::deleteComponent;
 			if (deleteFunction == componentDeleter[i]) {
 				componentDeleter.erase(componentDeleter.begin() + i);
