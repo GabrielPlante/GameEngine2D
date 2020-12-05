@@ -128,6 +128,9 @@
     <ClCompile Include="Renderer.cpp">
       <Filter>Source Files\Renderable</Filter>
     </ClCompile>
+    <ClCompile Include="BatchRenderer.cpp">
+      <Filter>Source Files\Renderable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clock.h">
@@ -251,6 +254,9 @@
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Batch.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="BatchRenderer.h">
       <Filter>Header Files\Renderable</Filter>
     </ClInclude>
   </ItemGroup>

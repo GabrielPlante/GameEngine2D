@@ -68,6 +68,27 @@ void main(){
 		//Set the graphic system to the default one
 		graphicSystem.reset(new DefaultGraphicSystem{ std::move(shader) });
 
+
+		//Create the test batch
+		std::unique_ptr<Batch<ge::Vector2<float>, 1, 4, 6>> testBatch{ Batch<ge::Vector2<float>, 1, 4, 6>::createBatch({{2, GL_FLOAT, GL_FALSE, (const void*)0}}) };
+		constexpr int size{ 4 };
+        std::array<Vector2<float>, size> position{
+            Vector2<float>{0.0f, -0.5f},
+            Vector2<float>{0.0f,  0.5f},
+            Vector2<float>{0.5f, -0.5f},
+            Vector2<float>{0.5f,  0.5f}
+        };
+
+        constexpr int iSize{ 6 };
+        std::array<uint32_t, iSize> indexes{
+            0, 1, 2,
+            1, 2, 3
+        };
+		testBatch->addObject(position, indexes);
+		//FOR TEST PURPOSE ONLY
+		testBatch.release();
+
+
 #ifdef DEBUG_GE
 		std::cout << "Debug mode" << std::endl;
 		std::cout << glGetString(GL_VERSION) << std::endl;

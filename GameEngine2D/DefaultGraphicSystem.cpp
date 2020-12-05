@@ -2,8 +2,10 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include "BatchRenderer.h"
 #include "CommandList.h"
 #include "Renderer.h"
+#include "Storage.h"
 #include "Engine.h"
 
 #ifdef DEBUG_GE
@@ -23,12 +25,11 @@ void glErrorHandling(GLenum source,
 #endif
 
 #include "Vector2.h"
-#include "Batch.h"
 
 namespace ge {
 	DefaultGraphicSystem::DefaultGraphicSystem(Shader&& defaultShader)
-        : defaultShader{ std::move(defaultShader) }, squareBatch{ {{2, GL_FLOAT, GL_FALSE, (const void*)0}} }
-	{
+        : defaultShader{ std::move(defaultShader) }
+    {
 #ifdef DEBUG_GE
         //Enable OpenGL debuging
         glDebugMessageCallback(glErrorHandling, NULL);
@@ -42,7 +43,7 @@ namespace ge {
             GL_FALSE); // disable all messages with source `GL_DEBUG_SOURCE_APPLICATION`
 #endif
 
-        constexpr int size{ 4 };
+        /*constexpr int size{ 4 };
         std::array<Vector2<float>, size> position{
             Vector2<float>{0.0f, -0.5f},
             Vector2<float>{0.0f,  0.5f},
@@ -54,9 +55,9 @@ namespace ge {
         std::array<uint32_t, iSize> indexes{
             0, 1, 2,
             1, 2, 3
-        };
+        };*/
 
-        squareBatch.addObject(position, indexes);
+        //squareBatch->addObject(position, indexes);
 
 	}
 
@@ -84,7 +85,10 @@ namespace ge {
 
             //glDrawArrays(GL_TRIANGLES, 0, 3);
             //Renderer::render(&defaultShader, iSize);
-            squareBatch.renderBatch();
+            //squareBatch->renderBatch();
+            for (auto it = Storage<BatchRenderer*>::begin(); it != Storage<BatchRenderer*>::end(); it++) {
+                (*it)->renderBatch();
+            }
 
             /* Swap front and back buffers */
             glfwSwapBuffers(ENGINE->getWindow());
