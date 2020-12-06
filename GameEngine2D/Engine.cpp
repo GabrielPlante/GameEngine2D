@@ -66,11 +66,11 @@ void main(){
 
 		Shader shader{ vertexSrc, fragmentSrc };
 		//Set the graphic system to the default one
-		graphicSystem.reset(new DefaultGraphicSystem{ std::move(shader) });
+		graphicSystem.reset(new DefaultGraphicSystem{});
 
 
 		//Create the test batch
-		std::unique_ptr<Batch<ge::Vector2<float>, 1, 4, 6>> testBatch{ Batch<ge::Vector2<float>, 1, 4, 6>::createBatch({{2, GL_FLOAT, GL_FALSE, (const void*)0}}) };
+		std::unique_ptr<Batch<ge::Vector2<float>, 2, 4, 6>> testBatch{ Batch<ge::Vector2<float>, 2, 4, 6>::createBatch({{2, GL_FLOAT, GL_FALSE, (const void*)0}}, std::move(shader)) };
 		constexpr int size{ 4 };
         std::array<Vector2<float>, size> position{
             Vector2<float>{0.0f, -0.5f},
@@ -84,7 +84,16 @@ void main(){
             0, 1, 2,
             1, 2, 3
         };
-		testBatch->addObject(position, indexes);
+		//testBatch->addObject({ position }, { indexes });
+        std::array<Vector2<float>, size> position2{
+            Vector2<float>{-0.6f, -0.5f},
+            Vector2<float>{-0.6f,  0.5f},
+            Vector2<float>{-0.1f, -0.5f},
+            Vector2<float>{-0.1f,  0.5f}
+        };
+		std::vector<size_t> ids{ testBatch->addObject({ position, position2 }, { indexes, indexes }) };
+		//testBatch->deleteObject(0);
+		//testBatch->addObject({ position }, { indexes });
 		//FOR TEST PURPOSE ONLY
 		testBatch.release();
 

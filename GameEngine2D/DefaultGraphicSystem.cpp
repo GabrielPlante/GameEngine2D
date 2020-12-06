@@ -27,8 +27,7 @@ void glErrorHandling(GLenum source,
 #include "Vector2.h"
 
 namespace ge {
-	DefaultGraphicSystem::DefaultGraphicSystem(Shader&& defaultShader)
-        : defaultShader{ std::move(defaultShader) }
+	DefaultGraphicSystem::DefaultGraphicSystem()
     {
 #ifdef DEBUG_GE
         //Enable OpenGL debuging
