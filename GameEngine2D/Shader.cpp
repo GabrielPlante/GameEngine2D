@@ -5,7 +5,15 @@
 #include <iostream>
 
 namespace ge {
-	Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource)
+	void Shader::setupUniforms(const std::vector<std::string>& uniforms)
+	{
+		for (auto uniform : uniforms) {
+			uniformsID.push_back(glGetUniformLocation(shaderID, uniform.c_str()));
+		}
+	}
+
+	Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource, const std::vector<std::string>& uniforms, const std::vector<std::array<float, 4>(*)()>& uniformsValues)
+		: uniformsValues{ uniformsValues }
 	{
 		// Create an empty vertex shader handle
 		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -113,11 +121,22 @@ namespace ge {
 		// Always detach shaders after a successful link.
 		glDetachShader(program, vertexShader);
 		glDetachShader(program, fragmentShader);
+
+		//Setup the uniforms (aka transform their names into ids
+		setupUniforms(uniforms);
 	}
 
 	void Shader::bind() const
 	{
 		glUseProgram(shaderID);
+	}
+
+	void Shader::bindUniforms() const
+	{
+		for (int i = 0; i != uniformsID.size(); i++) {
+			std::array<float, 4> values{ uniformsValues[i]() };
+			glUniform4f(uniformsID[i], values[0], values[1], values[2], values[3]);
+		}
 	}
 
 	void Shader::unbind() const

@@ -162,7 +162,6 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="Publisher.cpp" />
-    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ScriptSystem.cpp" />
     <ClCompile Include="Init.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -193,7 +192,6 @@
     <ClInclude Include="Batch.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Rectangle.h" />
-    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="ScriptComponent.h" />
     <ClInclude Include="ScriptSystem.h" />

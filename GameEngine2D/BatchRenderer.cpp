@@ -4,6 +4,7 @@
 namespace ge {
 	void BatchRenderer::renderBatch() const {
 		shader.bind();
+		shader.bindUniforms();
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBID);
 

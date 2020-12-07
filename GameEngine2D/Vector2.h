@@ -54,6 +54,12 @@ namespace ge {
 		void operator+=(const Vector2<P>& other) { x += other.x; y += other.y; }
 
 		template <typename P>
+		//Multiply two position
+		void operator*=(const Vector2<P>& other) { x *= other.x; y *= other.y; }
+		template <typename P>
+		void operator*=(P constant) { x *= constant; y *= constant; }
+
+		template <typename P>
 		//Operator < override for map
 		bool operator<(const Vector2<P>& other) const {
 			return x != other.x ? x < other.x : y < other.y;
