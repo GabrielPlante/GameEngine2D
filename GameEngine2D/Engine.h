@@ -15,12 +15,11 @@ namespace ge {
 
 	/// <summary>
 	/// Engine class, singleton. It is the back bone of the game engine, everything happen here.
-	/// <para>The engine initialize the console and the command list</para>
+	/// <para>The engine initialize the command list</para>
 	/// <para>Before calling gameLoop and thus make the engine run, you have to :</para>
-	/// <para>- Add an event handler with pushEventHandler, else the console event handler will be used</para>
-	/// <para>- Add an graphic system with addGraphicSystem, else the engine will crash</para>
-	/// <para>- Add every system you want with addSystem, it will be harder to add them after</para>
-	/// <para>Instead of calling gameLoop, you can implement your own loop that call update, but the stop method and the timestep will not work anymore.</para>
+	/// <para>- Add an event handler with pushEventHandler, else the default event handler will be used</para>
+	/// <para>- Add an graphic system with addGraphicSystem, else the engine will use the default one</para>
+	/// <para>- Add every system you want with addSystem (you can add them later)</para>
 	/// <para>It is a publisher, meaning a subscriber can subscribe to him and it can send message to it's subscriber
 	/// </summary>
 	class Engine
@@ -52,14 +51,11 @@ namespace ge {
 		long long timestep();
 
 
-		/// <summary>
-		/// This class is used to initialise and destruct librariries
-		/// </summary>
+		// This class is used to initialise and destruct librariries
 		class Init
 		{
 		public:
 			Init();
-
 			~Init();
 		};
 
@@ -71,6 +67,9 @@ namespace ge {
 
 		//Default destructor
 		~Engine();
+
+		//Called each frame
+		void update();
 
 	public:
 		//Time between each frame in milliseconds, with the base being 60 frame per second
@@ -87,9 +86,6 @@ namespace ge {
 
 		//The mainLoop, call update each time, and timestep
 		void mainLoop();
-
-		//Called each frame
-		void update();
 
 		//Add a system to the engine, return it's position
 		size_t addSystem(std::shared_ptr<System> system) { systems.push_back(system); return systems.size() - 1; }

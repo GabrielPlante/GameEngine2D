@@ -10,8 +10,6 @@
 
 #include "CommandList.h"
 
-#include "Entity.h"
-
 #ifdef DEBUG_GE
 #include <iostream>
 #endif
@@ -54,6 +52,11 @@ namespace ge {
 
 		addSystem(std::shared_ptr<ge::System>{new ScriptSystem{}});
 
+		//Set the graphic system to the default one
+		graphicSystem.reset(new DefaultGraphicSystem{});
+
+		//-----------------Temporary stuff-----------------\\
+
 		std::string vertexSrc = R"(
 #version 330 core
 
@@ -79,9 +82,6 @@ void main(){
 		std::vector<std::unique_ptr<UniformHandler>> uniHandVec;
 		uniHandVec.push_back(std::unique_ptr<UniformHandler>{ new UniformTest{} });
 		Shader shader{ vertexSrc, fragmentSrc, std::move(uniHandVec) };
-		//Set the graphic system to the default one
-		graphicSystem.reset(new DefaultGraphicSystem{});
-
 
 		//Create the test batch
 		std::unique_ptr<Batch<ge::Vector2<float>, 2, 4, 6>> testBatch{ Batch<ge::Vector2<float>, 2, 4, 6>::createBatch({{2, GL_FLOAT, GL_FALSE, (const void*)0}}, std::move(shader)) };
@@ -155,9 +155,6 @@ void main(){
 				std::this_thread::sleep_for(std::chrono::microseconds(static_cast<long long>(timeBetweenFrame) * 1000 - engineClock.getTime()));
 			}
 		}
-
-		//Quit properly the engine
-		Engine::quit();
 	}
 
 	void Engine::update() {

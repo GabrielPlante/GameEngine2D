@@ -7,6 +7,7 @@ namespace ge {
 	//The base class for scripts.
 	//You can override the onCreate, onUpdate, and onDestroy method to add behaviour with this script.
 	//Once created, you need to bind your subclass to a ScriptComponent of your entity.
+	//A Script need a default constructor
 	class Script {
 	private:
 		friend class ScriptSystem;

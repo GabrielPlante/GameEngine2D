@@ -4,6 +4,7 @@
 #include "../GameEngine2D/CommandList.h"
 #include "../GameEngine2D/Storage.h"
 #include "../GameEngine2D/Engine.h"
+#include "../GameEngine2D/Script.h"
 
 #include "../Map/MapGenerator.h"
 #include "../Map/PathFinder.h"

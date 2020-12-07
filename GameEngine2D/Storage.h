@@ -4,8 +4,10 @@
 
 namespace ge {
 	/*
-	 * Storage is the template class that hold every component of a component type
-	 * The user of this class need to provide an id for each component
+	 * Storage is the template class that hold every component of a component type.
+	 * The user of this class need to provide an id for each component.
+	 * You should use this class only in a system. To manage component use Entity.
+	 * The class is optimised to be iterated.
 	*/
 	template <typename Component>
 	class Storage
@@ -22,7 +24,7 @@ namespace ge {
 		//No other choice
 		friend struct ComponentHandler;
 
-		//Method to handle component are private to only be accessed by an entity(wich is a friend class)
+		//Method to handle component are private to only be accessed by an entity(which is a friend class)
 
 		//Add a component to the list with an id, return the component
 		static Component& addComponent(Component&& component, uint32_t id);

@@ -1,5 +1,7 @@
 #include "ScriptComponent.h"
 
+#include "Script.h"
+
 namespace ge {
 	bool ScriptComponent::deleteScript(const std::string& name)
 	{

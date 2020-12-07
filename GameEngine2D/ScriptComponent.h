@@ -1,9 +1,9 @@
 #pragma once
 #include <vector>
-
-#include "Script.h"
+#include <string>
 
 namespace ge {
+	class Script;
 	//This component is holding every script of an entity.
 	//To add a script to an entity, you must first add a ScriptComponent to this entity, then add script to this component.
 	struct ScriptComponent {

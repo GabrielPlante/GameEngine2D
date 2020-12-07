@@ -1,7 +1,8 @@
 #pragma once
 #include "Command.h"
-#include <set>
+#include <unordered_set>
 #include <memory>
+
 
 #define EXEC(X) ge::CommandList::getInstance()->executeCommand(X)
 #define EXEC_ARGS(X, Y) ge::CommandList::getInstance()->executeCommand(X, Y)
@@ -9,10 +10,14 @@
 namespace ge {
 	class Command;
 
-	//Only used to compare two command (actually compare the string name of those command)
-	struct CommandCompare {
+	struct CommandHash {
+		size_t operator()(const std::unique_ptr<Command>& c1) const {
+			return std::hash<std::string>{}(c1->getName());
+		}
+	};
+	struct CommandEqual {
 		bool operator()(const std::unique_ptr<Command>& c1, const std::unique_ptr<Command>& c2) const {
-			return c1->getName() < c2->getName();
+			return c1->getName() == c2->getName();
 		}
 	};
 
@@ -20,7 +25,7 @@ namespace ge {
 	class CommandList
 	{
 	private:
-		std::set<std::unique_ptr<Command>, CommandCompare> commandList;
+		std::unordered_set<std::unique_ptr<Command>, CommandHash, CommandEqual> commandList;
 
 		static CommandList* instance;
 
