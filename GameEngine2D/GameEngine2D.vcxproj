@@ -166,6 +166,7 @@
     <ClCompile Include="Init.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Subscriber.cpp" />
+    <ClCompile Include="UniformHandler.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +202,7 @@
     <ClInclude Include="Message.h" />
     <ClInclude Include="StringTo.h" />
     <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="UniformHandler.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Publisher.h" />
     <ClInclude Include="StringSplit.h" />

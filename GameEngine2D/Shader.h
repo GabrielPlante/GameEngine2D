@@ -1,25 +1,27 @@
 #pragma once
+#include <memory>
 #include <vector>
 #include <string>
 #include <array>
+
+#include "UniformHandler.h"
 
 namespace ge {
 	class Shader {
 	private:
 		uint32_t shaderID;
 
-		std::vector<int> uniformsID;
-		std::vector<std::array<float, 4>(*)()> uniformsValues;
+		std::vector<std::unique_ptr<UniformHandler>> uniforms;
 
 		//Transform the uniform name into their ID
-		void setupUniforms(const std::vector<std::string>& uniforms);
+		void setupUniforms();
 	public:
-		//Constructor, take vertex and fragment program in parameter, as well as a list of uniforms name and a function for each to retrieve right values before executing the shader
-		Shader(const std::string& vertexSrc, const std::string& fragmentSrc, const std::vector<std::string>& uniforms = {}, const std::vector<std::array<float, 4>(*)()>& uniformsValues = {});
+		//Constructor, take vertex and fragment program in parameter, as well as a list of uniforms
+		Shader(const std::string& vertexSrc, const std::string& fragmentSrc, std::vector<std::unique_ptr<UniformHandler>>&& uniforms);
 
 		//Move constructor && operator
-		Shader(Shader&& shader) : shaderID{ shader.shaderID } { shader.shaderID = 0; }
-		Shader& operator=(Shader&& shader) { shaderID = shader.shaderID; shader.shaderID = 0; }
+		Shader(Shader&& shader);
+		Shader& operator=(Shader&& shader);
 
 		//Delete copy constructor && assignments
 		Shader(const Shader&) = delete;

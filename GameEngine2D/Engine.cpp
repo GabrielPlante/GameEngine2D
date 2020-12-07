@@ -16,6 +16,7 @@
 #include <iostream>
 #endif
 
+#include "UniformHandler.h"
 #include "Batch.h"
 
 constexpr int SCREEN_WIDTH{ 1400 };
@@ -30,6 +31,15 @@ namespace ge {
 		timeSinceStart += timeSinceLastFrame;
 		return timeSinceLastFrame;
 	}
+
+	class UniformTest : public UniformHandler
+	{
+	public:
+		UniformTest() : UniformHandler{ "u_Color" } {}
+		void updateUniform() const override {
+			glUniform4f(uniformID, 0.3f, 0.2f, 0.8f, 1.0f);
+		}
+	};
 
 	//In the constructor many systems are added to the engine, the order in wich they are added will be their order of calling, so it matter
 	Engine::Engine()
@@ -59,12 +69,17 @@ void main(){
 
 layout(location = 0) out vec4 color;
 
+uniform vec4 u_Color;
+
 void main(){
-	color = vec4(0.8, 0.2, 0.3, 1.0);
+	color = u_Color;
 }
 )";
 
-		Shader shader{ vertexSrc, fragmentSrc };
+		std::unique_ptr<UniformHandler> uniHand{ new UniformTest{} };
+		std::vector<std::unique_ptr<UniformHandler>> uniHandVec;
+		uniHandVec.push_back(std::move(uniHand));
+		Shader shader{ vertexSrc, fragmentSrc, std::move(uniHandVec) };
 		//Set the graphic system to the default one
 		graphicSystem.reset(new DefaultGraphicSystem{});
 

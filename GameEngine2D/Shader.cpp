@@ -2,18 +2,21 @@
 #include <vector>
 #include <GL/glew.h>
 
+#ifdef DEBUG_GE
 #include <iostream>
+#endif // DEBUG_GE
+
 
 namespace ge {
-	void Shader::setupUniforms(const std::vector<std::string>& uniforms)
+	void Shader::setupUniforms()
 	{
-		for (auto uniform : uniforms) {
-			uniformsID.push_back(glGetUniformLocation(shaderID, uniform.c_str()));
+		for (int i = 0; i != uniforms.size(); i++) {
+			uniforms[i]->computeUniformID(shaderID);
 		}
 	}
 
-	Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource, const std::vector<std::string>& uniforms, const std::vector<std::array<float, 4>(*)()>& uniformsValues)
-		: uniformsValues{ uniformsValues }
+	Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource, std::vector<std::unique_ptr<UniformHandler>>&& uniforms)
+		: uniforms{ std::move(uniforms) }
 	{
 		// Create an empty vertex shader handle
 		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -123,7 +126,13 @@ namespace ge {
 		glDetachShader(program, fragmentShader);
 
 		//Setup the uniforms (aka transform their names into ids
-		setupUniforms(uniforms);
+		setupUniforms();
+	}
+
+	Shader::Shader(Shader&& shader)
+		: shaderID{ shader.shaderID }, uniforms{ std::move(shader.uniforms) }
+	{
+		shader.shaderID = 0;
 	}
 
 	void Shader::bind() const
@@ -133,9 +142,8 @@ namespace ge {
 
 	void Shader::bindUniforms() const
 	{
-		for (int i = 0; i != uniformsID.size(); i++) {
-			std::array<float, 4> values{ uniformsValues[i]() };
-			glUniform4f(uniformsID[i], values[0], values[1], values[2], values[3]);
+		for (int i = 0; i != uniforms.size(); i++) {
+			uniforms[i]->updateUniform();
 		}
 	}
 
@@ -148,5 +156,14 @@ namespace ge {
 	{
 		if (shaderID != 0)
 			glDeleteProgram(shaderID);
+	}
+
+	Shader& Shader::operator=(Shader&& shader)
+	{
+		shaderID = shader.shaderID;
+		uniforms = std::move(shader.uniforms);
+		shader.shaderID = 0;
+
+		return *this;
 	}
 }

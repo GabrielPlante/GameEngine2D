@@ -1,6 +1,11 @@
 #include "BatchRenderer.h"
 #include <GL/glew.h>
 
+#ifdef DEBUG_GE
+#include <iostream>
+#endif // DEBUG_GE
+
+
 namespace ge {
 	void BatchRenderer::renderBatch() const {
 		shader.bind();
