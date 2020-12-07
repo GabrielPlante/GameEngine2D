@@ -65,6 +65,7 @@ namespace ian {
 		class PlayerControl : public ge::Script {
 		public: void onUpdate() override {
 			}
+			  PlayerControl() : ge::Script{ "player_control" } {}
 		};
 
 		playerId.addComponent<ge::ScriptComponent>().bindScript<PlayerControl>();

@@ -131,6 +131,9 @@
     <ClCompile Include="UniformHandler.cpp">
       <Filter>Source Files\Renderable</Filter>
     </ClCompile>
+    <ClCompile Include="ScriptComponent.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clock.h">

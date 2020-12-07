@@ -1,9 +1,11 @@
 #pragma once
 
+#include "UniformHandler.h"
 #include "Vector2.h"
 
 namespace ge {
 	class Camera
+		: public UniformHandler
 	{
 	private:
 		double maxZoom{ 100 };
@@ -17,7 +19,11 @@ namespace ge {
 	public:
 		//Constructor
 		Camera(Vector2<double> position, Vector2<int16_t> dimension, double maxZoom = 100, double minZoom = 0.01)
-			: position{ position }, dimension{ dimension }, originalDimensions{ dimension }, maxZoom{ maxZoom }, minZoom{ minZoom } {}
+			: UniformHandler{ "u_Position" }, position { position }, dimension{ dimension }, originalDimensions{ dimension }, maxZoom{ maxZoom }, minZoom{ minZoom }
+		{}
+
+		//Update the uniform associated with the camera
+		void updateUniform() const override;
 
 		//Move the camera by a offset
 		void move(Vector2<double> offset) { position += offset; }

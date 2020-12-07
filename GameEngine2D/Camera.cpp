@@ -1,7 +1,14 @@
 #include "Camera.h"
 
+#include <GL/glew.h>
+
 namespace ge {
 	//screen + camera = world
+
+	void Camera::updateUniform() const
+	{
+		glUniform2f(uniformID, static_cast<float>(position.x), static_cast<float>(position.y));
+	}
 
 	void Camera::zoom(double delta) {
 		if (getZoom() * delta > maxZoom || getZoom() * delta < minZoom)

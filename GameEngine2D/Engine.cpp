@@ -76,9 +76,8 @@ void main(){
 }
 )";
 
-		std::unique_ptr<UniformHandler> uniHand{ new UniformTest{} };
 		std::vector<std::unique_ptr<UniformHandler>> uniHandVec;
-		uniHandVec.push_back(std::move(uniHand));
+		uniHandVec.push_back(std::unique_ptr<UniformHandler>{ new UniformTest{} });
 		Shader shader{ vertexSrc, fragmentSrc, std::move(uniHandVec) };
 		//Set the graphic system to the default one
 		graphicSystem.reset(new DefaultGraphicSystem{});
