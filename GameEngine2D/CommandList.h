@@ -5,6 +5,8 @@
 #define EXEC(NAME) ge::CommandList::getInstance()->executeCommand(NAME)
 #define EXEC_ARGS(NAME, ARGS) ge::CommandList::getInstance()->executeCommand(NAME, ARGS)
 
+#define ADD_COMMAND(NAME, FUNCTION) ge::CommandList::getInstance()->addCommand(NAME, FUNCTION)
+
 namespace ge {
 	//Singleton, hold all the command
 	class CommandList

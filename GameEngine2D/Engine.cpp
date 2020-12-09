@@ -9,6 +9,7 @@
 #include "EventSystem.h"
 
 #include "CommandList.h"
+#include "Input.h"
 
 #ifdef DEBUG_GE
 #include <iostream>
@@ -49,6 +50,7 @@ namespace ge {
 		pushEventHandler(std::move(defaultEventSystem));
 
 		CommandList::init();
+		Input::init(mainWindow);
 
 		addSystem(std::shared_ptr<ge::System>{new ScriptSystem{}});
 
