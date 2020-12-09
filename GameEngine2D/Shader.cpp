@@ -15,7 +15,7 @@ namespace ge {
 		}
 	}
 
-	Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource, std::vector<std::unique_ptr<UniformHandler>>&& uniforms)
+	Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource, std::vector<std::shared_ptr<UniformHandler>>&& uniforms)
 		: uniforms{ std::move(uniforms) }
 	{
 		// Create an empty vertex shader handle

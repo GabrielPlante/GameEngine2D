@@ -52,6 +52,8 @@ namespace ge {
 		template <typename P>
 		//Add two position
 		void operator+=(const Vector2<P>& other) { x += other.x; y += other.y; }
+		template <typename P>
+		void operator-=(const Vector2<P>& other) { x -= other.x; y -= other.y; }
 
 		template <typename P>
 		//Multiply two position

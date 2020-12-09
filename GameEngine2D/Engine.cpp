@@ -16,6 +16,7 @@
 #endif
 
 #include "UniformHandler.h"
+#include "Camera.h"
 #include "Batch.h"
 
 constexpr int SCREEN_WIDTH{ 1400 };
@@ -64,8 +65,11 @@ namespace ge {
 
 layout(location = 0) in vec3 a_Position;
 
+uniform vec2 u_CameraPosition;
+
 void main(){
-	gl_Position = vec4(a_Position, 1.0);
+	vec4 position = vec4(a_Position.x + u_CameraPosition.x, a_Position.y + u_CameraPosition.y, a_Position.z, 1.0);
+	gl_Position = position;
 }
 )";
 
@@ -81,8 +85,23 @@ void main(){
 }
 )";
 
-		std::vector<std::unique_ptr<UniformHandler>> uniHandVec;
-		uniHandVec.push_back(std::unique_ptr<UniformHandler>{ new UniformTest{} });
+		std::shared_ptr<Camera> camera{ new Camera{{{0, 0}, static_cast<Vector2<int16_t>>(Vector2<int>{SCREEN_WIDTH, SCREEN_HEIGHT})}, {SCREEN_WIDTH, SCREEN_HEIGHT} } };
+		Input::bindKey(glfwGetKeyScancode(GLFW_KEY_O), "go_up", [=](const std::vector<float>&) {
+			camera->move({ 0, -0.1 });
+			});
+		Input::bindKey(glfwGetKeyScancode(GLFW_KEY_L), "go_down", [=](const std::vector<float>&) {
+			camera->move({ 0, 0.1 });
+			});
+		Input::bindKey(glfwGetKeyScancode(GLFW_KEY_K), "go_left", [=](const std::vector<float>&) {
+			camera->move({ 0.1, 0 });
+			});
+		Input::bindKey(39, "go_right", [=](const std::vector<float>&) {
+			camera->move({ -0.1, 0 });
+			});
+
+		std::vector<std::shared_ptr<UniformHandler>> uniHandVec;
+		uniHandVec.push_back(std::shared_ptr<UniformHandler>{ new UniformTest{} });
+		uniHandVec.push_back(std::move(camera));
 		Shader shader{ vertexSrc, fragmentSrc, std::move(uniHandVec) };
 
 		//Create the test batch

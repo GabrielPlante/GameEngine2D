@@ -11,13 +11,13 @@ namespace ge {
 	private:
 		uint32_t shaderID;
 
-		std::vector<std::unique_ptr<UniformHandler>> uniforms;
+		std::vector<std::shared_ptr<UniformHandler>> uniforms;
 
 		//Transform the uniform name into their ID
 		void setupUniforms();
 	public:
 		//Constructor, take vertex and fragment program in parameter, as well as a list of uniforms
-		Shader(const std::string& vertexSrc, const std::string& fragmentSrc, std::vector<std::unique_ptr<UniformHandler>>&& uniforms);
+		Shader(const std::string& vertexSrc, const std::string& fragmentSrc, std::vector<std::shared_ptr<UniformHandler>>&& uniforms);
 
 		//Move constructor && operator
 		Shader(Shader&& shader);

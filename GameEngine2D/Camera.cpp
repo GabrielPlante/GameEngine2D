@@ -7,15 +7,18 @@ namespace ge {
 
 	void Camera::updateUniform() const
 	{
-		glUniform2f(uniformID, static_cast<float>(position.x), static_cast<float>(position.y));
+		Vector2<float> glTransform{ screenRectangle.position };
+		glTransform -= static_cast<Vector2<float>>(worldRectangle.position);
+		glUniform2f(uniformID, glTransform.x, glTransform.y);
 	}
 
 	void Camera::zoom(double delta) {
-		if (getZoom() * delta > maxZoom || getZoom() * delta < minZoom)
+		if (currentZoom * delta > maxZoom || currentZoom * delta < minZoom)
 			return;
-		const Vector2<int16_t> previousDimension{ dimension };
+		currentZoom *= delta;
+		/*const Vector2<int16_t> previousDimension{ dimension };
 		dimension.x = static_cast<int16_t>(dimension.x * 1 / delta);
 		dimension.y = static_cast<int16_t>(dimension.y * 1 / delta);
-		move({ static_cast<double>((previousDimension.x - dimension.x)) / 2, static_cast<double>((previousDimension.y - dimension.y)) / 2 });
+		move({ static_cast<double>((previousDimension.x - dimension.x)) / 2, static_cast<double>((previousDimension.y - dimension.y)) / 2 });*/
 	}
 }
