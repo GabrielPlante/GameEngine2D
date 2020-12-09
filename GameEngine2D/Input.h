@@ -1,25 +1,16 @@
 #pragma once
+#include <unordered_map>
+#include <string>
+
 #include "Vector2.h"
-
-#define MOUSE ge::Input::Mouse
-
-constexpr char MOUSE_LEFT{ 0 };
-constexpr char MOUSE_RIGHT{ 1 };
 
 namespace ge {
 	struct Input
 	{
+	private:
+		static std::unordered_map<int, std::string> keyMap;
 	public:
-		struct Mouse {
-			static bool isMouseLeftPressed;
-			static bool isMouseRightPressed;
-		public:
-			//Get the mouse position on the screen
-			static ge::Vector2<int> getMousePosition();
 
-			//Is a mouse button pressed
-			static bool isMouseButtonPressed(char button);
-		};
 	};
 }
 

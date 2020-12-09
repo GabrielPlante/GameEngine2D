@@ -1,14 +1,6 @@
-#include "CommandError.h"
 #include "CommandList.h"
-#include "Command.h"
 
-#include "CommandNbrEventHandler.h"
-#include "CommandNbrOfSystem.h"
-#include "CommandTimeScale.h"
-#include "CommandQuit.h"
-#include "CommandFps.h"
-
-#include <iostream>
+#include "BaseCommand.h"
 
 namespace ge {
 	CommandList* CommandList::instance{ nullptr };
@@ -28,21 +20,18 @@ namespace ge {
 
 	CommandList::CommandList()
 	{
-		commandList.insert(std::move(std::unique_ptr<Command>{new CommandNbrEventHandler{}}));
-		commandList.insert(std::move(std::unique_ptr<Command>{new CommandNbrOfSystem{}}));
-		commandList.insert(std::move(std::unique_ptr<Command>{new CommandTimeScale{}}));
-		commandList.insert(std::move(std::unique_ptr<Command>{new CommandQuit{}}));
-		commandList.insert(std::move(std::unique_ptr<Command>{new CommandFps{}}));
+		addCommand("nbr_of_system", CommandNbrOfSystem);
+		addCommand("time_scale", CommandTimeScale);
+		addCommand("quit", CommandQuit);
+		addCommand("fps", CommandFps);
 	}
 
 	bool CommandList::executeCommand(const std::string& commandName, const std::vector<float>& args) const {
-		std::unique_ptr<Command> command{ new Command{commandName} };
-		auto search = commandList.find(command);
-		if (search == commandList.end()) {
-			std::cout << ("Command \"" + commandName + "\" not found") << std::endl;
-			return false;
+		if (commandList.find(commandName) != commandList.end()) {
+			commandList.find(commandName)->second(args);
+			return true;
 		}
-		(**search).execute(args);
-		return true;
+		return false;
 	}
+
 }

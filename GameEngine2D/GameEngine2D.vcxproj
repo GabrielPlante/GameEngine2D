@@ -149,9 +149,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Angle.cpp" />
+    <ClCompile Include="BaseCommand.cpp" />
     <ClCompile Include="BatchRenderer.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CommandFps.cpp" />
     <ClCompile Include="CommandList.cpp" />
     <ClCompile Include="DefaultEventHandler.cpp" />
     <ClCompile Include="DefaultGraphicSystem.cpp" />
@@ -172,18 +172,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Angle.h" />
+    <ClInclude Include="BaseCommand.h" />
     <ClInclude Include="BatchRenderer.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Color.h" />
-    <ClInclude Include="Command.h" />
-    <ClInclude Include="CommandError.h" />
-    <ClInclude Include="CommandFps.h" />
-    <ClInclude Include="CommandNbrEventHandler.h" />
-    <ClInclude Include="CommandNbrOfSystem.h" />
     <ClInclude Include="CommandList.h" />
-    <ClInclude Include="CommandQuit.h" />
-    <ClInclude Include="CommandTimeScale.h" />
     <ClInclude Include="ComponentHandler.h" />
     <ClInclude Include="DefaultEventHandler.h" />
     <ClInclude Include="DefaultGraphicSystem.h" />

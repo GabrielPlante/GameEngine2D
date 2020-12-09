@@ -1,31 +1,16 @@
 #pragma once
-#include "Command.h"
-#include <unordered_set>
-#include <memory>
+#include <unordered_map>
+#include <functional>
 
-
-#define EXEC(X) ge::CommandList::getInstance()->executeCommand(X)
-#define EXEC_ARGS(X, Y) ge::CommandList::getInstance()->executeCommand(X, Y)
+#define EXEC(NAME) ge::CommandList::getInstance()->executeCommand(NAME)
+#define EXEC_ARGS(NAME, ARGS) ge::CommandList::getInstance()->executeCommand(NAME, ARGS)
 
 namespace ge {
-	class Command;
-
-	struct CommandHash {
-		size_t operator()(const std::unique_ptr<Command>& c1) const {
-			return std::hash<std::string>{}(c1->getName());
-		}
-	};
-	struct CommandEqual {
-		bool operator()(const std::unique_ptr<Command>& c1, const std::unique_ptr<Command>& c2) const {
-			return c1->getName() == c2->getName();
-		}
-	};
-
 	//Singleton, hold all the command
 	class CommandList
 	{
 	private:
-		std::unordered_set<std::unique_ptr<Command>, CommandHash, CommandEqual> commandList;
+		std::unordered_map<std::string, std::function<void(const std::vector<float>&)>> commandList;
 
 		static CommandList* instance;
 
@@ -42,10 +27,13 @@ namespace ge {
 		//Destroy this instance of the command list
 		static void quit();
 
-		//Add a command to the list
-		void addCommand(std::unique_ptr<Command> command) { commandList.insert(std::move(command)); }
+		//Add a command to the list, return true if the command is successfully inserted
+		bool addCommand(const std::string& commandName, std::function<void(const std::vector<float>&)> function) { return commandList.insert(std::make_pair(commandName, function)).second; }
 
-		//Try to execute a command. Return true if the command executed properly
+		//Try to execute a command. Return true if the command is executed properly
 		bool executeCommand(const std::string& commandName, const std::vector<float>& args = std::vector<float>{}) const;
+
+		//Remove a command from the list
+		void removeCommand(const std::string& commandName) { commandList.erase(commandName); }
 	};
 }

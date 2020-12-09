@@ -101,9 +101,6 @@
     <ClCompile Include="EventSystem.cpp">
       <Filter>Source Files\ECS\System\EventSystem</Filter>
     </ClCompile>
-    <ClCompile Include="CommandFps.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
     <ClCompile Include="Message.cpp">
       <Filter>Source Files\Messaging</Filter>
     </ClCompile>
@@ -134,6 +131,9 @@
     <ClCompile Include="ScriptComponent.cpp">
       <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
+    <ClCompile Include="BaseCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clock.h">
@@ -156,9 +156,6 @@
     </ClInclude>
     <ClInclude Include="System.h">
       <Filter>Header Files\ECS\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Command.h">
-      <Filter>Header Files\Command</Filter>
     </ClInclude>
     <ClInclude Include="CommandList.h">
       <Filter>Header Files\Command</Filter>
@@ -190,26 +187,8 @@
     <ClInclude Include="TextToCommand.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="CommandError.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="CommandFps.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="CommandQuit.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
     <ClInclude Include="Vector2.h">
       <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="CommandNbrEventHandler.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="CommandNbrOfSystem.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="CommandTimeScale.h">
-      <Filter>Header Files\Command</Filter>
     </ClInclude>
     <ClInclude Include="Storage.h">
       <Filter>Header Files\ECS\Component</Filter>
@@ -261,6 +240,9 @@
     </ClInclude>
     <ClInclude Include="UniformHandler.h">
       <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseCommand.h">
+      <Filter>Header Files\Command</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
