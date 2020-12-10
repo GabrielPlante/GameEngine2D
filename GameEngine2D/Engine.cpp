@@ -86,18 +86,18 @@ void main(){
 )";
 
 		std::shared_ptr<Camera> camera{ new Camera{{{0, 0}, static_cast<Vector2<int16_t>>(Vector2<int>{SCREEN_WIDTH, SCREEN_HEIGHT})}, {SCREEN_WIDTH, SCREEN_HEIGHT} } };
-		Input::bindKey(glfwGetKeyScancode(GLFW_KEY_O), "go_up", [=](const std::vector<float>&) {
-			camera->move({ 0, -0.1 });
-			});
-		Input::bindKey(glfwGetKeyScancode(GLFW_KEY_L), "go_down", [=](const std::vector<float>&) {
-			camera->move({ 0, 0.1 });
-			});
-		Input::bindKey(glfwGetKeyScancode(GLFW_KEY_K), "go_left", [=](const std::vector<float>&) {
-			camera->move({ 0.1, 0 });
-			});
-		Input::bindKey(39, "go_right", [=](const std::vector<float>&) {
-			camera->move({ -0.1, 0 });
-			});
+		Input::bindKey(glfwGetKeyScancode(GLFW_KEY_O), "camera_up", [=](const std::vector<float>&) {
+			camera->move({ 0, 0.05 });
+			}, true);
+		Input::bindKey(glfwGetKeyScancode(GLFW_KEY_L), "camera_down", [=](const std::vector<float>&) {
+			camera->move({ 0, -0.05 });
+			}, true);
+		Input::bindKey(glfwGetKeyScancode(GLFW_KEY_K), "camera_left", [=](const std::vector<float>&) {
+			camera->move({ -0.05, 0 });
+			}, true);
+		Input::bindKey(39, "camera_right", [=](const std::vector<float>&) {
+			camera->move({ 0.05, 0 });
+			}, true);
 
 		std::vector<std::shared_ptr<UniformHandler>> uniHandVec;
 		uniHandVec.push_back(std::shared_ptr<UniformHandler>{ new UniformTest{} });

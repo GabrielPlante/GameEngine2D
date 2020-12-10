@@ -5,11 +5,14 @@
 #include "Engine.h"
 #include "Input.h"
 
+#include <iostream>
+
 namespace ge {
 	DefaultEventHandler::DefaultEventHandler() {
 	}
 
 	void DefaultEventHandler::update()
 	{
+		Input::update();
 	}
 }

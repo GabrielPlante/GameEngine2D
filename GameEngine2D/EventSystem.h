@@ -20,7 +20,7 @@ namespace ge {
 
 	public:
 		//What will update all component under this system control
-		void update() { /*eventHandlerPile.back()->update();*/ }
+		void update() { eventHandlerPile.back()->update(); }
 
 		//Push an event handler that will be used from now on
 		void pushEventHandler(std::unique_ptr<EventHandler> eventHandler);
