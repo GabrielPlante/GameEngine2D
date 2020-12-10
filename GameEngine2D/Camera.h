@@ -33,7 +33,7 @@ namespace ge {
 		void updateUniform() const override;
 
 		//Move the camera by a offset
-		void move(Vector2<double> offset) { worldRectangle.position += offset; }
+		void move(Vector2<double> offset) { worldRectangle.position += offset * (1 / currentZoom); }
 
 		//Set a new position for the camera
 		void setPosition(Vector2<double> newPos) { worldRectangle.position = newPos; }

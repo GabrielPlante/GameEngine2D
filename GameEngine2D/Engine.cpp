@@ -65,10 +65,10 @@ namespace ge {
 
 layout(location = 0) in vec3 a_Position;
 
-uniform vec2 u_CameraPosition;
+uniform vec3 u_CameraPosition;
 
 void main(){
-	vec4 position = vec4(a_Position.x + u_CameraPosition.x, a_Position.y + u_CameraPosition.y, a_Position.z, 1.0);
+	vec4 position = vec4((a_Position.x + u_CameraPosition.x) * u_CameraPosition.z, (a_Position.y + u_CameraPosition.y) * u_CameraPosition.z, a_Position.z, 1.0);
 	gl_Position = position;
 }
 )";
@@ -98,6 +98,10 @@ void main(){
 		Input::bindKey(39, "camera_right", [=](const std::vector<float>&) {
 			camera->move({ 0.05, 0 });
 			}, true);
+
+		Input::bindScroll("camera_scroll", [camera](const std::vector<float>& args) {
+			camera->zoom(args[1] * 0.1 + 1);
+			});
 
 		std::vector<std::shared_ptr<UniformHandler>> uniHandVec;
 		uniHandVec.push_back(std::shared_ptr<UniformHandler>{ new UniformTest{} });

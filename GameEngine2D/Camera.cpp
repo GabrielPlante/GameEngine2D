@@ -2,6 +2,11 @@
 
 #include <GL/glew.h>
 
+#ifdef DEBUG_GE
+#include <iostream>
+#endif // DEBUG_GE
+
+
 namespace ge {
 	//screen + camera = world
 
@@ -9,7 +14,7 @@ namespace ge {
 	{
 		Vector2<float> glTransform{ screenRectangle.position };
 		glTransform -= static_cast<Vector2<float>>(worldRectangle.position);
-		glUniform2f(uniformID, glTransform.x, glTransform.y);
+		glUniform3f(uniformID, glTransform.x, glTransform.y, static_cast<float>(currentZoom));
 	}
 
 	void Camera::zoom(double delta) {
