@@ -61,10 +61,10 @@ layout(location = 1) in vec4 a_Color;
 
 out vec4 o_Color;
 
-uniform vec3 u_CameraPosition;
+uniform vec4 u_CameraTransform;
 
 void main(){
-	vec4 position = vec4((a_Position.x + u_CameraPosition.x) * u_CameraPosition.z, (a_Position.y + u_CameraPosition.y) * u_CameraPosition.z, 0.0, 1.0);
+	vec4 position = vec4((a_Position.x + u_CameraTransform.x) * u_CameraTransform.z, (a_Position.y + u_CameraTransform.y) * u_CameraTransform.w, 0.0, 1.0);
 	gl_Position = position;
 
 	o_Color = a_Color;
@@ -86,16 +86,16 @@ void main(){
 
 		std::shared_ptr<Camera> camera{ new Camera{{{0, 0}, static_cast<Vector2<int16_t>>(Vector2<int>{SCREEN_WIDTH, SCREEN_HEIGHT})}, {SCREEN_WIDTH, SCREEN_HEIGHT} } };
 		Input::bindKey(glfwGetKeyScancode(GLFW_KEY_O), "camera_up", [=](const std::vector<float>&) {
-			camera->move({ 0, 0.05 });
+			camera->move({ 0, 10 });
 			}, true);
 		Input::bindKey(glfwGetKeyScancode(GLFW_KEY_L), "camera_down", [=](const std::vector<float>&) {
-			camera->move({ 0, -0.05 });
+			camera->move({ 0, -10 });
 			}, true);
 		Input::bindKey(glfwGetKeyScancode(GLFW_KEY_K), "camera_left", [=](const std::vector<float>&) {
-			camera->move({ -0.05, 0 });
+			camera->move({ -10, 0 });
 			}, true);
 		Input::bindKey(39, "camera_right", [=](const std::vector<float>&) {
-			camera->move({ 0.05, 0 });
+			camera->move({ 10, 0 });
 			}, true);
 
 		Input::bindScroll("camera_scroll", [camera](const std::vector<float>& args) {
@@ -110,7 +110,7 @@ void main(){
 		//Create the test batch
 		std::shared_ptr<HexagonBatch> testBatch{ HexagonBatch::createBatch(Default2DVertex::getAttrib(), std::move(shader), 100) };
 
-		createHexagon(testBatch, { 0, 0 }, 0.2f, { 0.3f, 0.2f, 0.8f, 1.0f });
+		createHexagon(testBatch, { 0, 0 }, 20, { 0.3f, 0.2f, 0.8f, 1.0f });
 
 		//FOR TEST PURPOSE ONLY
 		Entity e{ Entity::Create() };

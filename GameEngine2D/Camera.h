@@ -20,13 +20,12 @@ namespace ge {
 		double currentZoom{ 1 };
 
 		CameraRectangle worldRectangle;
-		CameraRectangle screenRectangle;
 
 		Vector2<int16_t> screenSize;
 	public:
 		//Constructor
-		Camera(CameraRectangle worldRectangle, Vector2<int16_t> screenSize, CameraRectangle screenRectangle = { {0, 0}, {0, 0} }, double maxZoom = 100, double minZoom = 0.01)
-			: UniformHandler{ "u_CameraPosition" }, worldRectangle{ worldRectangle }, screenSize{ screenSize }, screenRectangle{ screenRectangle }, maxZoom{ maxZoom }, minZoom{ minZoom }
+		Camera(CameraRectangle worldRectangle, Vector2<int16_t> screenSize, double maxZoom = 100, double minZoom = 0.01)
+			: UniformHandler{ {"u_CameraTransform"} }, worldRectangle{ worldRectangle }, screenSize{ screenSize }, maxZoom{ maxZoom }, minZoom{ minZoom }
 		{}
 
 		//Update the uniform associated with the camera
