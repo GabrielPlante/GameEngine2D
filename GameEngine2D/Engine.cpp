@@ -34,6 +34,39 @@ namespace ge {
 		return timeSinceLastFrame;
 	}
 
+#ifdef DEBUG_GE
+	void typeCommand() {
+		while (true) {
+			std::string command;
+			std::getline(std::cin, command);
+
+			//Parse the string
+			int i = 0;
+			std::string delimiter{ " " };
+			size_t pos = 0;
+			std::string commandName;
+			std::vector<float> args;
+			while ((pos = command.find(delimiter)) != std::string::npos) {
+				std::string parsed{ command.substr(0, pos) };
+				if (i == 0)
+					commandName = parsed;
+				else
+					args.push_back(static_cast<float>(::atof(parsed.c_str())));
+				command.erase(0, pos + delimiter.length());
+				i++;
+			}
+			if (i == 0)
+				commandName = command;
+			else
+				args.push_back(static_cast<float>(::atof(command.c_str())));
+			if (args.size() == 0)
+				EXEC(commandName);
+			else
+				EXEC_ARGS(commandName, args);
+		}
+	}
+#endif // DEBUG_GE
+
 	//In the constructor many systems are added to the engine, the order in wich they are added will be their order of calling, so it matter
 	Engine::Engine()
 	{
@@ -50,6 +83,12 @@ namespace ge {
 
 		//Set the graphic system to the default one
 		graphicSystem.reset(new DefaultGraphicSystem{});
+
+#ifdef DEBUG_GE
+		//Start a thread that take in command input via iostream
+		new std::thread(typeCommand);
+#endif // DEBUG_GE
+
 
 		//-----------------Temporary stuff-----------------\\
 

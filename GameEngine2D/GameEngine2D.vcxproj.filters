@@ -140,6 +140,9 @@
     <ClCompile Include="Default2DVertex.cpp">
       <Filter>Source Files\Renderable</Filter>
     </ClCompile>
+    <ClCompile Include="Parameter.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clock.h">
@@ -255,6 +258,9 @@
     </ClInclude>
     <ClInclude Include="VertexAttrib.h">
       <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="Parameter.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

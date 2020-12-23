@@ -2,6 +2,11 @@
 
 #include "BaseCommand.h"
 
+#ifdef DEBUG_GE
+#include <iostream>
+#endif // DEBUG_GE
+
+
 namespace ge {
 	CommandList* CommandList::instance{ nullptr };
 
@@ -31,6 +36,10 @@ namespace ge {
 			commandList.find(commandName)->second(args);
 			return true;
 		}
+#ifdef DEBUG_GE
+		std::cout << "Command " << commandName << " not found" << std::endl;
+#endif // DEBUG_GE
+
 		return false;
 	}
 }

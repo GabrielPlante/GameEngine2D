@@ -162,6 +162,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Message.cpp" />
+    <ClCompile Include="Parameter.cpp" />
     <ClCompile Include="Publisher.cpp" />
     <ClCompile Include="ScriptComponent.cpp" />
     <ClCompile Include="ScriptSystem.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="Batch.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Parameter.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="ScriptComponent.h" />
