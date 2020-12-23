@@ -134,6 +134,12 @@
     <ClCompile Include="BaseCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
+    <ClCompile Include="ShapeCreator.cpp">
+      <Filter>Source Files\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="Default2DVertex.cpp">
+      <Filter>Source Files\Renderable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clock.h">
@@ -229,9 +235,6 @@
     <ClInclude Include="Rectangle.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="Batch.h">
       <Filter>Header Files\Renderable</Filter>
     </ClInclude>
@@ -243,6 +246,15 @@
     </ClInclude>
     <ClInclude Include="BaseCommand.h">
       <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeCreator.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="Default2DVertex.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexAttrib.h">
+      <Filter>Header Files\Renderable</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

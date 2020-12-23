@@ -1,11 +1,12 @@
 #pragma once
 #include <unordered_map>
+#include <memory>
 #include <vector>
 #include <array>
-#include <memory>
 #include <GL/glew.h>
 
 #include "BatchRenderer.h"
+#include "VertexAttrib.h"
 #include "Shader.h"
 #include "Entity.h" //No other solution
 
@@ -15,18 +16,10 @@
 
 
 namespace ge {
-	struct VertexAttrib {
-		int size; //In component
-		uint32_t type;
-		GLboolean normalized{ GL_FALSE };
-		const void* pointer;
-	};
-
 	//Generic class that allow to store object with the same number of vertex and index and render them all at once
-	//The size bufferSize is in object
 	//The class is created with the static function createBatch
 	//The batch is automatically rendered each frame
-	template <typename Vertex, size_t bufferSize, size_t vertexPerObject, size_t indexPerObject>
+	template <typename Vertex, size_t vertexPerObject, size_t indexPerObject>
 	class Batch
 		: public BatchRenderer
 	{
@@ -45,10 +38,11 @@ namespace ge {
 		const size_t objectIndexSize{ sizeof(uint32_t) * indexPerObject };
 
 		//Private constructor, a batch is made by a static call
-		Batch(const std::vector<VertexAttrib>& vertexAttribs, Shader&& shader);
+		Batch(const std::vector<VertexAttrib>& vertexAttribs, Shader&& shader, size_t bufferSize);
 	public:
 		//Create a batch
-		static std::unique_ptr<Batch<Vertex, bufferSize, vertexPerObject, indexPerObject>> createBatch(const std::vector<VertexAttrib>& vertexAttribs, Shader&& shader);
+		//The size bufferSize is in object
+		static std::shared_ptr<Batch<Vertex, vertexPerObject, indexPerObject>> createBatch(const std::vector<VertexAttrib>& vertexAttribs, Shader&& shader, size_t bufferSize);
 
 		//Add objects to the Batch. Return an array filled with the indexes of the objects placed
 		std::vector<size_t> addObject(const std::vector<std::array<Vertex, vertexPerObject>>& vertexArrays, const std::vector<std::array<uint32_t, indexPerObject>>& indexArrays);
@@ -75,21 +69,22 @@ namespace ge {
 	* When the instance is deleted, the component is cleared, so there isn't any risk of nullptr exception
 	*/
 
-#define BATCH_TEMPLATE Vertex,bufferSize,vertexPerObject,indexPerObject
+#define BATCH_TEMPLATE Vertex,vertexPerObject,indexPerObject
 
-	template <typename Vertex, size_t bufferSize, size_t vertexPerObject, size_t indexPerObject>
-	std::unique_ptr<Batch<BATCH_TEMPLATE>> Batch<BATCH_TEMPLATE>::createBatch(const std::vector<VertexAttrib>& vertexAttribs, Shader&& shader) {
-		return std::unique_ptr<Batch<BATCH_TEMPLATE>>{new Batch<Vertex, bufferSize, vertexPerObject, indexPerObject>{ vertexAttribs, std::move(shader) }};
+	template <typename Vertex, size_t vertexPerObject, size_t indexPerObject>
+	std::shared_ptr<Batch<BATCH_TEMPLATE>> Batch<BATCH_TEMPLATE>::createBatch(const std::vector<VertexAttrib>& vertexAttribs, Shader&& shader, size_t bufferSize) {
+		return std::shared_ptr<Batch<BATCH_TEMPLATE>>{new Batch<Vertex, vertexPerObject, indexPerObject>{ vertexAttribs, std::move(shader), bufferSize }};
 	}
 
-	template<typename Vertex, size_t bufferSize, size_t vertexPerObject, size_t indexPerObject>
-	Batch<Vertex, bufferSize, vertexPerObject, indexPerObject>::~Batch()
+	template<typename Vertex, size_t vertexPerObject, size_t indexPerObject>
+	Batch<Vertex, vertexPerObject, indexPerObject>::~Batch()
 	{
-		entity.deleteEntity();
+		if (entity.haveComponent<BatchRenderer*>())
+			entity.deleteEntity();
 	}
 
-	template <typename Vertex, size_t bufferSize, size_t vertexPerObject, size_t indexPerObject>
-	Batch<BATCH_TEMPLATE>::Batch(const std::vector<VertexAttrib>& vertexAttribs, Shader&& shader)
+	template <typename Vertex, size_t vertexPerObject, size_t indexPerObject>
+	Batch<BATCH_TEMPLATE>::Batch(const std::vector<VertexAttrib>& vertexAttribs, Shader&& shader, size_t bufferSize)
 		: BatchRenderer{ std::move(shader) }, entity { Entity::Create() }
 	{
 		//Handle the component storage
@@ -116,7 +111,7 @@ namespace ge {
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, bufferSize * objectIndexSize, nullptr, GL_DYNAMIC_DRAW);
 	}
 
-	template <typename Vertex, size_t bufferSize, size_t vertexPerObject, size_t indexPerObject>
+	template <typename Vertex, size_t vertexPerObject, size_t indexPerObject>
 	//Add objects to the Batch. Return an array filled with the indexes of the objects placed
 	std::vector<size_t> Batch<BATCH_TEMPLATE>::addObject
 		(const std::vector<std::array<Vertex, vertexPerObject>>& vertexArrays, const std::vector<std::array<uint32_t, indexPerObject>>& indexArrays)
@@ -178,7 +173,7 @@ namespace ge {
 		return placedObjectsId;
 	}
 
-	template <typename Vertex, size_t bufferSize, size_t vertexPerObject, size_t indexPerObject>
+	template <typename Vertex, size_t vertexPerObject, size_t indexPerObject>
 	void Batch<BATCH_TEMPLATE>::deleteObject(size_t objectID) {
 		//If the last object is in the last position
 		if (objectID == lastObjectPosition - 1) {
@@ -198,19 +193,19 @@ namespace ge {
 		}
 	}
 
-	template <typename Vertex, size_t bufferSize, size_t vertexPerObject, size_t indexPerObject>
+	template <typename Vertex, size_t vertexPerObject, size_t indexPerObject>
 	void Batch<BATCH_TEMPLATE>::changeVertex(size_t objectID, const Vertex* vertexes) const {
 		glBindBuffer(GL_ARRAY_BUFFER, VBID);
 		glBufferSubData(GL_ARRAY_BUFFER, objectID * objectVertexSize, objectVertexSize, vertexes);
 	}
 
-	template <typename Vertex, size_t bufferSize, size_t vertexPerObject, size_t indexPerObject>
+	template <typename Vertex, size_t vertexPerObject, size_t indexPerObject>
 	void Batch<BATCH_TEMPLATE>::changeIndex(size_t objectID, const std::array<uint32_t, indexPerObject>& indexes) const {
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBID);
 		glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, objectID * objectIndexSize, objectIndexSize, &indexes[0]);
 	}
 
-	template <typename Vertex, size_t bufferSize, size_t vertexPerObject, size_t indexPerObject>
+	template <typename Vertex, size_t vertexPerObject, size_t indexPerObject>
 	void Batch<BATCH_TEMPLATE>::clear() {
 		lastIndexPlace = 0;
 		lastObjectPosition = 0;

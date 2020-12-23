@@ -32,6 +32,9 @@ namespace ge {
 		//Get a component by his id
 		static Component& get(unsigned long id) { return componentList[idToPlace.find(id)->second]; }
 
+		//Does a component exist in this storage
+		static bool exist(unsigned long id) { return idToPlace.find(id) != idToPlace.end(); }
+
 		//Delete a component
 		static void deleteComponent(uint32_t id);
 

@@ -8,6 +8,7 @@
 #include "ScriptSystem.h"
 #include "EventSystem.h"
 
+#include "Default2DVertex.h"
 #include "CommandList.h"
 #include "Input.h"
 
@@ -16,10 +17,11 @@
 #endif
 
 #include "UniformHandler.h"
+#include "ShapeCreator.h"
 #include "Camera.h"
 #include "Batch.h"
 
-constexpr int SCREEN_WIDTH{ 1400 };
+constexpr int SCREEN_WIDTH{ 800 };
 constexpr int SCREEN_HEIGHT{ 800 };
 
 namespace ge {
@@ -31,15 +33,6 @@ namespace ge {
 		timeSinceStart += timeSinceLastFrame;
 		return timeSinceLastFrame;
 	}
-
-	class UniformTest : public UniformHandler
-	{
-	public:
-		UniformTest() : UniformHandler{ "u_Color" } {}
-		void updateUniform() const override {
-			glUniform4f(uniformID, 0.3f, 0.2f, 0.8f, 1.0f);
-		}
-	};
 
 	//In the constructor many systems are added to the engine, the order in wich they are added will be their order of calling, so it matter
 	Engine::Engine()
@@ -63,27 +56,33 @@ namespace ge {
 		std::string vertexSrc = R"(
 #version 330 core
 
-layout(location = 0) in vec3 a_Position;
+layout(location = 0) in vec2 a_Position;
+layout(location = 1) in vec4 a_Color;
+
+out vec4 o_Color;
 
 uniform vec3 u_CameraPosition;
 
 void main(){
-	vec4 position = vec4((a_Position.x + u_CameraPosition.x) * u_CameraPosition.z, (a_Position.y + u_CameraPosition.y) * u_CameraPosition.z, a_Position.z, 1.0);
+	vec4 position = vec4((a_Position.x + u_CameraPosition.x) * u_CameraPosition.z, (a_Position.y + u_CameraPosition.y) * u_CameraPosition.z, 0.0, 1.0);
 	gl_Position = position;
+
+	o_Color = a_Color;
 }
 )";
 
 		std::string fragmentSrc = R"(
 #version 330 core
 
+in vec4 o_Color;
 layout(location = 0) out vec4 color;
 
-uniform vec4 u_Color;
-
 void main(){
-	color = u_Color;
+	color = o_Color;
 }
 )";
+
+		//TEMPORARY KEY BINDING
 
 		std::shared_ptr<Camera> camera{ new Camera{{{0, 0}, static_cast<Vector2<int16_t>>(Vector2<int>{SCREEN_WIDTH, SCREEN_HEIGHT})}, {SCREEN_WIDTH, SCREEN_HEIGHT} } };
 		Input::bindKey(glfwGetKeyScancode(GLFW_KEY_O), "camera_up", [=](const std::vector<float>&) {
@@ -104,37 +103,18 @@ void main(){
 			});
 
 		std::vector<std::shared_ptr<UniformHandler>> uniHandVec;
-		uniHandVec.push_back(std::shared_ptr<UniformHandler>{ new UniformTest{} });
 		uniHandVec.push_back(std::move(camera));
 		Shader shader{ vertexSrc, fragmentSrc, std::move(uniHandVec) };
 
-		//Create the test batch
-		std::unique_ptr<Batch<ge::Vector2<float>, 2, 4, 6>> testBatch{ Batch<ge::Vector2<float>, 2, 4, 6>::createBatch({{2, GL_FLOAT, GL_FALSE, (const void*)0}}, std::move(shader)) };
-		constexpr int size{ 4 };
-        std::array<Vector2<float>, size> position{
-            Vector2<float>{0.0f, -0.5f},
-            Vector2<float>{0.0f,  0.5f},
-            Vector2<float>{0.5f, -0.5f},
-            Vector2<float>{0.5f,  0.5f}
-        };
 
-        constexpr int iSize{ 6 };
-        std::array<uint32_t, iSize> indexes{
-            0, 1, 2,
-            1, 2, 3
-        };
-		//testBatch->addObject({ position }, { indexes });
-        std::array<Vector2<float>, size> position2{
-            Vector2<float>{-0.6f, -0.5f},
-            Vector2<float>{-0.6f,  0.5f},
-            Vector2<float>{-0.1f, -0.5f},
-            Vector2<float>{-0.1f,  0.5f}
-        };
-		std::vector<size_t> ids{ testBatch->addObject({ position, position2 }, { indexes, indexes }) };
-		//testBatch->deleteObject(0);
-		//testBatch->addObject({ position }, { indexes });
+		//Create the test batch
+		std::shared_ptr<HexagonBatch> testBatch{ HexagonBatch::createBatch(Default2DVertex::getAttrib(), std::move(shader), 100) };
+
+		createHexagon(testBatch, { 0, 0 }, 0.2f, { 0.3f, 0.2f, 0.8f, 1.0f });
+
 		//FOR TEST PURPOSE ONLY
-		testBatch.release();
+		Entity e{ Entity::Create() };
+		e.addComponent<std::shared_ptr<HexagonBatch>>(std::move(testBatch));
 
 
 #ifdef DEBUG_GE
@@ -148,7 +128,9 @@ void main(){
 			delete mainWindow;
 
 		//Delete every entity and every component
-		Storage<ComponentHandler>::clear();
+		for (auto it = Storage<ComponentHandler>::begin(); it != Storage<ComponentHandler>::end(); it++) {
+			it->clear();
+		}
 
 		//Quit the command list
 		CommandList::quit();
@@ -180,6 +162,8 @@ void main(){
 				std::this_thread::sleep_for(std::chrono::microseconds(static_cast<long long>(timeBetweenFrame) * 1000 - engineClock.getTime()));
 			}
 		}
+
+		ENGINE->quit();
 	}
 
 	void Engine::update() {

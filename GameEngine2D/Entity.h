@@ -37,6 +37,10 @@ namespace ge {
 		template <typename Component>
 		Component& getComponent() const { return Storage<Component>::get(id); }
 
+		//Check if this entity have a certain component
+		template <typename Component>
+		bool haveComponent() const { return Storage<Component>::exist(id); }
+
 		//Delete a component
 		template <typename Component>
 		void deleteComponent() const { Storage<ComponentHandler>::get(id).deleteComponent<Component>(); }

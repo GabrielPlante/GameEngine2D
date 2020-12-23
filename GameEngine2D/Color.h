@@ -3,16 +3,16 @@
 namespace ge {
 	struct Color {
 		//The color composant
-		unsigned char red{ 0 };
-		unsigned char green{ 0 };
-		unsigned char blue{ 0 };
-		unsigned char alpha{ 0 };
+		float red{ 0 };
+		float green{ 0 };
+		float blue{ 0 };
+		float alpha{ 0 };
 
 		//Default constructor
 		Color() {}
 
 		//Constructor with the color
-		Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a = 255)
+		Color(float r, float g, float b, float a = 255)
 			:red{ r }, green{ g }, blue{ b }, alpha{ a }
 		{}
 	};

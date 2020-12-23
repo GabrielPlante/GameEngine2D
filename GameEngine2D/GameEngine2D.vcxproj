@@ -153,6 +153,7 @@
     <ClCompile Include="BatchRenderer.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CommandList.cpp" />
+    <ClCompile Include="Default2DVertex.cpp" />
     <ClCompile Include="DefaultEventHandler.cpp" />
     <ClCompile Include="DefaultGraphicSystem.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -166,6 +167,7 @@
     <ClCompile Include="ScriptSystem.cpp" />
     <ClCompile Include="Init.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShapeCreator.cpp" />
     <ClCompile Include="Subscriber.cpp" />
     <ClCompile Include="UniformHandler.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -179,6 +181,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="CommandList.h" />
     <ClInclude Include="ComponentHandler.h" />
+    <ClInclude Include="Default2DVertex.h" />
     <ClInclude Include="DefaultEventHandler.h" />
     <ClInclude Include="DefaultGraphicSystem.h" />
     <ClInclude Include="Engine.h" />
@@ -192,6 +195,7 @@
     <ClInclude Include="ScriptComponent.h" />
     <ClInclude Include="ScriptSystem.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShapeCreator.h" />
     <ClInclude Include="Storage.h" />
     <ClInclude Include="IDGenerator.h" />
     <ClInclude Include="Message.h" />
@@ -205,7 +209,7 @@
     <ClInclude Include="System.h" />
     <ClInclude Include="TextToCommand.h" />
     <ClInclude Include="VectorOfVector.h" />
-    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="VertexAttrib.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
