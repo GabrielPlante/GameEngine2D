@@ -35,6 +35,7 @@ namespace ge {
 	}
 
 #ifdef DEBUG_GE
+	//Wait for an user input then parse the string and send it to the command system
 	void typeCommand() {
 		while (true) {
 			std::string command;
@@ -143,13 +144,13 @@ void main(){
 
 		std::vector<std::shared_ptr<UniformHandler>> uniHandVec;
 		uniHandVec.push_back(std::move(camera));
-		Shader shader{ vertexSrc, fragmentSrc, std::move(uniHandVec) };
+		std::shared_ptr<Shader> shader{ new Shader{vertexSrc, fragmentSrc, std::move(uniHandVec)} };
 
 
 		//Create the test batch
 		std::shared_ptr<HexagonBatch> testBatch{ HexagonBatch::createBatch(Default2DVertex::getAttrib(), std::move(shader), 100) };
 
-		createHexagon(testBatch, { 0, 0 }, 20, { 0.3f, 0.2f, 0.8f, 1.0f });
+		createHexagon(testBatch, { {{ 0, 0 }, 200, { 0.3f, 0.2f, 0.8f, 1.0f }}, {{ 500, 0 }, 100, { 0.8f, 0.2f, 0.3f, 1.0f }} });
 
 		//FOR TEST PURPOSE ONLY
 		Entity e{ Entity::Create() };

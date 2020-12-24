@@ -125,7 +125,7 @@ namespace ge {
 		glDetachShader(program, vertexShader);
 		glDetachShader(program, fragmentShader);
 
-		//Setup the uniforms (aka transform their names into ids
+		//Setup the uniforms (aka transform their names into ids)
 		setupUniforms();
 	}
 

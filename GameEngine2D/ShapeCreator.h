@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <vector>
 
 #include "Vector2.h"
 #include "Color.h"
@@ -15,6 +16,12 @@ namespace ge {
 
 	typedef Batch<Default2DVertex, vertexPerHexagon, indexPerHexagon> HexagonBatch;
 
-	//Create an hexagon and directly transmit it to the batch renderer, give back the id of it. The position is the position of the center
-	size_t createHexagon(std::shared_ptr<Batch<Default2DVertex, vertexPerHexagon, indexPerHexagon>> batchRenderer, Vector2<float> position, float size, Color color);
+	struct HexagonTransform {
+		Vector2<float> position;
+		float size;
+		Color color;
+	};
+
+	//Create hexagons and directly transmit them to the batch renderer, give back their ids. The position is the position of the center
+	std::vector<size_t> createHexagon(std::shared_ptr<HexagonBatch> batchRenderer, std::vector<HexagonTransform> hexagons);
 }

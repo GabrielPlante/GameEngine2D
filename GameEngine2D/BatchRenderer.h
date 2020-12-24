@@ -1,15 +1,15 @@
 #pragma once
-
-#include "Shader.h"
+#include <memory>
 
 namespace ge {
+	class Shader;
 	class BatchRenderer
 	{
 	protected:
-		Shader shader;
+		std::shared_ptr<Shader> shader;
 
 		//Constructor protected so outside class can't construct a batch renderer as it is not mean't to be instanciated
-		BatchRenderer(Shader&& shader) : shader{ std::move(shader) } {}
+		BatchRenderer(std::shared_ptr<Shader>&& shader) : shader{ std::move(shader) } {}
 
 		uint32_t IBID;
 		int lastIndexPlace{ 0 };

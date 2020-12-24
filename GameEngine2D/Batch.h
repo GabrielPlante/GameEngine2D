@@ -38,11 +38,11 @@ namespace ge {
 		const size_t objectIndexSize{ sizeof(uint32_t) * indexPerObject };
 
 		//Private constructor, a batch is made by a static call
-		Batch(const std::vector<VertexAttrib>& vertexAttribs, Shader&& shader, size_t bufferSize);
+		Batch(const std::vector<VertexAttrib>& vertexAttribs, std::shared_ptr<Shader>&& shader, size_t bufferSize);
 	public:
 		//Create a batch
 		//The size bufferSize is in object
-		static std::shared_ptr<Batch<Vertex, vertexPerObject, indexPerObject>> createBatch(const std::vector<VertexAttrib>& vertexAttribs, Shader&& shader, size_t bufferSize);
+		static std::shared_ptr<Batch<Vertex, vertexPerObject, indexPerObject>> createBatch(const std::vector<VertexAttrib>& vertexAttribs, std::shared_ptr<Shader>&& shader, size_t bufferSize);
 
 		//Add objects to the Batch. Return an array filled with the indexes of the objects placed
 		std::vector<size_t> addObject(const std::vector<std::array<Vertex, vertexPerObject>>& vertexArrays, const std::vector<std::array<uint32_t, indexPerObject>>& indexArrays);
@@ -72,7 +72,7 @@ namespace ge {
 #define BATCH_TEMPLATE Vertex,vertexPerObject,indexPerObject
 
 	template <typename Vertex, size_t vertexPerObject, size_t indexPerObject>
-	std::shared_ptr<Batch<BATCH_TEMPLATE>> Batch<BATCH_TEMPLATE>::createBatch(const std::vector<VertexAttrib>& vertexAttribs, Shader&& shader, size_t bufferSize) {
+	std::shared_ptr<Batch<BATCH_TEMPLATE>> Batch<BATCH_TEMPLATE>::createBatch(const std::vector<VertexAttrib>& vertexAttribs, std::shared_ptr<Shader>&& shader, size_t bufferSize) {
 		return std::shared_ptr<Batch<BATCH_TEMPLATE>>{new Batch<Vertex, vertexPerObject, indexPerObject>{ vertexAttribs, std::move(shader), bufferSize }};
 	}
 
@@ -84,7 +84,7 @@ namespace ge {
 	}
 
 	template <typename Vertex, size_t vertexPerObject, size_t indexPerObject>
-	Batch<BATCH_TEMPLATE>::Batch(const std::vector<VertexAttrib>& vertexAttribs, Shader&& shader, size_t bufferSize)
+	Batch<BATCH_TEMPLATE>::Batch(const std::vector<VertexAttrib>& vertexAttribs, std::shared_ptr<Shader>&& shader, size_t bufferSize)
 		: BatchRenderer{ std::move(shader) }, entity { Entity::Create() }
 	{
 		//Handle the component storage
