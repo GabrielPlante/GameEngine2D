@@ -23,5 +23,5 @@ namespace ge {
 	};
 
 	//Create hexagons and directly transmit them to the batch renderer, give back their ids. The position is the position of the center
-	std::vector<size_t> createHexagon(std::shared_ptr<HexagonBatch> batchRenderer, std::vector<HexagonTransform> hexagons);
+	std::vector<size_t> createHexagons(std::shared_ptr<HexagonBatch> batchRenderer, const std::vector<HexagonTransform>& hexagons);
 }

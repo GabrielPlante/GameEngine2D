@@ -25,13 +25,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HexagonalMap.cpp" />
-    <ClCompile Include="MapGenerator.cpp" />
-    <ClCompile Include="MapStorage.cpp" />
     <ClCompile Include="PathFinder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HexagonalMap.h" />
-    <ClInclude Include="MapEntityComponent.h" />
     <ClInclude Include="MapEntityHandler.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="MapStorage.h" />

@@ -2,7 +2,7 @@
 
 #include "MapStorage.h"
 
-constexpr int maxPathSize{ 100 };
+/*constexpr int maxPathSize{ 100 };
 
 namespace map {
 	bool isValid(ge::Vector2<size_t> tile) {
@@ -116,4 +116,4 @@ namespace map {
 		//If nothing is found, return an empty vector
 		return empty;
 	}
-}
+}*/

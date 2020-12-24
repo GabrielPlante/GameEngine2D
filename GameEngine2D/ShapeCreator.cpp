@@ -9,7 +9,7 @@
 
 
 namespace ge {
-	std::vector<size_t> createHexagon(std::shared_ptr<HexagonBatch> batchRenderer, std::vector<HexagonTransform> hexagons)
+	std::vector<size_t> createHexagons(std::shared_ptr<HexagonBatch> batchRenderer, const std::vector<HexagonTransform>& hexagons)
 	{
 		//How to represent an hexagon : 6 triangles composed of the center and two adjacents vertex
 

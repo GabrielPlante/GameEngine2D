@@ -39,8 +39,6 @@ namespace ian {
 		ge::Vector2<double> newPosition{ computeMove(entity.getComponent<ge::TransformComponent>().position,
 			static_cast<ge::Vector2<double>>(map::HexagonalMap::relativeToAbsolute(it->destinationStack.top(), gv::tileWidth, gv::tileHeight)), it->movespeed) };
 
-		//Move the entity in the map
-		map::MapEntityHandler<gv::tileSize>::moveEntity(entity.getComponent<ge::TransformComponent>().position , it.id(), newPosition);
 		entity.getComponent<ge::TransformComponent>().position = newPosition;
 
 		//If we reached the next point of the stack, pop it
@@ -50,12 +48,12 @@ namespace ian {
 
 	void MovementSystem::update() {
 		//For every movement component
-		for (auto it = ge::Storage<MovementComponent>::begin(); it != ge::Storage<MovementComponent>::end(); it++) {
+		/*for (auto it = ge::Storage<MovementComponent>::begin(); it != ge::Storage<MovementComponent>::end(); it++) {
 			//If it is moving
 			if (!it->destinationStack.empty()) {
 				//Move the entity
 				moveEntity(it);
 			}
-		}
+		}*/
 	}
 }

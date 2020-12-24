@@ -1,8 +1,6 @@
 #pragma once
 #include <stack>
 
-#include "../Map/MapEntityComponent.h"
-
 namespace ian {
 	struct MovementComponent {
 		//The destination of this component

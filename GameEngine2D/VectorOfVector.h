@@ -6,6 +6,8 @@
 
 namespace ge {
 	template <typename T>
+	//This class is an implementation for a vector of vector.
+	//It is simple and quite fast to iterate, insert or delete, but it cannot store negative value
 	class VectorOfVector
 	{
 		friend class Iterator;

@@ -1,19 +1,19 @@
 #pragma once
-#include <map>
 
 #include "../GameEngine2D/VectorOfVector.h"
 #include "../GameEngine2D/Vector2.h"
 
-#include "TileComponent.h"
-
 namespace map {
+	template <typename TileComponent>
 	//Store every tile component that compose the map
 	class MapStorage
 	{
 	private:
 		//The map storage, static so the map is unique
-		static ge::VectorOfVector<TileComponent> map;
+		ge::VectorOfVector<TileComponent> map;
 	public:
+		MapStorage(std::function<bool(const TileComponent&)> isValid);
+
 		//Add a tile to the map. Return true if the tile was added, return false if there was already a tile
 		void addTile(ge::Vector2<size_t> position, TileComponent&& tile) { map.addElement(position, std::move(tile)); }
 
@@ -27,10 +27,16 @@ namespace map {
 		const TileComponent& getTile(ge::Vector2<size_t> position) const { return map[position]; }
 
 		//Get a posize_ter on the tile
-		TileComponent* modifyTile(ge::Vector2<size_t> position) { return &map[position]; }
+		TileComponent& modifyTile(ge::Vector2<size_t> position) { return map[position]; }
 
 		//The map iterator
-		ge::VectorOfVector<TileComponent>::Iterator getBeginningIterator() { return map.begin(); }
+		typename ge::VectorOfVector<TileComponent>::Iterator begin() { return map.begin(); }
 	};
+
+
+	template <typename TileComponent>
+	MapStorage<TileComponent>::MapStorage(std::function<bool(const TileComponent&)> isValid)
+		: map{ []() {return TileComponent; }, isValid }
+	{}
 }
 

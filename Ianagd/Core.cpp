@@ -48,7 +48,7 @@ namespace ian {
 		//gRenderer = graphicSystem->getWindowRenderer();
 
 		//Generate the map and it's texture
-		map::MapGenerator::generate(10, { 0, 80, 0 });
+		//map::MapGenerator::generate(10, { 0, 80, 0 });
 
 		//Add the texture to the graphic system
 		//graphicSystem->addMapTexture(mapTexture);
@@ -58,7 +58,6 @@ namespace ian {
 		//Add the other systems
 		fillSystem();
 
-		ge::Entity playerId{ EntityHandler::createEntity({400, 400}, 200) };
 
 		EXEC_ARGS("fps", { 60 });
 
@@ -69,7 +68,7 @@ namespace ian {
 			  PlayerControl() : ge::Script{ "player_control" } {}
 		};
 
-		playerId.addComponent<ge::ScriptComponent>().bindScript<PlayerControl>();
+		//playerId.addComponent<ge::ScriptComponent>().bindScript<PlayerControl>();
 	}
 
 	Core::~Core() {

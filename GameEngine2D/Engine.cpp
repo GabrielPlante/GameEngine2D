@@ -150,7 +150,7 @@ void main(){
 		//Create the test batch
 		std::shared_ptr<HexagonBatch> testBatch{ HexagonBatch::createBatch(Default2DVertex::getAttrib(), std::move(shader), 100) };
 
-		createHexagon(testBatch, { {{ 0, 0 }, 200, { 0.3f, 0.2f, 0.8f, 1.0f }}, {{ 500, 0 }, 100, { 0.8f, 0.2f, 0.3f, 1.0f }} });
+		createHexagons(testBatch, { {{ 0, 0 }, 200, { 0.3f, 0.2f, 0.8f, 1.0f }}, {{ 500, 0 }, 100, { 0.8f, 0.2f, 0.3f, 1.0f }} });
 
 		//FOR TEST PURPOSE ONLY
 		Entity e{ Entity::Create() };

@@ -1,8 +1,7 @@
 #pragma once
-#include "../GameEngine2D/IDGenerator.h"
+/*#include "../GameEngine2D/IDGenerator.h"
 #include "../GameEngine2D/Vector2.h"
 
-#include "MapEntityComponent.h"
 #include "HexagonalMap.h"
 #include "MapStorage.h"
 
@@ -15,17 +14,17 @@ namespace map {
 		//Get the tile out of a position
 		static ge::Vector2<size_t> getTile(ge::Vector2<double> position);
 	public:
-		//Create a map entity at a certain position
-		static void createMapEntity(ge::Vector2<double> position, unsigned int id);
+		//Add an entity to a tile
+		static void addEntity(ge::Vector2<double> position, uint32_t id) { MapStorage::modifyTile(getTile(position)).entities.push_back(id); }
 
-		//Delete an entity, return true if the entity is found and deleted
-		static bool deleteEntity(ge::Vector2<double> position, unsigned int id);
+		//remove an entity from a tile, return true if the entity is found and deleted 
+		static bool removeEntity(ge::Vector2<double> position, uint32_t id);
 
-		//Move an entity to a new place, return true if the entity is found and moved
-		static void moveEntity(ge::Vector2<double> oldPosition, unsigned int id, ge::Vector2<double> newPosition);
+		//Move an entity to a new tile, return true if the entity is found and moved
+		static void moveEntity(uint32_t id, ge::Vector2<double> oldPosition, ge::Vector2<double> newPosition);
 
 		//Get all the entities in the neighborhood of the one given. Garanteed to not return the given entity
-		static std::vector<MapEntityComponent> getNeighborEntities(ge::Vector2<double> position, unsigned int id);
+		static std::vector<uint32_t> getNeighborEntities(ge::Vector2<double> position, uint32_t id);
 	};
 
 	//Definition here because of templated class
@@ -40,29 +39,15 @@ namespace map {
 	}
 
 	template <int tileSize>
-	void MapEntityHandler<tileSize>::createMapEntity(ge::Vector2<double> position, unsigned int id) {
-		//Compute the tile dimension
-		ge::Vector2<size_t> tilePosition{ getTile(position) };
-
-		//Create the component
-		MapEntityComponent entity{ id, position };
-
-		//Add the component to the storage
-		MapStorage storage;
-		storage.modifyTile(tilePosition)->entities.push_back(std::move(entity));
-	}
-
-	template <int tileSize>
-	bool MapEntityHandler<tileSize>::deleteEntity(ge::Vector2<double> position, unsigned int id) {
+	bool MapEntityHandler<tileSize>::removeEntity(ge::Vector2<double> position, uint32_t id) {
 		//Compute the tile dimension
 		ge::Vector2<size_t> tilePosition{ getTile(position) };
 
 		//Search the entity in the tile
-		MapStorage storage;
-		for (auto it = storage.modifyTile(tilePosition)->entities.begin(); it != storage.modifyTile(tilePosition)->entities.end(); it++) {
+		for (auto it = MapStorage::modifyTile(tilePosition).entities.begin(); it != MapStorage::modifyTile(tilePosition).entities.end(); it++) {
 			//If found, delete the entity
-			if (it->id == id) {
-				storage.modifyTile(tilePosition)->entities.erase(it);
+			if (*it == id) {
+				MapStorage::modifyTile(tilePosition)->entities.erase(it);
 				return true;
 			}
 		}
@@ -71,41 +56,32 @@ namespace map {
 	}
 
 	template <int tileSize>
-	void MapEntityHandler<tileSize>::moveEntity(ge::Vector2<double> oldPosition, unsigned int id, ge::Vector2<double> newPosition) {
+	void MapEntityHandler<tileSize>::moveEntity(uint32_t id, ge::Vector2<double> oldPosition, ge::Vector2<double> newPosition) {
 		//Compute the tile dimension
 		ge::Vector2<size_t> tilePosition{ getTile(oldPosition) };
 
 		//Search the entity in the tile
-		MapStorage storage;
-		for (auto it = storage.modifyTile(tilePosition)->entities.begin(); it != storage.modifyTile(tilePosition)->entities.end(); it++) {
+		for (auto it = MapStorage::modifyTile(tilePosition).entities.begin(); it != MapStorage::modifyTile(tilePosition).entities.end(); it++) {
 			//If found, delete the entity
-			if (it->id == id) {
-				storage.modifyTile(tilePosition)->entities.erase(it);
+			if (*it == id) {
+				MapStorage::modifyTile(tilePosition).entities.erase(it);
 				break;
 			}
 		}
 
-		//Get the new tile position
-		tilePosition = getTile(newPosition);
-
-		//Create the component
-		MapEntityComponent entity{ id, newPosition };
-
-		//Add the component to the storage
-		storage.modifyTile(tilePosition)->entities.push_back(std::move(entity));
+		addEntity(newPosition, id);
 	}
 
 	template <int tileSize>
-	std::vector<MapEntityComponent> MapEntityHandler<tileSize>::getNeighborEntities(ge::Vector2<double> position, unsigned int id) {
+	std::vector<uint32_t> MapEntityHandler<tileSize>::getNeighborEntities(ge::Vector2<double> position, uint32_t id) {
 		//Get the tile position
 		ge::Vector2<size_t> tilePosition{ getTile(position) };
 
 		//The vector that will contain the neighbors
-		std::vector<MapEntityComponent> neighborEntities;
+		std::vector<uint32_t> neighborEntities;
 
 		//Add the neighbors within the tile
-		MapStorage storage;
-		std::vector<MapEntityComponent>& entitiesInTile{ storage.modifyTile(tilePosition)->entities };
+		std::vector<uint32_t>& entitiesInTile{ MapStorage::modifyTile(tilePosition)->entities };
 		for (int i = 0; i != entitiesInTile.size(); i++) {
 			if (entitiesInTile[i].id != id) {
 				neighborEntities.push_back(entitiesInTile[i]);
@@ -125,5 +101,5 @@ namespace map {
 		return neighborEntities;
 	}
 
-}
+}*/
 

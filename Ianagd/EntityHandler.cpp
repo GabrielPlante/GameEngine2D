@@ -14,9 +14,6 @@ namespace ian {
 		//Create the entity
 		ge::Entity entityHandle{ ge::Entity::Create({position, 0}) };
 
-		//Create the map entityHandle
-		map::MapEntityHandler<gv::tileSize>::createMapEntity(position, entityHandle);
-
 		//Create the movement component and give it to the entity
 		MovementComponent movComp{ position, movespeed };
 		entityHandle.addComponent(std::move(movComp));
@@ -30,8 +27,8 @@ namespace ian {
 		ge::Vector2<size_t> positionTile{ map::HexagonalMap::absoluteToRelative(entityHandle.getComponent<ge::TransformComponent>().position, gv::tileWidth, gv::tileHeight) };
 		ge::Vector2<size_t> destinationTile{ map::HexagonalMap::absoluteToRelative(destination, gv::tileWidth, gv::tileHeight) };
 		//Create the path finder object
-		map::PathFinder pathFinder{ positionTile, destinationTile };
+		//map::PathFinder pathFinder{ positionTile, destinationTile };
 		//Compute the path and store it
-		entityHandle.getComponent<MovementComponent>().destinationStack = pathFinder.findPath();
+		//entityHandle.getComponent<MovementComponent>().destinationStack = pathFinder.findPath();
 	}
 }

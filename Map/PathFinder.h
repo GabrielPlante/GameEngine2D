@@ -48,9 +48,9 @@ namespace map {
 
 	public:
 		//Constructor
-		PathFinder(ge::Vector2<size_t> start, ge::Vector2<size_t> destination) : start{ start }, destination{ destination } {}
+		//PathFinder(ge::Vector2<size_t> start, ge::Vector2<size_t> destination) : start{ start }, destination{ destination } {}
 
 		//Find the path between the start and the destination
-		std::stack<ge::Vector2<size_t>> findPath() const;
+		//std::stack<ge::Vector2<size_t>> findPath() const;
 	};
 }

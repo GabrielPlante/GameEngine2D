@@ -2,8 +2,6 @@
 #include "../GameEngine2D/Vector2.h"
 #include "../GameEngine2D/Color.h"
 
-#include "MapEntityComponent.h"
-
 namespace map {
 	//Hold every information about a tile
 	struct TileComponent {
@@ -15,8 +13,5 @@ namespace map {
 
 		//Is the tile walkalble
 		bool isWalkable{ true };
-
-		//The entities in the tile
-		std::vector<MapEntityComponent> entities;
 	};
 }
